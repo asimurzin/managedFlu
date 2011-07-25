@@ -7,7 +7,7 @@
 
 namespace Foam
 {
-  class fluTime : protected Time
+  class fluTime : public Time
   {
   private:
     fluTime( const word &name,
@@ -15,8 +15,9 @@ namespace Foam
              const word &systemName="system", 
              const word &constantName="constant" ) : Time( name, args, systemName, constantName )
     {}
+    fluTime( const fluTime& ); // not implemented
     fluTime(); // not implemented
-  friend class TimeHolder;
+    friend class TimeHolder;
   };
 } // Foam
 

@@ -17,14 +17,17 @@ namespace Foam
     TimeHolder( const word &name, 
                 const argList &args, 
                 const word &systemName="system", 
-                const word &constantName="constant" ) : boost::shared_ptr< Time >( new fluTime( name, args, systemName, constantName ) ), 
-                                                        objectRegistryHolder( this )
+                const word &constantName="constant" ) 
+      : boost::shared_ptr< Time >( new fluTime( name, args, systemName, constantName ) )
+      , objectRegistryHolder( *this )
     {}
   protected:
-    TimeHolder( Time*  t ) : boost::shared_ptr< Time >( t ), objectRegistryHolder( t ) {} 
+    TimeHolder( const TimeHolder&  t ) 
+      : boost::shared_ptr< Time >( t )
+      , objectRegistryHolder( t ) 
+    {} 
   private:
     TimeHolder(); // not implemented
-    TimeHolder( const TimeHolder& ); //not implemented
   };
 } // Foam
 
