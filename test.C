@@ -30,6 +30,8 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
+#include "BugFixing/objectRegistryHolder.H"
+#include "BugFixing/TimeHolder.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
