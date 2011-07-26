@@ -11,7 +11,7 @@
 
 namespace Foam
 {
-  class TimeHolder : public boost::shared_ptr< Time >, protected objectRegistryHolder
+  class TimeHolder : public boost::shared_ptr< Time >, public objectRegistryHolder
   {
   public:
     TimeHolder( const word &name, 
@@ -30,7 +30,12 @@ namespace Foam
     TimeHolder(); // not implemented
     void operator = ( const TimeHolder& registry ); // not implemented 
   public:
+    using boost::shared_ptr< Time >::operator->;
     using boost::shared_ptr< Time >::operator*;
+    operator objectRegistryHolder ()
+    {
+      return objectRegistryHolder( boost::shared_ptr< Time >( *this ) );
+    }
   };
 } // Foam
 
