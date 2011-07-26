@@ -13,10 +13,17 @@ namespace Foam
   private:
     flufvMesh( const IOobjectHolder& io ) : IOobjectHolder( io ),
                                             fvMesh( *io )
-    {}
+    {
+      cout << "flufvMesh = " << this << nl;
+    }
     flufvMesh( const flufvMesh& ); // not implemented
     flufvMesh(); // not implemented
     friend class fvMeshHolder;
+  public:
+    ~flufvMesh()
+    {
+      cout << "~flufvMesh = " << this << nl;
+    }
   };
 } // Foam
 

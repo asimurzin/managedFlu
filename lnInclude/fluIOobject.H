@@ -19,11 +19,18 @@ namespace Foam
                  bool registerObject = true ) 
       : objectRegistryHolder( registry )
       ,	IOobject( name, instance, *registry, r, w, registerObject )
-    {}
+    {
+      cout << "fluIOobject = " << this << nl;
+    }
     fluIOobject(); // not implemented
     // fluIOobject( const fluIOobject& ); // not implemented
     void operator = ( const fluIOobject& ); // not implemented 
     friend class IOobjectHolder;
+  public:
+    ~fluIOobject()
+    {
+      cout << "~fluIOobject = " << this << nl;
+    }
   };
 } // Foam
 
