@@ -19,15 +19,16 @@ namespace Foam
                 const word &systemName="system", 
                 const word &constantName="constant" ) 
       : boost::shared_ptr< Time >( new fluTime( name, args, systemName, constantName ) )
-      , objectRegistryHolder( *this )
+      , objectRegistryHolder( boost::shared_ptr< Time >( *this ) )
     {}
   protected:
-    TimeHolder( const TimeHolder&  t ) 
+    TimeHolder( const boost::shared_ptr< Time >&  t ) 
       : boost::shared_ptr< Time >( t )
       , objectRegistryHolder( t ) 
     {} 
   private:
     TimeHolder(); // not implemented
+    void operator = ( const TimeHolder& registry ); // not implemented 
   };
 } // Foam
 

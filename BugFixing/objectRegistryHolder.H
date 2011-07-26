@@ -10,11 +10,12 @@ namespace Foam
   class objectRegistryHolder : public boost::shared_ptr< objectRegistry >
   {
   protected:
-    objectRegistryHolder( const objectRegistryHolder& registry )
+    objectRegistryHolder( const boost::shared_ptr< objectRegistry >& registry )
       : boost::shared_ptr< objectRegistry >( registry )
     {}
   private:
     objectRegistryHolder(); // not implemented 
+    void operator = ( const objectRegistryHolder& registry ); // not implemented 
   };
 } // Foam
 
