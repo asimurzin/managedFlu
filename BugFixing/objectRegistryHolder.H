@@ -15,7 +15,8 @@ namespace Foam
     {}
   private:
     objectRegistryHolder(); // not implemented 
-    void operator = ( const objectRegistryHolder& registry ); // not implemented 
+    // objectRegistryHolder( const objectRegistryHolder& ); // not implemented 
+    void operator = ( const objectRegistryHolder& ); // not implemented 
   };
 } // Foam
 

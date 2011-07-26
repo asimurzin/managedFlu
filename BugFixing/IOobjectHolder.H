@@ -27,6 +27,8 @@ namespace Foam
     {} 
   private:
     IOobjectHolder(); // not implemented
+    // IOobjectHolder( const IOobjectHolder& ); // not implemented 
+    void operator = ( const IOobjectHolder& ); // not implemented 
   };
 } // Foam
 
