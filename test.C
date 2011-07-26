@@ -45,17 +45,20 @@ int main(int argc, char *argv[])
         Foam::FatalError.exit();
     }
 
-    Foam::Info<< "Create time\n" << Foam::endl;
-
-    Foam::TimeHolder runTime(Foam::Time::controlDictName, args);
+    Foam::fvMeshHolder mesh;
+    {
+      Foam::Info<< "Create time\n" << Foam::endl;
     
-    Foam::Info << "Create mesh for time = " << runTime->timeName() << Foam::nl << Foam::endl;
+      Foam::TimeHolder runTime(Foam::Time::controlDictName, args);
+      
+      Foam::Info << "Create mesh for time = " << runTime->timeName() << Foam::nl << Foam::endl;
 
-    Foam::fvMeshHolder mesh( Foam::IOobjectHolder( Foam::fvMesh::defaultRegion,
-                                                   runTime->timeName(),
-                                                   runTime,
-                                                   Foam::IOobject::MUST_READ ) );
-    runTime.~TimeHolder();
+      mesh = Foam::fvMeshHolder( Foam::IOobjectHolder( Foam::fvMesh::defaultRegion,
+						       runTime->timeName(),
+						       runTime,
+						       Foam::IOobject::MUST_READ ) );
+    }
+
     return 0;
 }
 
