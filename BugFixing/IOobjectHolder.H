@@ -26,8 +26,6 @@ namespace Foam
     {} 
   private:
     IOobjectHolder(); // not implemented
-  public:
-   using boost::shared_ptr< IOobject >::operator*;
   };
 } // Foam
 
