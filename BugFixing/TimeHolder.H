@@ -29,6 +29,8 @@ namespace Foam
   private:
     TimeHolder(); // not implemented
     void operator = ( const TimeHolder& registry ); // not implemented 
+  public:
+    using boost::shared_ptr< Time >::operator*;
   };
 } // Foam
 
