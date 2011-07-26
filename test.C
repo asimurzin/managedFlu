@@ -37,7 +37,11 @@ Description
 
 int main(int argc, char *argv[])
 {
-    #include "setRootCase.H"
+    Foam::argList args(argc, argv);
+    if (!args.checkRootCase())
+    {
+        Foam::FatalError.exit();
+    }
 
     Foam::Info<< "Create time\n" << Foam::endl;
 
