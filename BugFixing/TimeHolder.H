@@ -32,10 +32,6 @@ namespace Foam
   public:
     using boost::shared_ptr< Time >::operator->;
     using boost::shared_ptr< Time >::operator*;
-    operator objectRegistryHolder ()
-    {
-      return objectRegistryHolder( boost::shared_ptr< Time >( *this ) );
-    }
   };
 } // Foam
 
