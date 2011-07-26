@@ -33,10 +33,6 @@ namespace Foam
   public:
     using boost::shared_ptr< Time >::operator->;
     using boost::shared_ptr< Time >::operator*;
-    ~TimeHolder()
-    {
-      cout << "The TimeHolder finish" << nl;
-    }
   };
 } // Foam
 
