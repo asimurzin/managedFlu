@@ -61,6 +61,7 @@ int main(int argc, char *argv[])
 
     Foam::fvMeshHolder mesh=test_func( Foam::Time::controlDictName, args );
     
+    cout << "Before the main finish" << nl;
     return 0;
 }
 
