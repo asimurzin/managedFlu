@@ -32,6 +32,7 @@ Description
 #include "fvCFD.H"
 #include "BugFixing/objectRegistryHolder.H"
 #include "BugFixing/TimeHolder.H"
+#include "BugFixing/IOobjectHolder.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -47,9 +48,13 @@ int main(int argc, char *argv[])
 
     Foam::TimeHolder runTime(Foam::Time::controlDictName, args);
     
-/*    Foam::Info << "Create mesh for time = " << runTime.timeName() << Foam::nl << Foam::endl;
+    Foam::Info << "Create mesh for time = " << (*runTime).timeName() << Foam::nl << Foam::endl;
+    Foam::IOobjectHolder io( Foam::fvMesh::defaultRegion,
+                                       (*runTime).timeName(),
+                                       runTime,
+                                       Foam::IOobject::MUST_READ );
 
-    Foam::fvMesh mesh( Foam::IOobject( Foam::fvMesh::defaultRegion,
+/*    Foam::fvMesh mesh( Foam::IOobject( Foam::fvMesh::defaultRegion,
                                        runTime.timeName(),
                                        runTime,
                                        Foam::IOobject::MUST_READ ) );*/
