@@ -19,7 +19,8 @@ namespace Foam
                     const objectRegistryHolder & registry, 
                     IOobject::readOption r=IOobject::NO_READ, 
                     IOobject::writeOption w=IOobject::NO_WRITE, 
-                    bool registerObject=true ) : boost::shared_ptr< IOobject >( new fluIOobject( name, instance, registry, r, w, registerObject ) )
+                    bool registerObject=true ) 
+      : boost::shared_ptr< IOobject >( new fluIOobject( name, instance, registry, r, w, registerObject ) )
     {}
   protected:
     IOobjectHolder( const IOobjectHolder&  t ) : boost::shared_ptr< IOobject >( t )

@@ -16,9 +16,9 @@ namespace Foam
                  const objectRegistryHolder& registry, 
                  IOobject::readOption r = IOobject::NO_READ, 
                  IOobject::writeOption w = IOobject::NO_WRITE, 
-                 bool registerObject=true ) : objectRegistryHolder( registry ),
-                                              IOobject( name, instance, *registry, r, w, registerObject )
-                                                
+                 bool registerObject=true ) 
+      : objectRegistryHolder( registry )
+      ,	IOobject( name, instance, *registry, r, w, registerObject )
     {}
     fluIOobject( const fluIOobject& ); // not implemented
     fluIOobject(); // not implemented
