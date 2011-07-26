@@ -41,14 +41,14 @@ int main(int argc, char *argv[])
 
     Foam::Info<< "Create time\n" << Foam::endl;
 
-    Foam::Time runTime(Foam::Time::controlDictName, args);
+    Foam::TimeHolder runTime(Foam::Time::controlDictName, args);
     
-    Foam::Info << "Create mesh for time = " << runTime.timeName() << Foam::nl << Foam::endl;
+/*    Foam::Info << "Create mesh for time = " << runTime.timeName() << Foam::nl << Foam::endl;
 
     Foam::fvMesh mesh( Foam::IOobject( Foam::fvMesh::defaultRegion,
                                        runTime.timeName(),
                                        runTime,
-                                       Foam::IOobject::MUST_READ ) );
+                                       Foam::IOobject::MUST_READ ) );*/
 
     return 0;
 }
