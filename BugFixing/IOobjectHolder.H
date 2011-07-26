@@ -23,8 +23,8 @@ namespace Foam
       : boost::shared_ptr< IOobject >( new fluIOobject( name, instance, registry, r, w, registerObject ) )
     {}
   protected:
-    IOobjectHolder( const IOobjectHolder&  t ) : boost::shared_ptr< IOobject >( t )
-    {} 
+    IOobjectHolder( const boost::shared_ptr< IOobject >&  t ) : boost::shared_ptr< IOobject >( t )
+    {}
   private:
     IOobjectHolder(); // not implemented
     // IOobjectHolder( const IOobjectHolder& ); // not implemented 
