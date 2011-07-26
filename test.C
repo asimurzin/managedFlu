@@ -36,6 +36,20 @@ Description
 #include "fvMeshHolder.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Foam::fvMeshHolder test_func( const Foam::word& dict_name, const Foam::argList& args)
+{
+  Foam::Info<< "Create time\n" << Foam::endl;
+      
+  Foam::TimeHolder runTime( dict_name, args);
+      
+  Foam::Info << "Create mesh for time = " << runTime->timeName() << Foam::nl << Foam::endl;
+      
+  return Foam::fvMeshHolder( Foam::IOobjectHolder( Foam::fvMesh::defaultRegion,
+						       runTime->timeName(),
+						       runTime,
+						       Foam::IOobject::MUST_READ ) );
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -45,20 +59,8 @@ int main(int argc, char *argv[])
         Foam::FatalError.exit();
     }
 
-    Foam::fvMeshHolder mesh;
-    {
-      Foam::Info<< "Create time\n" << Foam::endl;
+    Foam::fvMeshHolder mesh=test_func( Foam::Time::controlDictName, args );
     
-      Foam::TimeHolder runTime(Foam::Time::controlDictName, args);
-      
-      Foam::Info << "Create mesh for time = " << runTime->timeName() << Foam::nl << Foam::endl;
-
-      mesh = Foam::fvMeshHolder( Foam::IOobjectHolder( Foam::fvMesh::defaultRegion,
-						       runTime->timeName(),
-						       runTime,
-						       Foam::IOobject::MUST_READ ) );
-    }
-
     return 0;
 }
 
