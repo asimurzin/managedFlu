@@ -1,0 +1,65 @@
+#!/bin/sh
+
+#--------------------------------------------------------------------------------------
+## Copyright (C) 2010- Alexey Petrov
+## Copyright (C) 2009-2010 Pebble Bed Modular Reactor (Pty) Limited (PBMR)
+## 
+## This program is free software: you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation, either version 3 of the License, or
+## (at your option) any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+## 
+## You should have received a copy of the GNU General Public License
+## along with this program.  If not, see <http://www.gnu.org/licenses/>.
+## 
+## See http://sourceforge.net/projects/pythonflu
+##
+## Author : Alexey PETROV
+##
+
+
+#--------------------------------------------------------------------------------------
+confflu_path=""
+
+if test "x${CONFFLU_ROOT_DIR}" != "x"; then
+   confflu_path=${CONFFLU_ROOT_DIR}
+fi
+
+if test "x${confflu_path}" = x && test -f /usr/local/share/confFlu/build_configure; then
+   confflu_path=/usr/local/share/confFlu
+fi
+
+if test "${confflu_path}x" = "x"; then
+   echo "ERROR:confFlu need to be installed or sourced"
+   exit 0
+fi
+
+
+#--------------------------------------------------------------------------------------
+pythonflu_include=""
+
+if test "x${PYTHONFLU_ROOT_DIR}" != "x"; then
+   pythonflu_include="-I ${PYTHONFLU_ROOT_DIR}/admin"
+fi
+
+if test "x${pythonflu_include}" = "x" && test -d /usr/local/share/pythonFlu/admin; then
+   pythonflu_include="-I /usr/local/share/pythonFlu/admin"
+fi
+
+if test "${pythonflu_include}x" = "x"; then
+   echo "ERROR:pythonFlu need to be installed or sourced"
+   exit 0
+fi
+
+
+#--------------------------------------------------------------------------------------
+${confflu_path}/build_configure \
+     ${pythonflu_include} \
+
+
+#--------------------------------------------------------------------------------------
