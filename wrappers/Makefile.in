@@ -39,6 +39,7 @@ __LDFLAGS__ := $(__LDFLAGS__) \
 	@OPENFOAM_FINITEVOLUME_LIBS@ \
 	
 sources = \
+	@abs_top_builddir@/wrappers/objectRegistryHolder.cxx \
 	@abs_top_builddir@/wrappers/TimeHolder.cxx
 	
 include $(pythonflu_root_dir)/Foam/include.foam.makefile
