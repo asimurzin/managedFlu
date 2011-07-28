@@ -4,28 +4,27 @@
 
 //---------------------------------------------------------------------------
 #include <Time.H>
+#include "TimeArgs.H"
 
+
+//---------------------------------------------------------------------------
 namespace Foam
 {
-  class fluTime : public Time
+  class fluTime :  protected TimeArgs, public Time
   {
   private:
     fluTime( const word &name,
              const argList &args, 
              const word &systemName="system", 
-             const word &constantName="constant" ) : Time( name, args, systemName, constantName )
-    {
-      cout << "fluTime = " << this << nl;
-    }
+             const word &constantName="constant" );
     fluTime( const fluTime& ); // not implemented
     fluTime(); // not implemented
     friend class TimeHolder;
   public:
-    ~fluTime()
-    {
-      cout << "~fluTime = " << this << nl;
-    }
+    ~fluTime();
   };
 } // Foam
 
+
+//---------------------------------------------------------------------------
 #endif
