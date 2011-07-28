@@ -30,7 +30,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
-#include "objectRegistryHolder.H"
+#include "IOobjectHolder.H"
 #include "TimeHolder.H"
 #include "IOobjectHolder.H"
 #include "fvMeshHolder.H"
@@ -44,6 +44,20 @@ Foam::TimeHolder create_time(  const Foam::word& dict_name, const Foam::argList&
   return Foam::TimeHolder( dict_name, args);
 
 } 
+
+
+//-----------------------------------------------------------------------------
+Foam::IOobjectHolder create_IOobject( const Foam::word& dict_name, const Foam::argList& args )
+{
+  Foam::TimeHolder runTime = create_time( dict_name, args );
+  
+  Foam::Info << "Create mesh IObject for time = " << runTime->timeName() << Foam::nl << Foam::endl;
+      
+  return  Foam::IOobjectHolder( Foam::fvMesh::defaultRegion,
+	                        runTime->timeName(),
+		                runTime,
+				Foam::IOobject::MUST_READ );
+}
 
 
 //-----------------------------------------------------------------------------
@@ -61,7 +75,7 @@ Foam::fvMeshHolder create_mesh( const Foam::TimeHolder& runTime  )
 Foam::volScalarFieldHolder test_func( const Foam::word& dict_name, const Foam::argList& args)
 {
   Foam::TimeHolder runTime = create_time( dict_name, args );
-  
+   
   Foam::fvMeshHolder mesh =  create_mesh( runTime );
   
   Foam::Info << "Reading field p\n" << endl;
@@ -85,10 +99,13 @@ int main(int argc, char *argv[])
         Foam::FatalError.exit();
     }
 
-    Foam::volScalarFieldHolder field=test_func( Foam::Time::controlDictName, args );
+    Foam::IOobjectHolder ioh = create_IOobject( Foam::Time::controlDictName, args );
+    
+    
+    /*Foam::volScalarFieldHolder field=test_func( Foam::Time::controlDictName, args );
        
     Foam::Info << nl <<"FIELD =" << *field << endl;
-    cout << "Before the main finish" << nl;
+    cout << "Before the main finish" << nl;*/
     
     return 0;
     
