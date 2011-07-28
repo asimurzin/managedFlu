@@ -5,12 +5,13 @@
 //---------------------------------------------------------------------------
 #include <IOobject.H>
 #include <boost/shared_ptr.hpp>
-#include "fluIOobject.H"
-#include "objectRegistryHolder.H"
 
 
+//---------------------------------------------------------------------------
 namespace Foam
 {
+  class objectRegistryHolder;
+  
   class IOobjectHolder : public boost::shared_ptr< IOobject >
   {
   public:
@@ -19,17 +20,14 @@ namespace Foam
                     const objectRegistryHolder & registry, 
                     IOobject::readOption r=IOobject::NO_READ, 
                     IOobject::writeOption w=IOobject::NO_WRITE, 
-                    bool registerObject=true ) 
-      : boost::shared_ptr< IOobject >( new fluIOobject( name, instance, registry, r, w, registerObject ) )
-    {}
-  protected:
-    IOobjectHolder( const boost::shared_ptr< IOobject >&  t ) : boost::shared_ptr< IOobject >( t )
-    {}
+                    bool registerObject=true );
+    IOobjectHolder();
   private:
-    IOobjectHolder(); // not implemented
     // IOobjectHolder( const IOobjectHolder& ); // not implemented 
     void operator = ( const IOobjectHolder& ); // not implemented 
   };
 } // Foam
 
+
+//---------------------------------------------------------------------------
 #endif
