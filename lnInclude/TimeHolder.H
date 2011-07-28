@@ -5,7 +5,6 @@
 //---------------------------------------------------------------------------
 #include <Time.H>
 #include <boost/shared_ptr.hpp>
-#include "fluTime.H"
 #include "objectRegistryHolder.H"
 
 
@@ -17,17 +16,12 @@ namespace Foam
     TimeHolder( const word &name, 
                 const argList &args, 
                 const word &systemName="system", 
-                const word &constantName="constant" ) 
-      : boost::shared_ptr< Time >( new fluTime( name, args, systemName, constantName ) )
-      , objectRegistryHolder( boost::shared_ptr< Time >( *this ) )
-    {}
+                const word &constantName="constant" );
+    TimeHolder();
   protected:
-    TimeHolder( const boost::shared_ptr< Time >&  t ) 
-      : boost::shared_ptr< Time >( t )
-      , objectRegistryHolder( t ) 
-    {} 
+    TimeHolder( const boost::shared_ptr< Time >&  t );
   private:
-    TimeHolder(); // not implemented
+    //TimeHolder(); // not implemented
     // TimeHolder( const TimeHolder& ); // not implemented 
     void operator = ( const TimeHolder& ); // not implemented 
   public:
