@@ -5,19 +5,27 @@
 //---------------------------------------------------------------------------
 #include <objectRegistry.H>
 #include <boost/shared_ptr.hpp>
+#include "IOobjectHolder.H"
+
+
+//---------------------------------------------------------------------------
 namespace Foam
 {
-  class objectRegistryHolder : public boost::shared_ptr< objectRegistry >
+  class objectRegistryHolder : 
+      protected IOobjectHolder, 
+      public boost::shared_ptr< objectRegistry >
   {
   protected:
-    objectRegistryHolder( const boost::shared_ptr< objectRegistry >& registry )
-      : boost::shared_ptr< objectRegistry >( registry )
-    {}
+    objectRegistryHolder( const boost::shared_ptr<Foam::objectRegistry>& );
   private:
-    objectRegistryHolder(); // not implemented 
-    // objectRegistryHolder( const objectRegistryHolder& ); // not implemented 
+//    objectRegistryHolder( const objectRegistryHolder& ); // not implemented 
     void operator = ( const objectRegistryHolder& ); // not implemented 
+  public:
+    objectRegistryHolder();
+    using boost::shared_ptr< objectRegistry >::operator*;
   };
 } // Foam
 
+
+//---------------------------------------------------------------------------
 #endif
