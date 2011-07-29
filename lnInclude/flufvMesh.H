@@ -4,27 +4,24 @@
 
 //---------------------------------------------------------------------------
 #include <fvMesh.H>
-#include "IOobjectHolder.H"
+#include "fvMeshArgs.H"
 
+
+//---------------------------------------------------------------------------
 namespace Foam
 {
-  class flufvMesh : public IOobjectHolder, public fvMesh
+  class flufvMesh : protected fvMeshArgs, public fvMesh
   {
   private:
-    flufvMesh( const IOobjectHolder& io ) : IOobjectHolder( io ),
-                                            fvMesh( *io )
-    {
-      cout << "flufvMesh = " << this << nl;
-    }
+    flufvMesh( const IOobjectHolder& io );
     flufvMesh( const flufvMesh& ); // not implemented
     flufvMesh(); // not implemented
     friend class fvMeshHolder;
   public:
-    ~flufvMesh()
-    {
-      cout << "~flufvMesh = " << this << nl;
-    }
+    ~flufvMesh();
   };
 } // Foam
 
+
+//---------------------------------------------------------------------------
 #endif
