@@ -34,6 +34,7 @@ Description
 #include "TimeHolder.H"
 #include "IOobjectHolder.H"
 #include "fvMeshHolder.H"
+#include "IOdictionaryHolder.H"
 #include "volScalarFieldHolder.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -73,6 +74,32 @@ Foam::fvMeshHolder create_mesh( const Foam::word& dict_name, const Foam::argList
 						    Foam::IOobject::MUST_READ ) );
 }
 
+
+
+Foam::fvMeshHolder create_mesh( const Foam::TimeHolder& runTime )
+{
+  Foam::Info << "Create mesh for time = " << runTime->timeName() << Foam::nl << Foam::endl;
+      
+  return  Foam::fvMeshHolder( Foam::IOobjectHolder( Foam::fvMesh::defaultRegion,
+				                    runTime->timeName(),
+						    runTime,
+						    Foam::IOobject::MUST_READ ) );
+}
+
+//-----------------------------------------------------------------------------
+Foam::IOdictionaryHolder create_IOdictionary( const Foam::word& dict_name, const Foam::argList& args )
+{
+  Foam::TimeHolder runTime = create_time( dict_name, args );
+  
+  Foam::fvMeshHolder mesh = create_mesh( runTime );
+  
+  return IOdictionaryHolder( IOobjectHolder( "transportProperties",
+                                             runTime->constant(),
+                                             mesh,
+                                             Foam::IOobject::MUST_READ_IF_MODIFIED,
+                                             Foam::IOobject::NO_WRITE ) );
+}  
+
 //-----------------------------------------------------------------------------
 /*Foam::volScalarFieldHolder test_func( const Foam::word& dict_name, const Foam::argList& args)
 {
@@ -101,6 +128,13 @@ int main(int argc, char *argv[])
 
     Foam::fvMeshHolder ioh = create_mesh( Foam::Time::controlDictName, args );
     
+    Info<< nl << nl << "Reading transportProperties\n" << endl;
+    Foam::IOdictionaryHolder iodh = create_IOdictionary( Foam::Time::controlDictName, args );
+    dimensionedScalar nu( iodh->lookup("nu") );
+    
+    Info << endl << "Reading from IOdictionary -> nu.value = " << nu.value() << 
+                     "     nu.dimen = " << nu.dimensions() << nl << nl;
+
     
     /*Foam::volScalarFieldHolder field=test_func( Foam::Time::controlDictName, args );
        
