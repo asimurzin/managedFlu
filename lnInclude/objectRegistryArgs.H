@@ -15,7 +15,7 @@ namespace Foam
       private TimeHolder,
       private IOobjectArgs
   {
-  public:
+  protected:
     objectRegistryArgs();
     objectRegistryArgs( const objectRegistryHolder& orh,  const TimeHolder& th );
   };
