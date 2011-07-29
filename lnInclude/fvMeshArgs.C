@@ -9,12 +9,14 @@
 //---------------------------------------------------------------------------
 Foam::fvMeshArgs::fvMeshArgs( const IOobjectHolder& orh ) : IOobjectHolder( orh ), 
                                                             surfaceInterpolationArgs(),
-                                                            polyMeshArgs()
+                                                            polyMeshArgs(),
+                                                            dataArgs( orh )
 {}
 
 Foam::fvMeshArgs::fvMeshArgs():IOobjectHolder(),
                                surfaceInterpolationArgs(),
-                               polyMeshArgs()
+                               polyMeshArgs(),
+                               dataArgs()
 {}
 
 

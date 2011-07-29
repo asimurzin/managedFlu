@@ -6,6 +6,7 @@
 #include "surfaceInterpolationArgs.H"
 #include "IOobjectHolder.H"
 #include "polyMeshArgs.H"
+#include "dataArgs.H"
 
 
 //---------------------------------------------------------------------------
@@ -15,6 +16,7 @@ namespace Foam
        : protected IOobjectHolder
        , private surfaceInterpolationArgs
        , private polyMeshArgs
+       , private dataArgs
 /*         private fvSchemesArgs,
          private dataArgs */
   {
