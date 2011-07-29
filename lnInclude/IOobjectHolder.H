@@ -21,6 +21,7 @@ namespace Foam
                     IOobject::readOption r=IOobject::NO_READ, 
                     IOobject::writeOption w=IOobject::NO_WRITE, 
                     bool registerObject=true );
+  protected:  
     IOobjectHolder();
   private:
     // IOobjectHolder( const IOobjectHolder& ); // not implemented 

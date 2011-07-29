@@ -17,11 +17,11 @@ namespace Foam
   {
   protected:
     objectRegistryHolder( const boost::shared_ptr<Foam::objectRegistry>& );
+    objectRegistryHolder();
   private:
 //    objectRegistryHolder( const objectRegistryHolder& ); // not implemented 
     void operator = ( const objectRegistryHolder& ); // not implemented 
   public:
-    objectRegistryHolder();
     using boost::shared_ptr< objectRegistry >::operator*;
   };
 } // Foam
