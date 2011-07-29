@@ -7,12 +7,13 @@
 
 
 //---------------------------------------------------------------------------
-Foam::objectRegistryArgs::objectRegistryArgs(): TimeHolder(), IOobjectArgs()
+Foam::objectRegistryArgs::objectRegistryArgs(): objectRegistryHolder(), TimeHolder(), IOobjectArgs()
 {}
 
 Foam::objectRegistryArgs::objectRegistryArgs( const objectRegistryHolder& orh,  
                                               const TimeHolder& th )
-                    : TimeHolder( th ), 
+                    : objectRegistryHolder( orh ),
+                      TimeHolder( th ), 
                       IOobjectArgs( orh )
 {}
 

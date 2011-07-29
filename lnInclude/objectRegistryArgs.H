@@ -11,6 +11,7 @@
 namespace Foam
 {
   class objectRegistryArgs:
+      private objectRegistryHolder,
       private TimeHolder,
       private IOobjectArgs
   {
