@@ -13,7 +13,7 @@ namespace Foam
 {
   class fvMeshHolder : 
        public boost::shared_ptr< fvMesh >, 
-       protected objectRegistryHolder
+       public objectRegistryHolder
   {
   public:
     fvMeshHolder( const IOobjectHolder& io );
