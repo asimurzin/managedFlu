@@ -17,8 +17,8 @@ namespace Foam
                 const argList &args, 
                 const word &systemName="system", 
                 const word &constantName="constant" );
-    TimeHolder();
   protected:
+    TimeHolder();
     TimeHolder( const boost::shared_ptr< Time >&  t );
   private:
     //TimeHolder(); // not implemented
