@@ -12,7 +12,7 @@ namespace Foam
   class IOobjectArgs 
        : protected objectRegistryHolder
   {
-  public:
+  protected:
     IOobjectArgs( const objectRegistryHolder& orh );
     IOobjectArgs();
   private:

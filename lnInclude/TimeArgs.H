@@ -11,7 +11,7 @@ namespace Foam
 {
   class TimeArgs : private objectRegistryArgs
   {
-  public:
+  protected:
     TimeArgs();
   };
 } // Foam
