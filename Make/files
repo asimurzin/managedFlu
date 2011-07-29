@@ -13,6 +13,9 @@ lnInclude/fluTime.C
 lnInclude/TimeHolder.C
 lnInclude/surfaceInterpolationArgs.C
 lnInclude/polyMeshArgs.C
+lnInclude/dataArgs.C
+lnInclude/fvSchemesArgs.C
+lnInclude/fvSolutionArgs.C
 lnInclude/fvMeshArgs.C
 lnInclude/flufvMesh.C
 lnInclude/fvMeshHolder.C

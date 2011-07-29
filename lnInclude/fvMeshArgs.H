@@ -7,6 +7,8 @@
 #include "IOobjectHolder.H"
 #include "polyMeshArgs.H"
 #include "dataArgs.H"
+#include "fvSchemesArgs.H"
+#include "fvSolutionArgs.H"
 
 
 //---------------------------------------------------------------------------
@@ -17,8 +19,8 @@ namespace Foam
        , private surfaceInterpolationArgs
        , private polyMeshArgs
        , private dataArgs
-/*         private fvSchemesArgs,
-         private dataArgs */
+       , private fvSchemesArgs
+       , private fvSolutionArgs
   {
   protected:
     fvMeshArgs( const IOobjectHolder& orh );
