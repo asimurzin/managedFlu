@@ -6,6 +6,10 @@ lnInclude/IOobjectHolder.C
 lnInclude/TimeArgs.C
 lnInclude/fluTime.C
 lnInclude/TimeHolder.C
+lnInclude/surfaceInterpolationArgs.C
+lnInclude/fvMeshArgs.C
+lnInclude/flufvMesh.C
+lnInclude/fvMeshHolder.C
 
 test.C
 
