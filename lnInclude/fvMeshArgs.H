@@ -5,16 +5,17 @@
 //---------------------------------------------------------------------------
 #include "surfaceInterpolationArgs.H"
 #include "IOobjectHolder.H"
+#include "polyMeshArgs.H"
 
 
 //---------------------------------------------------------------------------
 namespace Foam
 {
   class fvMeshArgs 
-       : protected IOobjectHolder,
-         private surfaceInterpolationArgs
-/*       , private polyMeshArgs,
-         private fvSchemesArgs,
+       : protected IOobjectHolder
+       , private surfaceInterpolationArgs
+       , private polyMeshArgs
+/*         private fvSchemesArgs,
          private dataArgs */
   {
   protected:
