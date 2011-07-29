@@ -7,12 +7,14 @@
 
 
 //---------------------------------------------------------------------------
-Foam::objectRegistryHolder::objectRegistryHolder():IOobjectHolder(),
-                                                   boost::shared_ptr< objectRegistry >()
+Foam::objectRegistryHolder::objectRegistryHolder():boost::shared_ptr< objectRegistry >(),
+                                                   IOobjectHolder()
+                                                   
 {}
 
-Foam::objectRegistryHolder::objectRegistryHolder( const boost::shared_ptr<Foam::objectRegistry>& obr ): IOobjectHolder(),
-                                                                                                        boost::shared_ptr< objectRegistry >( obr )
+Foam::objectRegistryHolder::objectRegistryHolder( const boost::shared_ptr<Foam::objectRegistry>& obr ): boost::shared_ptr< objectRegistry >( obr ),
+                                                                                                        IOobjectHolder( boost::shared_ptr< objectRegistry >( *this ) )
+                                                                                                        
 {}
 
 

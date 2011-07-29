@@ -21,6 +21,9 @@ Foam::IOobjectHolder::IOobjectHolder( const word &name,
 Foam::IOobjectHolder::IOobjectHolder() : boost::shared_ptr< IOobject >()
 {}
 
+Foam::IOobjectHolder::IOobjectHolder( const boost::shared_ptr< IOobject >& IOptr ) : boost::shared_ptr< IOobject >( IOptr )
+{}
+
 
 //---------------------------------------------------------------------------
 #endif

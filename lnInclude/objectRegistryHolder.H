@@ -12,8 +12,9 @@
 namespace Foam
 {
   class objectRegistryHolder : 
-      protected IOobjectHolder, 
       public boost::shared_ptr< objectRegistry >
+      , protected IOobjectHolder 
+      
   {
   protected:
     objectRegistryHolder( const boost::shared_ptr<Foam::objectRegistry>& );
