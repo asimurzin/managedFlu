@@ -15,7 +15,7 @@ Foam::IOobjectHolder::IOobjectHolder( const word &name,
                                       IOobject::readOption r, 
                                       IOobject::writeOption w, 
                                       bool registerObject )
-                           : boost::shared_ptr< IOobject >( new fluIOobject( name, instance, registry, r, w, registerObject ) )
+  : boost::shared_ptr< IOobject >( new fluIOobject( name, instance, registry, r, w, registerObject ) )
 {}
 
 Foam::IOobjectHolder::IOobjectHolder() : boost::shared_ptr< IOobject >()

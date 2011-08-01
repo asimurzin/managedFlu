@@ -13,9 +13,9 @@
 namespace Foam
 {
   class IOdictionaryHolder : 
-      public boost::shared_ptr< IOdictionary >,
-      protected dictionaryHolder,
-      protected IOobjectHolder
+    public boost::shared_ptr< IOdictionary >,
+    protected dictionaryHolder,
+    protected IOobjectHolder
   {
   protected:
     IOdictionaryHolder( const boost::shared_ptr<Foam::IOdictionary>& );
@@ -25,6 +25,7 @@ namespace Foam
     void operator = ( const IOdictionaryHolder& ); // not implemented 
   public:
     IOdictionaryHolder( const IOobjectHolder& );
+    IOdictionaryHolder( const IOobjectHolder&, const dictionaryHolder& );
     using boost::shared_ptr< IOdictionary >::operator->;
     using boost::shared_ptr< IOdictionary >::operator*;
   };

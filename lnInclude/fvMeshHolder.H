@@ -9,11 +9,12 @@
 #include "objectRegistryHolder.H"
 
 
+//---------------------------------------------------------------------------
 namespace Foam
 {
   class fvMeshHolder : 
-       public boost::shared_ptr< fvMesh >, 
-       public objectRegistryHolder
+    public boost::shared_ptr< fvMesh >, 
+    public objectRegistryHolder
   {
   public:
     fvMeshHolder( const IOobjectHolder& io );
