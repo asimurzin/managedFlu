@@ -48,42 +48,21 @@ Foam::TimeHolder create_time(  const Foam::word& dict_name, const Foam::argList&
 
 
 //-----------------------------------------------------------------------------
-Foam::IOobjectHolder create_IOobject( const Foam::word& dict_name, const Foam::argList& args )
-{
-  Foam::TimeHolder runTime = create_time( dict_name, args );
-  
-  Foam::Info << "Create mesh IObject for time = " << runTime->timeName() << Foam::nl << Foam::endl;
-      
-  return  Foam::IOobjectHolder( Foam::fvMesh::defaultRegion,
-	                        runTime->timeName(),
-		                runTime,
-				Foam::IOobject::MUST_READ );
-}
-
-
-//-----------------------------------------------------------------------------
 Foam::fvMeshHolder create_mesh( const Foam::word& dict_name, const Foam::argList& args )
 {
   Foam::TimeHolder runTime = create_time( dict_name, args );
   
-  Foam::Info << "Create mesh for time = " << runTime->timeName() << Foam::nl << Foam::endl;
-      
   return  Foam::fvMeshHolder( Foam::IOobjectHolder( Foam::fvMesh::defaultRegion,
 				                    runTime->timeName(),
 						    runTime,
 						    Foam::IOobject::MUST_READ ) );
 }
 
+//-------------------
 
-
-Foam::fvMeshHolder create_mesh( const Foam::TimeHolder& runTime )
+void testing_mesh( const Foam::word& dict_name, const Foam::argList& args )
 {
-  Foam::Info << "Create mesh for time = " << runTime->timeName() << Foam::nl << Foam::endl;
-      
-  return  Foam::fvMeshHolder( Foam::IOobjectHolder( Foam::fvMesh::defaultRegion,
-				                    runTime->timeName(),
-						    runTime,
-						    Foam::IOobject::MUST_READ ) );
+  Foam::fvMeshHolder  mesh = create_mesh( dict_name, args );
 }
 
 //-----------------------------------------------------------------------------
@@ -91,7 +70,10 @@ Foam::IOdictionaryHolder create_IOdictionary( const Foam::word& dict_name, const
 {
   Foam::TimeHolder runTime = create_time( dict_name, args );
   
-  Foam::fvMeshHolder mesh = create_mesh( runTime );
+  Foam::fvMeshHolder mesh( Foam::IOobjectHolder( Foam::fvMesh::defaultRegion,
+				                 runTime->timeName(),
+						 runTime,
+						 Foam::IOobject::MUST_READ ) );
   
   return IOdictionaryHolder( IOobjectHolder( "transportProperties",
                                              runTime->constant(),
@@ -100,21 +82,47 @@ Foam::IOdictionaryHolder create_IOdictionary( const Foam::word& dict_name, const
                                              Foam::IOobject::NO_WRITE ) );
 }  
 
+
+//---------------
+void testing_IOdictionary( const Foam::word& dict_name, const Foam::argList& args )
+{
+  Foam::IOdictionaryHolder iodh = create_IOdictionary( dict_name, args );
+ 
+  dimensionedScalar nu( iodh->lookup("nu") );
+    
+  Info << endl << "Reading from IOdictionary -> nu.value = " << nu.value() << 
+                    "     nu.dimen = " << nu.dimensions() << nl << nl;
+
+}
+
+
 //-----------------------------------------------------------------------------
-/*Foam::volScalarFieldHolder test_func( const Foam::word& dict_name, const Foam::argList& args)
+Foam::volScalarFieldHolder creating_field( const Foam::word& dict_name, const Foam::argList& args)
 {
   Foam::TimeHolder runTime = create_time( dict_name, args );
-   
-  Foam::fvMeshHolder mesh =  create_mesh( runTime );
   
+  Foam::fvMeshHolder mesh( Foam::IOobjectHolder( Foam::fvMesh::defaultRegion,
+				                 runTime->timeName(),
+						 runTime,
+						 Foam::IOobject::MUST_READ ) );
+ 
   Foam::Info << "Reading field p\n" << endl;
-  return Foam::volScalarFieldHolder( IOobject( "p",
+  
+  return Foam::volScalarFieldHolder( IOobjectHolder( "p",
                                                runTime->timeName(),
-                                               *mesh,
+                                               mesh,
                                                IOobject::MUST_READ,
                                                IOobject::AUTO_WRITE ),
                                                mesh );
-}*/
+}
+
+
+//---------------
+void testing_field( const Foam::word& dict_name, const Foam::argList& args )
+{
+  Foam::volScalarFieldHolder field = creating_field( dict_name, args );
+  Info << *field << endl;
+}  
 
 
 //-----------------------------------------------------------------------------
@@ -125,21 +133,27 @@ int main(int argc, char *argv[])
     {
         Foam::FatalError.exit();
     }
-
-    Foam::fvMeshHolder ioh = create_mesh( Foam::Time::controlDictName, args );
+    Info << "------------------------------------------------" << endl;
+    Info << "   Testing fvMesh\n" << endl;
+    Info << "------------------------------------------------" << endl;
+    testing_mesh( Foam::Time::controlDictName, args );
     
-    Info<< nl << nl << "Reading transportProperties\n" << endl;
-    Foam::IOdictionaryHolder iodh = create_IOdictionary( Foam::Time::controlDictName, args );
-    dimensionedScalar nu( iodh->lookup("nu") );
+    Info<< "\n------------------------------------------------" << endl;
     
-    Info << endl << "Reading from IOdictionary -> nu.value = " << nu.value() << 
-                     "     nu.dimen = " << nu.dimensions() << nl << nl;
-
     
-    /*Foam::volScalarFieldHolder field=test_func( Foam::Time::controlDictName, args );
-       
-    Foam::Info << nl <<"FIELD =" << *field << endl;
-    cout << "Before the main finish" << nl;*/
+    Info<< "   Testing IOdictionary" << endl;
+    Info << "------------------------------------------------" << endl;
+    
+    testing_IOdictionary( Foam::Time::controlDictName, args );
+    
+    Info << "\n------------------------------------------------" << endl;
+    
+    Info<< "   Testing volScalarField" << endl;
+    Info << "------------------------------------------------" << endl;
+    
+    testing_field( Foam::Time::controlDictName, args );
+    
+    Info << "------------------------------------------------\n" << endl;
     
     return 0;
     
