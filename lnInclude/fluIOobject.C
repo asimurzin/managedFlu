@@ -13,8 +13,8 @@ Foam::fluIOobject::fluIOobject( const Foam::word &name,
                                 Foam::IOobject::readOption r , 
                                 Foam::IOobject::writeOption w, 
                                 bool registerObject ) 
-                        : Foam::IOobjectArgs( registry )
-                        , Foam::IOobject( name, instance, *registry, r, w, registerObject )
+  : Foam::objectRegistryHolder( registry )
+  , Foam::IOobject( name, instance, *registry, r, w, registerObject )
 {
   cout << "fluIOobject = " << this << nl;
 }

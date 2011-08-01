@@ -4,15 +4,15 @@
 
 //---------------------------------------------------------------------------
 #include <IOobject.H>
-#include "IOobjectArgs.H"
+#include "objectRegistryHolder.H"
 
 
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  class objectRegistryHolder;
-  
-  class fluIOobject : protected IOobjectArgs, public IOobject
+  class fluIOobject : 
+    protected objectRegistryHolder
+    , public IOobject
   {
   private:
     fluIOobject( const word &name, 

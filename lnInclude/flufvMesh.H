@@ -4,13 +4,15 @@
 
 //---------------------------------------------------------------------------
 #include <fvMesh.H>
-#include "fvMeshArgs.H"
+#include "IOobjectHolder.H"
 
 
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  class flufvMesh : protected fvMeshArgs, public fvMesh
+  class flufvMesh : 
+    protected IOobjectHolder
+    , public fvMesh
   {
   private:
     flufvMesh( const IOobjectHolder& io );

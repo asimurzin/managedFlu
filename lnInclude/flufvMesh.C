@@ -7,7 +7,7 @@
 
 
 //---------------------------------------------------------------------------
-Foam::flufvMesh::flufvMesh( const IOobjectHolder& io ) : fvMeshArgs( io ),
+Foam::flufvMesh::flufvMesh( const IOobjectHolder& io ) : IOobjectHolder( io ),
                                                          fvMesh( *io )
 {
   cout << "flufvMesh = " << this << nl;
