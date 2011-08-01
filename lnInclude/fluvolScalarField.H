@@ -9,7 +9,7 @@
 namespace Foam
 {
   class fluvolScalarField : 
-    public fvMeshHolder
+    protected fvMeshHolder
     , public volScalarField
   {
   private:
