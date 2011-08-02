@@ -5,24 +5,43 @@
 //---------------------------------------------------------------------------
 #include "IOobjectHolder.H"
 #include "objectRegistryHolder.H"
-#include "fluIOobject.H"
 
 
 //---------------------------------------------------------------------------
-Foam::IOobjectHolder::IOobjectHolder( const word &name, 
-                                      const fileName &instance, 
-                                      const objectRegistryHolder & registry, 
-                                      IOobject::readOption r, 
-                                      IOobject::writeOption w, 
-                                      bool registerObject )
-  : boost::shared_ptr< IOobject >( new fluIOobject( name, instance, registry, r, w, registerObject ) )
-{}
+namespace Foam
+{
 
-Foam::IOobjectHolder::IOobjectHolder() : boost::shared_ptr< IOobject >()
-{}
+  IOobjectHolder::IOobjectHolder( const word &name, 
+                                  const fileName &instance, 
+                                  const objectRegistryHolder & registry, 
+                                  IOobject::readOption r, 
+                                  IOobject::writeOption w, 
+                                  bool registerObject ) : 
+    boost::shared_ptr< objectRegistry >( registry ),
+    boost::shared_ptr< IOobject >( new IOobject( name, instance, *registry, r, w, registerObject ) )
+  {
+    cout << "IOobjectHolder = " << this << nl;
+  }
 
-Foam::IOobjectHolder::IOobjectHolder( const boost::shared_ptr< IOobject >& IOptr ) : boost::shared_ptr< IOobject >( IOptr )
-{}
+  IOobjectHolder::IOobjectHolder() : 
+    boost::shared_ptr< objectRegistry >(),
+    boost::shared_ptr< IOobject >()
+  {
+    cout << "IOobjectHolder = " << this << nl;
+  }
+
+  IOobjectHolder::IOobjectHolder( const boost::shared_ptr< objectRegistry >& ob ):
+    boost::shared_ptr< objectRegistry >( ob ),
+    boost::shared_ptr< IOobject >(  ob )
+  {
+    cout << "IOobjectHolder = " << this << nl;
+  }
+   
+  IOobjectHolder::~IOobjectHolder()
+  {
+    cout << "~IOobjectHolder = " << this << nl;
+  }
+}
 
 
 //---------------------------------------------------------------------------
