@@ -13,21 +13,21 @@
 namespace Foam
 {
   class IOdictionaryHolder : 
+    protected IOobjectHolder,
     public boost::shared_ptr< IOdictionary >,
-    protected dictionaryHolder,
-    protected IOobjectHolder
+    protected dictionaryHolder
   {
+  public:
+    IOdictionaryHolder( const IOobjectHolder& );
+    IOdictionaryHolder( const IOobjectHolder&, const dictionaryHolder& );
+    ~IOdictionaryHolder();
+    using boost::shared_ptr< IOdictionary >::operator->;
+    using boost::shared_ptr< IOdictionary >::operator*;
   protected:
-    IOdictionaryHolder( const boost::shared_ptr<Foam::IOdictionary>& );
     IOdictionaryHolder();
   private:
 //    IOdictionaryHolder( const IOdictionaryHolder& ); // not implemented 
     void operator = ( const IOdictionaryHolder& ); // not implemented 
-  public:
-    IOdictionaryHolder( const IOobjectHolder& );
-    IOdictionaryHolder( const IOobjectHolder&, const dictionaryHolder& );
-    using boost::shared_ptr< IOdictionary >::operator->;
-    using boost::shared_ptr< IOdictionary >::operator*;
   };
 } // Foam
 

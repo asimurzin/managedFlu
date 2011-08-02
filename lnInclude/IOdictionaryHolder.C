@@ -4,35 +4,42 @@
 
 //---------------------------------------------------------------------------
 #include "IOdictionaryHolder.H"
-#include "fluIOdictionary.H"
-
 
 
 //---------------------------------------------------------------------------
-Foam::IOdictionaryHolder::IOdictionaryHolder() : 
-  boost::shared_ptr< IOdictionary >(),
-  dictionaryHolder(),
-  IOobjectHolder()
-{}
+namespace Foam
+{
 
-Foam::IOdictionaryHolder::IOdictionaryHolder( const boost::shared_ptr<Foam::IOdictionary>& obr ) : 
-  boost::shared_ptr< IOdictionary >( obr ),
-  dictionaryHolder( boost::shared_ptr< IOdictionary >( *this ) ),
-  IOobjectHolder( boost::shared_ptr< IOdictionary >( *this ) )
-{}
+  IOdictionaryHolder::IOdictionaryHolder() : 
+    IOobjectHolder(),
+    boost::shared_ptr< IOdictionary >(),
+    dictionaryHolder()
+  {
+    cout << "IOdictionaryHolder = " << this << nl;
+  }
 
+  IOdictionaryHolder::IOdictionaryHolder( const IOobjectHolder&  ioh ) : 
+    IOobjectHolder( ioh ),
+    boost::shared_ptr< IOdictionary >( new IOdictionary( *ioh ) ),
+    dictionaryHolder()
+  {
+    cout << "IOdictionaryHolder = " << this << nl;
+  }
 
-Foam::IOdictionaryHolder::IOdictionaryHolder( const IOobjectHolder&  ioh ) : 
-  boost::shared_ptr< IOdictionary >( new fluIOdictionary( ioh ) ),
-  dictionaryHolder(),
-  IOobjectHolder( ioh )
-{}
+  IOdictionaryHolder::IOdictionaryHolder( const IOobjectHolder& ioh, const dictionaryHolder& dict ) : 
+    IOobjectHolder( ioh ),
+    boost::shared_ptr< IOdictionary >( new IOdictionary( *ioh, *dict ) ),
+    dictionaryHolder( dict )
+  {
+    cout << "IOdictionaryHolder = " << this << nl;
+  }
 
-Foam::IOdictionaryHolder::IOdictionaryHolder( const IOobjectHolder& ioh, const dictionaryHolder& dict ) : 
-  boost::shared_ptr< IOdictionary >( new fluIOdictionary( ioh, dict ) ),
-  dictionaryHolder( dict ),
-  IOobjectHolder( ioh )
-{}
+  IOdictionaryHolder::~IOdictionaryHolder()
+  {
+    cout << "~IOdictionaryHolder = " << this << nl;
+  }
+
+}//Foam
 
 
 //---------------------------------------------------------------------------
