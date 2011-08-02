@@ -10,6 +10,7 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
+
   class IOobjectHolder;
   class fvMeshHolder;
   
@@ -29,8 +30,6 @@ namespace Foam
   
   volScalarFieldHolder operator+ ( const volScalarFieldHolder&, const volScalarFieldHolder& );
 
-
-//---------------------------------------------------------------------------
 } // Foam
 
 

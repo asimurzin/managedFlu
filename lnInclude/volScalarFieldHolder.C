@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-//Constructors
+
   volScalarFieldHolder::volScalarFieldHolder( const IOobjectHolder& io, const fvMeshHolder& mesh ) :
     fvMeshHolder( mesh ),
     boost::shared_ptr< volScalarField >( new volScalarField( *io, *mesh ) )
@@ -37,8 +37,6 @@ namespace Foam
      return volScalarFieldHolder( ( *field1 + *field2 ).ptr() , field1 );
    }
 
-
-//---------------------------------------------------------------------------
 } //Foam
 
 
