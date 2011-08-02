@@ -4,6 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "fluvolScalarField.H"
+#include <tmp.H>
 
 
 //---------------------------------------------------------------------------
@@ -12,6 +13,13 @@ Foam::fluvolScalarField::fluvolScalarField( const IOobjectHolder& io, const fvMe
   volScalarField( *io, *mesh )
 {
   cout << "fluvolScalarField = " << this << nl;
+}
+
+Foam::fluvolScalarField::fluvolScalarField( const Foam::tmp< Foam::volScalarField >& field, const fvMeshHolder& mesh ) : 
+  fvMeshHolder( mesh ),
+  volScalarField( field )
+{
+  
 }
 
 Foam::fluvolScalarField::~fluvolScalarField()

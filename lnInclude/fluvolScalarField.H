@@ -9,16 +9,17 @@
 namespace Foam
 {
   class fluvolScalarField : 
-    protected fvMeshHolder
+    public fvMeshHolder
     , public volScalarField
   {
   private:
-    fluvolScalarField( const IOobjectHolder& io, const fvMeshHolder& mesh );
+    fluvolScalarField( const IOobjectHolder&, const fvMeshHolder& );
     fluvolScalarField( const fluvolScalarField& ); // not implemented
     fluvolScalarField(); // not implemented
     friend class volScalarFieldHolder;
   public:
     ~fluvolScalarField();
+    fluvolScalarField( const tmp< volScalarField >&, const fvMeshHolder& );
   };
 } // Foam
 
