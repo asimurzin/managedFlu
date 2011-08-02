@@ -14,7 +14,9 @@ namespace Foam
 
   class IOobjectHolder;
   
-  class volScalarFieldHolder : public fvMeshHolder, public boost::shared_ptr< volScalarField >
+  class volScalarFieldHolder : 
+    public fvMeshHolder, 
+    public boost::shared_ptr< volScalarField >
   {
   public:
     volScalarFieldHolder( const IOobjectHolder&, const fvMeshHolder& );
