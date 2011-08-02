@@ -21,7 +21,6 @@ namespace Foam
                 const word &constantName="constant" );
   protected:
     TimeHolder();
-    TimeHolder( const boost::shared_ptr< Time >&  t );
   private:
     //TimeHolder(); // not implemented
     // TimeHolder( const TimeHolder& ); // not implemented 
