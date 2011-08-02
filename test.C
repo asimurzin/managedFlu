@@ -122,6 +122,7 @@ void testing_field( const Foam::word& dict_name, const Foam::argList& args )
 {
   Foam::volScalarFieldHolder field = creating_field( dict_name, args );
   Info << *field << endl;
+  
   Foam::volScalarFieldHolder field1 = field + field;
   Info << *field1 << endl;
 }  
@@ -146,7 +147,7 @@ int main(int argc, char *argv[])
     Info<< "   Testing IOdictionary" << endl;
     Info << "------------------------------------------------" << endl;
     
-    testing_IOdictionary( Foam::Time::controlDictName, args );
+    //testing_IOdictionary( Foam::Time::controlDictName, args );
     
     Info << "\n------------------------------------------------" << endl;
     

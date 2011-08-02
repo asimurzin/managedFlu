@@ -6,7 +6,6 @@ lnInclude/fluIOobject.C
 lnInclude/IOobjectHolder.C
 lnInclude/fluTime.C
 lnInclude/TimeHolder.C
-lnInclude/flufvMesh.C
 lnInclude/fvMeshHolder.C
 lnInclude/volScalarFieldHolder.C
 
