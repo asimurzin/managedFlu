@@ -19,15 +19,15 @@ namespace Foam
                 const argList &args, 
                 const word &systemName="system", 
                 const word &constantName="constant" );
+    using boost::shared_ptr< Time >::operator->;
+    using boost::shared_ptr< Time >::operator*;
+    ~TimeHolder();
   protected:
     TimeHolder();
   private:
     //TimeHolder(); // not implemented
     // TimeHolder( const TimeHolder& ); // not implemented 
     void operator = ( const TimeHolder& ); // not implemented 
-  public:
-    using boost::shared_ptr< Time >::operator->;
-    using boost::shared_ptr< Time >::operator*;
   };
 } // Foam
 
