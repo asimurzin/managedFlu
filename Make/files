@@ -1,10 +1,7 @@
 lnInclude/dictionaryHolder.C
 lnInclude/IOdictionaryHolder.C
-lnInclude/fluIOdictionary.C
 lnInclude/objectRegistryHolder.C
-lnInclude/fluIOobject.C
 lnInclude/IOobjectHolder.C
-lnInclude/fluTime.C
 lnInclude/TimeHolder.C
 lnInclude/fvMeshHolder.C
 lnInclude/volScalarFieldHolder.C
