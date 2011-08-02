@@ -4,7 +4,8 @@
 
 //---------------------------------------------------------------------------
 #include "volScalarFieldHolder.H"
-#include "fluvolScalarField.H"
+#include "IOobjectHolder.H"
+#include "fvMeshHolder.H"
 
 //---------------------------------------------------------------------------
 namespace Foam

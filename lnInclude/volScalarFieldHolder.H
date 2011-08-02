@@ -3,8 +3,9 @@
 
 
 //---------------------------------------------------------------------------
-#include "fluvolScalarField.H"
+#include <volFields.H>
 #include <boost/shared_ptr.hpp>
+#include "fvMeshHolder.H"
 
 
 //---------------------------------------------------------------------------
@@ -12,7 +13,6 @@ namespace Foam
 {
 
   class IOobjectHolder;
-  class fvMeshHolder;
   
   class volScalarFieldHolder : public fvMeshHolder, public boost::shared_ptr< volScalarField >
   {
