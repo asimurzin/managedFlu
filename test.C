@@ -52,6 +52,8 @@ Foam::fvMeshHolder create_mesh( const Foam::word& dict_name, const Foam::argList
 {
   Foam::TimeHolder runTime = create_time( dict_name, args );
   
+  Info << "before create fvMesh " << endl;
+  
   return  Foam::fvMeshHolder( Foam::IOobjectHolder( Foam::fvMesh::defaultRegion,
 				                    runTime->timeName(),
 						    runTime,
@@ -63,6 +65,8 @@ Foam::fvMeshHolder create_mesh( const Foam::word& dict_name, const Foam::argList
 void testing_mesh( const Foam::word& dict_name, const Foam::argList& args )
 {
   Foam::fvMeshHolder  mesh = create_mesh( dict_name, args );
+  
+  Info << "before delete fvMesh " << endl;
 }
 
 //-----------------------------------------------------------------------------
@@ -147,7 +151,7 @@ int main(int argc, char *argv[])
     Info<< "   Testing IOdictionary" << endl;
     Info << "------------------------------------------------" << endl;
     
-    //testing_IOdictionary( Foam::Time::controlDictName, args );
+    testing_IOdictionary( Foam::Time::controlDictName, args );
     
     Info << "\n------------------------------------------------" << endl;
     
