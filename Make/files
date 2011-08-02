@@ -8,7 +8,6 @@ lnInclude/fluTime.C
 lnInclude/TimeHolder.C
 lnInclude/flufvMesh.C
 lnInclude/fvMeshHolder.C
-lnInclude/fluvolScalarField.C
 lnInclude/volScalarFieldHolder.C
 
 test.C
