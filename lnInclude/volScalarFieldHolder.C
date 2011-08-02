@@ -7,22 +7,40 @@
 #include "fluvolScalarField.H"
 
 //---------------------------------------------------------------------------
-Foam::volScalarFieldHolder::volScalarFieldHolder( const IOobjectHolder& io, const fvMeshHolder& mesh ) :
-  boost::shared_ptr< fluvolScalarField >( new fluvolScalarField( io, mesh ) )
-{}
-
-Foam::volScalarFieldHolder::volScalarFieldHolder( const boost::shared_ptr< fluvolScalarField >& t ) :
-  boost::shared_ptr< fluvolScalarField >( t )
-{}
-
-
 namespace Foam
 {
- volScalarFieldHolder operator+ ( const volScalarFieldHolder& field1, const volScalarFieldHolder& field2 )
- {
-   return volScalarFieldHolder( boost::shared_ptr< fluvolScalarField >( new fluvolScalarField( *field1 + *field2 , fvMeshHolder( *field1 ) ) ) );
- }
-}
+//Constructors
+  volScalarFieldHolder::volScalarFieldHolder( const IOobjectHolder& io, const fvMeshHolder& mesh ) :
+    fvMeshHolder( mesh ),
+    boost::shared_ptr< volScalarField >( new volScalarField( *io, *mesh ) )
+  {
+    cout << "fluvolScalarField = " << this << nl;
+  }
+
+  volScalarFieldHolder::volScalarFieldHolder( volScalarField* gf, const fvMeshHolder& mesh ) : 
+    fvMeshHolder( mesh ), 
+    boost::shared_ptr< volScalarField >( gf )
+  {
+    cout << "fluvolScalarField = " << this << nl;
+  }
+
+
+  volScalarFieldHolder::~volScalarFieldHolder()
+  {
+    cout << "~fluvolScalarField = " << this << nl;
+  }
+
+
+//---------------------------------------------------------------------------
+   volScalarFieldHolder operator+ ( const volScalarFieldHolder& field1, const volScalarFieldHolder& field2 )
+   {
+     return volScalarFieldHolder( ( *field1 + *field2 ).ptr() , field1 );
+   }
+
+
+//---------------------------------------------------------------------------
+} //Foam
+
 
 //---------------------------------------------------------------------------
 #endif

@@ -13,18 +13,24 @@ namespace Foam
   class IOobjectHolder;
   class fvMeshHolder;
   
-  class volScalarFieldHolder : public boost::shared_ptr< fluvolScalarField >
+  class volScalarFieldHolder : public fvMeshHolder, public boost::shared_ptr< volScalarField >
   {
   public:
     volScalarFieldHolder( const IOobjectHolder&, const fvMeshHolder& );
-    
-    volScalarFieldHolder( const boost::shared_ptr< fluvolScalarField >& );
+    volScalarFieldHolder( volScalarField* , const fvMeshHolder& );
+    using boost::shared_ptr< volScalarField >::operator->;
+    using boost::shared_ptr< volScalarField >::operator*;
+    ~volScalarFieldHolder();
   private:
      volScalarFieldHolder(); // not implemented
     // volScalarFieldHolder( const volScalarFieldHolder& ); // not implemented 
      void operator = ( const volScalarFieldHolder& ); // not implemented 
   };
+  
   volScalarFieldHolder operator+ ( const volScalarFieldHolder&, const volScalarFieldHolder& );
+
+
+//---------------------------------------------------------------------------
 } // Foam
 
 
