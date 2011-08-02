@@ -4,24 +4,25 @@
 
 //---------------------------------------------------------------------------
 #include "fvMeshHolder.H"
-#include "flufvMesh.H"
 
 
 //---------------------------------------------------------------------------
-Foam::fvMeshHolder::fvMeshHolder( const IOobjectHolder& io ) : 
-  boost::shared_ptr< fvMesh >( new flufvMesh( io ) ),
-  objectRegistryHolder( boost::shared_ptr< fvMesh >( *this ) )
-{}
+namespace Foam
+{
 
-Foam::fvMeshHolder::fvMeshHolder( const boost::shared_ptr< fvMesh >&  t ) : 
-  boost::shared_ptr< fvMesh >( t ),
-  objectRegistryHolder( t )
-{} 
+  fvMeshHolder::fvMeshHolder( const IOobjectHolder& io ) : 
+    IOobjectHolder( io ),
+    boost::shared_ptr< fvMesh >( new fvMesh( *io ) ),
+    objectRegistryHolder( boost::shared_ptr< fvMesh >( *this ) )
+  {}
 
-Foam::fvMeshHolder::fvMeshHolder() : 
-  boost::shared_ptr< fvMesh >(),
-  objectRegistryHolder()
-{} 
+  fvMeshHolder::fvMeshHolder() : 
+    IOobjectHolder(),
+    boost::shared_ptr< fvMesh >(),
+    objectRegistryHolder()
+  {} 
+
+} //Foam
 
 
 //---------------------------------------------------------------------------

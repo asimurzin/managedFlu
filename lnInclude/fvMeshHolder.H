@@ -12,21 +12,24 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
+
   class fvMeshHolder : 
-    public boost::shared_ptr< fvMesh >, 
+    public IOobjectHolder,
+    public boost::shared_ptr< fvMesh >,
     public objectRegistryHolder
   {
   public:
     fvMeshHolder( const IOobjectHolder& io );
-  protected:
-    fvMeshHolder( const boost::shared_ptr< fvMesh >&  t );
-    fvMeshHolder(); // not implemented
+    using boost::shared_ptr<fvMesh>::operator*;
+
   private:
+    fvMeshHolder(); // not implemented
     // fvMeshHolder( const fvMeshHolder& ); // not implemented 
     void operator = ( const fvMeshHolder& ); // not implemented 
-  public:
-    using boost::shared_ptr<fvMesh>::operator*;
   };
+
 } // Foam
 
+
+//---------------------------------------------------------------------------
 #endif
