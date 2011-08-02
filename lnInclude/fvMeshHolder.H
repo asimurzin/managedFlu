@@ -15,13 +15,12 @@ namespace Foam
 
   class fvMeshHolder : 
     public IOobjectHolder,
-    public boost::shared_ptr< fvMesh >,
-    public objectRegistryHolder
+    public boost::shared_ptr< fvMesh >
   {
   public:
     fvMeshHolder( const IOobjectHolder& io );
     using boost::shared_ptr<fvMesh>::operator*;
-
+    ~fvMeshHolder();
   private:
     fvMeshHolder(); // not implemented
     // fvMeshHolder( const fvMeshHolder& ); // not implemented 

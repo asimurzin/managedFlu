@@ -12,16 +12,22 @@ namespace Foam
 
   fvMeshHolder::fvMeshHolder( const IOobjectHolder& io ) : 
     IOobjectHolder( io ),
-    boost::shared_ptr< fvMesh >( new fvMesh( *io ) ),
-    objectRegistryHolder( boost::shared_ptr< fvMesh >( *this ) )
-  {}
+    boost::shared_ptr< fvMesh >( new fvMesh( *io ) )
+  {
+    cout << "fvMeshHolder=" << this << nl;
+  }
 
   fvMeshHolder::fvMeshHolder() : 
     IOobjectHolder(),
-    boost::shared_ptr< fvMesh >(),
-    objectRegistryHolder()
-  {} 
+    boost::shared_ptr< fvMesh >()
+  {
+    cout << "fvMeshHolder=" << this << nl;
+  } 
 
+  fvMeshHolder::~fvMeshHolder()
+  {
+    cout << "~fvMeshHolder=" << this << nl;
+  }
 } //Foam
 
 
