@@ -3,7 +3,6 @@
 
 
 //---------------------------------------------------------------------------
-#include <IOdictionary.H>
 #include <boost/shared_ptr.hpp>
 
 

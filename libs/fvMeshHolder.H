@@ -21,7 +21,7 @@ namespace Foam
   {
   public:
     fvMeshHolder( const IOobjectHolder& io );
-    using boost::shared_ptr<fvMesh>::operator*;
+    using boost::shared_ptr< fvMesh >::operator*;
     ~fvMeshHolder();
   private:
     fvMeshHolder(); // not implemented
