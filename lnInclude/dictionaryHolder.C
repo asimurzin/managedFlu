@@ -7,12 +7,14 @@
 
 
 //---------------------------------------------------------------------------
-Foam::dictionaryHolder::dictionaryHolder():boost::shared_ptr< dictionary >()
-{}
+namespace Foam
+{
+  dictionaryHolder::dictionaryHolder( const boost::shared_ptr< dictionary >& dict ): boost::shared_ptr< dictionary >( dict )
+  {}
 
-Foam::dictionaryHolder::dictionaryHolder( const boost::shared_ptr<Foam::dictionary>& obr ): boost::shared_ptr< dictionary >( obr )
-{}
-
+  dictionaryHolder::dictionaryHolder( ): boost::shared_ptr< dictionary >( new dictionary() )
+  {}
+}
 
 //---------------------------------------------------------------------------
 #endif

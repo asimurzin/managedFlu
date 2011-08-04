@@ -11,16 +11,15 @@
 namespace Foam
 {
   class dictionaryHolder : 
-      public boost::shared_ptr< dictionary >
-//    , protected dictionaryNameHolder
-      
+    public boost::shared_ptr< dictionary >
   {
   protected:
-    dictionaryHolder( const boost::shared_ptr<Foam::dictionary>& );
+    dictionaryHolder( const boost::shared_ptr< dictionary >& );
     dictionaryHolder();
   private:
 //    dictionaryHolder( const dictionaryHolder& ); // not implemented 
     void operator = ( const dictionaryHolder& ); // not implemented 
+//    dictionaryHolder(); //not implemented
   };
 } // Foam
 
