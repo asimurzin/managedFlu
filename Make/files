@@ -1,10 +1,14 @@
-lnInclude/dictionaryHolder.C
-lnInclude/IOdictionaryHolder.C
-lnInclude/objectRegistryHolder.C
-lnInclude/IOobjectHolder.C
-lnInclude/TimeHolder.C
-lnInclude/fvMeshHolder.C
-lnInclude/volScalarFieldHolder.C
+libs/IOdictionaryArgs.C
+libs/objectRegistryHolder.C
+libs/IOobjectArgs.C
+libs/IOobjectHolder.C
+libs/TimeHolder.C
+libs/dictionaryHolder.C
+libs/IOdictionaryHolder.C
+libs/fvMeshArgs.C
+libs/fvMeshHolder.C
+libs/volScalarFieldArgs.C
+libs/volScalarFieldHolder.C
 
 test.C
 
