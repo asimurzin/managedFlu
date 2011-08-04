@@ -7,15 +7,16 @@
 #include <boost/shared_ptr.hpp>
 #include "dictionaryHolder.H"
 #include "IOobjectHolder.H"
-
+#include "IOdictionaryArgs.H"
 
 //---------------------------------------------------------------------------
 namespace Foam
 {
   class IOdictionaryHolder : 
-    protected IOobjectHolder,
+    protected IOdictionaryArgs,
     public boost::shared_ptr< IOdictionary >,
-    protected dictionaryHolder
+    protected dictionaryHolder, 
+    protected IOobjectHolder
   {
   public:
     IOdictionaryHolder( const IOobjectHolder& );
@@ -23,11 +24,10 @@ namespace Foam
     ~IOdictionaryHolder();
     using boost::shared_ptr< IOdictionary >::operator->;
     using boost::shared_ptr< IOdictionary >::operator*;
-  protected:
-    IOdictionaryHolder();
   private:
 //    IOdictionaryHolder( const IOdictionaryHolder& ); // not implemented 
     void operator = ( const IOdictionaryHolder& ); // not implemented 
+    IOdictionaryHolder(); //not implemented
   };
 } // Foam
 

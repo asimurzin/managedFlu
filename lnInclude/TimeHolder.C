@@ -4,7 +4,6 @@
 
 //---------------------------------------------------------------------------
 #include "TimeHolder.H"
-#include "fluTime.H"
 
 
 //---------------------------------------------------------------------------
@@ -21,13 +20,6 @@ namespace Foam
     cout << "TimeHolder = " << this << nl;
   }
 
-
-  TimeHolder::TimeHolder()
-    : boost::shared_ptr< Time >()
-    , objectRegistryHolder() 
-  {
-    cout << "TimeHolder = " << this << nl;
-  }
 
   TimeHolder::~TimeHolder()
   {

@@ -12,15 +12,15 @@ namespace Foam
 {
 
   volScalarFieldHolder::volScalarFieldHolder( const IOobjectHolder& io, const fvMeshHolder& mesh ) :
-    fvMeshHolder( mesh ),
-    boost::shared_ptr< volScalarField >( new volScalarField( *io, *mesh ) )
+    volScalarFieldArgs( mesh ),
+    tmp< volScalarField >( new volScalarField( *io, *mesh ) )
   {
     cout << "fluvolScalarField = " << this << nl;
   }
 
-  volScalarFieldHolder::volScalarFieldHolder( volScalarField* gf, const fvMeshHolder& mesh ) : 
-    fvMeshHolder( mesh ), 
-    boost::shared_ptr< volScalarField >( gf )
+  volScalarFieldHolder::volScalarFieldHolder( const tmp< volScalarField>& tmp_gf, const fvMeshHolder& mesh ) : 
+    volScalarFieldArgs( mesh ), 
+    tmp< volScalarField >( tmp_gf )
   {
     cout << "fluvolScalarField = " << this << nl;
   }
@@ -35,7 +35,7 @@ namespace Foam
 //---------------------------------------------------------------------------
    volScalarFieldHolder operator+ ( const volScalarFieldHolder& field1, const volScalarFieldHolder& field2 )
    {
-     return volScalarFieldHolder( ( *field1 + *field2 ).ptr() , field1 );
+     return volScalarFieldHolder( field1() + field2(), field1.get_fvMeshArg() );
    }
 
 } //Foam

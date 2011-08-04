@@ -5,17 +5,19 @@
 //---------------------------------------------------------------------------
 #include <fvMesh.H>
 #include <boost/shared_ptr.hpp>
-#include "IOobjectHolder.H"
+#include "fvMeshArgs.H"
 #include "objectRegistryHolder.H"
-
 
 //---------------------------------------------------------------------------
 namespace Foam
 {
-
+  class IOobjectHolder;
+  
   class fvMeshHolder : 
-    public IOobjectHolder,
-    public boost::shared_ptr< fvMesh >
+    protected fvMeshArgs
+    , public boost::shared_ptr< fvMesh >
+    , public objectRegistryHolder
+    , public IOobjectHolder
   {
   public:
     fvMeshHolder( const IOobjectHolder& io );

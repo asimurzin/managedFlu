@@ -10,26 +10,20 @@
 namespace Foam
 {
 
-  IOdictionaryHolder::IOdictionaryHolder() : 
-    IOobjectHolder(),
-    boost::shared_ptr< IOdictionary >(),
-    dictionaryHolder()
-  {
-    cout << "IOdictionaryHolder = " << this << nl;
-  }
-
   IOdictionaryHolder::IOdictionaryHolder( const IOobjectHolder&  ioh ) : 
-    IOobjectHolder( ioh ),
+    IOdictionaryArgs( ioh ),
     boost::shared_ptr< IOdictionary >( new IOdictionary( *ioh ) ),
-    dictionaryHolder()
+    dictionaryHolder(),
+    IOobjectHolder( ioh )
   {
     cout << "IOdictionaryHolder = " << this << nl;
   }
 
   IOdictionaryHolder::IOdictionaryHolder( const IOobjectHolder& ioh, const dictionaryHolder& dict ) : 
-    IOobjectHolder( ioh ),
+    IOdictionaryArgs( ioh, dict ),
     boost::shared_ptr< IOdictionary >( new IOdictionary( *ioh, *dict ) ),
-    dictionaryHolder( dict )
+    dictionaryHolder( dict ),
+    IOobjectHolder( ioh )
   {
     cout << "IOdictionaryHolder = " << this << nl;
   }

@@ -4,8 +4,8 @@
 
 //---------------------------------------------------------------------------
 #include <volFields.H>
-#include <boost/shared_ptr.hpp>
-#include "fvMeshHolder.H"
+#include <tmp.H>
+#include "volScalarFieldArgs.H"
 
 
 //---------------------------------------------------------------------------
@@ -15,14 +15,12 @@ namespace Foam
   class IOobjectHolder;
   
   class volScalarFieldHolder : 
-    public fvMeshHolder, 
-    public boost::shared_ptr< volScalarField >
+    public volScalarFieldArgs, 
+    public tmp< volScalarField >
   {
   public:
     volScalarFieldHolder( const IOobjectHolder&, const fvMeshHolder& );
-    volScalarFieldHolder( volScalarField* , const fvMeshHolder& );
-    using boost::shared_ptr< volScalarField >::operator->;
-    using boost::shared_ptr< volScalarField >::operator*;
+    volScalarFieldHolder( const tmp< volScalarField >& , const fvMeshHolder& );
     ~volScalarFieldHolder();
   private:
      volScalarFieldHolder(); // not implemented

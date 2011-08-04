@@ -17,26 +17,19 @@ namespace Foam
                                   IOobject::readOption r, 
                                   IOobject::writeOption w, 
                                   bool registerObject ) : 
-    boost::shared_ptr< objectRegistry >( registry ),
+    IOobjectArgs( registry ),
     boost::shared_ptr< IOobject >( new IOobject( name, instance, *registry, r, w, registerObject ) )
   {
     cout << "IOobjectHolder = " << this << nl;
   }
-
+ 
   IOobjectHolder::IOobjectHolder() : 
-    boost::shared_ptr< objectRegistry >(),
-    boost::shared_ptr< IOobject >()
+    IOobjectArgs()
+    , boost::shared_ptr< IOobject >()
   {
     cout << "IOobjectHolder = " << this << nl;
   }
 
-  IOobjectHolder::IOobjectHolder( const boost::shared_ptr< objectRegistry >& ob ):
-    boost::shared_ptr< objectRegistry >( ob ),
-    boost::shared_ptr< IOobject >(  ob )
-  {
-    cout << "IOobjectHolder = " << this << nl;
-  }
-   
   IOobjectHolder::~IOobjectHolder()
   {
     cout << "~IOobjectHolder = " << this << nl;

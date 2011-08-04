@@ -4,6 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "fvMeshHolder.H"
+#include "IOobjectHolder.H"
 
 
 //---------------------------------------------------------------------------
@@ -11,23 +12,19 @@ namespace Foam
 {
 
   fvMeshHolder::fvMeshHolder( const IOobjectHolder& io ) : 
-    IOobjectHolder( io ),
-    boost::shared_ptr< fvMesh >( new fvMesh( *io ) )
+    fvMeshArgs( io ),
+    boost::shared_ptr< fvMesh >( new fvMesh( *io ) ),
+    objectRegistryHolder( io ),
+    IOobjectHolder( io )
   {
     cout << "fvMeshHolder=" << this << nl;
   }
-
-  fvMeshHolder::fvMeshHolder() : 
-    IOobjectHolder(),
-    boost::shared_ptr< fvMesh >()
-  {
-    cout << "fvMeshHolder=" << this << nl;
-  } 
 
   fvMeshHolder::~fvMeshHolder()
   {
     cout << "~fvMeshHolder=" << this << nl;
   }
+
 } //Foam
 
 

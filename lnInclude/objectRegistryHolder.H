@@ -12,17 +12,19 @@
 namespace Foam
 {
   class objectRegistryHolder : 
+      public boost::shared_ptr<objectRegistry>,
       public IOobjectHolder 
   {
   public:
-    objectRegistryHolder( const boost::shared_ptr<Foam::objectRegistry>& );
+    using boost::shared_ptr< objectRegistry >::operator*;
+
   protected:
-    objectRegistryHolder();
+    objectRegistryHolder( const boost::shared_ptr<objectRegistry>& );
+    objectRegistryHolder( const IOobjectHolder& );
   private:
 //    objectRegistryHolder( const objectRegistryHolder& ); // not implemented 
     void operator = ( const objectRegistryHolder& ); // not implemented 
-  public:
-    using boost::shared_ptr< objectRegistry >::operator*;
+    objectRegistryHolder(); //not implemented
   };
 } // Foam
 

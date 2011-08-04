@@ -8,6 +8,7 @@
 #include "objectRegistryHolder.H"
 
 
+//---------------------------------------------------------------------------
 namespace Foam
 {
   class TimeHolder : 
@@ -22,13 +23,13 @@ namespace Foam
     using boost::shared_ptr< Time >::operator->;
     using boost::shared_ptr< Time >::operator*;
     ~TimeHolder();
-  protected:
-    TimeHolder();
   private:
-    //TimeHolder(); // not implemented
+    TimeHolder(); // not implemented
     // TimeHolder( const TimeHolder& ); // not implemented 
     void operator = ( const TimeHolder& ); // not implemented 
   };
 } // Foam
 
+
+//---------------------------------------------------------------------------
 #endif
