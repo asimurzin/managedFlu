@@ -1,0 +1,5 @@
+
+icoFoam.C
+
+EXE = ../icoFoam_exe
+
