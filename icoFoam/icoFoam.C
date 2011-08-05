@@ -63,6 +63,21 @@ int main(int argc, char *argv[])
 
     dimensionedScalar nu( transportProperties->lookup("nu") );
 
+    Info << "Reading field p\n" << endl;
+  
+    volScalarFieldHolder p( IOobjectHolder( "p",
+                                             runTime->timeName(),
+                                             mesh,
+                                             IOobject::MUST_READ,
+                                             IOobject::AUTO_WRITE ), mesh );
+
+    Info<< "Reading field U\n" << endl;
+    volVectorFieldHolder U( IOobjectHolder( "U",
+                                            runTime->timeName(),
+                                            mesh,
+                                            IOobject::MUST_READ,
+                                            IOobject::AUTO_WRITE ), mesh );
+
 /*    
     #include "createFields.H"
     #include "initContinuityErrs.H"
