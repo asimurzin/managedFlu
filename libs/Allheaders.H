@@ -6,6 +6,9 @@
 #include "IOdictionaryHolder.H"
 #include "volScalarFieldHolder.H"
 #include "volVectorFieldHolder.H"
+#include "surfaceScalarFieldHolder.H"
+#include "surfaceVectorFieldHolder.H"
+#include "linearInterpolate.H"
 
 
 // ************************************************************************* //
