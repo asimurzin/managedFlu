@@ -9,5 +9,8 @@ fvMeshArgs.C
 fvMeshHolder.C
 volScalarFieldArgs.C
 volScalarFieldHolder.C
+volVectorFieldArgs.C
+volVectorFieldHolder.C
+
 
 LIB = $(FOAM_USER_LIBBIN)/libtestFixingBug
