@@ -16,7 +16,9 @@ namespace Foam
     dictionaryHolder(),
     IOobjectHolder( ioh )
   {
+#ifdef OUR_DEBUG
     cout << "IOdictionaryHolder = " << this << nl;
+#endif
   }
 
   IOdictionaryHolder::IOdictionaryHolder( const IOobjectHolder& ioh, const dictionaryHolder& dict ) : 
@@ -25,12 +27,16 @@ namespace Foam
     dictionaryHolder( dict ),
     IOobjectHolder( ioh )
   {
+#ifdef OUR_DEBUG
     cout << "IOdictionaryHolder = " << this << nl;
+#endif
   }
 
   IOdictionaryHolder::~IOdictionaryHolder()
   {
+#ifdef OUR_DEBUG
     cout << "~IOdictionaryHolder = " << this << nl;
+#endif
   }
 
 }//Foam

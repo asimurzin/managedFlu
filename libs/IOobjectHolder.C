@@ -20,19 +20,25 @@ namespace Foam
     IOobjectArgs( registry ),
     boost::shared_ptr< IOobject >( new IOobject( name, instance, *registry, r, w, registerObject ) )
   {
+#ifdef OUR_DEBUG
     cout << "IOobjectHolder = " << this << nl;
+#endif
   }
  
   IOobjectHolder::IOobjectHolder() : 
     IOobjectArgs()
     , boost::shared_ptr< IOobject >()
   {
+#ifdef OUR_DEBUG
     cout << "IOobjectHolder = " << this << nl;
+#endif
   }
 
   IOobjectHolder::~IOobjectHolder()
   {
+#ifdef OUR_DEBUG
     cout << "~IOobjectHolder = " << this << nl;
+#endif
   }
 }
 

@@ -17,12 +17,16 @@ namespace Foam
     objectRegistryHolder( io ),
     IOobjectHolder( io )
   {
+#ifdef OUR_DEBUG  
     cout << "fvMeshHolder=" << this << nl;
+#endif
   }
 
   fvMeshHolder::~fvMeshHolder()
   {
+#ifdef OUR_DEBUG
     cout << "~fvMeshHolder=" << this << nl;
+#endif
   }
 
 } //Foam

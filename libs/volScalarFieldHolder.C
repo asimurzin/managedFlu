@@ -15,20 +15,26 @@ namespace Foam
     volScalarFieldArgs( mesh ),
     tmp< volScalarField >( new volScalarField( *io, *mesh ) )
   {
+#ifdef OUR_DEBUG
     cout << "fluvolScalarField = " << this << nl;
+#endif
   }
 
   volScalarFieldHolder::volScalarFieldHolder( const tmp< volScalarField>& tmp_gf, const fvMeshHolder& mesh ) : 
     volScalarFieldArgs( mesh ), 
     tmp< volScalarField >( tmp_gf )
   {
+#ifdef OUR_DEBUG
     cout << "fluvolScalarField = " << this << nl;
+#endif
   }
 
 
   volScalarFieldHolder::~volScalarFieldHolder()
   {
+#ifdef OUR_DEBUG
     cout << "~fluvolScalarField = " << this << nl;
+#endif
   }
 
 
