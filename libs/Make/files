@@ -1,0 +1,13 @@
+IOdictionaryArgs.C
+objectRegistryHolder.C
+IOobjectArgs.C
+IOobjectHolder.C
+TimeHolder.C
+dictionaryHolder.C
+IOdictionaryHolder.C
+fvMeshArgs.C
+fvMeshHolder.C
+volScalarFieldArgs.C
+volScalarFieldHolder.C
+
+LIB = $(FOAM_USER_LIBBIN)/libtestFixingBug
