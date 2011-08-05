@@ -3,4 +3,5 @@ EXE_INC = \
     -I./libs
 
 EXE_LIBS = \
-    -lfiniteVolume
+   -lfiniteVolume \
+   -L$(FOAM_USER_LIBBIN) -ltestFixingBug

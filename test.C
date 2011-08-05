@@ -30,12 +30,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
-#include "IOobjectHolder.H"
-#include "TimeHolder.H"
-#include "IOobjectHolder.H"
-#include "fvMeshHolder.H"
-#include "IOdictionaryHolder.H"
-#include "volScalarFieldHolder.H"
+#include "Allheaders.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 Foam::TimeHolder create_time(  const Foam::word& dict_name, const Foam::argList& args )
