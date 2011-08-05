@@ -78,6 +78,20 @@ int main(int argc, char *argv[])
                                             IOobject::MUST_READ,
                                             IOobject::AUTO_WRITE ), mesh );
 
+    
+    Info<< "Reading/calculating face flux field phi\n" << endl;
+
+    surfaceScalarFieldHolder phi( IOobjectHolder( "phi",
+                                                  runTime->timeName(),
+                                                  mesh,
+                                                  IOobject::READ_IF_PRESENT,
+                                                  IOobject::AUTO_WRITE ),
+                                  linearInterpolate(U) & mesh->Sf() );
+    label pRefCell = 0;
+    scalar pRefValue = 0.0;
+    setRefCell(p, mesh->solutionDict().subDict("PISO"), pRefCell, pRefValue);
+
+
 /*    
     #include "createFields.H"
     #include "initContinuityErrs.H"
