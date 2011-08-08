@@ -15,10 +15,13 @@ surfaceScalarFieldArgs.C
 surfaceScalarFieldHolder.C
 surfaceVectorFieldArgs.C
 surfaceVectorFieldHolder.C
+fvScalarMatrixArgs.C
+fvScalarMatrixHolder.C
+fvVectorMatrixArgs.C
+fvVectorMatrixHolder.C
+
 
 linearInterpolate.C
 geometricFieldFunctionsMM.C
-fvcMM.C
-
 
 LIB = $(FOAM_USER_LIBBIN)/libtestFixingBug
