@@ -102,6 +102,7 @@ int main(int argc, char *argv[])
     {
 
         Info<< "Time = " << runTime->timeName() << nl << endl;
+        
         const dictionary& pisoDict = mesh->solutionDict().subDict("PISO");
  
         const int nOuterCorr = pisoDict.lookupOrDefault<int>("nOuterCorrectors", 1);
@@ -128,17 +129,15 @@ int main(int argc, char *argv[])
         // end of CourantNo
 
 
-/*
-
-        fvVectorMatrix UEqn
+        fvVectorMatrixHolder UEqn
         (
-            fvm::ddt(U)
-          + fvm::div(phi, U)
-          - fvm::laplacian(nu, U)
+            fvm::ddt( U )
+          + fvm::div( phi, U )
+          - fvm::laplacian( nu, U )
         );
 
-        solve(UEqn == -fvc::grad(p));
-
+        solve( UEqn == -fvc::grad( p ) );
+/*
         // --- PISO loop
 
         for (int corr=0; corr<nCorr; corr++)
