@@ -92,20 +92,43 @@ int main(int argc, char *argv[])
     setRefCell(p, mesh->solutionDict().subDict("PISO"), pRefCell, pRefValue);
 
 
-/*    
-    #include "createFields.H"
     #include "initContinuityErrs.H"
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
     Info<< "\nStarting time loop\n" << endl;
 
-    while (runTime.loop())
+    while (runTime->loop())
     {
-        Info<< "Time = " << runTime.timeName() << nl << endl;
 
-        #include "readPISOControls.H"
-        #include "CourantNo.H"
+        Info<< "Time = " << runTime->timeName() << nl << endl;
+        const dictionary& pisoDict = mesh->solutionDict().subDict("PISO");
+ 
+        const int nOuterCorr = pisoDict.lookupOrDefault<int>("nOuterCorrectors", 1);
+        const int nCorr = pisoDict.lookupOrDefault<int>("nCorrectors", 1);
+
+        const int nNonOrthCorr = pisoDict.lookupOrDefault<int>("nNonOrthogonalCorrectors", 0);
+
+        const bool momentumPredictor = pisoDict.lookupOrDefault("momentumPredictor", true);
+
+        const bool transonic = pisoDict.lookupOrDefault("transonic", false);
+        
+        // CourantNo
+        scalar CoNum = 0.0;
+        scalar meanCoNum = 0.0;
+        
+        if ( mesh->nInternalFaces() )
+        { 
+          scalarField sumPhi( fvc::surfaceSum(mag(phi))().internalField() );
+          
+          CoNum = 0.5 * gMax( sumPhi / mesh->V().field() ) * runTime->deltaTValue();
+          meanCoNum = 0.5 * ( gSum( sumPhi ) / gSum( mesh->V().field() ) ) * runTime->deltaTValue();
+
+        }
+        // end of CourantNo
+
+
+/*
 
         fvVectorMatrix UEqn
         (
@@ -149,16 +172,16 @@ int main(int argc, char *argv[])
             U -= rAU*fvc::grad(p);
             U.correctBoundaryConditions();
         }
+*/
+        runTime->write();
 
-        runTime.write();
-
-        Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
-            << "  ClockTime = " << runTime.elapsedClockTime() << " s"
+        Info<< "ExecutionTime = " << runTime->elapsedCpuTime() << " s"
+            << "  ClockTime = " << runTime->elapsedClockTime() << " s"
             << nl << endl;
     }
 
     Info<< "End\n" << endl;
-*/
+
     return 0;
 }
 
