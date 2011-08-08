@@ -44,6 +44,11 @@ namespace Foam
      return volVectorFieldHolder( field1() + field2(), field1.get_fvMeshArg() );
    }
 
+   volVectorFieldHolder operator- ( const volVectorFieldHolder& field )
+   {
+     return volVectorFieldHolder( -field(), field.get_fvMeshArg() );
+   }
+
 } //Foam
 
 

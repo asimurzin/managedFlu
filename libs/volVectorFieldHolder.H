@@ -29,7 +29,7 @@ namespace Foam
   };
   
   volVectorFieldHolder operator+ ( const volVectorFieldHolder&, const volVectorFieldHolder& );
-
+  volVectorFieldHolder operator- ( const volVectorFieldHolder&);
 } // Foam
 
 
