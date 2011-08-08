@@ -14,11 +14,18 @@ namespace Foam
 {
   namespace fvc
   {
+  
+  
+  //---------------------------------------------------------------------------
+  //fvc::surfaceSum
     inline volScalarFieldHolder surfaceSum( const surfaceScalarFieldHolder& field )
     {
      return volScalarFieldHolder( surfaceSum( field() ), field.get_fvMeshArg() );
     }
-    
+
+
+  //---------------------------------------------------------------------------
+  // fvc::grad    
     inline volVectorFieldHolder grad( const surfaceScalarFieldHolder& field )
     {
       return volVectorFieldHolder( grad( field() ), field.get_fvMeshArg() );
