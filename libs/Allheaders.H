@@ -14,7 +14,7 @@
 #include "geometricFieldFunctionsMM.H"
 #include "fvcMM.H"
 #include "fvmMM.H"
-#include "fvMatrixFunctions.H"
+#include "fvMatrixFunctionsMM.H"
 
 
 // ************************************************************************* //
