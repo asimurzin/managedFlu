@@ -6,6 +6,7 @@
 #include <fvc.H>
 #include "surfaceScalarFieldHolder.H"
 #include "volScalarFieldHolder.H"
+#include "volVectorFieldHolder.H"
 
 
 //---------------------------------------------------------------------------
@@ -13,9 +14,17 @@ namespace Foam
 {
   namespace fvc
   {
-    volScalarFieldHolder surfaceSum( const surfaceScalarFieldHolder& );
+    inline volScalarFieldHolder surfaceSum( const surfaceScalarFieldHolder& field )
+    {
+     return volScalarFieldHolder( surfaceSum( field() ), field.get_fvMeshArg() );
+    }
+    
+    inline volVectorFieldHolder grad( const surfaceScalarFieldHolder& field )
+    {
+      return volVectorFieldHolder( grad( field() ), field.get_fvMeshArg() );
+    }
   }
-} // Foam
+} //Foam
 
 
 //---------------------------------------------------------------------------
