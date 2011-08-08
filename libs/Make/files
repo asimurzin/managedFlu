@@ -17,6 +17,8 @@ surfaceVectorFieldArgs.C
 surfaceVectorFieldHolder.C
 
 linearInterpolate.C
+geometricFieldFunctionsMM.C
+fvcMM.C
 
 
 LIB = $(FOAM_USER_LIBBIN)/libtestFixingBug

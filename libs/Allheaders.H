@@ -9,6 +9,8 @@
 #include "surfaceScalarFieldHolder.H"
 #include "surfaceVectorFieldHolder.H"
 #include "linearInterpolate.H"
+#include "geometricFieldFunctionsMM.H"
+#include "fvcMM.H"
 
 
 // ************************************************************************* //
