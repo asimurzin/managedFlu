@@ -23,6 +23,12 @@ namespace Foam
     {
       return volVectorFieldHolder( grad( field() ), field.get_fvMeshArg() );
     }
+
+    inline volVectorFieldHolder grad( const volScalarFieldHolder& field )
+    {
+      return volVectorFieldHolder( grad( field() ), field.get_fvMeshArg() );
+    }
+
   }
 } //Foam
 
