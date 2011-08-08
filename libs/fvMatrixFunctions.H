@@ -12,6 +12,9 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
+
+
+//---------------------------------------------------------------------------
 // fvVectorMatrix operators
    inline fvVectorMatrixHolder operator+ ( const fvVectorMatrixHolder& mt1, const fvVectorMatrixHolder& mt2 )
    {
@@ -63,6 +66,27 @@ namespace Foam
    {
      return fvVectorMatrixHolder( mt1() == field() , mt1.get_fieldArg() );
    }
+
+
+//---------------------------------------------------------------------------
+// fvScalarMatrix operators
+
+   inline fvScalarMatrixHolder operator+ ( const fvScalarMatrixHolder& mt1, const fvScalarMatrixHolder& mt2 )
+   {
+     tmp< fvScalarMatrix > result = mt1() + mt2();
+
+     if ( &( result().psi() ) == &( mt1.get_fieldArg()() ) )
+     {
+       return fvScalarMatrixHolder( result, mt1.get_fieldArg() );
+     }
+     else if ( &( result().psi() ) == &(  mt2.get_fieldArg()() ) )
+     {
+       return fvScalarMatrixHolder( result, mt2.get_fieldArg() );
+     }
+     else
+       cout << "Something is wrong" << nl;
+   }
+
 
 
 //---------------------------------------------------------------------------
