@@ -27,9 +27,9 @@ namespace Foam
     return surfaceVectorFieldHolder( field1() + field2(), field1.get_fvMeshArg() );
   }
 
-  inline surfaceScalarFieldHolder operator& ( const surfaceVectorFieldHolder& field1, const surfaceVectorField& field2 )
+  inline surfaceScalarFieldHolder operator& ( const surfaceVectorFieldHolder& field1, const surfaceVectorFieldHolder& field2 )
   {
-    return surfaceScalarFieldHolder( field1() & field2, field1.get_fvMeshArg() );
+    return surfaceScalarFieldHolder( field1() & field2(), field1.get_fvMeshArg() );
   }
 
   //-------------------------------------------------------------------------
