@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
                                                   mesh,
                                                   IOobject::READ_IF_PRESENT,
                                                   IOobject::AUTO_WRITE ),
-                                  linearInterpolate(U) & mesh->Sf() );
+                                  linearInterpolate(U) & mesh.Sf() );
     label pRefCell = 0;
     scalar pRefValue = 0.0;
     setRefCell(p, mesh->solutionDict().subDict("PISO"), pRefCell, pRefValue);
@@ -126,6 +126,7 @@ int main(int argc, char *argv[])
           meanCoNum = 0.5 * ( gSum( sumPhi ) / gSum( mesh->V().field() ) ) * runTime->deltaTValue();
 
         }
+        Info<< "Courant Number mean: " << meanCoNum << " max: " << CoNum << endl;
         // end of CourantNo
 
 
@@ -137,41 +138,50 @@ int main(int argc, char *argv[])
         );
 
         solve( UEqn == -fvc::grad( p ) );
-/*
+         
         // --- PISO loop
 
         for (int corr=0; corr<nCorr; corr++)
         {
-            volScalarField rAU(1.0/UEqn.A());
-
+            
+            volScalarFieldHolder rAU(1.0/UEqn.A());
+            
             U = rAU*UEqn.H();
-            phi = (fvc::interpolate(U) & mesh.Sf())
-                + fvc::ddtPhiCorr(rAU, U, phi);
-
+            
+            phi = ( fvc::interpolate(U) & mesh.Sf() ) + fvc::ddtPhiCorr(rAU, U, phi);
+            
             adjustPhi(phi, U, p);
 
             for (int nonOrth=0; nonOrth<=nNonOrthCorr; nonOrth++)
             {
-                fvScalarMatrix pEqn
+                fvScalarMatrixHolder pEqn
                 (
                     fvm::laplacian(rAU, p) == fvc::div(phi)
                 );
 
-                pEqn.setReference(pRefCell, pRefValue);
-                pEqn.solve();
+                pEqn->setReference(pRefCell, pRefValue);
+                pEqn->solve();
 
                 if (nonOrth == nNonOrthCorr)
                 {
                     phi -= pEqn.flux();
                 }
             }
+            
+            // continuityErrors.H
+            volScalarFieldHolder contErr( fvc::div(phi) );
 
-            #include "continuityErrs.H"
-
+            scalar sumLocalContErr = runTime->deltaTValue() * mag( contErr )().weightedAverage( mesh->V() ).value();
+            scalar globalContErr = runTime->deltaTValue() * contErr().weightedAverage( mesh->V() ).value();
+            cumulativeContErr += globalContErr;
+            Info<< "time step continuity errors : sum local = " << sumLocalContErr
+                << ", global = " << globalContErr
+                << ", cumulative = " << cumulativeContErr << endl;
+            // end continuityErrors
             U -= rAU*fvc::grad(p);
-            U.correctBoundaryConditions();
+            U().correctBoundaryConditions();
         }
-*/
+
         runTime->write();
 
         Info<< "ExecutionTime = " << runTime->elapsedCpuTime() << " s"
