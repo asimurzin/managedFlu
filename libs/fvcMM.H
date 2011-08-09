@@ -38,13 +38,21 @@ namespace Foam
 
 
   //---------------------------------------------------------------------------
-  // fvc::grad    
+  // fvc::ddtPhiCorr    
     inline surfaceScalarFieldHolder ddtPhiCorr( const volScalarFieldHolder& rA,
                                                 const volVectorFieldHolder& U,
                                                 const surfaceScalarFieldHolder& phi )
     {
       return surfaceScalarFieldHolder( ddtPhiCorr( rA(), U(), phi() ), rA.get_fvMeshArg() );
     }                   
+
+  //---------------------------------------------------------------------------
+  // fvc::div    
+    inline volScalarFieldHolder div( const surfaceScalarFieldHolder& phi )
+    {
+      return volScalarFieldHolder( div( phi() ), phi.get_fvMeshArg() );
+    }                   
+
 
   }
 } //Foam

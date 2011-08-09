@@ -44,6 +44,10 @@ namespace Foam
   }
 
   //-------------------------------------------------------------------------
+  inline volScalarFieldHolder mag( const volScalarFieldHolder&  field)
+  {
+    return volScalarFieldHolder( mag( field() ), field.get_fvMeshArg() );
+  }
   inline volScalarFieldHolder operator+ ( const volScalarFieldHolder& field1, const volScalarFieldHolder& field2 )
   {
     return volScalarFieldHolder( field1() + field2(), field1.get_fvMeshArg() );
@@ -51,7 +55,7 @@ namespace Foam
 
   inline volScalarFieldHolder operator/ ( const scalar& value, const volScalarFieldHolder& field )
   {
-    return volScalarFieldHolder( value / field(), field.get_fvMeshArg() );
+    return volScalarFieldHolder( ( 1.0 / field() ), field.get_fvMeshArg() );
   }
 
   inline volVectorFieldHolder operator* ( const volScalarFieldHolder& field1, const volVectorFieldHolder& field2 )
