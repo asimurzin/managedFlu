@@ -44,7 +44,8 @@ namespace Foam
      else if ( &( result().psi() ) == &(  field2() ) )
        return fvScalarMatrixHolder( result, field2 );
 
-     cout << "Something is wrong" << nl;
+      FatalErrorIn( "fvScalarMatrixHolder laplacian( const volScalarFieldHolder& field1, const volScalarFieldHolder& field2 )")
+                    << exit(FatalError);
     }
     
   }
