@@ -11,6 +11,7 @@
 #include "fvVectorMatrixHolder.H"
 #include "fvScalarMatrixHolder.H"
 #include "linearMM.H"
+#include "surfaceInterpolateMM.H"
 #include "geometricFieldFunctionsMM.H"
 #include "fvcMM.H"
 #include "fvmMM.H"
