@@ -23,20 +23,20 @@ namespace Foam
     fvVectorMatrixHolder( const tmp< fvVectorMatrix >& , const volVectorFieldHolder& );
     ~fvVectorMatrixHolder();
     // re-define functions which returns "holders"
-    inline volScalarFieldHolder A() const
+    volScalarFieldHolder A() const
     {
       return  volScalarFieldHolder( operator()().A(), get_fvMeshArg() );
     }
-    inline volVectorFieldHolder H() const
+    volVectorFieldHolder H() const
     {
       return  volVectorFieldHolder( operator()().H(), get_fvMeshArg() );
     }
 
-    inline volScalarFieldHolder H1() const
+    volScalarFieldHolder H1() const
     {
       return  volScalarFieldHolder( operator()().H1(), get_fvMeshArg() );
     }
-    inline surfaceVectorFieldHolder flux() const
+    surfaceVectorFieldHolder flux() const
     {
       return  surfaceVectorFieldHolder( operator()().flux(), get_fvMeshArg() );
     }
