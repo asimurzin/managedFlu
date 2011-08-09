@@ -179,7 +179,7 @@ int main(int argc, char *argv[])
                 << ", cumulative = " << cumulativeContErr << endl;
             // end continuityErrors
             U -= rAU*fvc::grad(p);
-            U().correctBoundaryConditions();
+            U->correctBoundaryConditions();
         }
 
         runTime->write();
