@@ -22,6 +22,5 @@ fvVectorMatrixHolder.C
 
 
 linearInterpolate.C
-geometricFieldFunctionsMM.C
 
 LIB = $(FOAM_USER_LIBBIN)/libtestFixingBug
