@@ -28,8 +28,6 @@ namespace Foam
      void operator = ( const volScalarFieldHolder& ); // not implemented 
   };
   
-  volScalarFieldHolder operator+ ( const volScalarFieldHolder&, const volScalarFieldHolder& );
-
 } // Foam
 
 

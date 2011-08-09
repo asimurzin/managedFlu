@@ -30,9 +30,6 @@ namespace Foam
      void operator = ( const surfaceVectorFieldHolder& ); // not implemented 
   };
   
-  surfaceVectorFieldHolder operator+ ( const surfaceVectorFieldHolder&, const surfaceVectorFieldHolder& );
-  surfaceScalarFieldHolder operator& ( const surfaceVectorFieldHolder&, const surfaceVectorField& );
-
 } // Foam
 
 

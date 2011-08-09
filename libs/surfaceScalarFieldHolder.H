@@ -29,8 +29,6 @@ namespace Foam
      void operator = ( const surfaceScalarFieldHolder& ); // not implemented 
   };
   
-  surfaceScalarFieldHolder operator+ ( const surfaceScalarFieldHolder&, const surfaceScalarFieldHolder& );
-
 
 } // Foam
 

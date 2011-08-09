@@ -38,12 +38,6 @@ namespace Foam
   }
 
 
-//---------------------------------------------------------------------------
-   volScalarFieldHolder operator+ ( const volScalarFieldHolder& field1, const volScalarFieldHolder& field2 )
-   {
-     return volScalarFieldHolder( field1() + field2(), field1.get_fvMeshArg() );
-   }
-
 } //Foam
 
 
