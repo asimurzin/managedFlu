@@ -25,7 +25,7 @@ namespace Foam
   private:
      volScalarFieldHolder(); // not implemented
     // volScalarFieldHolder( const volScalarFieldHolder& ); // not implemented 
-     void operator = ( const volScalarFieldHolder& ); // not implemented 
+    // void operator = ( const volScalarFieldHolder& ); // not implemented 
   };
   
 } // Foam

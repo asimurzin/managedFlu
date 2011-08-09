@@ -20,7 +20,7 @@ namespace Foam
   private:
     boost::shared_ptr< fvMeshHolder > fvMeshArg;
     //volVectorFieldArgs( const volVectorFieldArgs& ); // not implemented 
-    void operator = ( const volVectorFieldArgs& ); // not implemented 
+    //void operator = ( const volVectorFieldArgs& ); // not implemented 
     volVectorFieldArgs(); //not implemented
   };
 } // Foam
