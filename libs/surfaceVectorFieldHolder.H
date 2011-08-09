@@ -27,7 +27,7 @@ namespace Foam
   private:
      surfaceVectorFieldHolder(); // not implemented
     // surfaceVectorFieldHolder( const surfaceVectorFieldHolder& ); // not implemented 
-     void operator = ( const surfaceVectorFieldHolder& ); // not implemented 
+    // void operator = ( const surfaceVectorFieldHolder& ); // not implemented 
   };
   
 } // Foam
