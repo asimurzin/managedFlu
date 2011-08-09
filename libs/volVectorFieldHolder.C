@@ -10,7 +10,7 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-
+ //--------------------------------------------------------------------------
   volVectorFieldHolder::volVectorFieldHolder( const IOobjectHolder& io, const fvMeshHolder& mesh ) :
     volVectorFieldArgs( mesh ),
     tmp< volVectorField >( new volVectorField( *io, *mesh ) )
@@ -36,7 +36,16 @@ namespace Foam
     cout << "~fluvolVectorField = " << this << nl;
 #endif
   }
+  //-------------------------------------------------------------------------
+  void volVectorFieldHolder::operator=( const volVectorFieldHolder& field)
+  {
+    operator()()= field();
+  }
 
+  void volVectorFieldHolder::operator-=( const volVectorFieldHolder& field)
+  {
+    operator()()-= field();
+  }
 
 } //Foam
 

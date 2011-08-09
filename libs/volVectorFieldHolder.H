@@ -22,6 +22,8 @@ namespace Foam
     volVectorFieldHolder( const IOobjectHolder&, const fvMeshHolder& );
     volVectorFieldHolder( const tmp< volVectorField >& , const fvMeshHolder& );
     ~volVectorFieldHolder();
+    void operator = ( const volVectorFieldHolder& );
+    void operator -= ( const volVectorFieldHolder& );
   private:
      volVectorFieldHolder(); // not implemented
     // volVectorFieldHolder( const volVectorFieldHolder& ); // not implemented 

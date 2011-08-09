@@ -12,7 +12,7 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-
+  //-------------------------------------------------------------------------
   surfaceScalarFieldHolder::surfaceScalarFieldHolder( const IOobjectHolder& io, const fvMeshHolder& mesh ) :
     surfaceScalarFieldArgs( mesh ),
     tmp< surfaceScalarField >( new surfaceScalarField( *io, *mesh ) )
@@ -48,6 +48,17 @@ namespace Foam
 #endif
   }
 
+
+  //-------------------------------------------------------------------------
+  void surfaceScalarFieldHolder::operator = ( const surfaceScalarFieldHolder& field )
+  {
+    operator()()= field();
+  }
+  
+  void surfaceScalarFieldHolder::operator -= ( const surfaceScalarFieldHolder& field )
+  {
+    operator()() -= field();
+  }
 
 } //Foam
 

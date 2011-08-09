@@ -23,6 +23,8 @@ namespace Foam
     surfaceScalarFieldHolder( const IOobjectHolder&, const surfaceScalarFieldHolder& );
     surfaceScalarFieldHolder( const tmp< surfaceScalarField >& , const fvMeshHolder& );
     ~surfaceScalarFieldHolder();
+    void operator = ( const surfaceScalarFieldHolder& );
+    void operator-= ( const surfaceScalarFieldHolder& );
   private:
      surfaceScalarFieldHolder(); // not implemented
     // surfaceScalarFieldHolder( const surfaceScalarFieldHolder& ); // not implemented 
