@@ -87,6 +87,10 @@ namespace Foam
        cout << "Something is wrong" << nl;
    }
 
+   inline fvScalarMatrixHolder operator==( const fvScalarMatrixHolder& mt1, const volScalarFieldHolder& field )
+   {
+     return fvScalarMatrixHolder( mt1() == field() , mt1.get_fieldArg() );
+   }
 
 
 //---------------------------------------------------------------------------
