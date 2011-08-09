@@ -12,6 +12,9 @@
 namespace Foam
 {
   class IOobjectHolder;
+  class surfaceVectorFieldHolder ;
+  class surfaceScalarFieldHolder;
+  class volVectorFieldHolder;
   
   class fvMeshHolder : 
     protected fvMeshArgs
@@ -24,6 +27,14 @@ namespace Foam
     using boost::shared_ptr< fvMesh >::operator*;
     using boost::shared_ptr< fvMesh >::operator->;
     ~fvMeshHolder();
+
+    //redefine some functions which returns holders
+    const surfaceVectorFieldHolder Sf() const;
+    const surfaceScalarFieldHolder magSf() const;
+    const surfaceScalarFieldHolder phi() const;
+    const volVectorFieldHolder C() const;
+    const surfaceVectorFieldHolder Cf() const;
+
   private:
     fvMeshHolder(); // not implemented
     // fvMeshHolder( const fvMeshHolder& ); // not implemented 

@@ -5,6 +5,10 @@
 //---------------------------------------------------------------------------
 #include "fvMeshHolder.H"
 #include "IOobjectHolder.H"
+#include "volVectorFieldHolder.H"
+#include "surfaceScalarFieldHolder.H"
+#include "surfaceVectorFieldHolder.H"
+
 
 
 //---------------------------------------------------------------------------
@@ -27,6 +31,28 @@ namespace Foam
 #ifdef OUR_DEBUG
     cout << "~fvMeshHolder=" << this << nl;
 #endif
+  }
+
+  //-------------------------------------------------------------------------
+  const surfaceVectorFieldHolder fvMeshHolder::Sf() const
+  {
+    return surfaceVectorFieldHolder( tmp< surfaceVectorField >( operator->()->Sf() ), *this );
+  }
+  const surfaceScalarFieldHolder fvMeshHolder::magSf() const
+  {
+    return surfaceScalarFieldHolder( tmp< surfaceScalarField >( operator->()->magSf() ), *this );
+  }
+  const surfaceScalarFieldHolder fvMeshHolder::phi() const
+  {
+    return surfaceScalarFieldHolder( tmp< surfaceScalarField >( operator->()->phi() ), *this );
+  }
+  const volVectorFieldHolder fvMeshHolder::C() const
+  {
+    return volVectorFieldHolder( tmp< volVectorField >( operator->()->C() ), *this );
+  }
+  const surfaceVectorFieldHolder fvMeshHolder::Cf() const
+  {
+    return surfaceVectorFieldHolder( tmp< surfaceVectorField >( operator->()->Cf() ), *this );
   }
 
 } //Foam
