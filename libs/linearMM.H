@@ -1,5 +1,5 @@
-#ifndef linearInterpolate_H
-#define linearInterpolate_H
+#ifndef linearMM_H
+#define linearMM_H
 
 
 //---------------------------------------------------------------------------
@@ -13,7 +13,10 @@
 namespace Foam
 {
 
-  surfaceVectorFieldHolder linearInterpolate( const volVectorFieldHolder& );
+  inline surfaceVectorFieldHolder linearInterpolate( const volVectorFieldHolder& field )
+  {
+    return surfaceVectorFieldHolder( linearInterpolate( field() ) , field.get_fvMeshArg() );
+  }
 
 } // Foam
 

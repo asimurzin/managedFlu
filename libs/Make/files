@@ -21,6 +21,4 @@ fvVectorMatrixArgs.C
 fvVectorMatrixHolder.C
 
 
-linearInterpolate.C
-
 LIB = $(FOAM_USER_LIBBIN)/libtestFixingBug

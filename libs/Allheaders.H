@@ -10,7 +10,7 @@
 #include "surfaceVectorFieldHolder.H"
 #include "fvVectorMatrixHolder.H"
 #include "fvScalarMatrixHolder.H"
-#include "linearInterpolate.H"
+#include "linearMM.H"
 #include "geometricFieldFunctionsMM.H"
 #include "fvcMM.H"
 #include "fvmMM.H"
