@@ -7,14 +7,9 @@ dictionaryHolder.C
 IOdictionaryHolder.C
 fvMeshArgs.C
 fvMeshHolder.C
-volScalarFieldArgs.C
-volScalarFieldHolder.C
-volVectorFieldArgs.C
-volVectorFieldHolder.C
-surfaceScalarFieldArgs.C
-surfaceScalarFieldHolder.C
-surfaceVectorFieldArgs.C
-surfaceVectorFieldHolder.C
+GeometricFieldArgs.C
+volFieldsMM.C
+surfaceFieldsMM.C
 fvScalarMatrixArgs.C
 fvScalarMatrixHolder.C
 fvVectorMatrixArgs.C
