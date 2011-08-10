@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 #include "fvVectorMatrixArgs.H"
 #include "fvMeshHolder.H"
-#include "volVectorFieldHolder.H"
+#include "volFields.H"
 
 
 //---------------------------------------------------------------------------

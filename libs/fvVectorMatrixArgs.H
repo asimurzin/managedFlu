@@ -4,13 +4,12 @@
 
 //---------------------------------------------------------------------------
 #include <boost/shared_ptr.hpp>
-#include <volFields.H>
+#include "volFieldsMM.H"
 
 //---------------------------------------------------------------------------
 namespace Foam
 {
   class fvMeshHolder;
-  class volVectorFieldHolder;
    
   class fvVectorMatrixArgs
   {

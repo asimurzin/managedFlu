@@ -5,8 +5,8 @@
 //---------------------------------------------------------------------------
 #include <linear.H>
 
-#include "volVectorFieldHolder.H"
-#include "surfaceVectorFieldHolder.H"
+#include "volFieldsMM.H"
+#include "surfaceFieldsMM.H"
 
 
 //---------------------------------------------------------------------------
@@ -15,7 +15,7 @@ namespace Foam
 
   inline surfaceVectorFieldHolder linearInterpolate( const volVectorFieldHolder& field )
   {
-    return surfaceVectorFieldHolder( linearInterpolate( field() ) , field.get_fvMeshArg() );
+    return surfaceVectorFieldHolder( linearInterpolate( field() ) , field.mesh() );
   }
 
 } // Foam

@@ -4,9 +4,8 @@
 
 //---------------------------------------------------------------------------
 #include <fvc.H>
-#include "surfaceScalarFieldHolder.H"
-#include "volScalarFieldHolder.H"
-#include "volVectorFieldHolder.H"
+#include "surfaceFieldsMM.H"
+#include "volFieldsMM.H"
 
 
 //---------------------------------------------------------------------------
@@ -20,7 +19,7 @@ namespace Foam
   //fvc::surfaceSum
     inline volScalarFieldHolder surfaceSum( const surfaceScalarFieldHolder& field )
     {
-     return volScalarFieldHolder( surfaceSum( field() ), field.get_fvMeshArg() );
+     return volScalarFieldHolder( surfaceSum( field() ), field.mesh() );
     }
 
 
@@ -28,12 +27,12 @@ namespace Foam
   // fvc::grad    
     inline volVectorFieldHolder grad( const surfaceScalarFieldHolder& field )
     {
-      return volVectorFieldHolder( grad( field() ), field.get_fvMeshArg() );
+      return volVectorFieldHolder( grad( field() ), field.mesh() );
     }
 
     inline volVectorFieldHolder grad( const volScalarFieldHolder& field )
     {
-      return volVectorFieldHolder( grad( field() ), field.get_fvMeshArg() );
+      return volVectorFieldHolder( grad( field() ), field.mesh() );
     }
 
 
@@ -43,14 +42,14 @@ namespace Foam
                                                 const volVectorFieldHolder& U,
                                                 const surfaceScalarFieldHolder& phi )
     {
-      return surfaceScalarFieldHolder( ddtPhiCorr( rA(), U(), phi() ), rA.get_fvMeshArg() );
+      return surfaceScalarFieldHolder( ddtPhiCorr( rA(), U(), phi() ), rA.mesh() );
     }                   
 
   //---------------------------------------------------------------------------
   // fvc::div    
     inline volScalarFieldHolder div( const surfaceScalarFieldHolder& phi )
     {
-      return volScalarFieldHolder( div( phi() ), phi.get_fvMeshArg() );
+      return volScalarFieldHolder( div( phi() ), phi.mesh() );
     }                   
 
 

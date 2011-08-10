@@ -1,13 +1,13 @@
 //---------------------------------------------------------------------------
 #include "fvVectorMatrixHolder.H"
-#include "volVectorFieldHolder.H"
+
 
 //---------------------------------------------------------------------------
 namespace Foam
 {
 
   fvVectorMatrixHolder::fvVectorMatrixHolder( const tmp< fvVectorMatrix>& tmp_mt, const volVectorFieldHolder& field ) : 
-    fvVectorMatrixArgs( field, field.get_fvMeshArg() ), 
+    fvVectorMatrixArgs( field, field.mesh() ), 
     tmp< fvVectorMatrix >( tmp_mt )
   {
 #ifdef OUR_DEBUG

@@ -6,15 +6,13 @@
 #include <fvMatrices.H>
 #include <tmp.H>
 #include "fvScalarMatrixArgs.H"
-#include "volScalarFieldHolder.H"
-#include "surfaceScalarFieldHolder.H"
+#include "surfaceFieldsMM.H"
+#include "volFieldsMM.H"
 
 //---------------------------------------------------------------------------
 namespace Foam
 {
 
-  class volScalarFieldHolder;
-  
   class fvScalarMatrixHolder : 
     public fvScalarMatrixArgs, 
     public tmp< fvScalarMatrix >

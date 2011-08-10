@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 #include "fvScalarMatrixArgs.H"
 #include "fvMeshHolder.H"
-#include "volScalarFieldHolder.H"
+#include "volFields.H"
 
 
 //---------------------------------------------------------------------------

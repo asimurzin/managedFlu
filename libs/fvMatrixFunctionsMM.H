@@ -5,8 +5,8 @@
 //---------------------------------------------------------------------------
 #include <fvm.H>
 #include <dimensionedScalar.H>
-#include "volVectorFieldHolder.H"
-#include "fvVectorMatrixHolder.H"
+#include "surfaceFieldsMM.H"
+#include "volFieldsMM.H"
 
 
 //---------------------------------------------------------------------------

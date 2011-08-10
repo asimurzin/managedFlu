@@ -1,13 +1,13 @@
 //---------------------------------------------------------------------------
 #include "fvScalarMatrixHolder.H"
-#include "volScalarFieldHolder.H"
+
 
 //---------------------------------------------------------------------------
 namespace Foam
 {
 
   fvScalarMatrixHolder::fvScalarMatrixHolder( const tmp< fvScalarMatrix>& tmp_mt, const volScalarFieldHolder& field ) : 
-    fvScalarMatrixArgs( field, field.get_fvMeshArg() ), 
+    fvScalarMatrixArgs( field, field.mesh() ), 
     tmp< fvScalarMatrix >( tmp_mt )
   {
 #ifdef OUR_DEBUG

@@ -5,7 +5,8 @@
 //---------------------------------------------------------------------------
 #include <fvm.H>
 #include <dimensionedScalar.H>
-#include "volVectorFieldHolder.H"
+#include "surfaceFieldsMM.H"
+#include "volFieldsMM.H"
 #include "fvVectorMatrixHolder.H"
 
 
@@ -46,6 +47,7 @@ namespace Foam
 
       FatalErrorIn( "fvScalarMatrixHolder laplacian( const volScalarFieldHolder& field1, const volScalarFieldHolder& field2 )")
                     << exit(FatalError);
+      return fvScalarMatrixHolder( result, field2 ); //dummy return
     }
     
   }

@@ -7,14 +7,14 @@
 #include <boost/shared_ptr.hpp>
 #include "fvMeshArgs.H"
 #include "objectRegistryHolder.H"
+#include "volFieldsFwdMM.H"
+#include "surfaceFieldsFwdMM.H"
+
 
 //---------------------------------------------------------------------------
 namespace Foam
 {
   class IOobjectHolder;
-  class surfaceVectorFieldHolder ;
-  class surfaceScalarFieldHolder;
-  class volVectorFieldHolder;
   
   class fvMeshHolder : 
     protected fvMeshArgs
@@ -29,11 +29,11 @@ namespace Foam
     ~fvMeshHolder();
 
     //redefine some functions which returns holders
-    const surfaceVectorFieldHolder Sf() const;
-    const surfaceScalarFieldHolder magSf() const;
-    const surfaceScalarFieldHolder phi() const;
-    const volVectorFieldHolder C() const;
-    const surfaceVectorFieldHolder Cf() const;
+    surfaceVectorFieldHolder Sf() const;
+    surfaceScalarFieldHolder magSf() const;
+    surfaceScalarFieldHolder phi() const;
+    volVectorFieldHolder C() const;
+    surfaceVectorFieldHolder Cf() const;
 
   private:
     fvMeshHolder(); // not implemented
