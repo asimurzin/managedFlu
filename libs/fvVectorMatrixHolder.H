@@ -14,13 +14,14 @@
 namespace Foam
 {
 
-  class fvVectorMatrixHolder : 
-    public fvVectorMatrixArgs, 
-    public tmp< fvVectorMatrix >
+  class fvVectorMatrixHolder 
+    : public fvVectorMatrixArgs
+    , public tmp< fvVectorMatrix >
   {
   public:
     fvVectorMatrixHolder( const tmp< fvVectorMatrix >& , const volVectorFieldHolder& );
     ~fvVectorMatrixHolder();
+
     // re-define functions which returns "holders"
     volScalarFieldHolder A() const
     {
@@ -30,7 +31,7 @@ namespace Foam
     {
       return  volVectorFieldHolder( operator()().H(), get_fvMeshArg() );
     }
-
+    
     volScalarFieldHolder H1() const
     {
       return  volScalarFieldHolder( operator()().H1(), get_fvMeshArg() );
@@ -39,16 +40,15 @@ namespace Foam
     {
       return  surfaceVectorFieldHolder( operator()().flux(), get_fvMeshArg() );
     }
-
+    
   private:
-     fvVectorMatrixHolder(); // not implemented
+    fvVectorMatrixHolder(); // not implemented
     // fvVectorMatrixHolder( const fvVectorMatrixHolder& ); // not implemented 
-     void operator = ( const fvVectorMatrixHolder& ); // not implemented 
+    void operator = ( const fvVectorMatrixHolder& ); // not implemented 
   };
   
-  fvVectorMatrixHolder operator+ ( const fvVectorMatrixHolder&, const fvVectorMatrixHolder& );
-  fvVectorMatrixHolder operator- ( const fvVectorMatrixHolder&, const fvVectorMatrixHolder& );
-
+  fvVectorMatrixHolder operator + ( const fvVectorMatrixHolder&, const fvVectorMatrixHolder& );
+  fvVectorMatrixHolder operator - ( const fvVectorMatrixHolder&, const fvVectorMatrixHolder& );
 } // Foam
 
 

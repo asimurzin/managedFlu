@@ -11,10 +11,8 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-
   typedef GeometricFieldHolder< scalar, fvsPatchField, surfaceMesh > surfaceScalarFieldHolder;
   typedef GeometricFieldHolder< vector, fvsPatchField, surfaceMesh > surfaceVectorFieldHolder;
-  
 }
 
 //---------------------------------------------------------------------------

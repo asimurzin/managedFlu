@@ -11,8 +11,8 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  class TimeHolder : 
-    public boost::shared_ptr< Time >
+  class TimeHolder 
+    : public boost::shared_ptr< Time >
     , public objectRegistryHolder
   {
   public:
@@ -20,9 +20,11 @@ namespace Foam
                 const argList &args, 
                 const word &systemName="system", 
                 const word &constantName="constant" );
+    ~TimeHolder();
+
     using boost::shared_ptr< Time >::operator->;
     using boost::shared_ptr< Time >::operator*;
-    ~TimeHolder();
+
   private:
     TimeHolder(); // not implemented
     // TimeHolder( const TimeHolder& ); // not implemented 

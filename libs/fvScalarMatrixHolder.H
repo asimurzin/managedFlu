@@ -12,10 +12,9 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-
-  class fvScalarMatrixHolder : 
-    public fvScalarMatrixArgs, 
-    public tmp< fvScalarMatrix >
+  class fvScalarMatrixHolder 
+    : public fvScalarMatrixArgs
+    , public tmp< fvScalarMatrix >
   {
   public:
     fvScalarMatrixHolder( const tmp< fvScalarMatrix >& , const volScalarFieldHolder& );
@@ -37,12 +36,12 @@ namespace Foam
     {
       return  surfaceScalarFieldHolder( operator()().flux(), get_fvMeshArg() );
     }
+
   private:
-     fvScalarMatrixHolder(); // not implemented
+    fvScalarMatrixHolder(); // not implemented
     // fvScalarMatrixHolder( const fvScalarMatrixHolder& ); // not implemented 
-     void operator = ( const fvScalarMatrixHolder& ); // not implemented 
+    void operator = ( const fvScalarMatrixHolder& ); // not implemented 
   };
-  
 } // Foam
 
 

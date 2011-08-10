@@ -15,9 +15,9 @@ namespace Foam
   class IOobjectHolder;
   
   template<class Type, template<class> class PatchField, class GeoMesh>
-  class GeometricFieldHolder : 
-    public GeometricFieldArgs, 
-    public tmp< GeometricField< Type, PatchField, GeoMesh > >
+  class GeometricFieldHolder 
+    : public GeometricFieldArgs
+    , public tmp< GeometricField< Type, PatchField, GeoMesh > >
   {
   public:
     GeometricFieldHolder( const IOobjectHolder&, const fvMeshHolder& );
@@ -29,14 +29,13 @@ namespace Foam
     GeometricField< Type, PatchField, GeoMesh >& ref();
     
     void operator = ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
-    void operator-= ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
+    void operator -= ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
 
   private:
-     GeometricFieldHolder(); // not implemented
+    GeometricFieldHolder(); // not implemented
     // GeometricFieldHolder( const GeometricFieldHolder& ); // not implemented 
     // void operator = ( const GeometricFieldHolder& ); // not implemented 
   };
-  
 } // Foam
 
 

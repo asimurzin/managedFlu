@@ -12,12 +12,10 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-
   inline surfaceVectorFieldHolder linearInterpolate( const volVectorFieldHolder& field )
   {
     return surfaceVectorFieldHolder( linearInterpolate( field() ) , field.mesh() );
   }
-
 } // Foam
 
 

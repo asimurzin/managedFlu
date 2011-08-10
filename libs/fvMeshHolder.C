@@ -12,12 +12,11 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-
-  fvMeshHolder::fvMeshHolder( const IOobjectHolder& io ) : 
-    fvMeshArgs( io ),
-    boost::shared_ptr< fvMesh >( new fvMesh( *io ) ),
-    objectRegistryHolder( io ),
-    IOobjectHolder( io )
+  fvMeshHolder::fvMeshHolder( const IOobjectHolder& io ) 
+    : fvMeshArgs( io )
+    , boost::shared_ptr< fvMesh >( new fvMesh( *io ) )
+    , objectRegistryHolder( io )
+    , IOobjectHolder( io )
   {
 #ifdef OUR_DEBUG  
     cout << "fvMeshHolder=" << this << nl;
@@ -30,6 +29,7 @@ namespace Foam
     cout << "~fvMeshHolder=" << this << nl;
 #endif
   }
+
 
   //-------------------------------------------------------------------------
   surfaceVectorFieldHolder fvMeshHolder::Sf() const
@@ -52,7 +52,6 @@ namespace Foam
   {
     return surfaceVectorFieldHolder( tmp< surfaceVectorField >( operator->()->Cf() ), *this );
   }
-
 } //Foam
 
 
