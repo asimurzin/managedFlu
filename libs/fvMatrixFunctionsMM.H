@@ -7,6 +7,7 @@
 #include <dimensionedScalar.H>
 #include "surfaceFieldsMM.H"
 #include "volFieldsMM.H"
+#include "fvMatricesMM.H"
 
 
 //---------------------------------------------------------------------------
@@ -19,13 +20,14 @@ namespace Foam
   {
     tmp< fvVectorMatrix > result = mt1() + mt2();
     
-    if ( &( result().psi() ) == &( mt1.get_fieldArg()() ) )
-      return fvVectorMatrixHolder( result, mt1.get_fieldArg() );
-    else if ( &( result().psi() ) == &(  mt2.get_fieldArg()() ) )
-      return fvVectorMatrixHolder( result, mt2.get_fieldArg() );
+    if ( &( result().psi() ) == &( mt1.psi()() ) )
+      return fvVectorMatrixHolder( result, mt1.psi() );
+    else if ( &( result().psi() ) == &(  mt2.psi()() ) )
+      return fvVectorMatrixHolder( result, mt2.psi() );
     
     FatalErrorIn( "fvVectorMatrixHolder operator+ ( const fvVectorMatrixHolder& mt1, const fvVectorMatrixHolder& mt2 )")
       << exit(FatalError);
+    return fvVectorMatrixHolder( result, mt2.psi() ); //dummy return
   }
 
   inline fvVectorMatrixHolder operator - ( const fvVectorMatrixHolder& mt1, 
@@ -33,13 +35,14 @@ namespace Foam
   {
     tmp< fvVectorMatrix > result = mt1() - mt2();
     
-    if ( &( result().psi() ) == &( mt1.get_fieldArg()() ) )
-      return fvVectorMatrixHolder( result, mt1.get_fieldArg() );
-    else if ( &( result().psi() ) == &(  mt2.get_fieldArg()() ) )
-      return fvVectorMatrixHolder( result, mt2.get_fieldArg() );
+    if ( &( result().psi() ) == &( mt1.psi()() ) )
+      return fvVectorMatrixHolder( result, mt1.psi() );
+    else if ( &( result().psi() ) == &(  mt2.psi()() ) )
+      return fvVectorMatrixHolder( result, mt2.psi() );
     
     FatalErrorIn( "fvVectorMatrixHolder operator- ( const fvVectorMatrixHolder& mt1, const fvVectorMatrixHolder& mt2 )")
       << exit(FatalError);
+    return fvVectorMatrixHolder( result, mt2.psi() ); //dummy return
   }
 
   inline fvVectorMatrixHolder operator == ( const fvVectorMatrixHolder& mt1, 
@@ -47,19 +50,20 @@ namespace Foam
   {
     tmp< fvVectorMatrix > result = ( mt1() == mt2() );
     
-    if ( &( result().psi() ) == &( mt1.get_fieldArg()() ) )
-      return fvVectorMatrixHolder( result, mt1.get_fieldArg() );
-    else if ( &( result().psi() ) == &(  mt2.get_fieldArg()() ) )
-      return fvVectorMatrixHolder( result, mt2.get_fieldArg() );
+    if ( &( result().psi() ) == &( mt1.psi()() ) )
+      return fvVectorMatrixHolder( result, mt1.psi() );
+    else if ( &( result().psi() ) == &(  mt2.psi()() ) )
+      return fvVectorMatrixHolder( result, mt2.psi() );
     
     FatalErrorIn( "fvVectorMatrixHolder operator==( const fvVectorMatrixHolder& mt1, const fvVectorMatrixHolder& mt2 )")
       << exit(FatalError);
+    return fvVectorMatrixHolder( result, mt2.psi() ); //dummy return  
   }
   
   inline fvVectorMatrixHolder operator == ( const fvVectorMatrixHolder& mt1, 
 					    const volVectorFieldHolder& field )
   {
-    return fvVectorMatrixHolder( mt1() == field() , mt1.get_fieldArg() );
+    return fvVectorMatrixHolder( mt1() == field() , mt1.psi() );
   }
   
   
@@ -70,19 +74,20 @@ namespace Foam
   {
     tmp< fvScalarMatrix > result = mt1() + mt2();
     
-    if ( &( result().psi() ) == &( mt1.get_fieldArg()() ) )
-      return fvScalarMatrixHolder( result, mt1.get_fieldArg() );
-    else if ( &( result().psi() ) == &(  mt2.get_fieldArg()() ) )
-      return fvScalarMatrixHolder( result, mt2.get_fieldArg() );
+    if ( &( result().psi() ) == &( mt1.psi()() ) )
+      return fvScalarMatrixHolder( result, mt1.psi() );
+    else if ( &( result().psi() ) == &(  mt2.psi()() ) )
+      return fvScalarMatrixHolder( result, mt2.psi() );
     
     FatalErrorIn( "fvScalarMatrixHolder operator+ ( const fvScalarMatrixHolder& mt1, const fvScalarMatrixHolder& mt2 )")
       << exit(FatalError);
+    return fvScalarMatrixHolder( result, mt2.psi() ); //dummy return
   }
   
   inline fvScalarMatrixHolder operator == ( const fvScalarMatrixHolder& mt1, 
 					    const volScalarFieldHolder& field )
   {
-    return fvScalarMatrixHolder( mt1() == field() , mt1.get_fieldArg() );
+    return fvScalarMatrixHolder( mt1() == field() , mt1.psi() );
   }
 
 
