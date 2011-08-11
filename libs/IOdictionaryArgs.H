@@ -17,12 +17,15 @@ namespace Foam
   protected:
     IOdictionaryArgs( const IOobjectHolder&, const dictionaryHolder& );
     IOdictionaryArgs( const IOobjectHolder& );
+    IOdictionaryArgs();
   private:
     boost::shared_ptr< IOobjectHolder > IOobjectArg;
     boost::shared_ptr< dictionaryHolder > dictionaryArg;
-    //IOdictionaryArgs( const IOdictionaryArgs& ); // not implemented 
-    void operator = ( const IOdictionaryArgs& ); // not implemented 
-    IOdictionaryArgs(); //not implemented
+
+  private:
+    // IOdictionaryArgs( const IOdictionaryArgs& ); // not implemented 
+    //void operator = ( const IOdictionaryArgs& ); // not implemented 
+    //IOdictionaryArgs(); //not implemented
   };
 } // Foam
 
