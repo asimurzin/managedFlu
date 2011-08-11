@@ -225,9 +225,9 @@ int main(int argc, char *argv[])
             
             volScalarFieldHolder rAU(1.0/UEqn.A());
             
-            U = ( rAU*UEqn.H() )();
+            U = rAU*UEqn.H();
             
-            phi = ( ( fvc::interpolate(U) & mesh.Sf() ) + fvc::ddtPhiCorr(rAU, U, phi) )();
+            phi = ( fvc::interpolate(U) & mesh.Sf() ) + fvc::ddtPhiCorr(rAU, U, phi);
             
             adjustPhi(phi, U, p);
 
@@ -243,13 +243,13 @@ int main(int argc, char *argv[])
 
                 if (nonOrth == nNonOrthCorr)
                 {
-                    phi -= pEqn.flux()();
+                    phi -= pEqn.flux();
                 }
             }
             
             continuityErrors( runTime, mesh, phi, cumulativeContErr );
             
-            U -= ( rAU*fvc::grad(p) )();
+            U -= rAU*fvc::grad(p);
             U->correctBoundaryConditions();
         }
 
