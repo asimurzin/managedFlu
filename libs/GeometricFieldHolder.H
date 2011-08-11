@@ -23,6 +23,7 @@ namespace Foam
     GeometricFieldHolder( const IOobjectHolder&, const fvMeshHolder& );
     GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& , const fvMeshHolder& );
     GeometricFieldHolder( const IOobjectHolder&, const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
+    GeometricFieldHolder();
     
     ~GeometricFieldHolder();
     
@@ -30,11 +31,10 @@ namespace Foam
     
     void operator = ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
     void operator -= ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
+    void operator()( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
+    const GeometricField< Type, PatchField, GeoMesh >& operator()() const;
+    GeometricField< Type, PatchField, GeoMesh >& operator()();
 
-  private:
-    GeometricFieldHolder(); // not implemented
-    // GeometricFieldHolder( const GeometricFieldHolder& ); // not implemented 
-    // void operator = ( const GeometricFieldHolder& ); // not implemented 
   };
 } // Foam
 

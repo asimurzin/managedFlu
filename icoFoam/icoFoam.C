@@ -33,66 +33,166 @@ Description
 #include "Allheaders.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-
-int main(int argc, char *argv[])
+argList setRootCase( int argc, char *argv[] )
 {
-    Foam::argList args(argc, argv);
-    if (!args.checkRootCase())
-    {
-        Foam::FatalError.exit();
-    }
+  argList args(argc, argv);
+  if (!args.checkRootCase())
+  {
+    FatalError.exit();
+  }
+  
+  return args;
+}
 
-    Info<< "Create time\n" << endl;
+//---------------------------------------------------------------------------
+TimeHolder createTime(  const word& dict_name, const argList& args )
+{
+  Info<< "Create time\n" << endl;
       
-    TimeHolder runTime( Foam::Time::controlDictName, args );
-    
-    Info << "Create mesh for time = "  << runTime->timeName() << Foam::nl << Foam::endl;
-    
-    fvMeshHolder mesh( Foam::IOobjectHolder( Foam::fvMesh::defaultRegion,
-                                                   runTime->timeName(),
-                                                   runTime,
-                                                   Foam::IOobject::MUST_READ ) );
-    
-    Info<< "Reading transportProperties\n" << endl;
+  return TimeHolder( dict_name, args);
+} 
 
-    IOdictionaryHolder transportProperties( IOobjectHolder( "transportProperties",
+
+//---------------------------------------------------------------------------
+fvMeshHolder createMesh( const TimeHolder& runTime )
+{
+  Info << "Create mesh for time = "  << runTime->timeName() << nl << endl;
+  return fvMeshHolder( IOobjectHolder( fvMesh::defaultRegion,
+                                             runTime->timeName(),
+                                             runTime,
+                                             IOobject::MUST_READ ) );
+} 
+
+
+//---------------------------------------------------------------------------
+dimensionedScalar createFields( const TimeHolder& runTime, 
+                                const fvMeshHolder& mesh,
+                                IOdictionaryHolder& transportProperties,
+                                volScalarFieldHolder& p,
+                                volVectorFieldHolder& U,
+                                surfaceScalarFieldHolder& phi,
+                                label& pRefCell,
+                                scalar& pRefValue )
+{
+  Info<< "Reading transportProperties\n" << endl;
+
+  transportProperties = IOdictionaryHolder( IOobjectHolder( "transportProperties",
                                                             runTime->constant(),
                                                             mesh,
                                                             IOobject::MUST_READ_IF_MODIFIED,
                                                             IOobject::NO_WRITE ) );
 
-    dimensionedScalar nu( transportProperties->lookup("nu") );
+  dimensionedScalar nu ( transportProperties->lookup("nu") );
 
-    Info << "Reading field p\n" << endl;
+  Info << "Reading field p\n" << endl;
   
-    volScalarFieldHolder p( IOobjectHolder( "p",
-                                             runTime->timeName(),
-                                             mesh,
-                                             IOobject::MUST_READ,
-                                             IOobject::AUTO_WRITE ), mesh );
+  p = volScalarFieldHolder( IOobjectHolder( "p",
+                                            runTime->timeName(),
+                                            mesh,
+                                            IOobject::MUST_READ,
+                                            IOobject::AUTO_WRITE ), mesh );
 
-    Info<< "Reading field U\n" << endl;
-    volVectorFieldHolder U( IOobjectHolder( "U",
+  Info<< "Reading field U\n" << endl;
+  U = volVectorFieldHolder( IOobjectHolder( "U",
                                             runTime->timeName(),
                                             mesh,
                                             IOobject::MUST_READ,
                                             IOobject::AUTO_WRITE ), mesh );
 
     
-    Info<< "Reading/calculating face flux field phi\n" << endl;
+  Info<< "Reading/calculating face flux field phi\n" << endl;
 
-    surfaceScalarFieldHolder phi( IOobjectHolder( "phi",
+  phi = surfaceScalarFieldHolder( IOobjectHolder( "phi",
                                                   runTime->timeName(),
                                                   mesh,
                                                   IOobject::READ_IF_PRESENT,
                                                   IOobject::AUTO_WRITE ),
                                   linearInterpolate(U) & mesh.Sf() );
+  
+  setRefCell(p, mesh->solutionDict().subDict("PISO"), pRefCell, pRefValue);
+
+  return nu;
+} 
+
+
+//---------------------------------------------------------------------------
+scalar initContinuityErrs()
+{
+  scalar cumulativeContErr = 0;
+  return cumulativeContErr;
+}
+
+
+//---------------------------------------------------------------------------
+void readPISOControls( const fvMeshHolder& mesh, dictionary& pisoDict, 
+                       int& nOuterCorr, int& nCorr, int& nNonOrthCorr, bool& momentumPredictor, bool& transonic)
+{
+  pisoDict = mesh->solutionDict().subDict("PISO");
+  
+  nOuterCorr = pisoDict.lookupOrDefault<int>("nOuterCorrectors", 1);
+  
+  nCorr = pisoDict.lookupOrDefault<int>("nCorrectors", 1);
+
+  nNonOrthCorr = pisoDict.lookupOrDefault<int>("nNonOrthogonalCorrectors", 0);
+
+  momentumPredictor = pisoDict.lookupOrDefault("momentumPredictor", true);
+
+  transonic = pisoDict.lookupOrDefault("transonic", false);
+}
+
+
+//---------------------------------------------------------------------------
+void CourantNo( const TimeHolder& runTime, const fvMeshHolder& mesh, const surfaceScalarFieldHolder& phi )
+{
+  scalar CoNum = 0.0;
+  scalar meanCoNum = 0.0;
+        
+  if ( mesh->nInternalFaces() )
+  { 
+    scalarField sumPhi( fvc::surfaceSum(mag(phi))().internalField() );
+          
+    CoNum = 0.5 * gMax( sumPhi / mesh->V().field() ) * runTime->deltaTValue();
+    meanCoNum = 0.5 * ( gSum( sumPhi ) / gSum( mesh->V().field() ) ) * runTime->deltaTValue();
+  }
+  Info<< "Courant Number mean: " << meanCoNum << " max: " << CoNum << endl;
+}
+
+
+//---------------------------------------------------------------------------
+void continuityErrors( const TimeHolder& runTime, const fvMeshHolder& mesh, 
+                       const surfaceScalarFieldHolder& phi, scalar& cumulativeContErr )
+{
+  volScalarFieldHolder contErr( fvc::div(phi) );
+
+  scalar sumLocalContErr = runTime->deltaTValue() * mag( contErr )().weightedAverage( mesh->V() ).value();
+  scalar globalContErr = runTime->deltaTValue() * contErr().weightedAverage( mesh->V() ).value();
+  cumulativeContErr += globalContErr;
+  Info << "time step continuity errors : sum local = " << sumLocalContErr
+       << ", global = " << globalContErr
+       << ", cumulative = " << cumulativeContErr << endl;
+}
+
+
+//---------------------------------------------------------------------------
+int main(int argc, char *argv[])
+{
+    argList args = setRootCase( argc, argv );
+    
+    TimeHolder runTime=createTime( Time::controlDictName, args );
+    
+    fvMeshHolder mesh = createMesh( runTime );
+    
+    IOdictionaryHolder transportProperties;
+    volScalarFieldHolder p;
+    volVectorFieldHolder U;
+    surfaceScalarFieldHolder phi;
     label pRefCell = 0;
     scalar pRefValue = 0.0;
-    setRefCell(p, mesh->solutionDict().subDict("PISO"), pRefCell, pRefValue);
+    
+    dimensionedScalar nu = createFields( runTime, mesh, transportProperties, p, U, phi, pRefCell, pRefValue );
 
 
-    #include "initContinuityErrs.H"
+    scalar cumulativeContErr = initContinuityErrs();
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -103,32 +203,11 @@ int main(int argc, char *argv[])
 
         Info<< "Time = " << runTime->timeName() << nl << endl;
         
-        const dictionary& pisoDict = mesh->solutionDict().subDict("PISO");
- 
-        const int nOuterCorr = pisoDict.lookupOrDefault<int>("nOuterCorrectors", 1);
-        const int nCorr = pisoDict.lookupOrDefault<int>("nCorrectors", 1);
-
-        const int nNonOrthCorr = pisoDict.lookupOrDefault<int>("nNonOrthogonalCorrectors", 0);
-
-        const bool momentumPredictor = pisoDict.lookupOrDefault("momentumPredictor", true);
-
-        const bool transonic = pisoDict.lookupOrDefault("transonic", false);
+        dictionary pisoDict; int nOuterCorr; int nCorr; int nNonOrthCorr;
+        bool momentumPredictor; bool transonic;
+        readPISOControls( mesh, pisoDict, nOuterCorr, nCorr, nNonOrthCorr, momentumPredictor, transonic);
         
-        // CourantNo
-        scalar CoNum = 0.0;
-        scalar meanCoNum = 0.0;
-        
-        if ( mesh->nInternalFaces() )
-        { 
-          scalarField sumPhi( fvc::surfaceSum(mag(phi))().internalField() );
-          
-          CoNum = 0.5 * gMax( sumPhi / mesh->V().field() ) * runTime->deltaTValue();
-          meanCoNum = 0.5 * ( gSum( sumPhi ) / gSum( mesh->V().field() ) ) * runTime->deltaTValue();
-
-        }
-        Info<< "Courant Number mean: " << meanCoNum << " max: " << CoNum << endl;
-        // end of CourantNo
-
+        CourantNo( runTime, mesh, phi );
 
         fvVectorMatrixHolder UEqn
         (
@@ -168,16 +247,8 @@ int main(int argc, char *argv[])
                 }
             }
             
-            // continuityErrors.H
-            volScalarFieldHolder contErr( fvc::div(phi) );
-
-            scalar sumLocalContErr = runTime->deltaTValue() * mag( contErr )().weightedAverage( mesh->V() ).value();
-            scalar globalContErr = runTime->deltaTValue() * contErr().weightedAverage( mesh->V() ).value();
-            cumulativeContErr += globalContErr;
-            Info<< "time step continuity errors : sum local = " << sumLocalContErr
-                << ", global = " << globalContErr
-                << ", cumulative = " << cumulativeContErr << endl;
-            // end continuityErrors
+            continuityErrors( runTime, mesh, phi, cumulativeContErr );
+            
             U -= rAU*fvc::grad(p);
             U->correctBoundaryConditions();
         }

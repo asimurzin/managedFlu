@@ -34,10 +34,6 @@ namespace Foam
     IOobjectHolder( const boost::shared_ptr< objectRegistry >& ); 
     IOobjectHolder();
 
-  private:
-    // IOobjectHolder( const IOobjectHolder& ); // not implemented 
-    void operator = ( const IOobjectHolder& ); // not implemented 
-    // IOobjectHolder(); //not implmeneted
   };
 } // Foam
 

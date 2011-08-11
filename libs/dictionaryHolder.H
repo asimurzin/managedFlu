@@ -17,10 +17,6 @@ namespace Foam
     dictionaryHolder( const boost::shared_ptr< dictionary >& );
     dictionaryHolder();
 
-  private:
-    // dictionaryHolder( const dictionaryHolder& ); // not implemented 
-    void operator = ( const dictionaryHolder& ); // not implemented 
-    // dictionaryHolder(); //not implemented
   };
 } // Foam
 

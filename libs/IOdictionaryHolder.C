@@ -32,6 +32,18 @@ namespace Foam
 #endif
   }
 
+  IOdictionaryHolder::IOdictionaryHolder() 
+    : IOdictionaryArgs()
+    , boost::shared_ptr< IOdictionary >()
+    , dictionaryHolder()
+    , IOobjectHolder()
+  {
+#ifdef OUR_DEBUG
+    cout << "IOdictionaryHolder = " << this << nl;
+#endif
+  }
+
+
   IOdictionaryHolder::~IOdictionaryHolder()
   {
 #ifdef OUR_DEBUG

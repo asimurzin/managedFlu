@@ -22,6 +22,12 @@ namespace Foam
     : IOobjectArg( new IOobjectHolder( ioh ) )
     , dictionaryArg( new dictionaryHolder( dict ) )
   {}
+
+  IOdictionaryArgs::IOdictionaryArgs() 
+    : IOobjectArg()
+    , dictionaryArg()
+  {}
+
 }//Foam
 
 

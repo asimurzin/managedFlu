@@ -34,7 +34,7 @@ namespace Foam
 					   const fvVectorMatrixHolder& mt2 )
   {
     tmp< fvVectorMatrix > result = mt1() - mt2();
-    
+
     if ( &( result().psi() ) == &( mt1.psi()() ) )
       return fvVectorMatrixHolder( result, mt1.psi() );
     else if ( &( result().psi() ) == &(  mt2.psi()() ) )
