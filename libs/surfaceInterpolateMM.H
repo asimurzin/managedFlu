@@ -19,7 +19,6 @@ namespace Foam
       return surfaceVectorFieldHolder( interpolate( field() ), field.mesh() );
     }
   }
-
 } // Foam
 
 

@@ -14,9 +14,9 @@ namespace Foam
 {
   class objectRegistryHolder;
    
-  class IOobjectHolder : 
-    public IOobjectArgs,
-    public boost::shared_ptr< IOobject >
+  class IOobjectHolder 
+    : public IOobjectArgs
+    , public boost::shared_ptr< IOobject >
   {
   public:
     IOobjectHolder( const word &name, 
@@ -26,15 +26,18 @@ namespace Foam
                     IOobject::writeOption w=IOobject::NO_WRITE, 
                     bool registerObject=true );
     ~IOobjectHolder();
+
     using  boost::shared_ptr< IOobject >::operator*;
     using  boost::shared_ptr< IOobject >::operator->;
+
   protected:
     IOobjectHolder( const boost::shared_ptr< objectRegistry >& ); 
     IOobjectHolder();
+
   private:
     // IOobjectHolder( const IOobjectHolder& ); // not implemented 
-    void operator = ( const IOobjectHolder& ); // not implemented 
-    //IOobjectHolder(); //not implmeneted
+    //void operator = ( const IOobjectHolder& ); // not implemented 
+    // IOobjectHolder(); //not implmeneted
   };
 } // Foam
 

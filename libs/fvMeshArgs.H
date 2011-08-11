@@ -15,9 +15,12 @@ namespace Foam
   {
   protected:
     fvMeshArgs( const IOobjectHolder & registry );
+
   private:
     boost::shared_ptr< IOobjectHolder > IOobjectArg;
-    //fvMeshArgs( const fvMeshArgs& ); // not implemented 
+
+  private:
+    // fvMeshArgs( const fvMeshArgs& ); // not implemented 
     void operator = ( const fvMeshArgs& ); // not implemented 
     fvMeshArgs(); //not implemented
   };

@@ -14,7 +14,6 @@ namespace Foam
 
   typedef GeometricFieldHolder<scalar, fvPatchField, volMesh> volScalarFieldHolder;
   typedef GeometricFieldHolder<vector, fvPatchField, volMesh> volVectorFieldHolder;
-  
 } // Foam
 
 

@@ -16,17 +16,18 @@ namespace Foam
 {
   class IOobjectHolder;
   
-  class fvMeshHolder : 
-    protected fvMeshArgs
+  class fvMeshHolder 
+    : protected fvMeshArgs
     , public boost::shared_ptr< fvMesh >
     , public objectRegistryHolder
     , public IOobjectHolder
   {
   public:
     fvMeshHolder( const IOobjectHolder& io );
+    ~fvMeshHolder();
+
     using boost::shared_ptr< fvMesh >::operator*;
     using boost::shared_ptr< fvMesh >::operator->;
-    ~fvMeshHolder();
 
     //redefine some functions which returns holders
     surfaceVectorFieldHolder Sf() const;
