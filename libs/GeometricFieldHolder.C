@@ -70,16 +70,44 @@ namespace Foam
   }
   
   template<class Type, template<class> class PatchField, class GeoMesh>
-  void GeometricFieldHolder< Type, PatchField, GeoMesh >::operator = ( const GeometricField< Type, PatchField, GeoMesh >& field )
+  void GeometricFieldHolder< Type, PatchField, GeoMesh >::operator = ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
   {
-    this->ref() = field;
+    if ( this->empty() )
+    {
+      GeometricFieldArgs::operator=( field );
+      tmp< GeometricField< Type, PatchField, GeoMesh > >::operator=( field );
+    }
+    else
+    {
+      this->ref() = field();
+    }
   }
   
   template<class Type, template<class> class PatchField, class GeoMesh>
-  void GeometricFieldHolder< Type, PatchField, GeoMesh >::operator-= ( const GeometricField< Type, PatchField, GeoMesh >& field)
+  void GeometricFieldHolder< Type, PatchField, GeoMesh >::operator -= ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field)
   {
-    this->ref() -= field;
+    this->ref() -= field();
   }
+  
+  template<class Type, template<class> class PatchField, class GeoMesh>
+  void GeometricFieldHolder< Type, PatchField, GeoMesh >::operator () ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
+  {
+    GeometricFieldArgs::operator=( field );
+    tmp< GeometricField< Type, PatchField, GeoMesh > >::operator=( field );
+  }
+ 
+  template<class Type, template<class> class PatchField, class GeoMesh>
+  const GeometricField< Type, PatchField, GeoMesh >& GeometricFieldHolder< Type, PatchField, GeoMesh >::operator()() const
+  {
+    return tmp< GeometricField< Type, PatchField, GeoMesh > >::operator()();
+  }
+  
+  template<class Type, template<class> class PatchField, class GeoMesh>
+  GeometricField< Type, PatchField, GeoMesh >& GeometricFieldHolder< Type, PatchField, GeoMesh >::operator()()
+  {
+    return tmp< GeometricField< Type, PatchField, GeoMesh > >::operator()();
+  }
+
 } //Foam
 
 

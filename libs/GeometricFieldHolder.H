@@ -29,8 +29,11 @@ namespace Foam
     
     GeometricField< Type, PatchField, GeoMesh >& ref();
     
-    void operator = ( const GeometricField< Type, PatchField, GeoMesh >& );
-    void operator -= ( const GeometricField< Type, PatchField, GeoMesh >& );
+    void operator = ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
+    void operator -= ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
+    void operator()( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
+    const GeometricField< Type, PatchField, GeoMesh >& operator()() const;
+    GeometricField< Type, PatchField, GeoMesh >& operator()();
 
   private:
     //GeometricFieldHolder(); // not implemented
