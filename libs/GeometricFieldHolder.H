@@ -32,9 +32,8 @@ namespace Foam
     void operator = ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
     void operator -= ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
     void operator()( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
-    const GeometricField< Type, PatchField, GeoMesh >& operator()() const;
-    GeometricField< Type, PatchField, GeoMesh >& operator()();
-
+    
+    using tmp< GeometricField< Type, PatchField, GeoMesh > >::operator();
   };
 } // Foam
 
