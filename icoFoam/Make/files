@@ -1,5 +1,5 @@
 
 icoFoam.C
 
-EXE = ../icoFoam_exe
+EXE = $(FOAM_APPBIN)/icoFoamMF
 

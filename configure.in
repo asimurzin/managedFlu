@@ -50,10 +50,10 @@ echo
 
 
 echo "---------------------------- mandatory products --------------------------------"
-CONFFLU_PRINT_SUMMURY( "openfoam_ok pythonflu_ok" )
+CONFFLU_PRINT_SUMMURY( "openfoam_ok " )
 echo
 echo "--------------------------------------------------------------------------------"
-CONFFLU_CHECK_MANDATORY( "openfoam_ok pythonflu_ok" )
+CONFFLU_CHECK_MANDATORY( "openfoam_ok" )
 
 
 #--------------------------------------------------------------------------------------
