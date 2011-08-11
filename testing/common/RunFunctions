@@ -1,0 +1,112 @@
+#!/bin/bash
+
+#------------------------------------------------------------------------------
+## VulaSHAKA (Simultaneous Neutronic, Fuel Performance, Heat And Kinetics Analysis)
+## Copyright (C) 2009-2010 Pebble Bed Modular Reactor (Pty) Limited (PBMR)
+## 
+## This program is free software: you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation, either version 3 of the License, or
+## (at your option) any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+## 
+## You should have received a copy of the GNU General Public License
+## along with this program.  If not, see <http://www.gnu.org/licenses/>.
+## 
+## See https://vulashaka.svn.sourceforge.net/svnroot/vulashaka
+##
+## Author : Alexey PETROV
+##
+
+
+#------------------------------------------------------------------------------
+# Source basic functionality
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+. ${TEST_MM_ROOT_DIR}/testing/common/common.sh
+
+
+#------------------------------------------------------------------------------
+# Customize some functions
+runBasic ()
+{
+    app_run=$1; shift
+    app_name=$1; shift
+
+    if [ -f log.${app_name} ] ; then
+        echo "( cd `pwd` && ${app_run} $* ) - already run; remove log file to run"
+	return 1
+    else
+        echo "( cd `pwd` && ${app_run} $* )"
+        ${app_run} $* > log.${app_name} 2>&1
+	if [ $? -ne 0 ] ; then
+	    echo "An error have appeared during execution of" ${app_name} :
+	    cat log.${app_name}
+	    rm log.${app_name}
+	    return 1
+	fi
+    fi
+
+    return 0
+}
+
+
+#------------------------------------------------------------------------------
+# Customize some functions
+runApplication ()
+{
+   app_run=$1; shift
+   app_name=`echo ${app_run} | sed -e "s/Flux/Foam/"`
+
+   runBasic ${app_run} ${app_name} $*
+}
+
+
+#------------------------------------------------------------------------------
+cloneSolverCase ()
+{
+    if [ -d $2 ] ; then
+        echo "Case already cloned: remove case directory '${2}' to clone"
+    else
+        echo "Cloning '${2}' case from '${1}'"
+	cp -r ${1} ${2}
+	rm ${2}/log.*
+	
+	if [ -f ${2}/Allclean ]; then 
+	   rm ${2}/Allclean
+	fi
+	
+	if [ -f ${2}/Allrun ]; then 
+	   rm ${2}/Allrun
+	fi
+
+    fi
+}
+
+
+#------------------------------------------------------------------------------
+# Customize some functions
+runSolver ()
+{
+   app_run=$1; shift
+   app_name=`echo ${app_run} | sed -e "s/MF//"`
+   
+   source_case=`get_source_case $*` 
+   reference_case=`get_reference_case $*`
+
+   cloneSolverCase ${source_case} ${reference_case}
+
+   runBasic ${app_run} ${app_name} $*
+
+   if [ $? -eq 0 ] ; then
+      ( cd ${reference_case} && ( runBasic ${app_name} ${app_name} ) )
+      diff_two_cases ${reference_case} ${source_case} 
+   fi
+}
+
+
+#------------------------------------------------------------------------------
