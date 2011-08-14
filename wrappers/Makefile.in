@@ -25,7 +25,7 @@ pythonflu_root_dir:=@PYTHONFLU_ROOT_DIR@
 
 include $(pythonflu_root_dir)/Foam/foam.version.makefile
 
-TEST_MM_CPPFLAGS=-I@abs_top_builddir@
+TEST_MM_CPPFLAGS=-I@abs_top_builddir@/libs -I@abs_top_builddir@/wrappers
 
 __CPPFLAGS__ := $(__CPPFLAGS__) \
 	@OPENFOAM_FINITEVOLUME_CPPFLAGS@ \
@@ -37,8 +37,12 @@ __CXXFLAGS__ := $(__CXXFLAGS__)  $(TEST_MM_CPPFLAGS)
 
 __LDFLAGS__ := $(__LDFLAGS__) \
 	@OPENFOAM_FINITEVOLUME_LIBS@ \
+	-L${FOAM_USER_LIBBIN} -ltestFixingBug
 	
 sources = \
+	@abs_top_builddir@/wrappers/shared_ptr/shared_ptr_IOobject.cxx \
+	@abs_top_builddir@/wrappers/Args/IOobjectArgs.cxx \
+	@abs_top_builddir@/wrappers/IOobjectHolder.cxx \
 	@abs_top_builddir@/wrappers/objectRegistryHolder.cxx \
 	@abs_top_builddir@/wrappers/TimeHolder.cxx
 	

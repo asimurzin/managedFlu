@@ -27,15 +27,15 @@
 //---------------------------------------------------------------------------
 %module "wrappers.TimeHolder"
 %{
-  #include "wrappers/TimeHolder.hh"
+  #include "TimeHolder.hh"
 %}
 
 
 %import "Foam/ext/common/OpenFOAM/shared_ptr/shared_ptr_Time.cxx"
 
-%import "wrappers/objectRegistryHolder.cxx"
+%import "objectRegistryHolder.cxx"
 
-%include "lnInclude/TimeHolder.H"
+%include "TimeHolder.H"
 
 
 //--------------------------------------------------------------------------------------
