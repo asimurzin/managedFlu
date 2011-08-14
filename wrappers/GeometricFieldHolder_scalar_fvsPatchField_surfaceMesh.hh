@@ -20,8 +20,8 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef GeometricFieldHolder_scalar_fvPatchField_surfaceMesh_hh
-#define GeometricFieldHolder_scalar_fvPatchField_surfaceMesh_hh
+#ifndef GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh_hh
+#define GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh_hh
 
 
 //---------------------------------------------------------------------------

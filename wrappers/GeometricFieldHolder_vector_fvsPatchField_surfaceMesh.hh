@@ -20,8 +20,8 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef GeometricFieldHolder_vector_fvPatchField_surfaceMesh_hh
-#define GeometricFieldHolder_vector_fvPatchField_surfaceMesh_hh
+#ifndef GeometricFieldHolder_vector_fvsPatchField_surfaceMesh_hh
+#define GeometricFieldHolder_vector_fvsPatchField_surfaceMesh_hh
 
 
 //---------------------------------------------------------------------------
