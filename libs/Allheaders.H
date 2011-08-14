@@ -13,7 +13,7 @@
 #include "geometricFieldFunctionsMM.H"
 #include "fvc.hpp"
 #include "fvm.hpp"
-#include "fvMatrixFunctionsMM.H"
+#include "fvMatrixFunctions.hpp"
 
 
 // ************************************************************************* //
