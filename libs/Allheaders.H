@@ -11,7 +11,7 @@
 #include "surfaceInterpolateMM.H"
 #include "adjustPhi.hpp"
 #include "geometricFieldFunctionsMM.H"
-#include "fvcMM.H"
+#include "fvc.hpp"
 #include "fvmMM.H"
 #include "fvMatrixFunctionsMM.H"
 
