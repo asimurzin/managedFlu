@@ -1,5 +1,5 @@
-#ifndef geometricFieldFunctionsMM_H
-#define geometricFieldFunctionsMM_H
+#ifndef GeometricFieldFunctions_hpp
+#define GeometricFieldFunctions_hpp
 
 
 //---------------------------------------------------------------------------
