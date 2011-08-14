@@ -7,7 +7,7 @@
 #include <boost/shared_ptr.hpp>
 #include "fvMeshArgs.H"
 #include "objectRegistryHolder.H"
-#include "volFieldsFwdMM.H"
+#include "volFieldsFwd.hpp"
 #include "surfaceFieldsFwd.hpp"
 
 

@@ -1,5 +1,5 @@
-#ifndef volFieldsFwdMM_H
-#define volFieldsFwdMM_H
+#ifndef volFieldsFwd_hpp
+#define volFieldsFwd_hpp
 
 
 //---------------------------------------------------------------------------
