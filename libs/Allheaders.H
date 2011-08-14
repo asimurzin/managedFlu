@@ -6,7 +6,7 @@
 #include "IOdictionaryHolder.H"
 #include "volFieldsMM.H"
 #include "surfaceFieldsMM.H"
-#include "fvMatricesMM.H"
+#include "fvMatrices.hpp"
 #include "linearMM.H"
 #include "surfaceInterpolateMM.H"
 #include "adjustPhi.hpp"

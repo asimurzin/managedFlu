@@ -29,7 +29,7 @@
 #include "Foam/src/finiteVolume/fvMatrices/fvMatrices.hh"
 #include "fvMatrixHolder.H"
 #include "Args/fvScalarMatrixArgs.hh"
-#include "fvMatricesMM.H"
+#include "fvMatrices.hpp"
 
 
 //--------------------------------------------------------------------------------------

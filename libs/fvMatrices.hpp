@@ -1,5 +1,5 @@
-#ifndef fvMatricesMM_H
-#define fvMatricesMM_H
+#ifndef fvMatrices_hpp
+#define fvMatrices_hpp
 
 
 //---------------------------------------------------------------------------

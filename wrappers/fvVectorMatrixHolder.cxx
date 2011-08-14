@@ -39,7 +39,7 @@
 
 %include "fvMatrixHolder.H"
 
-%include "fvMatricesMM.H"
+%include "fvMatrices.hpp"
 
 %template (fvVectorMatrixHolder) Foam::fvMatrixHolder< Foam::vector >;
 
