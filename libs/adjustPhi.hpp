@@ -1,5 +1,5 @@
-#ifndef adjustPhiMM_H
-#define adjustPhiMM_H
+#ifndef adjustPhi_hpp
+#define adjustPhi_hpp
 
 
 //---------------------------------------------------------------------------

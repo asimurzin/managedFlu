@@ -9,7 +9,7 @@
 #include "fvMatricesMM.H"
 #include "linearMM.H"
 #include "surfaceInterpolateMM.H"
-#include "adjustPhiMM.H"
+#include "adjustPhi.hpp"
 #include "geometricFieldFunctionsMM.H"
 #include "fvcMM.H"
 #include "fvmMM.H"
