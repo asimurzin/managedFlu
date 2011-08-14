@@ -8,7 +8,7 @@
 #include "fvMeshArgs.H"
 #include "objectRegistryHolder.H"
 #include "volFieldsFwdMM.H"
-#include "surfaceFieldsFwdMM.H"
+#include "surfaceFieldsFwd.hpp"
 
 
 //---------------------------------------------------------------------------
