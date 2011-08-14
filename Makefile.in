@@ -32,11 +32,11 @@ m4dir=@datarootdir@
 pythondir=@PYTHONDIR@
 
 All:
-	@wmake
+	@./Allwmake
 	@(cd @abs_top_builddir@/wrappers && make )
 
 clean:
-	@rm -rf test test.dep test.o
+	@./Allwclean
 	@(cd @abs_top_builddir@/wrappers && make clean)
 
 
