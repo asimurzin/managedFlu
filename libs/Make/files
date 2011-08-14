@@ -8,7 +8,7 @@ IOdictionaryHolder.C
 fvMeshArgs.C
 fvMeshHolder.C
 GeometricFieldArgs.C
-volFieldsMM.C
+volFields.cpp
 surfaceFieldsMM.C
 fvMatrices.cpp
 

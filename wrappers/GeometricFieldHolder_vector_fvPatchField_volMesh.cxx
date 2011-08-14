@@ -39,7 +39,7 @@
 
 %include "GeometricFieldHolder.H"
 
-%include "volFieldsMM.H"
+%include "volFields.hpp"
 
 %template ( GeometricFieldHolder_vector_fvPatchField_volMesh ) Foam::GeometricFieldHolder< Foam::vector, Foam::fvPatchField, Foam::volMesh >;
 

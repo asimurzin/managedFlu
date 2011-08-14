@@ -7,7 +7,7 @@
 #include <tmp.H>
 #include "fvMatrixArgs.H"
 #include "surfaceFieldsMM.H"
-#include "volFieldsMM.H"
+#include "volFields.hpp"
 
 
 //---------------------------------------------------------------------------

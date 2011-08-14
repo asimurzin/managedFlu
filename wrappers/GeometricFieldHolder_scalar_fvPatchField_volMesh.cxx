@@ -38,7 +38,7 @@
 %import "Args/GeometricFieldArgs.cxx"
 
 %include "GeometricFieldHolder.H"
-%include "volFieldsMM.H"
+%include "volFields.hpp"
 
 %template ( GeometricFieldHolder_scalar_fvPatchField_volMesh ) Foam::GeometricFieldHolder< Foam::scalar, Foam::fvPatchField, Foam::volMesh >;
 
