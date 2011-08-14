@@ -12,7 +12,7 @@
 #include "adjustPhi.hpp"
 #include "geometricFieldFunctionsMM.H"
 #include "fvc.hpp"
-#include "fvmMM.H"
+#include "fvm.hpp"
 #include "fvMatrixFunctionsMM.H"
 
 
