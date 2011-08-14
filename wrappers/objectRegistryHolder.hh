@@ -26,7 +26,7 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
-#include "lnInclude/objectRegistryHolder.H"
+#include "objectRegistryHolder.H"
 
 
 //--------------------------------------------------------------------------------------
