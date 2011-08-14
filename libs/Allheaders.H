@@ -7,7 +7,7 @@
 #include "volFieldsMM.H"
 #include "surfaceFieldsMM.H"
 #include "fvMatrices.hpp"
-#include "linearMM.H"
+#include "linear.hpp"
 #include "surfaceInterpolateMM.H"
 #include "adjustPhi.hpp"
 #include "GeometricFieldFunctions.hpp"

@@ -1,5 +1,5 @@
-#ifndef linearMM_H
-#define linearMM_H
+#ifndef linear_hpp
+#define linear_hpp
 
 
 //---------------------------------------------------------------------------
