@@ -1,5 +1,5 @@
-#ifndef surfaceInterpolateMM_H
-#define surfaceInterpolateMM_H
+#ifndef surfaceInterpolate_hpp
+#define surfaceInterpolate_hpp
 
 
 //---------------------------------------------------------------------------

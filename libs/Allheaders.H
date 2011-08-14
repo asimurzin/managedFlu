@@ -8,7 +8,7 @@
 #include "surfaceFields.hpp"
 #include "fvMatrices.hpp"
 #include "linear.hpp"
-#include "surfaceInterpolateMM.H"
+#include "surfaceInterpolate.hpp"
 #include "adjustPhi.hpp"
 #include "GeometricFieldFunctions.hpp"
 #include "fvc.hpp"
