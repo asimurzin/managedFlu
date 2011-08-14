@@ -48,12 +48,20 @@ sources = \
 	@abs_top_builddir@/wrappers/Args/IOdictionaryArgs.cxx \
 	@abs_top_builddir@/wrappers/Args/fvMeshArgs.cxx \
 	@abs_top_builddir@/wrappers/Args/GeometricFieldArgs.cxx \
+	@abs_top_builddir@/wrappers/Args/fvScalarMatrixArgs.cxx \
+	@abs_top_builddir@/wrappers/Args/fvVectorMatrixArgs.cxx \
 	@abs_top_builddir@/wrappers/IOobjectHolder.cxx \
 	@abs_top_builddir@/wrappers/dictionaryHolder.cxx \
 	@abs_top_builddir@/wrappers/IOdictionaryHolder.cxx \
 	@abs_top_builddir@/wrappers/objectRegistryHolder.cxx \
 	@abs_top_builddir@/wrappers/TimeHolder.cxx \
-#	@abs_top_builddir@/wrappers/fvMeshHolder.cxx 
+	@abs_top_builddir@/wrappers/GeometricFieldHolder_scalar_fvPatchField_volMesh.cxx \
+	@abs_top_builddir@/wrappers/GeometricFieldHolder_vector_fvPatchField_volMesh.cxx \
+	@abs_top_builddir@/wrappers/GeometricFieldHolder_vector_fvsPatchField_surfaceMesh.cxx \
+	@abs_top_builddir@/wrappers/GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh.cxx \
+	@abs_top_builddir@/wrappers/fvMeshHolder.cxx \
+	@abs_top_builddir@/wrappers/fvScalarMatrixHolder.cxx \
+	@abs_top_builddir@/wrappers/fvVectorMatrixHolder.cxx
 	
 include $(pythonflu_root_dir)/Foam/include.foam.makefile
 
