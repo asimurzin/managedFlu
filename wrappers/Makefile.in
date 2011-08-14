@@ -41,8 +41,10 @@ __LDFLAGS__ := $(__LDFLAGS__) \
 	
 sources = \
 	@abs_top_builddir@/wrappers/shared_ptr/shared_ptr_IOobject.cxx \
+	@abs_top_builddir@/wrappers/shared_ptr/shared_ptr_dictionary.cxx \
 	@abs_top_builddir@/wrappers/Args/IOobjectArgs.cxx \
 	@abs_top_builddir@/wrappers/IOobjectHolder.cxx \
+	@abs_top_builddir@/wrappers/dictionaryHolder.cxx \
 	@abs_top_builddir@/wrappers/objectRegistryHolder.cxx \
 	@abs_top_builddir@/wrappers/TimeHolder.cxx
 	
