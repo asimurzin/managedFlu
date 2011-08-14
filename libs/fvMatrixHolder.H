@@ -6,7 +6,7 @@
 #include <fvMatrices.H>
 #include <tmp.H>
 #include "fvMatrixArgs.H"
-#include "surfaceFieldsMM.H"
+#include "surfaceFields.hpp"
 #include "volFields.hpp"
 
 

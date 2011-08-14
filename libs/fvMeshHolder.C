@@ -6,7 +6,7 @@
 #include "fvMeshHolder.H"
 #include "IOobjectHolder.H"
 #include "volFields.hpp"
-#include "surfaceFieldsMM.H"
+#include "surfaceFields.hpp"
 
 
 //---------------------------------------------------------------------------

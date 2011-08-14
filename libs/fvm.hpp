@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------
 #include <fvm.H>
 #include <dimensionedScalar.H>
-#include "surfaceFieldsMM.H"
+#include "surfaceFields.hpp"
 #include "volFields.hpp"
 #include "fvMatrices.hpp"
 

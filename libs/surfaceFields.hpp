@@ -1,5 +1,5 @@
-#ifndef surfaceFieldsMM_H
-#define surfaceFieldsMM_H
+#ifndef surfaceFields_hpp
+#define surfaceFields_hpp
 
 
 //---------------------------------------------------------------------------

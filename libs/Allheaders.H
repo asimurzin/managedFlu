@@ -5,7 +5,7 @@
 #include "fvMeshHolder.H"
 #include "IOdictionaryHolder.H"
 #include "volFields.hpp"
-#include "surfaceFieldsMM.H"
+#include "surfaceFields.hpp"
 #include "fvMatrices.hpp"
 #include "linear.hpp"
 #include "surfaceInterpolateMM.H"

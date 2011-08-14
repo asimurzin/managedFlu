@@ -6,7 +6,7 @@
 #include <linear.H>
 
 #include "volFields.hpp"
-#include "surfaceFieldsMM.H"
+#include "surfaceFields.hpp"
 
 
 //---------------------------------------------------------------------------

@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------
 #include <adjustPhi.H>
 #include "volFields.hpp"
-#include "surfaceFieldsMM.H"
+#include "surfaceFields.hpp"
 
 
 //---------------------------------------------------------------------------

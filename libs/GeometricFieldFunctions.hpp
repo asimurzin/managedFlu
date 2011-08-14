@@ -3,7 +3,7 @@
 
 
 //---------------------------------------------------------------------------
-#include "surfaceFieldsMM.H"
+#include "surfaceFields.hpp"
 #include "volFields.hpp"
 
 

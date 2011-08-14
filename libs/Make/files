@@ -9,7 +9,7 @@ fvMeshArgs.C
 fvMeshHolder.C
 GeometricFieldArgs.C
 volFields.cpp
-surfaceFieldsMM.C
+surfaceFields.cpp
 fvMatrices.cpp
 
 LIB = $(FOAM_USER_LIBBIN)/libtestFixingBug

@@ -39,7 +39,7 @@
 
 %include "GeometricFieldHolder.H"
 
-%include "surfaceFieldsMM.H"
+%include "surfaceFields.hpp"
 
 %template ( GeometricFieldHolder_vector_fvsPatchField_surfaceMesh ) Foam::GeometricFieldHolder< Foam::vector, Foam::fvsPatchField, Foam::surfaceMesh >;
 
