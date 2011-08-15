@@ -27,7 +27,7 @@
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
 #include "Foam/src/finiteVolume/fvMesh/fvMeshes.hh"
-#include "GeometricFieldHolder.H"
+#include "GeometricFieldHolder.hh"
 #include "Args/GeometricFieldArgs.hh"
 
 

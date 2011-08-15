@@ -20,18 +20,31 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef GeometricFieldHolder_vector_fvPatchField_volMesh_hh
-#define GeometricFieldHolder_vector_fvPatchField_volMesh_hh
+#ifndef GeometricFieldHolder_scalar_fvPatchField_volMesh_cxx
+#define GeometricFieldHolder_scalar_fvPatchField_volMesh_cxx
 
 
 //---------------------------------------------------------------------------
-#include "Foam/src/common.hh"
-#include "Foam/src/finiteVolume/fvMesh/fvMeshes.hh"
-#include "GeometricFieldHolder.hh"
-#include "Args/GeometricFieldArgs.hh"
+%module "wrappers.src.GeometricFieldHolder_scalar_fvPatchField_volMesh"
+
+%{
+  #include "GeometricFieldHolder_scalar_fvPatchField_volMesh.hh"
+%}
+
+
+//---------------------------------------------------------------------------
+%import "Foam/src/finiteVolume/fvMesh/fvMeshes.cxx"
+
+%import "Args/GeometricFieldArgs.cxx"
+
+%import "GeometricFieldHolder.hxx"
+
+%include "volFields.hpp"
+
+%template ( GeometricFieldHolder_scalar_fvPatchField_volMesh ) Foam::GeometricFieldHolder< Foam::scalar, Foam::fvPatchField, Foam::volMesh >;
+
+EXTEND_VOLSCALARFIELDHOLDER;
 
 
 //--------------------------------------------------------------------------------------
 #endif
-
-

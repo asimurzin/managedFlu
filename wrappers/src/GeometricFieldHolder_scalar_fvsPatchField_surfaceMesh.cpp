@@ -20,15 +20,15 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef GeometricFieldHolder_scalar_fvPatchField_volMesh_cxx
-#define GeometricFieldHolder_scalar_fvPatchField_volMesh_cxx
+#ifndef GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh_cxx
+#define GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh_cxx
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.GeometricFieldHolder_scalar_fvPatchField_volMesh"
+%module "wrappers.src.GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh"
 
 %{
-  #include "GeometricFieldHolder_scalar_fvPatchField_volMesh.hh"
+  #include "GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh.hh"
 %}
 
 
@@ -37,10 +37,13 @@
 
 %import "Args/GeometricFieldArgs.cxx"
 
-%include "GeometricFieldHolder.H"
-%include "volFields.hpp"
+%import "GeometricFieldHolder.hxx"
 
-%template ( GeometricFieldHolder_scalar_fvPatchField_volMesh ) Foam::GeometricFieldHolder< Foam::scalar, Foam::fvPatchField, Foam::volMesh >;
+%include "surfaceFields.hpp"
+
+%template ( GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh ) Foam::GeometricFieldHolder< Foam::scalar, Foam::fvsPatchField, Foam::surfaceMesh >;
+
+EXTEND_SURFACESCALARFIELDHOLDER;
 
 
 //--------------------------------------------------------------------------------------
