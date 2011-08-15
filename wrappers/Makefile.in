@@ -61,7 +61,8 @@ sources = \
 	@abs_top_builddir@/wrappers/GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh.cxx \
 	@abs_top_builddir@/wrappers/fvMeshHolder.cxx \
 	@abs_top_builddir@/wrappers/fvScalarMatrixHolder.cxx \
-	@abs_top_builddir@/wrappers/fvVectorMatrixHolder.cxx
+	@abs_top_builddir@/wrappers/fvVectorMatrixHolder.cxx \
+	@abs_top_builddir@/wrappers/adjustPhi.cxx
 	
 include $(pythonflu_root_dir)/Foam/include.foam.makefile
 
