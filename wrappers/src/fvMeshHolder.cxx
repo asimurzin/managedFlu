@@ -41,10 +41,7 @@
 
 %import "IOobjectHolder.cxx"
 
-%import "GeometricFieldHolder_scalar_fvPatchField_volMesh.cxx"
-%import "GeometricFieldHolder_vector_fvPatchField_volMesh.cxx"
-%import "GeometricFieldHolder_vector_fvsPatchField_surfaceMesh.cxx"
-%import "GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh.cxx"
+%import "GeometricFieldHolders.cxx"
 
 %include "fvMeshHolder.H"
 

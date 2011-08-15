@@ -27,8 +27,7 @@
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
 #include "surfaceInterpolate.hpp"
-#include "volFields.hh"
-#include "surfaceFields.hh"
+#include "GeometricFieldHolders.hh"
 
 
 //--------------------------------------------------------------------------------------

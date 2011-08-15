@@ -55,10 +55,7 @@ sources = \
 	@abs_top_builddir@/wrappers/src/IOdictionaryHolder.cxx \
 	@abs_top_builddir@/wrappers/src/objectRegistryHolder.cxx \
 	@abs_top_builddir@/wrappers/src/TimeHolder.cxx \
-	@abs_top_builddir@/wrappers/src/GeometricFieldHolder_scalar_fvPatchField_volMesh.cxx \
-	@abs_top_builddir@/wrappers/src/GeometricFieldHolder_vector_fvPatchField_volMesh.cxx \
-	@abs_top_builddir@/wrappers/src/GeometricFieldHolder_vector_fvsPatchField_surfaceMesh.cxx \
-	@abs_top_builddir@/wrappers/src/GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh.cxx \
+	@abs_top_builddir@/wrappers/src/GeometricFieldHolders.cxx \
 	@abs_top_builddir@/wrappers/src/fvMeshHolder.cxx \
 	@abs_top_builddir@/wrappers/src/fvScalarMatrixHolder.cxx \
 	@abs_top_builddir@/wrappers/src/fvVectorMatrixHolder.cxx \
@@ -66,6 +63,7 @@ sources = \
 	@abs_top_builddir@/wrappers/src/fvc.cxx \
 	@abs_top_builddir@/wrappers/src/fvm.cxx \
 	@abs_top_builddir@/wrappers/src/linear.cxx \
+	@abs_top_builddir@/wrappers/src/surfaceInterpolate.cxx \
 	
 include $(pythonflu_root_dir)/Foam/include.foam.makefile
 

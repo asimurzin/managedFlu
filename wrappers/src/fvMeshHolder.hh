@@ -32,11 +32,7 @@
 #include "shared_ptr/shared_ptr_fvMesh.hh"
 #include "Args/fvMeshArgs.hh"
 
-#include "GeometricFieldHolder_scalar_fvPatchField_volMesh.hh"
-#include "GeometricFieldHolder_vector_fvPatchField_volMesh.hh"
-#include "GeometricFieldHolder_vector_fvsPatchField_surfaceMesh.hh"
-#include "GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh.hh"
-
+#include "GeometricFieldHolders.hh"
 
 
 //--------------------------------------------------------------------------------------

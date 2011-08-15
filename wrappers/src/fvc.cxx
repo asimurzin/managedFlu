@@ -33,9 +33,7 @@
 
 
 //---------------------------------------------------------------------------
-%import "surfaceFields.hxx"
-%import "volFields.hxx"
-
+%import "GeometricFieldHolders.cxx"
 
 //---------------------------------------------------------------------------
 %rename( fvc_div ) Foam::fvc::div;

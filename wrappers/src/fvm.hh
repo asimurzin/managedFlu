@@ -27,8 +27,7 @@
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
 #include "fvm.hpp"
-#include "volFields.hh"
-#include "surfaceFields.hh"
+#include "GeometricFieldHolders.hh"
 #include "fvMatrices.hh"
 
 

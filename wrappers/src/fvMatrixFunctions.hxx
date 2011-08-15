@@ -25,6 +25,8 @@
 
 
 //---------------------------------------------------------------------------
+%import "GeometricFieldHolders.cxx"
+
 %define __COMMON_FVMATRIXHOLDER_TEMPLATE_FUNC__( Type )
 {
   Foam::fvMatrixHolder< Type > __add__( const Foam::fvMatrixHolder< Type >& theArg ) const
