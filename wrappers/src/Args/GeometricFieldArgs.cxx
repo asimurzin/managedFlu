@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.Args.GeometricFieldArgs"
+%module "wrappers.src.Args.GeometricFieldArgs"
 
 %{
   #include "GeometricFieldArgs.hh"

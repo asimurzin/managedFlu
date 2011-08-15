@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.IOobjectHolder"
+%module "wrappers.src.IOobjectHolder"
 
 %{
   #include "IOobjectHolder.hh"

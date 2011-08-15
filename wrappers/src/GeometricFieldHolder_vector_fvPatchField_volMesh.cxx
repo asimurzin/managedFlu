@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.GeometricFieldHolder_vector_fvPatchField_volMesh"
+%module "wrappers.src.GeometricFieldHolder_vector_fvPatchField_volMesh"
 
 %{
   #include "GeometricFieldHolder_vector_fvPatchField_volMesh.hh"

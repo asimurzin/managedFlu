@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.fvc"
+%module "wrappers.src.fvc"
 
 %{
   #include "fvc.hh"

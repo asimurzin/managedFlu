@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.adjustPhi"
+%module "wrappers.src.adjustPhi"
 
 %{
   #include "adjustPhi.hh"

@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.linear"
+%module "wrappers.src.linear"
 
 %{
   #include "linear.hh"

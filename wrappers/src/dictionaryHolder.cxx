@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.dictionaryHolder"
+%module "wrappers.src.dictionaryHolder"
 
 %{
   #include "dictionaryHolder.hh"

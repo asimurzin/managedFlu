@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.Args.IOobjectArgs"
+%module "wrappers.src.Args.IOobjectArgs"
 
 %{
   #include "IOobjectArgs.hh"

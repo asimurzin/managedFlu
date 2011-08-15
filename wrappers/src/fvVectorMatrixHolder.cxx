@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.fvVectorMatrixHolder"
+%module "wrappers.src.fvVectorMatrixHolder"
 
 %{
   #include "fvVectorMatrixHolder.hh"

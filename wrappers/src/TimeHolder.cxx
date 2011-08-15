@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.TimeHolder"
+%module "wrappers.src.TimeHolder"
 %{
   #include "TimeHolder.hh"
 %}

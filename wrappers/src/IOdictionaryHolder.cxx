@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.IOdictionaryHolder"
+%module "wrappers.src.IOdictionaryHolder"
 
 %{
   #include "IOdictionaryHolder.hh"

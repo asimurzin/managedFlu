@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.fvMeshHolder"
+%module "wrappers.src.fvMeshHolder"
 
 %{
   #include "fvMeshHolder.hh"

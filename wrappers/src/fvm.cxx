@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.fvm"
+%module "wrappers.src.fvm"
 
 %{
   #include "fvm.hh"

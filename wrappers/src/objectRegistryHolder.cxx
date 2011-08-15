@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.objectRegistryHolder"
+%module "wrappers.src.objectRegistryHolder"
 
 %{
   #include "objectRegistryHolder.hh"

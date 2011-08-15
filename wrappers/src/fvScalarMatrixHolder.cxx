@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.fvScalarMatrixHolder"
+%module "wrappers.src.fvScalarMatrixHolder"
 
 %{
   #include "fvScalarMatrixHolder.hh"

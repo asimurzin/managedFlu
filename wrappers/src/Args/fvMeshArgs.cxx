@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.Args.fvMeshArgs"
+%module "wrappers.src.Args.fvMeshArgs"
 
 %{
   #include "fvMeshArgs.hh"

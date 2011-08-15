@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.Args.fvVectorMatrixArgs"
+%module "wrappers.src.Args.fvVectorMatrixArgs"
 
 %{
   #include "fvVectorMatrixArgs.hh"

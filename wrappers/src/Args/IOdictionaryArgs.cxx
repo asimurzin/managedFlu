@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.Args.IOdictionaryArgs"
+%module "wrappers.src.Args.IOdictionaryArgs"
 
 %{
   #include "IOdictionaryArgs.hh"
