@@ -26,7 +26,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "shared_ptr.shared_ptr_dictionary"
+%module "wrappers.src.shared_ptr.shared_ptr_dictionary"
 %{
   #include "shared_ptr/shared_ptr_dictionary.hh"
 %}

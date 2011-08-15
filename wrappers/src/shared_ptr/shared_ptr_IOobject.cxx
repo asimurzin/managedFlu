@@ -26,7 +26,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "shared_ptr.shared_ptr_IOobject"
+%module "wrappers.src.shared_ptr.shared_ptr_IOobject"
 %{
   #include "shared_ptr/shared_ptr_IOobject.hh"
 %}

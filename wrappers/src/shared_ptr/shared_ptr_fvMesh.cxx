@@ -26,7 +26,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "shared_ptr.shared_ptr_fvMesh"
+%module "wrappers.src.shared_ptr.shared_ptr_fvMesh"
 %{
   #include "Foam/src/finiteVolume/fvMesh/fvMeshes.hh"
 %}
