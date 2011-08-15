@@ -25,7 +25,7 @@ pythonflu_root_dir:=@PYTHONFLU_ROOT_DIR@
 
 include $(pythonflu_root_dir)/Foam/foam.version.makefile
 
-TEST_MM_CPPFLAGS=-I@abs_top_builddir@/libs -I@abs_top_builddir@/wrappers
+TEST_MM_CPPFLAGS=-I@abs_top_builddir@/libs -I@abs_top_builddir@/wrappers/src
 
 __CPPFLAGS__ := $(__CPPFLAGS__) \
 	@OPENFOAM_FINITEVOLUME_CPPFLAGS@ \
@@ -40,29 +40,32 @@ __LDFLAGS__ := $(__LDFLAGS__) \
 	-L${FOAM_USER_LIBBIN} -ltestFixingBug
 	
 sources = \
-	@abs_top_builddir@/wrappers/shared_ptr/shared_ptr_IOobject.cxx \
-	@abs_top_builddir@/wrappers/shared_ptr/shared_ptr_dictionary.cxx \
-	@abs_top_builddir@/wrappers/shared_ptr/shared_ptr_IOdictionary.cxx \
-	@abs_top_builddir@/wrappers/shared_ptr/shared_ptr_fvMesh.cxx \
-	@abs_top_builddir@/wrappers/Args/IOobjectArgs.cxx \
-	@abs_top_builddir@/wrappers/Args/IOdictionaryArgs.cxx \
-	@abs_top_builddir@/wrappers/Args/fvMeshArgs.cxx \
-	@abs_top_builddir@/wrappers/Args/GeometricFieldArgs.cxx \
-	@abs_top_builddir@/wrappers/Args/fvScalarMatrixArgs.cxx \
-	@abs_top_builddir@/wrappers/Args/fvVectorMatrixArgs.cxx \
-	@abs_top_builddir@/wrappers/IOobjectHolder.cxx \
-	@abs_top_builddir@/wrappers/dictionaryHolder.cxx \
-	@abs_top_builddir@/wrappers/IOdictionaryHolder.cxx \
-	@abs_top_builddir@/wrappers/objectRegistryHolder.cxx \
-	@abs_top_builddir@/wrappers/TimeHolder.cxx \
-	@abs_top_builddir@/wrappers/GeometricFieldHolder_scalar_fvPatchField_volMesh.cxx \
-	@abs_top_builddir@/wrappers/GeometricFieldHolder_vector_fvPatchField_volMesh.cxx \
-	@abs_top_builddir@/wrappers/GeometricFieldHolder_vector_fvsPatchField_surfaceMesh.cxx \
-	@abs_top_builddir@/wrappers/GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh.cxx \
-	@abs_top_builddir@/wrappers/fvMeshHolder.cxx \
-	@abs_top_builddir@/wrappers/fvScalarMatrixHolder.cxx \
-	@abs_top_builddir@/wrappers/fvVectorMatrixHolder.cxx \
-	@abs_top_builddir@/wrappers/adjustPhi.cxx
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_IOobject.cxx \
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_dictionary.cxx \
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_IOdictionary.cxx \
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_fvMesh.cxx \
+	@abs_top_builddir@/wrappers/src/Args/IOobjectArgs.cxx \
+	@abs_top_builddir@/wrappers/src/Args/IOdictionaryArgs.cxx \
+	@abs_top_builddir@/wrappers/src/Args/fvMeshArgs.cxx \
+	@abs_top_builddir@/wrappers/src/Args/GeometricFieldArgs.cxx \
+	@abs_top_builddir@/wrappers/src/Args/fvScalarMatrixArgs.cxx \
+	@abs_top_builddir@/wrappers/src/Args/fvVectorMatrixArgs.cxx \
+	@abs_top_builddir@/wrappers/src/IOobjectHolder.cxx \
+	@abs_top_builddir@/wrappers/src/dictionaryHolder.cxx \
+	@abs_top_builddir@/wrappers/src/IOdictionaryHolder.cxx \
+	@abs_top_builddir@/wrappers/src/objectRegistryHolder.cxx \
+	@abs_top_builddir@/wrappers/src/TimeHolder.cxx \
+	@abs_top_builddir@/wrappers/src/GeometricFieldHolder_scalar_fvPatchField_volMesh.cxx \
+	@abs_top_builddir@/wrappers/src/GeometricFieldHolder_vector_fvPatchField_volMesh.cxx \
+	@abs_top_builddir@/wrappers/src/GeometricFieldHolder_vector_fvsPatchField_surfaceMesh.cxx \
+	@abs_top_builddir@/wrappers/src/GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh.cxx \
+	@abs_top_builddir@/wrappers/src/fvMeshHolder.cxx \
+	@abs_top_builddir@/wrappers/src/fvScalarMatrixHolder.cxx \
+	@abs_top_builddir@/wrappers/src/fvVectorMatrixHolder.cxx \
+	@abs_top_builddir@/wrappers/src/adjustPhi.cxx \
+	@abs_top_builddir@/wrappers/src/fvc.cxx \
+	@abs_top_builddir@/wrappers/src/fvm.cxx \
+	@abs_top_builddir@/wrappers/src/linear.cxx \
 	
 include $(pythonflu_root_dir)/Foam/include.foam.makefile
 
