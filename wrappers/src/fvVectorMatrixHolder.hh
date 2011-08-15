@@ -30,6 +30,7 @@
 #include "fvMatrixHolder.H"
 #include "Args/fvVectorMatrixArgs.hh"
 #include "fvMatrices.hpp"
+#include "fvMatrixFunctions.hh"
 
 
 //--------------------------------------------------------------------------------------

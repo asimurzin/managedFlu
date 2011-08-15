@@ -41,7 +41,11 @@
 
 %include "fvMatrices.hpp"
 
+%import "fvMatrixFunctions.hxx"
+
 %template (fvScalarMatrixHolder) Foam::fvMatrixHolder< Foam::scalar >;
+
+SCALAR_FVMATRIXHOLDER_TEMPLATE_FUNC;
 
 
 //--------------------------------------------------------------------------------------

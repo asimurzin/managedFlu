@@ -20,19 +20,13 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef fvScalarMatrixHolder_hh
-#define fvScalarMatrixHolder_hh
+#ifndef fvMatrixFunctions_hh
+#define fvMatrixFunctions_hh
 
 
 //---------------------------------------------------------------------------
-#include "Foam/src/common.hh"
-#include "Foam/src/finiteVolume/fvMatrices/fvMatrices.hh"
-#include "fvMatrixHolder.H"
-#include "Args/fvScalarMatrixArgs.hh"
-#include "fvMatrices.hpp"
-#include "fvMatrixFunctions.hh"
+#include "fvMatrixFunctions.hpp"
 
 
 //--------------------------------------------------------------------------------------
 #endif
-

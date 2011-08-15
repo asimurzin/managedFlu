@@ -41,8 +41,11 @@
 
 %include "fvMatrices.hpp"
 
+%import "fvMatrixFunctions.hxx"
+
 %template (fvVectorMatrixHolder) Foam::fvMatrixHolder< Foam::vector >;
 
+VECTOR_FVMATRIXHOLDER_TEMPLATE_FUNC;
 
 //--------------------------------------------------------------------------------------
 #endif
