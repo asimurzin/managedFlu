@@ -17,7 +17,8 @@ namespace Foam
   {
   public:
     GeometricFieldHolder< Type, fvPatchField, volMesh >& psi() const;
-
+    fvMatrixArgs();
+    
   protected:
     fvMatrixArgs( const GeometricFieldHolder< Type, fvPatchField, volMesh >& );
 
@@ -25,8 +26,8 @@ namespace Foam
     boost::shared_ptr< GeometricFieldHolder< Type, fvPatchField, volMesh > > psi_;
 
     // fvMatrixArgs( const fvMatrixArgs& ); // not implemented 
-    void operator = ( const fvMatrixArgs< Type >& ); // not implemented 
-    fvMatrixArgs(); //not implemented
+    //void operator = ( const fvMatrixArgs< Type >& ); // not implemented 
+    //fvMatrixArgs(); //not implemented
   };
 } // Foam
 

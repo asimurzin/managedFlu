@@ -20,7 +20,10 @@ namespace Foam
   {
   public:
     fvMatrixHolder( const tmp< fvMatrix< Type > >& , const GeometricFieldHolder< Type, fvPatchField, volMesh >& );
+    fvMatrixHolder();
     ~fvMatrixHolder();
+    
+    void operator = ( const fvMatrixHolder& );
 
     // re-define functions which returns "holders"
     volScalarFieldHolder A() const
@@ -42,9 +45,9 @@ namespace Foam
     }
     
   private:
-    fvMatrixHolder(); // not implemented
+    //fvMatrixHolder(); // not implemented
     // fvMatrixHolder( const fvMatrixHolder& ); // not implemented 
-    void operator = ( const fvMatrixHolder& ); // not implemented 
+    //void operator = ( const fvMatrixHolder& ); // not implemented 
   };
   
 } // Foam

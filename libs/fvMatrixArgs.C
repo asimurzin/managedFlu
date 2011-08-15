@@ -7,6 +7,12 @@ namespace Foam
   {}
 
   template< class Type >
+  fvMatrixArgs< Type >::fvMatrixArgs() 
+    : psi_()
+  {}
+  
+  
+  template< class Type >
   GeometricFieldHolder< Type, fvPatchField, volMesh >& fvMatrixArgs< Type >::psi() const
   {
     return *psi_;
