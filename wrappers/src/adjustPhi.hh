@@ -28,6 +28,10 @@
 #include "Foam/src/common.hh"
 #include "adjustPhi.hpp"
 
+#include "volFields.hh"
+#include "surfaceFields.hh"
+
+
 
 //--------------------------------------------------------------------------------------
 #endif
