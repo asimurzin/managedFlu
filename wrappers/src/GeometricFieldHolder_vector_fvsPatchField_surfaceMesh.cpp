@@ -25,8 +25,6 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.GeometricFieldHolder_vector_fvsPatchField_surfaceMesh"
-
 %{
   #include "GeometricFieldHolder_vector_fvsPatchField_surfaceMesh.hh"
 %}

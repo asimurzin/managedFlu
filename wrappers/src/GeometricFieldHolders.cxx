@@ -25,6 +25,7 @@
 
 
 //---------------------------------------------------------------------------
+%module "wrappers.src.GeometricFieldHolders"
 %{
   #include "GeometricFieldHolders.hh"
 %}
