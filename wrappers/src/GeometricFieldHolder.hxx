@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%include "GeometricFieldHolder.H"
+%include "GeometricFieldHolder.hpp"
 %import "GeometricFieldFunctions.hxx"
 
 

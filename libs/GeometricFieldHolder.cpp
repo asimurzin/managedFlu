@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------
-#include "GeometricFieldHolder.H"
+#include "GeometricFieldHolder.hpp"
 #include "IOobjectHolder.H"
 #include "fvMeshHolder.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef GeometricFieldHolder_H
-#define GeometricFieldHolder_H
+#ifndef GeometricFieldHolder_hpp
+#define GeometricFieldHolder_hpp
 
 
 //---------------------------------------------------------------------------
@@ -43,7 +43,7 @@ namespace Foam
 
 
 //---------------------------------------------------------------------------
-#include "GeometricFieldHolder.C"
+#include "GeometricFieldHolder.cpp"
 
 
 //---------------------------------------------------------------------------

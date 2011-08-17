@@ -3,7 +3,7 @@
 
 
 //---------------------------------------------------------------------------
-#include "GeometricFieldHolder.H"
+#include "GeometricFieldHolder.hpp"
 
 #include <surfaceFields.H>
 
