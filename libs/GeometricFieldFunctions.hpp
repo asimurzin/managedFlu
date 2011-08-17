@@ -43,6 +43,12 @@ namespace Foam
     return volVectorFieldHolder( field1() + field2(), field1.mesh() );
   }
 
+  inline volVectorFieldHolder operator - ( const volVectorFieldHolder& field1, 
+					   const volVectorFieldHolder& field2 )
+  {
+    return volVectorFieldHolder( field1() - field2(), field1.mesh() );
+  }
+
   volVectorFieldHolder operator - ( const volVectorFieldHolder& field )
   {
     return volVectorFieldHolder( -field(), field.mesh() );
