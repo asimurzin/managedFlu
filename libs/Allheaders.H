@@ -7,6 +7,7 @@
 #include "volFields.hpp"
 #include "surfaceFields.hpp"
 #include "fvMatrices.hpp"
+#include "findRefCell.hpp"
 #include "linear.hpp"
 #include "surfaceInterpolate.hpp"
 #include "adjustPhi.hpp"
