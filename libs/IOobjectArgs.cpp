@@ -1,9 +1,5 @@
-#ifndef IOobjectArgs_C
-#define IOobjectArgs_C
-
-
 //---------------------------------------------------------------------------
-#include "IOobjectArgs.H"
+#include "IOobjectArgs.hpp"
 #include "objectRegistryHolder.H"
 
 
@@ -26,4 +22,3 @@ namespace Foam
 
 
 //---------------------------------------------------------------------------
-#endif

@@ -1,5 +1,5 @@
-#ifndef IOobjectArgs_H
-#define IOobjectArgs_H
+#ifndef IOobjectArgs_hpp
+#define IOobjectArgs_hpp
 
 
 //---------------------------------------------------------------------------

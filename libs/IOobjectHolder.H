@@ -3,7 +3,7 @@
 
 
 //---------------------------------------------------------------------------
-#include "IOobjectArgs.H"
+#include "IOobjectArgs.hpp"
 
 #include <IOobject.H>
 #include <objectRegistry.H>
