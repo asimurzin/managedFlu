@@ -62,6 +62,18 @@
 //--------------------------------------------------------------------------------------
 %define FVMATRIXHOLDER_TEMPLATE_FUNC( Type );
 %extend Foam::fvMatrixHolder< Type >  __COMMON_FVMATRIXHOLDER_TEMPLATE_FUNC__( Type );
+%inline
+%{
+  Foam::lduMatrix::solverPerformance solve( Foam::fvMatrixHolder< Type > fvm, const Foam::dictionary& solverControls )
+  {
+    return Foam::solve( fvm, solverControls );
+  }
+
+  Foam::lduMatrix::solverPerformance solve( Foam::fvMatrixHolder< Type > fvm )
+  {
+    return Foam::solve( fvm );
+  }
+%}
 %enddef
 
 
