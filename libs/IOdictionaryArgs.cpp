@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 #include "IOdictionaryArgs.hpp"
 #include "dictionaryHolder.hpp"
-#include "IOobjectHolder.H"
+#include "IOobjectHolder.hpp"
 
 
 //---------------------------------------------------------------------------

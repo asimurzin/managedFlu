@@ -1,9 +1,5 @@
-#ifndef IOobjectHolder_C
-#define IOobjectHolder_C
-
-
 //---------------------------------------------------------------------------
-#include "IOobjectHolder.H"
+#include "IOobjectHolder.hpp"
 #include "objectRegistryHolder.H"
 
 
@@ -44,4 +40,3 @@ namespace Foam
 
 
 //---------------------------------------------------------------------------
-#endif

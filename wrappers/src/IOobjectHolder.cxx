@@ -37,7 +37,7 @@
 
 %import "Args/IOobjectArgs.cxx"
 
-%include "IOobjectHolder.H"
+%include "IOobjectHolder.hpp"
 
 
 //--------------------------------------------------------------------------------------

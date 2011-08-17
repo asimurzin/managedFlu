@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 #include "fvMeshHolder.hpp"
-#include "IOobjectHolder.H"
+#include "IOobjectHolder.hpp"
 #include "volFields.hpp"
 #include "surfaceFields.hpp"
 

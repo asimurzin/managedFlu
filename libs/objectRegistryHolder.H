@@ -3,7 +3,7 @@
 
 
 //---------------------------------------------------------------------------
-#include "IOobjectHolder.H"
+#include "IOobjectHolder.hpp"
 
 #include <objectRegistry.H>
 #include <boost/shared_ptr.hpp>

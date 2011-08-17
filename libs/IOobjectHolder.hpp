@@ -1,5 +1,5 @@
-#ifndef IOobjectHolder_H
-#define IOobjectHolder_H
+#ifndef IOobjectHolder_hpp
+#define IOobjectHolder_hpp
 
 
 //---------------------------------------------------------------------------

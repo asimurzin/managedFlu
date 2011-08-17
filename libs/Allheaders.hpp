@@ -1,7 +1,6 @@
 // ************************************************************************* //
-#include "IOobjectHolder.H"
+#include "IOobjectHolder.hpp"
 #include "TimeHolder.H"
-#include "IOobjectHolder.H"
 #include "fvMeshHolder.hpp"
 #include "IOdictionaryHolder.hpp"
 #include "volFields.hpp"

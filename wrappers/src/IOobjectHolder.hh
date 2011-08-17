@@ -26,7 +26,7 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
-#include "IOobjectHolder.H"
+#include "IOobjectHolder.hpp"
 #include "shared_ptr/shared_ptr_IOobject.hh"
 #include "Args/IOobjectArgs.hh"
 
