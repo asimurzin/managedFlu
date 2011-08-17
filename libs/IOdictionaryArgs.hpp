@@ -1,5 +1,5 @@
-#ifndef IOdictionaryArgs_H
-#define IOdictionaryArgs_H
+#ifndef IOdictionaryArgs_hpp
+#define IOdictionaryArgs_hpp
 
 
 //---------------------------------------------------------------------------

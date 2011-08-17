@@ -1,9 +1,5 @@
-#ifndef IOdictionaryArgs_C
-#define IOdictionaryArgs_C
-
-
 //---------------------------------------------------------------------------
-#include "IOdictionaryArgs.H"
+#include "IOdictionaryArgs.hpp"
 #include "dictionaryHolder.hpp"
 #include "IOobjectHolder.H"
 
@@ -32,4 +28,3 @@ namespace Foam
 
 
 //---------------------------------------------------------------------------
-#endif

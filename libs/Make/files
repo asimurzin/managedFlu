@@ -1,4 +1,4 @@
-IOdictionaryArgs.C
+IOdictionaryArgs.cpp
 objectRegistryHolder.C
 IOobjectArgs.C
 IOobjectHolder.C

@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------
 #include "dictionaryHolder.hpp"
 #include "IOobjectHolder.H"
-#include "IOdictionaryArgs.H"
+#include "IOdictionaryArgs.hpp"
 
 #include <IOdictionary.H>
 #include <boost/shared_ptr.hpp>
