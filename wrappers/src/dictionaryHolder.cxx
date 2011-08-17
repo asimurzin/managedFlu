@@ -35,7 +35,7 @@
 //---------------------------------------------------------------------------
 %import "shared_ptr/shared_ptr_dictionary.cxx"
 
-%include "dictionaryHolder.H"
+%include "dictionaryHolder.hpp"
 
 
 //--------------------------------------------------------------------------------------

@@ -3,7 +3,7 @@
 #include "TimeHolder.H"
 #include "IOobjectHolder.H"
 #include "fvMeshHolder.H"
-#include "IOdictionaryHolder.H"
+#include "IOdictionaryHolder.hpp"
 #include "volFields.hpp"
 #include "surfaceFields.hpp"
 #include "fvMatrices.hpp"

@@ -26,7 +26,7 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
-#include "dictionaryHolder.H"
+#include "dictionaryHolder.hpp"
 #include "shared_ptr/shared_ptr_dictionary.hh"
 
 

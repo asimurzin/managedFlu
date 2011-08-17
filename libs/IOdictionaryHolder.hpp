@@ -1,11 +1,11 @@
-#ifndef IOdictionaryHolder_H
-#define IOdictionaryHolder_H
+#ifndef IOdictionaryHolder_hpp
+#define IOdictionaryHolder_hpp
 
 
 //---------------------------------------------------------------------------
 #include <IOdictionary.H>
 #include <boost/shared_ptr.hpp>
-#include "dictionaryHolder.H"
+#include "dictionaryHolder.hpp"
 #include "IOobjectHolder.H"
 #include "IOdictionaryArgs.H"
 

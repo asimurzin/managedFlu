@@ -1,5 +1,5 @@
-#ifndef dictionaryHolder_H
-#define dictionaryHolder_H
+#ifndef dictionaryHolder_hpp
+#define dictionaryHolder_hpp
 
 
 //---------------------------------------------------------------------------

@@ -41,7 +41,7 @@
 
 %import "IOobjectHolder.cxx"
 
-%include "IOdictionaryHolder.H"
+%include "IOdictionaryHolder.hpp"
 
 
 //--------------------------------------------------------------------------------------

@@ -3,8 +3,8 @@ objectRegistryHolder.C
 IOobjectArgs.C
 IOobjectHolder.C
 TimeHolder.C
-dictionaryHolder.C
-IOdictionaryHolder.C
+dictionaryHolder.cpp
+IOdictionaryHolder.cpp
 fvMeshArgs.C
 fvMeshHolder.C
 GeometricFieldArgs.C

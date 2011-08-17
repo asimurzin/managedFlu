@@ -4,7 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "IOdictionaryArgs.H"
-#include "dictionaryHolder.H"
+#include "dictionaryHolder.hpp"
 #include "IOobjectHolder.H"
 
 
