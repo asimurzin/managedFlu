@@ -3,7 +3,7 @@
 
 
 //---------------------------------------------------------------------------
-#include "fvMeshArgs.H"
+#include "fvMeshArgs.hpp"
 #include "objectRegistryHolder.H"
 #include "volFieldsFwd.hpp"
 #include "surfaceFieldsFwd.hpp"

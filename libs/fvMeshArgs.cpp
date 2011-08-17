@@ -1,9 +1,5 @@
-#ifndef fvMeshArgs_C
-#define fvMeshArgs_C
-
-
 //---------------------------------------------------------------------------
-#include "fvMeshArgs.H"
+#include "fvMeshArgs.hpp"
 #include "IOobjectHolder.H"
 
 
@@ -17,4 +13,3 @@ namespace Foam
 
 
 //---------------------------------------------------------------------------
-#endif

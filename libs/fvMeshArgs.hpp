@@ -1,5 +1,5 @@
-#ifndef fvMeshArgs_H
-#define fvMeshArgs_H
+#ifndef fvMeshArgs_hpp
+#define fvMeshArgs_hpp
 
 
 //---------------------------------------------------------------------------

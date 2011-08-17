@@ -5,7 +5,7 @@ IOobjectHolder.C
 TimeHolder.C
 dictionaryHolder.cpp
 IOdictionaryHolder.cpp
-fvMeshArgs.C
+fvMeshArgs.cpp
 fvMeshHolder.C
 GeometricFieldArgs.C
 volFields.cpp
