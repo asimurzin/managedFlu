@@ -26,10 +26,15 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
-#include "Foam/src/finiteVolume/fvMatrices/fvMatrices.hh"
+
+#include "ext_tmp/ext_tmp_fvScalarMatrix.hh"
+
 #include "fvMatrixHolder.H"
+
 #include "Args/fvScalarMatrixArgs.hh"
+
 #include "fvMatrices.hpp"
+
 #include "fvMatrixFunctions.hh"
 
 

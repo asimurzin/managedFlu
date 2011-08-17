@@ -31,7 +31,7 @@
 
 
 //---------------------------------------------------------------------------
-%import "Foam/src/finiteVolume/fvMesh/fvMeshes.cxx"
+%import "ext_tmp/ext_tmp_surfaceScalarField.cxx"
 
 %import "Args/GeometricFieldArgs.cxx"
 

@@ -33,7 +33,7 @@
 
 
 //---------------------------------------------------------------------------
-%import "Foam/src/finiteVolume/fvMatrices/fvMatrices.cxx"
+%import "ext_tmp/ext_tmp_fvScalarMatrix.cxx"
 
 %import "Args/fvScalarMatrixArgs.cxx"
 

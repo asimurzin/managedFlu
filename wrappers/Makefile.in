@@ -55,8 +55,13 @@ sources = \
 	@abs_top_builddir@/wrappers/src/IOdictionaryHolder.cxx \
 	@abs_top_builddir@/wrappers/src/objectRegistryHolder.cxx \
 	@abs_top_builddir@/wrappers/src/TimeHolder.cxx \
+	@abs_top_builddir@/wrappers/src/ext_tmp/ext_tmp_volVectorField.cxx \
+	@abs_top_builddir@/wrappers/src/ext_tmp/ext_tmp_surfaceVectorField.cxx \
+	@abs_top_builddir@/wrappers/src/ext_tmp/ext_tmp_surfaceScalarField.cxx \
 	@abs_top_builddir@/wrappers/src/GeometricFieldHolders.cxx \
 	@abs_top_builddir@/wrappers/src/fvMeshHolder.cxx \
+	@abs_top_builddir@/wrappers/src/ext_tmp/ext_tmp_fvVectorMatrix.cxx \
+	@abs_top_builddir@/wrappers/src/ext_tmp/ext_tmp_fvScalarMatrix.cxx \
 	@abs_top_builddir@/wrappers/src/fvScalarMatrixHolder.cxx \
 	@abs_top_builddir@/wrappers/src/fvVectorMatrixHolder.cxx \
 	@abs_top_builddir@/wrappers/src/adjustPhi.cxx \

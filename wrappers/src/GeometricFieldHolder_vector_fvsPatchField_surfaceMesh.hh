@@ -26,8 +26,11 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
-#include "Foam/src/finiteVolume/fvMesh/fvMeshes.hh"
+
+#include "ext_tmp/ext_tmp_surfaceVectorField.hh"
+
 #include "GeometricFieldHolder.hh"
+
 #include "Args/GeometricFieldArgs.hh"
 
 

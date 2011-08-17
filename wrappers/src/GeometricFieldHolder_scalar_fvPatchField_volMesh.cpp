@@ -31,6 +31,8 @@
 
 
 //---------------------------------------------------------------------------
+//%import "ext_tmp/ext_tmp_volScalarField.cxx"
+
 %import "Foam/src/finiteVolume/fvMesh/fvMeshes.cxx"
 
 %import "Args/GeometricFieldArgs.cxx"
