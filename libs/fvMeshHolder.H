@@ -29,13 +29,6 @@ namespace Foam
     using boost::shared_ptr< fvMesh >::operator*;
     using boost::shared_ptr< fvMesh >::operator->;
 
-    //redefine some functions which returns holders
-    surfaceVectorFieldHolder Sf() const;
-    surfaceScalarFieldHolder magSf() const;
-    surfaceScalarFieldHolder phi() const;
-    volVectorFieldHolder C() const;
-    surfaceVectorFieldHolder Cf() const;
-
   private:
     fvMeshHolder(); // not implemented
     // fvMeshHolder( const fvMeshHolder& ); // not implemented 

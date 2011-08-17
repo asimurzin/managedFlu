@@ -29,29 +29,6 @@ namespace Foam
     cout << "~fvMeshHolder=" << this << nl;
 #endif
   }
-
-
-  //-------------------------------------------------------------------------
-  surfaceVectorFieldHolder fvMeshHolder::Sf() const
-  {
-    return surfaceVectorFieldHolder( tmp< surfaceVectorField >( operator->()->Sf() ), *this );
-  }
-  surfaceScalarFieldHolder fvMeshHolder::magSf() const
-  {
-    return surfaceScalarFieldHolder( tmp< surfaceScalarField >( operator->()->magSf() ), *this );
-  }
-  surfaceScalarFieldHolder fvMeshHolder::phi() const
-  {
-    return surfaceScalarFieldHolder( tmp< surfaceScalarField >( operator->()->phi() ), *this );
-  }
-  volVectorFieldHolder fvMeshHolder::C() const
-  {
-    return volVectorFieldHolder( tmp< volVectorField >( operator->()->C() ), *this );
-  }
-  surfaceVectorFieldHolder fvMeshHolder::Cf() const
-  {
-    return surfaceVectorFieldHolder( tmp< surfaceVectorField >( operator->()->Cf() ), *this );
-  }
 } //Foam
 
 

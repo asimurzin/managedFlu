@@ -23,6 +23,9 @@ namespace Foam
     GeometricFieldHolder( const IOobjectHolder&, const fvMeshHolder& );
     GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& , const fvMeshHolder& );
     GeometricFieldHolder( const IOobjectHolder&, const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
+    GeometricFieldHolder( const GeometricField< Type, PatchField, GeoMesh >& );
+    GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& );
+    GeometricFieldHolder( const ext_tmp< GeometricField< Type, PatchField, GeoMesh > >& );
     GeometricFieldHolder();
     
     ~GeometricFieldHolder();
