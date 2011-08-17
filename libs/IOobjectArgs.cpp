@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 #include "IOobjectArgs.hpp"
-#include "objectRegistryHolder.H"
+#include "objectRegistryHolder.hpp"
 
 
 //---------------------------------------------------------------------------

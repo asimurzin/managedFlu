@@ -1,5 +1,5 @@
-#ifndef objectRegistryHolder_H
-#define objectRegistryHolder_H
+#ifndef objectRegistryHolder_hpp
+#define objectRegistryHolder_hpp
 
 
 //---------------------------------------------------------------------------

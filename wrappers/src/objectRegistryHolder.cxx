@@ -37,7 +37,7 @@
 
 %import "IOobjectHolder.cxx"
 
-%include "objectRegistryHolder.H"
+%include "objectRegistryHolder.hpp"
 
 
 //--------------------------------------------------------------------------------------

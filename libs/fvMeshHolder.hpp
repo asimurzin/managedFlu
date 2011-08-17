@@ -4,7 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "fvMeshArgs.hpp"
-#include "objectRegistryHolder.H"
+#include "objectRegistryHolder.hpp"
 #include "volFieldsFwd.hpp"
 #include "surfaceFieldsFwd.hpp"
 

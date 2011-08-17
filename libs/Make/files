@@ -1,5 +1,5 @@
 IOdictionaryArgs.cpp
-objectRegistryHolder.C
+objectRegistryHolder.cpp
 IOobjectArgs.cpp
 IOobjectHolder.cpp
 TimeHolder.C

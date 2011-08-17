@@ -1,9 +1,5 @@
-#ifndef objectRegistryHolder_C
-#define objectRegistryHolder_C
-
-
 //---------------------------------------------------------------------------
-#include "objectRegistryHolder.H"
+#include "objectRegistryHolder.hpp"
 
 
 //---------------------------------------------------------------------------
@@ -22,4 +18,3 @@ namespace Foam
 
 
 //---------------------------------------------------------------------------
-#endif

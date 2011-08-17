@@ -3,7 +3,7 @@
 
 
 //---------------------------------------------------------------------------
-#include "objectRegistryHolder.H"
+#include "objectRegistryHolder.hpp"
 
 #include <Time.H>
 #include <boost/shared_ptr.hpp>
