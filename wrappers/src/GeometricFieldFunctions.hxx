@@ -34,6 +34,11 @@
     return *self + field;
   }
   
+  void ext_assign ( const Foam::GeometricFieldHolder< Foam::scalar, Foam::fvPatchField, Foam::volMesh >& field )
+  {
+    *self = field;
+  }
+  
   Foam::GeometricFieldHolder< Foam::scalar, Foam::fvPatchField, Foam::volMesh > mag ()
   {
     return Foam::mag( *self );
@@ -63,6 +68,17 @@
   {
     return *self + field;
   }
+
+  Foam::GeometricFieldHolder< Foam::vector, Foam::fvPatchField, Foam::volMesh > __sub__ ( 
+    const Foam::GeometricFieldHolder< Foam::vector, Foam::fvPatchField, Foam::volMesh >& field )
+  {
+    return *self - field;
+  }
+
+  void ext_assign( const Foam::GeometricFieldHolder< Foam::vector, Foam::fvPatchField, Foam::volMesh >& field )
+  {
+    *self = field;
+  }
   
   Foam::GeometricFieldHolder< Foam::vector, Foam::fvPatchField, Foam::volMesh > __neg__ ()
   {
@@ -82,6 +98,12 @@
   {
     return *self + field;
   }
+
+  void ext_assign( const Foam::GeometricFieldHolder< Foam::vector, Foam::fvsPatchField, Foam::surfaceMesh >& field )
+  {
+    *self = field;
+  }
+
 
   Foam::GeometricFieldHolder< Foam::scalar, Foam::fvsPatchField, Foam::surfaceMesh > __and__ ( 
     const Foam::GeometricFieldHolder< Foam::vector, Foam::fvsPatchField, Foam::surfaceMesh >& field )
@@ -103,6 +125,12 @@
     return *self + field;
   }
   
+  void ext_assign( const Foam::GeometricFieldHolder< Foam::scalar, Foam::fvsPatchField, Foam::surfaceMesh >& field )
+  {
+    *self = field;
+  }
+
+
   Foam::GeometricFieldHolder< Foam::scalar, Foam::fvsPatchField, Foam::surfaceMesh > mag ()
   {
     return Foam::mag( *self );
