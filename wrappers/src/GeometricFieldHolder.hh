@@ -26,7 +26,10 @@
 
 //---------------------------------------------------------------------------
 #include "GeometricFieldHolder.H"
+
 #include "GeometricFieldFunctions.hh"
+
+#include "Foam/src/finiteVolume/fvMesh/fvMeshes.hh"
 
 
 //--------------------------------------------------------------------------------------

@@ -29,5 +29,61 @@
 %import "GeometricFieldFunctions.hxx"
 
 
+//---------------------------------------------------------------------------
+%define GEOMETRIC_FIELDHOLDER_TYPEMAP( Type, TPatchField, TMesh )
+
+%typecheck( SWIG_TYPECHECK_POINTER ) Foam::GeometricFieldHolder< Type, TPatchField, TMesh >& 
+{
+  void *ptr;
+  
+  int res_Holder = SWIG_ConvertPtr( $input, (void **) &ptr, $descriptor( Foam::GeometricFieldHolder< Type, TPatchField, TMesh > * ), 0 );
+  int res_T = SWIG_ConvertPtr( $input, (void **) &ptr, $descriptor( Foam::GeometricField< Type, TPatchField, TMesh > * ), 0 );
+  int res_tmpT = SWIG_ConvertPtr( $input, (void **) &ptr, $descriptor( Foam::tmp< Foam::GeometricField< Type, TPatchField, TMesh > > * ), 0 );
+  int res_ext_tmpT = SWIG_ConvertPtr( $input, (void **) &ptr, $descriptor( Foam::ext_tmp< Foam::GeometricField< Type, TPatchField, TMesh > > * ), 0 );
+  $1 =  SWIG_CheckState( res_Holder ) || SWIG_CheckState( res_T ) || SWIG_CheckState( res_tmpT ) || SWIG_CheckState( res_ext_tmpT );
+}
+
+%typemap( in ) Foam::GeometricFieldHolder< Type, TPatchField, TMesh >& ( void  *argp = 0, int check = 0, Foam::GeometricFieldHolder< Type, TPatchField, TMesh > result ) 
+{
+  check = SWIG_ConvertPtr( $input, &argp, $descriptor(  Foam::GeometricFieldHolder< Type, TPatchField, TMesh > * ), %convertptr_flags );
+  if ( SWIG_IsOK( check )&& argp  ){
+    result = *%reinterpret_cast( argp, Foam::GeometricFieldHolder< Type, TPatchField, TMesh >* );
+  } else {
+    check = SWIG_ConvertPtr( $input, &argp, $descriptor(  Foam::GeometricField< Type, TPatchField, TMesh > * ), SWIG_POINTER_DISOWN | %convertptr_flags );
+    if ( SWIG_IsOK( check )&& argp  ){
+      Foam::GeometricField< Type, TPatchField, TMesh > * res =  %reinterpret_cast( argp, Foam::GeometricField< Type, TPatchField, TMesh >* );
+      result = Foam::GeometricFieldHolder< Type, TPatchField, TMesh >( *res );
+    } else {
+      check = SWIG_ConvertPtr( $input, &argp, $descriptor( Foam::tmp< Foam::GeometricField< Type, TPatchField, TMesh > >* ), SWIG_POINTER_DISOWN | %convertptr_flags );
+      if ( SWIG_IsOK( check ) && argp ) {
+        Foam::tmp< Foam::GeometricField< Type, TPatchField, TMesh> >* tmp_res =%reinterpret_cast( argp, Foam::tmp< Foam::GeometricField< Type, TPatchField, TMesh > > * );
+        result = Foam::GeometricFieldHolder< Type, TPatchField, TMesh >( *tmp_res );
+      } else {
+        check = SWIG_ConvertPtr( $input, &argp, $descriptor( Foam::ext_tmp< Foam::GeometricField< Type, TPatchField, TMesh > >* ), SWIG_POINTER_DISOWN | %convertptr_flags );
+        if ( SWIG_IsOK( check ) && argp ) {
+          Foam::ext_tmp< Foam::GeometricField< Type, TPatchField, TMesh> >* tmp_res =%reinterpret_cast( argp, Foam::ext_tmp< Foam::GeometricField< Type, TPatchField, TMesh > > * );
+          result = Foam::GeometricFieldHolder< Type, TPatchField, TMesh >( *tmp_res );
+        } else {
+          %argument_fail( check, "$type", $symname, $argnum );
+        }
+      }
+    }
+  }
+$1 = &result;
+}
+%enddef
+
+
+//---------------------------------------------------------------------------
+%import "Foam/src/finiteVolume/fvMesh/fvMeshes.cxx"
+
+
+GEOMETRIC_FIELDHOLDER_TYPEMAP( Foam::scalar, Foam::fvPatchField, Foam::volMesh );
+GEOMETRIC_FIELDHOLDER_TYPEMAP( Foam::vector, Foam::fvPatchField, Foam::volMesh );
+
+GEOMETRIC_FIELDHOLDER_TYPEMAP( Foam::scalar, Foam::fvsPatchField, Foam::surfaceMesh );
+GEOMETRIC_FIELDHOLDER_TYPEMAP( Foam::vector, Foam::fvsPatchField, Foam::surfaceMesh );
+
+
 //--------------------------------------------------------------------------------------
 #endif
