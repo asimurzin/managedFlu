@@ -1,5 +1,5 @@
-#ifndef TimeHolder_H
-#define TimeHolder_H
+#ifndef TimeHolder_hpp
+#define TimeHolder_hpp
 
 
 //---------------------------------------------------------------------------

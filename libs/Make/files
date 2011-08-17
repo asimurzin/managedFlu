@@ -2,7 +2,7 @@ IOdictionaryArgs.cpp
 objectRegistryHolder.cpp
 IOobjectArgs.cpp
 IOobjectHolder.cpp
-TimeHolder.C
+TimeHolder.cpp
 dictionaryHolder.cpp
 IOdictionaryHolder.cpp
 fvMeshArgs.cpp

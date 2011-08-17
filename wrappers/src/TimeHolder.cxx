@@ -35,7 +35,7 @@
 
 %import "objectRegistryHolder.cxx"
 
-%include "TimeHolder.H"
+%include "TimeHolder.hpp"
 
 
 //--------------------------------------------------------------------------------------
