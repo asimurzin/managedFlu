@@ -22,8 +22,8 @@ namespace Foam
     IOobjectHolder( const word &name, 
                     const fileName &instance, 
                     const objectRegistryHolder & registry, 
-                    IOobject::readOption r=IOobject::NO_READ, 
-                    IOobject::writeOption w=IOobject::NO_WRITE, 
+                    IOobject::readOption r = IOobject::NO_READ, 
+                    IOobject::writeOption w = IOobject::NO_WRITE, 
                     bool registerObject=true );
     ~IOobjectHolder();
 
