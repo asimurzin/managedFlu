@@ -4,7 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include <fvMatrices.H>
-#include <tmp.H>
+#include <ext_tmp/ext_tmp.hpp>
 #include "fvMatrixArgs.H"
 #include "surfaceFields.hpp"
 #include "volFields.hpp"
@@ -16,7 +16,7 @@ namespace Foam
   template<class Type>
   class fvMatrixHolder 
     : public fvMatrixArgs< Type >
-    , public tmp< fvMatrix< Type > >
+    , public ext_tmp< fvMatrix< Type > >
   {
   public:
     fvMatrixHolder( const tmp< fvMatrix< Type > >& , const GeometricFieldHolder< Type, fvPatchField, volMesh >& );
@@ -43,13 +43,21 @@ namespace Foam
     {
       return  GeometricFieldHolder< Type, fvsPatchField, surfaceMesh >( this->operator()().flux(), this->psi().mesh() );
     }
-    
-  private:
-    //fvMatrixHolder(); // not implemented
-    // fvMatrixHolder( const fvMatrixHolder& ); // not implemented 
-    //void operator = ( const fvMatrixHolder& ); // not implemented 
-  };
-  
+};
+
+  template< class Type >
+  lduMatrix::solverPerformance solve( fvMatrixHolder< Type > mt , const dictionary& dict )
+  {
+    return solve( mt(), dict );
+  }
+
+
+  template<class Type>
+  lduMatrix::solverPerformance solve( fvMatrixHolder< Type > mt )
+  {
+    return solve( mt() );  
+  }
+ 
 } // Foam
 
 

@@ -5,7 +5,7 @@ namespace Foam
   fvMatrixHolder< Type >::fvMatrixHolder( const tmp< fvMatrix< Type > >& tmp_mt, 
 					  const GeometricFieldHolder< Type, fvPatchField, volMesh >& field ) 
     : fvMatrixArgs< Type >( field )
-    , tmp< fvMatrix< Type > >( tmp_mt )
+    , ext_tmp< fvMatrix< Type > >( tmp_mt )
   {
 #ifdef OUR_DEBUG
     cout << "flufvMatrix = " << this << nl;
@@ -15,7 +15,7 @@ namespace Foam
 template<class Type>
   fvMatrixHolder< Type >::fvMatrixHolder() 
     : fvMatrixArgs< Type >()
-    , tmp< fvMatrix< Type > >()
+    , ext_tmp< fvMatrix< Type > >()
   {
 #ifdef OUR_DEBUG
     cout << "flufvMatrix = " << this << nl;
@@ -36,7 +36,7 @@ template<class Type>
     if ( this->empty() )
     {
       fvMatrixArgs< Type >::operator=( mt );
-      tmp< fvMatrix< Type > >::operator=( mt );
+      ext_tmp< fvMatrix< Type > >::operator=( mt );
     }
     else
     {
