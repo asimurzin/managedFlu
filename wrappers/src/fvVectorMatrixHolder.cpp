@@ -20,8 +20,8 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef fvVectorMatrixHolder_cxx
-#define fvVectorMatrixHolder_cxx
+#ifndef fvVectorMatrixHolder_cpp
+#define fvVectorMatrixHolder_cpp
 
 
 //---------------------------------------------------------------------------
@@ -37,7 +37,7 @@
 
 %import "Args/fvVectorMatrixArgs.cxx"
 
-%include "fvMatrixHolder.H"
+%include "fvMatrixHolder.hpp"
 
 %include "fvMatrices.hpp"
 

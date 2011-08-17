@@ -1,5 +1,5 @@
-#ifndef fvMatrixHolder_H
-#define fvMatrixHolder_H
+#ifndef fvMatrixHolder_hpp
+#define fvMatrixHolder_hpp
 
 
 //---------------------------------------------------------------------------
@@ -63,7 +63,7 @@ namespace Foam
 
 
 //---------------------------------------------------------------------------
-#include "fvMatrixHolder.C"
+#include "fvMatrixHolder.cpp"
 
 
 //---------------------------------------------------------------------------

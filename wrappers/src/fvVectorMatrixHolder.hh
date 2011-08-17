@@ -29,7 +29,7 @@
 
 #include "ext_tmp/ext_tmp_fvVectorMatrix.hh"
 
-#include "fvMatrixHolder.H"
+#include "fvMatrixHolder.hpp"
 
 #include "Args/fvVectorMatrixArgs.hh"
 

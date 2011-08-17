@@ -4,7 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include <fvMatrices.H>
-#include "fvMatrixHolder.H"
+#include "fvMatrixHolder.hpp"
 
 
 
