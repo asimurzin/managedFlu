@@ -26,7 +26,7 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
-#include "fvMeshHolder.H"
+#include "fvMeshHolder.hpp"
 #include "objectRegistryHolder.hh"
 #include "IOobjectHolder.hh"
 #include "shared_ptr/shared_ptr_fvMesh.hh"

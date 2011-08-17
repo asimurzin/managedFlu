@@ -2,7 +2,7 @@
 #include "IOobjectHolder.H"
 #include "TimeHolder.H"
 #include "IOobjectHolder.H"
-#include "fvMeshHolder.H"
+#include "fvMeshHolder.hpp"
 #include "IOdictionaryHolder.hpp"
 #include "volFields.hpp"
 #include "surfaceFields.hpp"

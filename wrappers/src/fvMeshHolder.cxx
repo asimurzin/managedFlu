@@ -43,7 +43,7 @@
 
 %import "GeometricFieldHolders.cxx"
 
-%include "fvMeshHolder.H"
+%include "fvMeshHolder.hpp"
 
 
 //--------------------------------------------------------------------------------------

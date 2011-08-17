@@ -6,7 +6,7 @@ TimeHolder.C
 dictionaryHolder.cpp
 IOdictionaryHolder.cpp
 fvMeshArgs.cpp
-fvMeshHolder.C
+fvMeshHolder.cpp
 GeometricFieldArgs.C
 volFields.cpp
 surfaceFields.cpp
