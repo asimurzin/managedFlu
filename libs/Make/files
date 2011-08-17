@@ -7,7 +7,7 @@ dictionaryHolder.cpp
 IOdictionaryHolder.cpp
 fvMeshArgs.cpp
 fvMeshHolder.cpp
-GeometricFieldArgs.C
+GeometricFieldArgs.cpp
 volFields.cpp
 surfaceFields.cpp
 fvMatrices.cpp

@@ -1,5 +1,5 @@
-#ifndef GeometricFieldArgs_H
-#define GeometricFieldArgs_H
+#ifndef GeometricFieldArgs_hpp
+#define GeometricFieldArgs_hpp
 
 
 //---------------------------------------------------------------------------

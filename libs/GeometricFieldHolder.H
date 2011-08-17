@@ -3,7 +3,7 @@
 
 
 //---------------------------------------------------------------------------
-#include "GeometricFieldArgs.H"
+#include "GeometricFieldArgs.hpp"
 
 #include <GeometricField.H>
 #include <ext_tmp/ext_tmp.hpp>
