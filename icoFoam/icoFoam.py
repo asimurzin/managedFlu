@@ -147,8 +147,7 @@ def CourantNo( mesh, phi, runTime ):
     
     if mesh().nInternalFaces() :
         from wrappers import fvc
-        tmp = fvc.surfaceSum( phi.mag() )
-        sumPhi = tmp.internalField()
+        sumPhi = fvc.surfaceSum( phi.mag() ).internalField()
         CoNum =  0.5 * ( sumPhi / mesh().V().field() ).gMax() * runTime().deltaTValue()
         meanCoNum =  0.5 * ( sumPhi.gSum() / mesh().V().field().gSum() ) * runTime().deltaTValue()
         pass
