@@ -27,7 +27,7 @@ namespace Foam
     scalar& refValue,
     const bool forceReference = false )
   {
-    setRefCell( field, dict, refCelli, refValue, forceReference );
+    setRefCell( field(), dict, refCelli, refValue, forceReference );
   }
   
   scalar getRefCellValue( const volScalarFieldHolder& field, const label refCelli )
