@@ -1,5 +1,7 @@
 from wrappers.src.fvMeshHolder import *
 from wrappers.src.GeometricFieldHolders import *
+from wrappers.src.fvMatrices import *
+
 from wrappers.src.linear import *
 
 #----------------------------------------------------------------------------
