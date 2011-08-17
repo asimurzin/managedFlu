@@ -4,7 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include <GeometricField.H>
-#include <tmp.H>
+#include <ext_tmp/ext_tmp.hpp>
 #include "GeometricFieldArgs.H"
 
 
@@ -17,7 +17,7 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   class GeometricFieldHolder 
     : public GeometricFieldArgs
-    , public tmp< GeometricField< Type, PatchField, GeoMesh > >
+    , public ext_tmp< GeometricField< Type, PatchField, GeoMesh > >
   {
   public:
     GeometricFieldHolder( const IOobjectHolder&, const fvMeshHolder& );
@@ -33,7 +33,7 @@ namespace Foam
     void operator -= ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
     void operator()( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
     
-    using tmp< GeometricField< Type, PatchField, GeoMesh > >::operator();
+    using ext_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator();
   };
 } // Foam
 
