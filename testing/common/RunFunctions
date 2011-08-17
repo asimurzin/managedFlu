@@ -41,7 +41,7 @@ runBasic ()
         echo "( cd `pwd` && ${app_run} $* ) - already run; remove log file to run"
 	return 1
     else
-        echo "( cd `pwd` && ${app_run} $* )"
+        #echo "( cd `pwd` && ${app_run} $* )"
         ${app_run} $* > log.${app_name} 2>&1
 	if [ $? -ne 0 ] ; then
 	    echo "An error have appeared during execution of" ${app_name} :
@@ -72,7 +72,7 @@ cloneSolverCase ()
     if [ -d $2 ] ; then
         echo "Case already cloned: remove case directory '${2}' to clone"
     else
-        echo "Cloning '${2}' case from '${1}'"
+        #echo "Cloning '${2}' case from '${1}'" 
 	cp -r ${1} ${2}
 	rm ${2}/log.*
 	
@@ -93,7 +93,11 @@ cloneSolverCase ()
 runSolver ()
 {
    app_run=$1; shift
-   app_name=`echo ${app_run} | sed -e "s/MF//"`
+   
+   solvername=`basename ${app_run}`
+   app_name=`echo ${solvername} | sed -e "s/MF//"`
+   app_name=`echo ${solvername} | sed -e "s/.py//"`
+   
    
    source_case=`get_source_case $*` 
    reference_case=`get_reference_case $*`
