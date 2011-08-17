@@ -101,6 +101,10 @@ namespace Foam
       return this->engine->operator () ();
     }
     
+    bool empty() const
+    {
+      return this->engine->empty();
+    }
     
   };
   
