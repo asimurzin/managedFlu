@@ -1,5 +1,5 @@
-#ifndef fvMatrixArgs_H
-#define fvMatrixArgs_H
+#ifndef fvMatrixArgs_hpp
+#define fvMatrixArgs_hpp
 
 
 //---------------------------------------------------------------------------
@@ -34,7 +34,7 @@ namespace Foam
 
 
 //---------------------------------------------------------------------------
-#include "fvMatrixArgs.C"
+#include "fvMatrixArgs.cpp"
 
 
 //---------------------------------------------------------------------------

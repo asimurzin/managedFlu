@@ -33,7 +33,7 @@
 
 
 //---------------------------------------------------------------------------
-%include "fvMatrixArgs.H"
+%include "fvMatrixArgs.hpp"
 
 %template ( fvVectorMatrixArgs ) Foam::fvMatrixArgs< Foam::vector >;
 

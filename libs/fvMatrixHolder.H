@@ -3,7 +3,7 @@
 
 
 //---------------------------------------------------------------------------
-#include "fvMatrixArgs.H"
+#include "fvMatrixArgs.hpp"
 #include "surfaceFields.hpp"
 #include "volFields.hpp"
 
