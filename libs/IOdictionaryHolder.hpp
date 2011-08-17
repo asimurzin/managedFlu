@@ -3,11 +3,13 @@
 
 
 //---------------------------------------------------------------------------
-#include <IOdictionary.H>
-#include <boost/shared_ptr.hpp>
 #include "dictionaryHolder.hpp"
 #include "IOobjectHolder.H"
 #include "IOdictionaryArgs.H"
+
+#include <IOdictionary.H>
+#include <boost/shared_ptr.hpp>
+
 
 //---------------------------------------------------------------------------
 namespace Foam
