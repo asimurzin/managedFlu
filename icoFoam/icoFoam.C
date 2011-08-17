@@ -107,9 +107,9 @@ dimensionedScalar createFields( const TimeHolder& runTime,
                                                   mesh,
                                                   IOobject::READ_IF_PRESENT,
                                                   IOobject::AUTO_WRITE ),
-                                  linearInterpolate(U) & mesh.Sf() );
+                                  linearInterpolate( U ) & mesh->Sf() );
   
-  setRefCell(p, mesh->solutionDict().subDict("PISO"), pRefCell, pRefValue);
+  setRefCell( p, mesh->solutionDict().subDict("PISO"), pRefCell, pRefValue);
 
   return nu;
 } 
@@ -227,7 +227,7 @@ int main(int argc, char *argv[])
             
             U = rAU*UEqn.H();
             
-            phi = ( fvc::interpolate(U) & mesh.Sf() ) + fvc::ddtPhiCorr(rAU, U, phi);
+            phi = ( fvc::interpolate(U) & mesh->Sf() ) + fvc::ddtPhiCorr(rAU, U, phi);
             
             adjustPhi(phi, U, p);
 
