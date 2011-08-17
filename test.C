@@ -30,7 +30,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
-#include "Allheaders.H"
+#include "Allheaders.hpp"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 Foam::TimeHolder create_time(  const Foam::word& dict_name, const Foam::argList& args )
