@@ -44,5 +44,14 @@
 EXTEND_SURFACESCALARFIELDHOLDER;
 
 
+//---------------------------------------------------------------------------
+%feature( "pythonappend" ) Foam::GeometricFieldHolder< Foam::scalar, Foam::fvsPatchField, Foam::surfaceMesh >::SMARTPTR_PYAPPEND_GETATTR( GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh );
+
+%extend Foam::GeometricFieldHolder< Foam::scalar, Foam::fvsPatchField, Foam::surfaceMesh >
+{
+  SMARTPTR_EXTEND_ATTR( GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh );
+}
+
+
 //--------------------------------------------------------------------------------------
 #endif

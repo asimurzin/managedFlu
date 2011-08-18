@@ -38,5 +38,14 @@
 %include "dictionaryHolder.hpp"
 
 
+//---------------------------------------------------------------------------
+%feature( "pythonappend" ) Foam::dictionaryHolder::SMARTPTR_PYAPPEND_GETATTR( dictionaryHolder );
+
+%extend Foam::dictionaryHolder
+{
+  SMARTPTR_EXTEND_ATTR( dictionaryHolder );
+}
+
+
 //--------------------------------------------------------------------------------------
 #endif

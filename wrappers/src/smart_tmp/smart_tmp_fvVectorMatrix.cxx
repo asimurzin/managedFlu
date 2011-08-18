@@ -41,6 +41,8 @@
 //---------------------------------------------------------------------------
 %template ( smart_tmp_fvVectorMatrix ) Foam::smart_tmp< Foam::fvVectorMatrix >;
 
+SMART_TMP_VALID_EXTEND( Foam::fvVectorMatrix );
+
 
 //---------------------------------------------------------------------------
 #endif

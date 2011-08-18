@@ -46,5 +46,14 @@
 EXTEND_VOLSCALARFIELDHOLDER;
 
 
+//---------------------------------------------------------------------------
+%feature( "pythonappend" ) Foam::GeometricFieldHolder< Foam::scalar, Foam::fvPatchField, Foam::volMesh >::SMARTPTR_PYAPPEND_GETATTR( GeometricFieldHolder_scalar_fvPatchField_volMesh );
+
+%extend Foam::GeometricFieldHolder< Foam::scalar, Foam::fvPatchField, Foam::volMesh >
+{
+  SMARTPTR_EXTEND_ATTR( GeometricFieldHolder_scalar_fvPatchField_volMesh );
+}
+
+
 //--------------------------------------------------------------------------------------
 #endif

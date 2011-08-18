@@ -47,5 +47,14 @@
 
 VECTOR_FVMATRIXHOLDER_TEMPLATE_FUNC;
 
+
+//---------------------------------------------------------------------------
+%feature( "pythonappend" ) Foam::fvMatrixHolder< Foam::vector >::SMARTPTR_PYAPPEND_GETATTR( fvVectorMatrixHolder );
+
+%extend Foam::fvMatrixHolder< Foam::vector >
+{
+  SMARTPTR_EXTEND_ATTR( fvVectorMatrixHolder );
+}
+
 //--------------------------------------------------------------------------------------
 #endif

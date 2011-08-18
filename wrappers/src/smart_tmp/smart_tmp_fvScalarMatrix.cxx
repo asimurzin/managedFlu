@@ -41,6 +41,8 @@
 //---------------------------------------------------------------------------
 %template ( smart_tmp_fvScalarMatrix ) Foam::smart_tmp< Foam::fvScalarMatrix >;
 
+SMART_TMP_VALID_EXTEND( Foam::fvScalarMatrix );
+
 
 //---------------------------------------------------------------------------
 #endif

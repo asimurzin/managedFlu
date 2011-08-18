@@ -46,5 +46,14 @@
 %include "fvMeshHolder.hpp"
 
 
+//---------------------------------------------------------------------------
+%feature( "pythonappend" ) Foam::fvMeshHolder::SMARTPTR_PYAPPEND_GETATTR( fvMeshHolder );
+
+%extend Foam::fvMeshHolder
+{
+  SMARTPTR_EXTEND_ATTR( fvMeshHolder );
+}
+
+
 //--------------------------------------------------------------------------------------
 #endif

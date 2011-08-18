@@ -40,5 +40,15 @@
 %include "objectRegistryHolder.hpp"
 
 
+//---------------------------------------------------------------------------
+%feature( "pythonappend" ) Foam::objectRegistryHolder::SMARTPTR_PYAPPEND_GETATTR( objectRegistryHolder );
+
+%extend Foam::objectRegistryHolder
+{
+  SMARTPTR_EXTEND_ATTR( objectRegistryHolder );
+}
+
+
+
 //--------------------------------------------------------------------------------------
 #endif

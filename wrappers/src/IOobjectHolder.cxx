@@ -40,5 +40,14 @@
 %include "IOobjectHolder.hpp"
 
 
+//---------------------------------------------------------------------------
+%feature( "pythonappend" ) Foam::IOobjectHolder::SMARTPTR_PYAPPEND_GETATTR( IOobjectHolder );
+
+%extend Foam::IOobjectHolder
+{
+  SMARTPTR_EXTEND_ATTR( IOobjectHolder );
+}
+
+
 //--------------------------------------------------------------------------------------
 #endif

@@ -48,5 +48,14 @@
 SCALAR_FVMATRIXHOLDER_TEMPLATE_FUNC;
 
 
+//---------------------------------------------------------------------------
+%feature( "pythonappend" ) Foam::fvMatrixHolder< Foam::scalar >::SMARTPTR_PYAPPEND_GETATTR( fvScalarMatrixHolder );
+
+%extend Foam::fvMatrixHolder< Foam::scalar >
+{
+  SMARTPTR_EXTEND_ATTR( fvScalarMatrixHolder );
+}
+
+
 //--------------------------------------------------------------------------------------
 #endif

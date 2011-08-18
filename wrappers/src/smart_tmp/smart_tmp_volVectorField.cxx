@@ -41,6 +41,8 @@
 //---------------------------------------------------------------------------
 %template ( smart_tmp_volVectorField ) Foam::smart_tmp< Foam::volVectorField >;
 
+SMART_TMP_VALID_EXTEND( Foam::volVectorField );
+
 %extend Foam::smart_tmp< Foam::volVectorField >
 {
   SMARTPTR_EXTEND_OPERATOR_EQ( Foam::vector );

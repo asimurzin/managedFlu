@@ -41,6 +41,8 @@
 //---------------------------------------------------------------------------
 %template ( smart_tmp_surfaceScalarField ) Foam::smart_tmp< Foam::surfaceScalarField >;
 
+SMART_TMP_VALID_EXTEND( Foam::surfaceScalarField );
+
 %extend Foam::smart_tmp< Foam::surfaceScalarField >
 {
   SMARTPTR_EXTEND_OPERATOR_EQ( Foam::scalar );

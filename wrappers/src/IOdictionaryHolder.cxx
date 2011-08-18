@@ -44,5 +44,14 @@
 %include "IOdictionaryHolder.hpp"
 
 
+//---------------------------------------------------------------------------
+%feature( "pythonappend" ) Foam::IOdictionaryHolder::SMARTPTR_PYAPPEND_GETATTR( IOdictionaryHolder );
+
+%extend Foam::IOdictionaryHolder
+{
+  SMARTPTR_EXTEND_ATTR( IOdictionaryHolder );
+}
+
+
 //--------------------------------------------------------------------------------------
 #endif

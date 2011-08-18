@@ -41,6 +41,8 @@
 //---------------------------------------------------------------------------
 %template ( smart_tmp_volScalarField ) Foam::smart_tmp< Foam::volScalarField >;
 
+SMART_TMP_VALID_EXTEND( Foam::volScalarField );
+
 %extend Foam::smart_tmp< Foam::volScalarField >
 {
   SMARTPTR_EXTEND_OPERATOR_EQ( Foam::scalar );

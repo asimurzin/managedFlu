@@ -41,6 +41,8 @@
 //---------------------------------------------------------------------------
 %template ( smart_tmp_surfaceVectorField ) Foam::smart_tmp< Foam::surfaceVectorField >;
 
+SMART_TMP_VALID_EXTEND( Foam::surfaceVectorField );
+
 %extend Foam::smart_tmp< Foam::surfaceVectorField >
 {
   SMARTPTR_EXTEND_OPERATOR_EQ( Foam::vector );

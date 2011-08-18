@@ -34,4 +34,16 @@
 
 
 //---------------------------------------------------------------------------
+%define SMART_TMP_VALID_EXTEND( Type )
+
+%extend Foam::smart_tmp< Type >
+{
+  bool valid() const
+  {
+     return ! self->empty();
+  }
+}
+
+%enddef
+
 #endif
