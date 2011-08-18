@@ -31,7 +31,7 @@
 
 
 //---------------------------------------------------------------------------
-//%import "ext_tmp/ext_tmp_volScalarField.cxx"
+//%import "smart_tmp/smart_tmp_volScalarField.cxx"
 
 %import "Foam/src/finiteVolume/fvMesh/fvMeshes.cxx"
 

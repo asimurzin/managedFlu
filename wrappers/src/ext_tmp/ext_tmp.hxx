@@ -21,8 +21,8 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef ext_tmp_hxx
-#define ext_tmp_hxx
+#ifndef smart_tmp_hxx
+#define smart_tmp_hxx
 
 
 //---------------------------------------------------------------------------
@@ -30,7 +30,7 @@
 
 %import "Foam/src/OpenFOAM/fields/tmp/smartPtr_extend.hxx"
 
-%include "ext_tmp/ext_tmp.hpp"
+%include "smart_tmp/smart_tmp.hpp"
 
 
 //---------------------------------------------------------------------------

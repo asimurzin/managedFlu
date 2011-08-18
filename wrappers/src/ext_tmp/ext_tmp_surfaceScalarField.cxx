@@ -21,27 +21,27 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef ext_tmp_surfaceScalarField_cxx
-#define ext_tmp_surfaceScalarField_cxx
+#ifndef smart_tmp_surfaceScalarField_cxx
+#define smart_tmp_surfaceScalarField_cxx
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.ext_tmp.ext_tmp_surfaceScalarField";
+%module "wrappers.src.smart_tmp.smart_tmp_surfaceScalarField";
 %{
-  #include "ext_tmp/ext_tmp_surfaceScalarField.hh"
+  #include "smart_tmp/smart_tmp_surfaceScalarField.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-//%import "ext_tmp/ext_tmp.hxx"
+//%import "smart_tmp/smart_tmp.hxx"
 
 %import "Foam/src/finiteVolume/fvMesh/fvMeshes.cxx"
 
 
 //---------------------------------------------------------------------------
-%template ( ext_tmp_surfaceScalarField ) Foam::ext_tmp< Foam::surfaceScalarField >;
+%template ( smart_tmp_surfaceScalarField ) Foam::smart_tmp< Foam::surfaceScalarField >;
 
-%extend Foam::ext_tmp< Foam::surfaceScalarField >
+%extend Foam::smart_tmp< Foam::surfaceScalarField >
 {
   SMARTPTR_EXTEND_OPERATOR_EQ( Foam::scalar );
 }

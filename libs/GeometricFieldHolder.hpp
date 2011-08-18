@@ -18,7 +18,7 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   class GeometricFieldHolder 
     : public GeometricFieldArgs
-    , public ext_tmp< GeometricField< Type, PatchField, GeoMesh > >
+    , public smart_tmp< GeometricField< Type, PatchField, GeoMesh > >
   {
   public:
     GeometricFieldHolder( const IOobjectHolder&, const fvMeshHolder& );
@@ -26,7 +26,7 @@ namespace Foam
     GeometricFieldHolder( const IOobjectHolder&, const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
     GeometricFieldHolder( const GeometricField< Type, PatchField, GeoMesh >& );
     GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& );
-    GeometricFieldHolder( const ext_tmp< GeometricField< Type, PatchField, GeoMesh > >& );
+    GeometricFieldHolder( const smart_tmp< GeometricField< Type, PatchField, GeoMesh > >& );
     GeometricFieldHolder();
     
     ~GeometricFieldHolder();
@@ -37,7 +37,7 @@ namespace Foam
     void operator -= ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
     void operator()( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
     
-    using ext_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator();
+    using smart_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator();
   };
 } // Foam
 

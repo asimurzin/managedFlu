@@ -21,12 +21,12 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef ext_tmp_fvVectorMatrix_hh
-#define ext_tmp_fvVectorMatrix_hh
+#ifndef smart_tmp_fvVectorMatrix_hh
+#define smart_tmp_fvVectorMatrix_hh
 
 
 //---------------------------------------------------------------------------
-//#include "ext_tmp/ext_tmp.hpp"
+//#include "smart_tmp/smart_tmp.hpp"
 
 #include "Foam/src/finiteVolume/fvMatrices/fvMatrices.hh"
 

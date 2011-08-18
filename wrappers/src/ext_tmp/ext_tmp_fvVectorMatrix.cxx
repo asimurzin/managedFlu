@@ -21,25 +21,25 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef ext_tmp_fvVectorMatrix_cxx
-#define ext_tmp_fvVectorMatrix_cxx
+#ifndef smart_tmp_fvVectorMatrix_cxx
+#define smart_tmp_fvVectorMatrix_cxx
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.ext_tmp.ext_tmp_fvVectorMatrix";
+%module "wrappers.src.smart_tmp.smart_tmp_fvVectorMatrix";
 %{
-  #include "ext_tmp/ext_tmp_fvVectorMatrix.hh"
+  #include "smart_tmp/smart_tmp_fvVectorMatrix.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-//%import "ext_tmp/ext_tmp.hxx"
+//%import "smart_tmp/smart_tmp.hxx"
 
 %import "Foam/src/finiteVolume/fvMatrices/fvMatrices.cxx"
 
 
 //---------------------------------------------------------------------------
-%template ( ext_tmp_fvVectorMatrix ) Foam::ext_tmp< Foam::fvVectorMatrix >;
+%template ( smart_tmp_fvVectorMatrix ) Foam::smart_tmp< Foam::fvVectorMatrix >;
 
 
 //---------------------------------------------------------------------------

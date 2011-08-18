@@ -13,7 +13,7 @@ namespace Foam
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const IOobjectHolder& io, 
 									   const fvMeshHolder& mesh ) 
     : GeometricFieldArgs( mesh )
-    , ext_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( *io, *mesh ) )
+    , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( *io, *mesh ) )
   {
 #ifdef OUR_DEBUG
     cout << "GeometricFieldHolder=" << this << nl;
@@ -24,7 +24,7 @@ namespace Foam
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& tmp_gf, 
 									   const fvMeshHolder& mesh ) 
     : GeometricFieldArgs( mesh )
-    , ext_tmp< GeometricField< Type, PatchField, GeoMesh > >( tmp_gf )
+    , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( tmp_gf )
   {
 #ifdef OUR_DEBUG
     cout << "GeometricFieldHolder=" << this << nl;
@@ -35,7 +35,7 @@ namespace Foam
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const IOobjectHolder& io, 
 									   const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
     : GeometricFieldArgs( field.mesh() )
-    , ext_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( *io, field() ) )
+    , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( *io, field() ) )
   {
 #ifdef OUR_DEBUG
     cout << "GeometricFieldHolder=" << this << nl;
@@ -45,7 +45,7 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder()
     : GeometricFieldArgs()
-    , ext_tmp< GeometricField< Type, PatchField, GeoMesh > >()
+    , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >()
   {
 #ifdef OUR_DEBUG
     cout << "GeometricFieldHolder=" << this << nl;
@@ -55,7 +55,7 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const GeometricField< Type, PatchField, GeoMesh >& gf )
     : GeometricFieldArgs()
-    , ext_tmp< GeometricField< Type, PatchField, GeoMesh > >( gf )
+    , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( gf )
   {
 #ifdef OUR_DEBUG
     cout << "GeometricFieldHolder=" << this << nl;
@@ -65,7 +65,7 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& gf )
     : GeometricFieldArgs()
-    , ext_tmp< GeometricField< Type, PatchField, GeoMesh > >( gf )
+    , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( gf )
   {
 #ifdef OUR_DEBUG
     cout << "GeometricFieldHolder=" << this << nl;
@@ -73,9 +73,9 @@ namespace Foam
   }
 
   template<class Type, template<class> class PatchField, class GeoMesh>
-  GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const ext_tmp< GeometricField< Type, PatchField, GeoMesh > >& gf )
+  GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const smart_tmp< GeometricField< Type, PatchField, GeoMesh > >& gf )
     : GeometricFieldArgs()
-    , ext_tmp< GeometricField< Type, PatchField, GeoMesh > >( gf )
+    , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( gf )
   {
 #ifdef OUR_DEBUG
     cout << "GeometricFieldHolder=" << this << nl;
@@ -105,7 +105,7 @@ namespace Foam
     if ( this->empty() )
     {
       GeometricFieldArgs::operator=( field );
-      ext_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator=( field );
+      smart_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator=( field );
     }
     else
     {
@@ -123,7 +123,7 @@ namespace Foam
   void GeometricFieldHolder< Type, PatchField, GeoMesh >::operator () ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
   {
     GeometricFieldArgs::operator=( field );
-    ext_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator=( field );
+    smart_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator=( field );
   }
  
 } //Foam

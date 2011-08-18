@@ -33,7 +33,7 @@
 
 
 //---------------------------------------------------------------------------
-%import "ext_tmp/ext_tmp_fvVectorMatrix.cxx"
+%import "smart_tmp/smart_tmp_fvVectorMatrix.cxx"
 
 %import "Args/fvVectorMatrixArgs.cxx"
 

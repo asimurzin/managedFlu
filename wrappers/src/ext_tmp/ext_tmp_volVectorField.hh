@@ -21,12 +21,12 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef ext_tmp_volVectorField_hh
-#define ext_tmp_volVectorField_hh
+#ifndef smart_tmp_volVectorField_hh
+#define smart_tmp_volVectorField_hh
 
 
 //---------------------------------------------------------------------------
-//#include "ext_tmp/ext_tmp.hpp"
+//#include "smart_tmp/smart_tmp.hpp"
 
 #include "Foam/src/finiteVolume/fvMesh/fvMeshes.hh"
 

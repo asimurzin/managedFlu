@@ -31,7 +31,7 @@
 
 
 //---------------------------------------------------------------------------
-%import "ext_tmp/ext_tmp_surfaceScalarField.cxx"
+%import "smart_tmp/smart_tmp_surfaceScalarField.cxx"
 
 %import "Args/GeometricFieldArgs.cxx"
 

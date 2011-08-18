@@ -21,27 +21,27 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef ext_tmp_surfaceVectorField_cxx
-#define ext_tmp_surfaceVectorField_cxx
+#ifndef smart_tmp_surfaceVectorField_cxx
+#define smart_tmp_surfaceVectorField_cxx
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.ext_tmp.ext_tmp_surfaceVectorField";
+%module "wrappers.src.smart_tmp.smart_tmp_surfaceVectorField";
 %{
-  #include "ext_tmp/ext_tmp_surfaceVectorField.hh"
+  #include "smart_tmp/smart_tmp_surfaceVectorField.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-//%import "ext_tmp/ext_tmp.hxx"
+//%import "smart_tmp/smart_tmp.hxx"
 
 %import "Foam/src/finiteVolume/fvMesh/fvMeshes.cxx"
 
 
 //---------------------------------------------------------------------------
-%template ( ext_tmp_surfaceVectorField ) Foam::ext_tmp< Foam::surfaceVectorField >;
+%template ( smart_tmp_surfaceVectorField ) Foam::smart_tmp< Foam::surfaceVectorField >;
 
-%extend Foam::ext_tmp< Foam::surfaceVectorField >
+%extend Foam::smart_tmp< Foam::surfaceVectorField >
 {
   SMARTPTR_EXTEND_OPERATOR_EQ( Foam::vector );
 }

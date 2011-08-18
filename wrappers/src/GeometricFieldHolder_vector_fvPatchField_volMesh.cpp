@@ -31,7 +31,7 @@
 
 
 //---------------------------------------------------------------------------
-%import "ext_tmp/ext_tmp_volVectorField.cxx"
+%import "smart_tmp/smart_tmp_volVectorField.cxx"
 
 %import "Args/GeometricFieldArgs.cxx"
 

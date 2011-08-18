@@ -33,7 +33,7 @@
 
 
 //---------------------------------------------------------------------------
-%import "ext_tmp/ext_tmp_fvScalarMatrix.cxx"
+%import "smart_tmp/smart_tmp_fvScalarMatrix.cxx"
 
 %import "Args/fvScalarMatrixArgs.cxx"
 

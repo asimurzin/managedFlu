@@ -27,7 +27,7 @@
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
 
-#include "ext_tmp/ext_tmp_surfaceVectorField.hh"
+#include "smart_tmp/smart_tmp_surfaceVectorField.hh"
 
 #include "GeometricFieldHolder.hh"
 

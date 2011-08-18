@@ -27,7 +27,7 @@
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
 
-#include "ext_tmp/ext_tmp_fvVectorMatrix.hh"
+#include "smart_tmp/smart_tmp_fvVectorMatrix.hh"
 
 #include "fvMatrixHolder.hpp"
 
