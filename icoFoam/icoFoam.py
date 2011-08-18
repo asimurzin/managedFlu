@@ -39,7 +39,7 @@ def createTime( args ):
 #---------------------------------------------------------------------------
 def createMesh( runTime ):
     from Foam.OpenFOAM import ext_Info, nl
-    ext_Info() << "Create mesh for time = " << runTime().timeName() << nl << nl #runTime() 
+    ext_Info() << "Create mesh for time = " << runTime.timeName() << nl << nl 
 
     from Foam.OpenFOAM import IOobject
     from Foam.OpenFOAM import fileName
@@ -49,7 +49,7 @@ def createMesh( runTime ):
     
     
     mesh = fvMeshHolder( IOobjectHolder( fvMesh.defaultRegion.fget(),           # fvMesh && fvMeshHolder
-                                         fileName( runTime().timeName() ),      #runTime()
+                                         fileName( runTime.timeName() ),      
                                          runTime,
                                          IOobject.MUST_READ ) )                 # IOobject && IOobjectHolder
     
@@ -68,11 +68,11 @@ def createPhi( runTime, mesh, U ):
     from wrappers.finiteVolume import surfaceScalarFieldHolder
     from wrappers.finiteVolume import linearInterpolate
     phi = surfaceScalarFieldHolder( IOobjectHolder( word( "phi" ),
-                                                    fileName( runTime().timeName() ),
+                                                    fileName( runTime.timeName() ),
                                                     mesh,
                                                     IOobject.READ_IF_PRESENT,
                                                     IOobject.AUTO_WRITE ),
-                                    linearInterpolate(U) & mesh().Sf() ); # mesh()
+                                    linearInterpolate(U) & mesh.Sf() ) 
     
     return phi
 
@@ -85,18 +85,18 @@ def createFields( runTime, mesh ):
     from Foam.OpenFOAM import IOobject, word, fileName
     from wrappers.OpenFOAM import IOdictionaryHolder, IOobjectHolder
     transportProperties = IOdictionaryHolder( IOobjectHolder( word( "transportProperties" ),
-                                                            fileName( runTime().constant() ),
+                                                            fileName( runTime.constant() ),
                                                             mesh,
                                                             IOobject.MUST_READ_IF_MODIFIED,
                                                             IOobject.NO_WRITE ) )
 
     from Foam.OpenFOAM import dimensionedScalar
-    nu = dimensionedScalar( transportProperties().lookup( word( "nu" ) ) ) # transportProperties()
+    nu = dimensionedScalar( transportProperties.lookup( word( "nu" ) ) ) 
 
     ext_Info() << "Reading field p\n" << nl
     from wrappers.finiteVolume import volScalarFieldHolder
     p = volScalarFieldHolder( IOobjectHolder( word( "p" ),
-                                            fileName( runTime().timeName() ), 
+                                            fileName( runTime.timeName() ), 
                                             mesh,
                                             IOobject.MUST_READ,
                                             IOobject.AUTO_WRITE ), mesh );
@@ -105,7 +105,7 @@ def createFields( runTime, mesh ):
     ext_Info() << "Reading field U\n" << nl
     from wrappers.finiteVolume import volVectorFieldHolder
     U = volVectorFieldHolder( IOobjectHolder( word( "U" ),
-                                              fileName( runTime().timeName() ),
+                                              fileName( runTime.timeName() ),
                                               mesh,
                                               IOobject.MUST_READ,
                                               IOobject.AUTO_WRITE ), mesh );
@@ -115,7 +115,7 @@ def createFields( runTime, mesh ):
     pRefCell = 0
     pRefValue = 0.0
     from wrappers.finiteVolume import setRefCell
-    pRefCell, pRefValue = setRefCell( p, mesh().solutionDict().subDict( word( "PISO" ) ), pRefCell, pRefValue )
+    pRefCell, pRefValue = setRefCell( p, mesh.solutionDict().subDict( word( "PISO" ) ), pRefCell, pRefValue )
 
     return transportProperties, nu, p, U, phi, pRefCell, pRefValue
 
@@ -124,7 +124,7 @@ def createFields( runTime, mesh ):
 def readPISOControls( mesh ):
     from Foam.OpenFOAM import dictionary, readInt, Switch, word
 
-    piso = dictionary( mesh().solutionDict().subDict( word( "PISO" ) ) )
+    piso = dictionary( mesh.solutionDict().subDict( word( "PISO" ) ) )
     nCorr = readInt( piso.lookup( word( "nCorrectors" ) ) )
     
     nNonOrthCorr = piso.lookupOrDefault( word( "nNonOrthogonalCorrectors" ), 0 )
@@ -145,12 +145,12 @@ def CourantNo( mesh, phi, runTime ):
     meanCoNum = 0.0
     from Foam.OpenFOAM import ext_Info, nl
     
-    if mesh().nInternalFaces() :
+    if mesh.nInternalFaces() :
         from wrappers import fvc
         tmp = fvc.surfaceSum( phi.mag() )
         sumPhi = tmp.internalField()
-        CoNum =  0.5 * ( sumPhi / mesh().V().field() ).gMax() * runTime().deltaTValue()
-        meanCoNum =  0.5 * ( sumPhi.gSum() / mesh().V().field().gSum() ) * runTime().deltaTValue()
+        CoNum =  0.5 * ( sumPhi / mesh.V().field() ).gMax() * runTime.deltaTValue()
+        meanCoNum =  0.5 * ( sumPhi.gSum() / mesh.V().field().gSum() ) * runTime.deltaTValue()
         pass
 
     
@@ -165,8 +165,8 @@ def continuityErrs( mesh, phi, runTime, cumulativeContErr ):
     from wrappers import fvm, fvc
 
     contErr = fvc.div( phi )
-    sumLocalContErr = runTime().deltaT().value() * contErr.mag().weightedAverage( mesh().V() ).value()
-    globalContErr = runTime().deltaT().value() * contErr.weightedAverage( mesh().V() ).value()
+    sumLocalContErr = runTime.deltaT().value() * contErr.mag().weightedAverage( mesh.V() ).value()
+    globalContErr = runTime.deltaT().value() * contErr.weightedAverage( mesh.V() ).value()
     cumulativeContErr += globalContErr
 
     from Foam.OpenFOAM import ext_Info, nl
@@ -195,8 +195,8 @@ def main_standalone( argc, argv ):
     from Foam.OpenFOAM import ext_Info, nl
     ext_Info() << "\nStarting time loop\n"
 
-    while runTime().loop() :
-        ext_Info() << "Time = " <<  runTime().timeName() << nl << nl
+    while runTime.loop() :
+        ext_Info() << "Time = " <<  runTime.timeName() << nl << nl
 
         piso, nCorr, nNonOrthCorr, momentumPredictor, transonic, nOuterCorr = readPISOControls( mesh )
 
@@ -216,7 +216,7 @@ def main_standalone( argc, argv ):
             rUA = 1.0 / UEqn.A()
 
             U.ext_assign( rUA * UEqn.H() )
-            phi.ext_assign( ( fvc.interpolate( U ) & mesh().Sf() ) + fvc.ddtPhiCorr( rUA, U, phi ) )
+            phi.ext_assign( ( fvc.interpolate( U ) & mesh.Sf() ) + fvc.ddtPhiCorr( rUA, U, phi ) )
 
             from wrappers.finiteVolume import adjustPhi
             adjustPhi( phi, U, p )
@@ -224,8 +224,8 @@ def main_standalone( argc, argv ):
             for nonOrth in range( nNonOrthCorr + 1 ) :
                 pEqn = ( fvm.laplacian( rUA, p ) == fvc.div( phi ) )
 
-                pEqn().setReference( pRefCell, pRefValue ) ### pEqn()
-                pEqn().solve()                             ### pEqn()
+                pEqn.setReference( pRefCell, pRefValue ) 
+                pEqn.solve()                             
 
                 if nonOrth == nNonOrthCorr:
                     phi.ext_assign( phi - pEqn.flux() )
@@ -236,14 +236,14 @@ def main_standalone( argc, argv ):
             cumulativeContErr = continuityErrs( mesh, phi, runTime, cumulativeContErr )
 
             U.ext_assign( U - rUA * fvc.grad( p ) )
-            U().correctBoundaryConditions()    #()
+            U.correctBoundaryConditions()    
 
             pass
 
-        runTime().write()    # ()
+        runTime.write()    
         
-        ext_Info() << "ExecutionTime = " << runTime().elapsedCpuTime() << " s" << \
-                      "  ClockTime = " << runTime().elapsedClockTime() << " s" << nl << nl
+        ext_Info() << "ExecutionTime = " << runTime.elapsedCpuTime() << " s" << \
+                      "  ClockTime = " << runTime.elapsedClockTime() << " s" << nl << nl
 
         pass
 
