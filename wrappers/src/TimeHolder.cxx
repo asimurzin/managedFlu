@@ -38,5 +38,14 @@
 %include "TimeHolder.hpp"
 
 
+//---------------------------------------------------------------------------
+%feature( "pythonappend" ) Foam::TimeHolder::SMARTPTR_PYAPPEND_GETATTR( TimeHolder );
+
+%extend Foam::TimeHolder
+{
+SMARTPTR_EXTEND_ATTR( TimeHolder );
+}
+
+
 //--------------------------------------------------------------------------------------
 #endif
