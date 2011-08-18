@@ -21,8 +21,8 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef ext_tmp_hpp
-#define ext_tmp_hpp
+#ifndef smart_tmp_hpp
+#define smart_tmp_hpp
 
 
 //---------------------------------------------------------------------------
@@ -36,23 +36,23 @@ namespace Foam
 {
   //---------------------------------------------------------------------------
   template< class T >
-  struct ext_tmp
+  struct smart_tmp
   {
     autoPtr< tmp< T > > engine;
     
-    explicit ext_tmp( T* tPtr = 0 )
+    explicit smart_tmp( T* tPtr = 0 )
       : engine( new tmp< T >( tPtr ) )
     {}
     
-    ext_tmp( const T& tRef )
+    smart_tmp( const T& tRef )
       : engine( new tmp< T >( tRef ) )
     {}
     
-    ext_tmp( const tmp< T >& t )
+    smart_tmp( const tmp< T >& t )
       : engine( new tmp< T >( t ) )
     {}
     
-    ext_tmp( const ext_tmp< T >& at )
+    smart_tmp( const smart_tmp< T >& at )
       : engine( new tmp< T >( at.engine() ) )
     {}
     
@@ -71,7 +71,7 @@ namespace Foam
       this->engine.reset( new tmp< T >( t ) );
     }
     
-    void operator=( const ext_tmp< T >& at )
+    void operator=( const smart_tmp< T >& at )
     {
       this->engine.reset( new tmp< T >( at.engine() ) );
     }
