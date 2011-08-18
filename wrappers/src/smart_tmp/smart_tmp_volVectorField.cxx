@@ -33,7 +33,7 @@
 
 
 //---------------------------------------------------------------------------
-//%import "smart_tmp/smart_tmp.hxx"
+%import "smart_tmp/smart_tmp.hxx"
 
 %import "Foam/src/finiteVolume/fvMesh/fvMeshes.cxx"
 
@@ -45,10 +45,6 @@
 {
   SMARTPTR_EXTEND_OPERATOR_EQ( Foam::vector );
 }
-
-
-//---------------------------------------------------------------------------
-VECTOR_EXT_TMP_GEOMETRIC_FIELD_TEMPLATE_FUNC( Foam::volVectorField, Foam::fvPatchField, Foam::volMesh );
 
 
 //---------------------------------------------------------------------------

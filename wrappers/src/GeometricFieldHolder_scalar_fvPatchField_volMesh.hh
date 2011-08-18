@@ -27,8 +27,7 @@
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
 
-//#include "smart_tmp/smart_tmp_volScalarField.hh"
-#include "Foam/src/finiteVolume/fvMesh/fvMeshes.hh"
+#include "smart_tmp/smart_tmp_volScalarField.hh"
 
 #include "GeometricFieldHolder.hh"
 

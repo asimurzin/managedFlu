@@ -33,7 +33,7 @@
 
 
 //---------------------------------------------------------------------------
-//%import "smart_tmp/smart_tmp.hxx"
+%import "smart_tmp/smart_tmp.hxx"
 
 %import "Foam/src/finiteVolume/fvMatrices/fvMatrices.cxx"
 
