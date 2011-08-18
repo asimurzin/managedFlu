@@ -6,9 +6,9 @@
 #include "fvMatrixArgs.hpp"
 #include "surfaceFields.hpp"
 #include "volFields.hpp"
+#include "smart_tmp/smart_tmp.hpp"
 
 #include <fvMatrices.H>
-#include <ext_tmp/ext_tmp.hpp>
 
 
 //---------------------------------------------------------------------------
