@@ -114,7 +114,7 @@ def createFields( runTime, mesh ):
 
     pRefCell = 0
     pRefValue = 0.0
-    from Foam.finiteVolume import setRefCell
+    from wrappers.finiteVolume import setRefCell
     pRefCell, pRefValue = setRefCell( p, mesh().solutionDict().subDict( word( "PISO" ) ), pRefCell, pRefValue )
 
     return transportProperties, nu, p, U, phi, pRefCell, pRefValue
@@ -147,7 +147,8 @@ def CourantNo( mesh, phi, runTime ):
     
     if mesh().nInternalFaces() :
         from wrappers import fvc
-        sumPhi = fvc.surfaceSum( phi.mag() ).internalField()
+        tmp = fvc.surfaceSum( phi.mag() )
+        sumPhi = tmp.internalField()
         CoNum =  0.5 * ( sumPhi / mesh().V().field() ).gMax() * runTime().deltaTValue()
         meanCoNum =  0.5 * ( sumPhi.gSum() / mesh().V().field().gSum() ) * runTime().deltaTValue()
         pass
@@ -217,7 +218,7 @@ def main_standalone( argc, argv ):
             U.ext_assign( rUA * UEqn.H() )
             phi.ext_assign( ( fvc.interpolate( U ) & mesh().Sf() ) + fvc.ddtPhiCorr( rUA, U, phi ) )
 
-            from Foam.finiteVolume import adjustPhi
+            from wrappers.finiteVolume import adjustPhi
             adjustPhi( phi, U, p )
 
             for nonOrth in range( nNonOrthCorr + 1 ) :

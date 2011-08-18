@@ -125,6 +125,12 @@
     return *self + field;
   }
   
+  Foam::GeometricFieldHolder< Foam::scalar, Foam::fvsPatchField, Foam::surfaceMesh > __sub__ ( 
+    const Foam::GeometricFieldHolder< Foam::scalar, Foam::fvsPatchField, Foam::surfaceMesh >& field )
+  {
+    return *self - field;
+  }
+
   void ext_assign( const Foam::GeometricFieldHolder< Foam::scalar, Foam::fvsPatchField, Foam::surfaceMesh >& field )
   {
     *self = field;

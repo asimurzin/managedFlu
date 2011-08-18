@@ -21,6 +21,12 @@ namespace Foam
     return surfaceScalarFieldHolder( field1() + field2(), field1.mesh() );
   }
 
+  inline surfaceScalarFieldHolder operator - ( const surfaceScalarFieldHolder& field1, 
+					       const surfaceScalarFieldHolder& field2 )
+  {
+    return surfaceScalarFieldHolder( field1() - field2(), field1.mesh() );
+  }
+
 
   //-------------------------------------------------------------------------
   inline surfaceVectorFieldHolder operator + ( const surfaceVectorFieldHolder& field1, 
