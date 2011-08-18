@@ -55,6 +55,7 @@ sources = \
 	@abs_top_builddir@/wrappers/src/IOdictionaryHolder.cxx \
 	@abs_top_builddir@/wrappers/src/objectRegistryHolder.cxx \
 	@abs_top_builddir@/wrappers/src/TimeHolder.cxx \
+	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_volScalarField.cxx \
 	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_volVectorField.cxx \
 	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_surfaceVectorField.cxx \
 	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_surfaceScalarField.cxx \
@@ -64,6 +65,7 @@ sources = \
 	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_fvScalarMatrix.cxx \
 	@abs_top_builddir@/wrappers/src/fvMatrices.cxx \
 	@abs_top_builddir@/wrappers/src/adjustPhi.cxx \
+	@abs_top_builddir@/wrappers/src/findRefCell.cxx \
 	@abs_top_builddir@/wrappers/src/fvc.cxx \
 	@abs_top_builddir@/wrappers/src/fvm.cxx \
 	@abs_top_builddir@/wrappers/src/linear.cxx \
