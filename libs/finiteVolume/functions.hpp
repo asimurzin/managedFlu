@@ -70,3 +70,21 @@ uniformDimensionedVectorField readGravitationalAcceleration( const TimeHolder& r
            IOobject::MUST_READ,
            IOobject::NO_WRITE ) );
 }
+
+
+//---------------------------------------------------------------------------
+surfaceScalarFieldHolder compressibleCreatePhi( 
+  const TimeHolder& runTime, 
+  const fvMeshHolder& mesh, 
+  const volVectorFieldHolder& U,
+  const volScalarFieldHolder& rho )
+{
+  Info<< "Reading/calculating face flux field phi\n" << endl;
+  
+  return surfaceScalarFieldHolder( IOobjectHolder( "phi",
+                                                   runTime->timeName(),
+                                                   mesh,
+                                                   IOobject::READ_IF_PRESENT,
+                                                   IOobject::AUTO_WRITE ),
+                                    linearInterpolate( rho * U ) & mesh->Sf() );
+}
