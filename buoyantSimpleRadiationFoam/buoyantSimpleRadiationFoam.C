@@ -37,7 +37,7 @@ Description
 
 
 //---------------------------------------------------------------------------
-struct result_createFields
+/*struct result_createFields
 {
   dimensionedScalar m_initialMass;
   dimensionedScalar m_totalVolume;
@@ -45,7 +45,7 @@ struct result_createFields
     : m_initialMass( the_initialMass )
     , m_totalVolume( the_totalVolume )
   {}
-};
+};*/
 
 
 //---------------------------------------------------------------------------
@@ -56,29 +56,30 @@ void createFields( const TimeHolder& runTime, const fvMeshHolder& mesh )
   autoPtr< basicPsiThermo > pThermo = basicPsiThermo::New( *mesh );
   basicPsiThermo& thermo = pThermo();
 
-  volScalarFieldHolder rho( IOobjectHolder( "rho", runTime->timeName(), mesh, IOobject::NO_READ, IOobject::NO_WRITE ), thermo.rho() );
+  volScalarFieldHolder rho( IOobjectHolder( "rho", 
+                                            runTime->timeName(),
+                                            mesh, 
+                                            IOobject::NO_READ, 
+                                            IOobject::NO_WRITE ),
+                            thermo.rho() );
 
-  volScalarField& p = thermo.p();
-  volScalarField& h = thermo.h();
-  const volScalarField& psi = thermo.psi();
-//  Info << rho << nl;   
+  volScalarFieldHolder p = thermo.p();
+  volScalarFieldHolder h = thermo.h();
+  const volScalarFieldHolder psi = thermo.psi();
+  
+
+  Info<< "Reading field U\n" << endl;
+  volVectorFieldHolder U( IOobjectHolder( "U",
+                                          runTime->timeName(),
+                                          mesh,
+                                          IOobject::MUST_READ,
+                                          IOobject::AUTO_WRITE ),
+                          mesh );
+
+
+  surfaceScalarFieldHolder phi = compressibleCreatePhi( runTime, mesh, U, rho );
+
 /*
-    Info<< "Reading field U\n" << endl;
-    volVectorField U
-    (
-        IOobject
-        (
-            "U",
-            runTime.timeName(),
-            mesh,
-            IOobject::MUST_READ,
-            IOobject::AUTO_WRITE
-        ),
-        mesh
-    );
-
-    #include "compressibleCreatePhi.H"
-
     Info<< "Creating turbulence model\n" << endl;
     autoPtr<compressible::RASModel> turbulence
     (
