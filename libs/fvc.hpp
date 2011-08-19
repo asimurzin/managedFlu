@@ -6,6 +6,7 @@
 #include <fvc.H>
 #include "surfaceFields.hpp"
 #include "volFields.hpp"
+#include "GeometricFieldFunctions.hpp"
 
 
 //---------------------------------------------------------------------------
@@ -37,7 +38,7 @@ namespace Foam
                                                 const volVectorFieldHolder& U,
                                                 const surfaceScalarFieldHolder& phi )
     {
-      return surfaceScalarFieldHolder( ddtPhiCorr( rA(), U(), phi() ), rA.mesh() );
+      return surfaceScalarFieldHolder( ddtPhiCorr( rA(), U(), phi() ), get_valid_mesh( rA.mesh(), U.mesh(), phi.mesh() ) );
     }                   
     
 
