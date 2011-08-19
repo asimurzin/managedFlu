@@ -14,6 +14,12 @@ namespace Foam
     : boost::shared_ptr< objectRegistry >( io.get_objectRegistryArg() )
     , IOobjectHolder( io )
   {}
+
+  objectRegistryHolder::objectRegistryHolder() 
+    : boost::shared_ptr< objectRegistry >(  )
+    , IOobjectHolder()
+  {}
+
 } //Foam
 
 

@@ -20,6 +20,17 @@ namespace Foam
 #endif
   }
 
+ fvMeshHolder::fvMeshHolder()
+    : fvMeshArgs()
+    , boost::shared_ptr< fvMesh >()
+    , objectRegistryHolder()
+    , IOobjectHolder()
+  {
+#ifdef OUR_DEBUG
+    cout << "fvMeshHolder=" << this << nl;
+#endif
+  }
+
   fvMeshHolder::~fvMeshHolder()
   {
 #ifdef OUR_DEBUG

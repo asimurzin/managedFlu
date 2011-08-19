@@ -25,15 +25,17 @@ namespace Foam
   {
   public:
     fvMeshHolder( const IOobjectHolder& io );
+    fvMeshHolder();
     ~fvMeshHolder();
 
     using boost::shared_ptr< fvMesh >::operator*;
     using boost::shared_ptr< fvMesh >::operator->;
+    using boost::shared_ptr< fvMesh >::get;
 
   private:
-    fvMeshHolder(); // not implemented
+    //fvMeshHolder(); // not implemented
     // fvMeshHolder( const fvMeshHolder& ); // not implemented 
-    void operator = ( const fvMeshHolder& ); // not implemented 
+    //void operator = ( const fvMeshHolder& ); // not implemented 
   };
 
 } // Foam
