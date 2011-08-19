@@ -7,6 +7,8 @@ dictionaryHolder.cpp
 IOdictionaryHolder.cpp
 fvMeshArgs.cpp
 fvMeshHolder.cpp
+finiteVolume/simpleControlArgs.cpp
+finiteVolume/simpleControlHolder.cpp
 GeometricFieldArgs.cpp
 volFields.cpp
 surfaceFields.cpp
