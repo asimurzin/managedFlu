@@ -14,7 +14,7 @@ namespace Foam
   class GeometricFieldArgs
   {
   public:
-    const fvMeshHolder& mesh() const;
+    fvMeshHolder mesh() const;
 
   protected:
     GeometricFieldArgs( const fvMeshHolder&);

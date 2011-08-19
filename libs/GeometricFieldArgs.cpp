@@ -15,9 +15,12 @@ namespace Foam
     : mesh_()
   {}
  
-  const fvMeshHolder& GeometricFieldArgs::mesh() const
+  fvMeshHolder GeometricFieldArgs::mesh() const
   {
-    return *mesh_;
+    if ( mesh_ )
+      return *mesh_;
+    else
+      return fvMeshHolder();
   }
 }
 
