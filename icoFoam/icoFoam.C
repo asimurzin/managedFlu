@@ -30,7 +30,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
-#include "Allheaders.hpp"
+#include "core.hpp"
 #include "Allfunctions.hpp"
 
 
