@@ -3,7 +3,7 @@ cd ${0%/*} || exit 1    # run from this directory
 
 ( cd libs && wmake libso )
 ( cd icoFoam && wmake )
-wmake
+( cd buoyantSimpleRadiationFoam && wmake )
 
 
 # ----------------------------------------------------------------- end-of-file

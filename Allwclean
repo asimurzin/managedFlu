@@ -3,7 +3,7 @@ cd ${0%/*} || exit 1    # run from this directory
 
 ( cd libs && wclean )
 ( cd icoFoam && wclean )
-wclean
+( cd buoyantSimpleRadiationFoam && wclean )
 
 
 # ----------------------------------------------------------------- end-of-file
