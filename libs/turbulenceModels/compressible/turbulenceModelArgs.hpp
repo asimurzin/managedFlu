@@ -29,7 +29,7 @@ namespace compressible
     turbulenceModelArgs( 
       const volScalarFieldHolder&, 
       const volVectorFieldHolder&, 
-      const surfaceScalarField&, 
+      const surfaceScalarFieldHolder&, 
       const basicThermoHolder& );
     
   private:

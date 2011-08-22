@@ -10,7 +10,7 @@ namespace compressible
   turbulenceModelArgs::turbulenceModelArgs( 
     const volScalarFieldHolder& rho, 
     const volVectorFieldHolder& U, 
-    const surfaceScalarField& phi, 
+    const surfaceScalarFieldHolder& phi, 
     const basicThermoHolder& thermo )
     : rho_( new volScalarFieldHolder( rho ) )
     , U_( new volVectorFieldHolder( U ) )
