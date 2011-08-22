@@ -19,4 +19,9 @@ thermophysicalModels/basic/basicThermoHolder.cpp
 thermophysicalModels/basic/basicPsiThermoHolder.cpp
 thermophysicalModels/basic/basicPsiThermoHolderNew.cpp
 
+turbulenceModels/compressible/turbulenceModelArgs.cpp
+turbulenceModels/compressible/turbulenceModelHolder.cpp
+turbulenceModels/compressible/RASModelHolder.cpp
+
+
 LIB = $(FOAM_USER_LIBBIN)/libtestFixingBug

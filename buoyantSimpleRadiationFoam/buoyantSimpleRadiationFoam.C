@@ -32,9 +32,14 @@ Description
 
 #include "fvCFD.H"
 #include "basicPsiThermo.H"
+#include "RASModel.H"
+#include "fixedGradientFvPatchFields.H"
+#include "radiationModel.H"
+#include "simpleControl.H"
 #include "core.hpp"
 #include "Allfunctions.hpp"
 #include "thermophysicalModels.hpp"
+#include "turbulenceModels.hpp"
 
 
 
@@ -70,30 +75,26 @@ void createFields( const TimeHolder& runTime, const fvMeshHolder& mesh )
   
 
   Info<< "Reading field U\n" << endl;
-  volVectorFieldHolder U( IOobjectHolder( "U",
+  volVectorField Ux( IOobject( "U",
                                           runTime->timeName(),
-                                          mesh,
+                                          *mesh,
                                           IOobject::MUST_READ,
                                           IOobject::AUTO_WRITE ),
-                          mesh );
+                          *mesh );
 
-
+  volVectorFieldHolder U( Ux );
+  
   surfaceScalarFieldHolder phi = compressibleCreatePhi( runTime, mesh, U, rho );
 
-/*
+
     Info<< "Creating turbulence model\n" << endl;
-    autoPtr<compressible::RASModel> turbulence
-    (
-        compressible::RASModel::New
-        (
-            rho,
-            U,
-            phi,
-            thermo
-        )
-    );
+    compressible::RASModelHolder turbulence = compressible::RASModelHolder::New(
+      rho,
+      U,
+      phi,
+      pThermo );
 
-
+/*
     Info<< "Calculating field g.h\n" << endl;
     volScalarField gh("gh", g & mesh.C());
     surfaceScalarField ghf("ghf", g & mesh.Cf());
