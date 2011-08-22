@@ -32,8 +32,10 @@ Description
 
 #include "fvCFD.H"
 #include "basicPsiThermo.H"
-#include "Allheaders.hpp"
+#include "core.hpp"
 #include "Allfunctions.hpp"
+#include "thermophysicalModels.hpp"
+
 
 
 //---------------------------------------------------------------------------
@@ -53,19 +55,18 @@ void createFields( const TimeHolder& runTime, const fvMeshHolder& mesh )
 {
   Info<< "Reading thermophysical properties\n" << endl;
 
-  autoPtr< basicPsiThermo > pThermo = basicPsiThermo::New( *mesh );
-  basicPsiThermo& thermo = pThermo();
+  basicPsiThermoHolder pThermo = basicPsiThermoHolder::New( mesh );
 
   volScalarFieldHolder rho( IOobjectHolder( "rho", 
                                             runTime->timeName(),
                                             mesh, 
                                             IOobject::NO_READ, 
                                             IOobject::NO_WRITE ),
-                            thermo.rho() );
+                            pThermo->rho() );
 
-  volScalarFieldHolder p = thermo.p();
-  volScalarFieldHolder h = thermo.h();
-  const volScalarFieldHolder psi = thermo.psi();
+  volScalarFieldHolder p = pThermo->p();
+  volScalarFieldHolder h = pThermo->h();
+  const volScalarFieldHolder psi = pThermo->psi();
   
 
   Info<< "Reading field U\n" << endl;
