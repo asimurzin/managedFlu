@@ -75,15 +75,14 @@ void createFields( const TimeHolder& runTime, const fvMeshHolder& mesh )
   
 
   Info<< "Reading field U\n" << endl;
-  volVectorField Ux( IOobject( "U",
+  volVectorFieldHolder U( IOobjectHolder( "U",
                                           runTime->timeName(),
-                                          *mesh,
+                                          mesh,
                                           IOobject::MUST_READ,
                                           IOobject::AUTO_WRITE ),
-                          *mesh );
+                          mesh );
 
-  volVectorFieldHolder U( Ux );
-  
+
   surfaceScalarFieldHolder phi = compressibleCreatePhi( runTime, mesh, U, rho );
 
 
