@@ -24,7 +24,7 @@ namespace compressible
       const boost::shared_ptr< turbulenceModel >&, 
       const volScalarFieldHolder&, 
       const volVectorFieldHolder&, 
-      const surfaceScalarField&, 
+      const surfaceScalarFieldHolder&, 
       const basicThermoHolder& );
 
     ~turbulenceModelHolder();

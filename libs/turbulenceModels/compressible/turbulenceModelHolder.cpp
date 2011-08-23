@@ -11,7 +11,7 @@ namespace compressible
     const boost::shared_ptr< turbulenceModel >& tm, 
     const volScalarFieldHolder& rho, 
     const volVectorFieldHolder& U,  
-    const surfaceScalarField& phi, 
+    const surfaceScalarFieldHolder& phi, 
     const basicThermoHolder& thermo )
     : turbulenceModelArgs( rho, U, phi, thermo )
     , boost::shared_ptr< turbulenceModel >( tm )
