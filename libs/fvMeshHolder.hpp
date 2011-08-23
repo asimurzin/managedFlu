@@ -21,7 +21,6 @@ namespace Foam
     : protected fvMeshArgs
     , public boost::shared_ptr< fvMesh >
     , public objectRegistryHolder
-    , public IOobjectHolder
   {
   public:
     fvMeshHolder( const IOobjectHolder& io );
