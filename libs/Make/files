@@ -16,11 +16,12 @@ fvMatrices.cpp
 
 thermophysicalModels/basic/basicThermoArgs.cpp
 thermophysicalModels/basic/basicThermoHolder.cpp
+thermophysicalModels/basic/basicPsiThermoArgs.cpp
 thermophysicalModels/basic/basicPsiThermoHolder.cpp
-thermophysicalModels/basic/basicPsiThermoHolderNew.cpp
 
 turbulenceModels/compressible/turbulenceModelArgs.cpp
 turbulenceModels/compressible/turbulenceModelHolder.cpp
+turbulenceModels/compressible/RASModelArgs.cpp
 turbulenceModels/compressible/RASModelHolder.cpp
 
 
