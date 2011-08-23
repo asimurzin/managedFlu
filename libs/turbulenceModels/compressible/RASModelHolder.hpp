@@ -3,7 +3,8 @@
 
 
 //---------------------------------------------------------------------------
-#include "turbulenceModelArgs.hpp" 
+#include "RASModelArgs.hpp"
+#include "turbulenceModelHolder.hpp"
 
 #include <compressible/RAS/RASModel/RASModel.H>
 #include <boost/shared_ptr.hpp>
@@ -16,8 +17,9 @@ namespace Foam
 namespace compressible
 {
   class RASModelHolder 
-    : protected turbulenceModelArgs
+    : protected RASModelArgs
     , public boost::shared_ptr< RASModel >
+    , public turbulenceModelHolder
   {
   public:
     RASModelHolder( 
@@ -31,7 +33,8 @@ namespace compressible
       const volScalarFieldHolder&, 
       const volVectorFieldHolder&, 
       const surfaceScalarFieldHolder&, 
-      const basicThermoHolder& );
+      const basicThermoHolder&,
+      const word& turbulenceModelName = turbulenceModel::typeName );
     
     ~RASModelHolder();
     
