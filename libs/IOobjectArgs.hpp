@@ -3,6 +3,8 @@
 
 
 //---------------------------------------------------------------------------
+#include "universalArgs.hpp"
+
 #include <IOobject.H>
 #include <objectRegistry.H>
 #include <boost/shared_ptr.hpp>
@@ -14,6 +16,7 @@ namespace Foam
   class objectRegistryHolder;
    
   class IOobjectArgs
+    : universalArgs
   {
   public:
     const objectRegistryHolder&  get_objectRegistryArg() const ;

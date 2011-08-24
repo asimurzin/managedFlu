@@ -8,11 +8,13 @@
 namespace Foam
 {
   IOobjectArgs::IOobjectArgs( const objectRegistryHolder& registry ) 
-    : objectRegistryArg( new objectRegistryHolder( registry ) )
+    : universalArgs( new objectRegistryHolder( registry ) )
+    , objectRegistryArg( new objectRegistryHolder( registry ) )
   {}
 
   IOobjectArgs::IOobjectArgs() 
-    : objectRegistryArg( )
+    : universalArgs()
+    , objectRegistryArg( )
   {}
   
   const objectRegistryHolder& IOobjectArgs::get_objectRegistryArg() const

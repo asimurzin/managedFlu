@@ -3,6 +3,7 @@
 
 
 //---------------------------------------------------------------------------
+#include "universalArgs.hpp"
 #include <boost/shared_ptr.hpp>
 
 
@@ -13,6 +14,7 @@ namespace Foam
   class dictionaryHolder;
   
   class IOdictionaryArgs
+    : universalArgs
   {
   protected:
     IOdictionaryArgs( const IOobjectHolder&, const dictionaryHolder& );
