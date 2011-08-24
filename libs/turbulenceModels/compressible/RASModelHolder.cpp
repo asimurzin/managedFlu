@@ -19,9 +19,9 @@ namespace compressible
   {}
 
   RASModelHolder RASModelHolder::New( 
-    const volScalarFieldHolder& rho ,  
-    const volVectorFieldHolder& U, 
-    const surfaceScalarFieldHolder& phi, 
+    const volScalarFieldHolder& rho,
+    const volVectorFieldHolder& U,
+    const surfaceScalarFieldHolder& phi,
     const basicThermoHolder& thermo,
     const word& turbulenceModelName )
   {
