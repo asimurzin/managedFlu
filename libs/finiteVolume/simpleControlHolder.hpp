@@ -4,6 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "simpleControlArgs.hpp"
+#include "universalHolder.hpp"
 #include "fvMeshHolder.hpp"
 
 #include <simpleControl.H>
@@ -17,6 +18,7 @@ namespace Foam
   class simpleControlHolder 
     : public simpleControlArgs
     , public boost::shared_ptr< simpleControl >
+    , public universalHolder
   {
   public:
     simpleControlHolder( fvMeshHolder& mesh );

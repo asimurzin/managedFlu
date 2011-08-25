@@ -3,6 +3,7 @@
 
 
 //---------------------------------------------------------------------------
+#include "universalArgs.hpp"
 #include "fvMeshHolder.hpp"
 
 #include <boost/shared_ptr.hpp>
@@ -12,6 +13,7 @@
 namespace Foam
 {
   class simpleControlArgs
+    : universalArgs
   {
   public:
     const fvMeshHolder&  mesh() const ;
