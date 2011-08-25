@@ -64,7 +64,7 @@ volScalarFieldHolder createFields( const Foam::word& dict_name, const Foam::argL
                                                               IOobject::NO_WRITE ),
                                                     pThermo->rho() ) ) );
 
-  volScalarFieldHolder rho( rho1, universalArgs( new basicPsiThermoHolder( pThermo ) ) );
+  volScalarFieldHolder rho( rho1, universalArgs( &pThermo ) );
                                                
    return rho;
 
