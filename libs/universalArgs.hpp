@@ -13,8 +13,9 @@ namespace Foam
   class universalArgs 
   {
     public:
-      universalArgs( universalHolder* uh );
-      universalArgs( universalHolder*, universalHolder* );
+      universalArgs( const universalHolder* uh );
+      universalArgs( const universalHolder*, const universalHolder* );
+      universalArgs( const universalHolder*, const universalHolder*, const universalHolder* );
     protected:
       universalArgs();
 
