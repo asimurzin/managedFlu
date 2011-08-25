@@ -50,7 +50,7 @@ template<class Type>
   }
 
   template<class Type>
-  universalHolder* fvMatrixHolder< Type >::clone()
+  universalHolder* fvMatrixHolder< Type >::clone() const
   {
     return new fvMatrixHolder< Type >( *this );
   }

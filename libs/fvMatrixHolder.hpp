@@ -29,7 +29,7 @@ namespace Foam
     
     fvMatrixHolder();
     
-    virtual universalHolder* clone();
+    virtual universalHolder* clone() const;
     
     ~fvMatrixHolder();
     
