@@ -12,9 +12,10 @@ namespace Foam
   
   class universalArgs 
   {
-    protected:
+    public:
       universalArgs( universalHolder* uh );
       universalArgs( universalHolder*, universalHolder* );
+    protected:
       universalArgs();
 
     private:
