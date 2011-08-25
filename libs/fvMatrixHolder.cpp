@@ -6,16 +6,43 @@ namespace Foam
 					  const GeometricFieldHolder< Type, fvPatchField, volMesh >& field ) 
     : fvMatrixArgs< Type >( field )
     , smart_tmp< fvMatrix< Type > >( tmp_mt )
+    , universalHolder()
   {
 #ifdef OUR_DEBUG
     cout << "flufvMatrix = " << this << nl;
 #endif
   }
   
+  template<class Type>
+  fvMatrixHolder< Type >::fvMatrixHolder( const fvMatrix< Type >& mt, 
+					  const universalArgs& args ) 
+    : fvMatrixArgs< Type >( args )
+    , smart_tmp< fvMatrix< Type > >( mt )
+    , universalHolder()
+  {
+#ifdef OUR_DEBUG
+    cout << "flufvMatrix = " << this << nl;
+#endif
+  }
+
+  template<class Type>
+  fvMatrixHolder< Type >::fvMatrixHolder( const tmp< fvMatrix< Type > >& mt, 
+					  const universalArgs& args ) 
+    : fvMatrixArgs< Type >( args )
+    , smart_tmp< fvMatrix< Type > >( mt )
+    , universalHolder()
+  {
+#ifdef OUR_DEBUG
+    cout << "flufvMatrix = " << this << nl;
+#endif
+  }
+
+
 template<class Type>
   fvMatrixHolder< Type >::fvMatrixHolder() 
     : fvMatrixArgs< Type >()
     , smart_tmp< fvMatrix< Type > >()
+    , universalHolder()
   {
 #ifdef OUR_DEBUG
     cout << "flufvMatrix = " << this << nl;

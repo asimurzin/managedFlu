@@ -3,12 +3,14 @@ namespace Foam
 {
   template< class Type >
   fvMatrixArgs< Type >::fvMatrixArgs( const GeometricFieldHolder< Type, fvPatchField, volMesh >& field ) 
-    : psi_( new GeometricFieldHolder< Type, fvPatchField, volMesh >( field) )
+    : universalArgs( new GeometricFieldHolder< Type, fvPatchField, volMesh >( field) )
+    , psi_( new GeometricFieldHolder< Type, fvPatchField, volMesh >( field) )
   {}
 
   template< class Type >
   fvMatrixArgs< Type >::fvMatrixArgs() 
-    : psi_()
+    : universalArgs()
+    , psi_()
   {}
   
   

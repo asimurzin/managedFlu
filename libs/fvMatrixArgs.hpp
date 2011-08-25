@@ -3,6 +3,7 @@
 
 
 //---------------------------------------------------------------------------
+#include "universalArgs.hpp"
 #include "volFields.hpp"
 
 #include <boost/shared_ptr.hpp>
@@ -15,6 +16,7 @@ namespace Foam
   
   template<class Type> 
   class fvMatrixArgs
+    : universalArgs  
   {
   public:
     GeometricFieldHolder< Type, fvPatchField, volMesh >& psi() const;
