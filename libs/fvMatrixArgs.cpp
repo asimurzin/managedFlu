@@ -13,6 +13,11 @@ namespace Foam
     , psi_()
   {}
   
+  template< class Type >
+  fvMatrixArgs< Type >::fvMatrixArgs( const universalArgs& args ) 
+    : universalArgs( args )
+    , psi_()
+  {}
   
   template< class Type >
   GeometricFieldHolder< Type, fvPatchField, volMesh >& fvMatrixArgs< Type >::psi() const
