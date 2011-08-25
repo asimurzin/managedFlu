@@ -20,7 +20,7 @@ namespace Foam
     objectRegistryHolder();
     using boost::shared_ptr< objectRegistry >::operator*;
     
-    virtual universalHolder* clone();
+    virtual universalHolder* clone() const;
 
   protected:
     objectRegistryHolder( const boost::shared_ptr<objectRegistry>& );

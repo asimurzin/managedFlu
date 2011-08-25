@@ -17,7 +17,7 @@ namespace Foam
 #endif
   }
 
-  universalHolder* TimeHolder::clone()
+  universalHolder* TimeHolder::clone() const
   {
     return new TimeHolder( *this );
   }

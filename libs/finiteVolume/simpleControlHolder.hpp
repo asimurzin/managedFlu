@@ -24,7 +24,7 @@ namespace Foam
     simpleControlHolder( fvMeshHolder& mesh );
     ~simpleControlHolder();
     
-    virtual universalHolder* clone();
+    virtual universalHolder* clone() const;
     
     using  boost::shared_ptr< simpleControl >::operator*;
     using  boost::shared_ptr< simpleControl >::operator->;

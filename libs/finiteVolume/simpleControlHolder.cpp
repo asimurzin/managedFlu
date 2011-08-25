@@ -16,7 +16,7 @@ namespace Foam
 #endif
   }
   
-  universalHolder* simpleControlHolder::clone()
+  universalHolder* simpleControlHolder::clone() const 
   {
     return new simpleControlHolder( *this );
   }

@@ -8,7 +8,7 @@ namespace Foam
   class universalHolder
   {
     public:
-      virtual universalHolder* clone() = 0;
+      virtual universalHolder* clone() const = 0;
       
       virtual ~universalHolder()
       {}

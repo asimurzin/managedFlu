@@ -29,7 +29,7 @@ namespace Foam
                     IOobject::writeOption w = IOobject::NO_WRITE, 
                     bool registerObject=true );
     
-    virtual universalHolder* clone();
+    virtual universalHolder* clone() const;
     
     ~IOobjectHolder();
 

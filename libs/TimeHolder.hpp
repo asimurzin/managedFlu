@@ -22,7 +22,7 @@ namespace Foam
                 const word &systemName="system", 
                 const word &constantName="constant" );
 
-    virtual universalHolder* clone();
+    virtual universalHolder* clone() const;
     
     ~TimeHolder();
 
