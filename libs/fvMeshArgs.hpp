@@ -3,6 +3,8 @@
 
 
 //---------------------------------------------------------------------------
+#include "universalArgs.hpp"
+
 #include <boost/shared_ptr.hpp>
 
 
@@ -12,6 +14,7 @@ namespace Foam
   class IOobjectHolder;
    
   class fvMeshArgs
+    : universalArgs
   {
   public:
     fvMeshArgs();
@@ -22,10 +25,6 @@ namespace Foam
   private:
     boost::shared_ptr< IOobjectHolder > IOobjectArg;
 
-  private:
-    // fvMeshArgs( const fvMeshArgs& ); // not implemented 
-    //void operator = ( const fvMeshArgs& ); // not implemented 
-    //fvMeshArgs(); //not implemented
   };
 } // Foam
 

@@ -8,11 +8,13 @@
 namespace Foam
 {
   fvMeshArgs::fvMeshArgs( const IOobjectHolder & ioh ) 
-    : IOobjectArg( new IOobjectHolder( ioh ) )
+    : universalArgs( new IOobjectHolder( ioh ) )
+    , IOobjectArg( new IOobjectHolder( ioh ) )
   {}
 
 fvMeshArgs::fvMeshArgs() 
-    : IOobjectArg()
+    : universalArgs()
+    , IOobjectArg()
   {}
 
 }
