@@ -27,7 +27,7 @@ namespace Foam
     
     FatalErrorIn( "fvVectorMatrixHolder operator+ ( const fvVectorMatrixHolder& mt1, const fvVectorMatrixHolder& mt2 )")
       << exit(FatalError);
-    return fvVectorMatrixHolder( result, mt2.psi() ); //dummy return
+    return fvVectorMatrixHolder( result, universalArgs( &mt2.psi() ) ); //dummy return
   }
 
   inline fvVectorMatrixHolder operator - ( const fvVectorMatrixHolder& mt1, 
@@ -42,7 +42,7 @@ namespace Foam
     
     FatalErrorIn( "fvVectorMatrixHolder operator- ( const fvVectorMatrixHolder& mt1, const fvVectorMatrixHolder& mt2 )")
       << exit(FatalError);
-    return fvVectorMatrixHolder( result, mt2.psi() ); //dummy return
+    return fvVectorMatrixHolder( result, universalArgs( &mt2.psi() ) ); //dummy return
   }
 
   inline fvVectorMatrixHolder operator == ( const fvVectorMatrixHolder& mt1, 

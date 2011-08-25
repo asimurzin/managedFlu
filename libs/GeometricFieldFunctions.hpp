@@ -10,32 +10,7 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  fvMeshHolder get_valid_mesh( const fvMeshHolder& mesh1, const fvMeshHolder& mesh2 )
-  {
-    if ( mesh1.get() != 0 )
-      return mesh1;
 
-    else if ( mesh2.get() != 0 )
-      return mesh2;
-    
-    return mesh1;
-  }
-  
-  fvMeshHolder get_valid_mesh( const fvMeshHolder& mesh1, const fvMeshHolder& mesh2,  const fvMeshHolder& mesh3 )
-  {
-    if ( mesh1.get() != 0 )
-      return mesh1;
-
-    else if ( mesh2.get() != 0 )
-      return mesh2;
-
-    else if ( mesh3.get() != 0 )
-      return mesh3;
-    
-    return mesh1;
-  }
-  
-  
   //-------------------------------------------------------------------------
   inline surfaceScalarFieldHolder mag( const surfaceScalarFieldHolder&  field )
   {
@@ -45,13 +20,20 @@ namespace Foam
   inline surfaceScalarFieldHolder operator + ( const surfaceScalarFieldHolder& field1, 
 					       const surfaceScalarFieldHolder& field2 )
   {
-    return surfaceScalarFieldHolder( field1() + field2(), get_valid_mesh( field1.mesh(), field2.mesh() ) );
+    return surfaceScalarFieldHolder( field1() + field2(), field1.mesh() );
   }
+
+  inline surfaceScalarFieldHolder operator + ( const surfaceScalarFieldHolder& field1, 
+					       const surfaceScalarField& field2 )
+  {
+    return surfaceScalarFieldHolder( field1() + field2, field1.mesh() );
+  }
+
 
   inline surfaceScalarFieldHolder operator - ( const surfaceScalarFieldHolder& field1, 
 					       const surfaceScalarFieldHolder& field2 )
   {
-    return surfaceScalarFieldHolder( field1() - field2(), get_valid_mesh( field1.mesh(), field2.mesh() ) );
+    return surfaceScalarFieldHolder( field1() - field2(), field1.mesh() );
   }
 
 
@@ -59,27 +41,34 @@ namespace Foam
   inline surfaceVectorFieldHolder operator + ( const surfaceVectorFieldHolder& field1, 
 					       const surfaceVectorFieldHolder& field2 )
   {
-    return surfaceVectorFieldHolder( field1() + field2(), get_valid_mesh( field1.mesh(), field2.mesh() ) );
+    return surfaceVectorFieldHolder( field1() + field2(), field1.mesh() );
   }
 
   inline surfaceScalarFieldHolder operator & ( const surfaceVectorFieldHolder& field1, 
 					       const surfaceVectorFieldHolder& field2 )
   {
-    return surfaceScalarFieldHolder( field1() & field2(), get_valid_mesh( field1.mesh(), field2.mesh() ) );
+    return surfaceScalarFieldHolder( field1() & field2(), field1.mesh() );
   }
+
+  inline surfaceScalarFieldHolder operator & ( const surfaceVectorFieldHolder& field1, 
+					       const surfaceVectorField& field2 )
+  {
+    return surfaceScalarFieldHolder( field1() & field2, field1.mesh() );
+  }
+
 
 
   //-------------------------------------------------------------------------
   inline volVectorFieldHolder operator + ( const volVectorFieldHolder& field1, 
 					   const volVectorFieldHolder& field2 )
   {
-    return volVectorFieldHolder( field1() + field2(), get_valid_mesh( field1.mesh(), field2.mesh() ) );
+    return volVectorFieldHolder( field1() + field2(), field1.mesh() );
   }
 
   inline volVectorFieldHolder operator - ( const volVectorFieldHolder& field1, 
 					   const volVectorFieldHolder& field2 )
   {
-    return volVectorFieldHolder( field1() - field2(), get_valid_mesh( field1.mesh(), field2.mesh() ) );
+    return volVectorFieldHolder( field1() - field2(), field1.mesh() );
   }
 
   volVectorFieldHolder operator - ( const volVectorFieldHolder& field )
@@ -96,7 +85,7 @@ namespace Foam
   inline volScalarFieldHolder operator + ( const volScalarFieldHolder& field1, 
 					   const volScalarFieldHolder& field2 )
   {
-    return volScalarFieldHolder( field1() + field2(), get_valid_mesh( field1.mesh(), field2.mesh() ) );
+    return volScalarFieldHolder( field1() + field2(), field1.mesh() );
   }
 
   inline volScalarFieldHolder operator / ( const scalar& value, 
@@ -108,7 +97,7 @@ namespace Foam
   inline volVectorFieldHolder operator * ( const volScalarFieldHolder& field1, 
 					   const volVectorFieldHolder& field2 )
   {
-    return volVectorFieldHolder( field1() * field2(), get_valid_mesh( field1.mesh(), field2.mesh() ) );
+    return volVectorFieldHolder( field1() * field2(), universalArgs( &field1, &field2 ) );
   }
 } // Foam
 
