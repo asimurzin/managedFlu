@@ -127,7 +127,7 @@ int main(int argc, char *argv[])
           + fvm::div( phi, U )
           - fvm::laplacian( nu, U )
         );
-
+        
         solve( UEqn == -fvc::grad( p ) );
          
         // --- PISO loop
@@ -135,23 +135,23 @@ int main(int argc, char *argv[])
         for (int corr=0; corr<nCorr; corr++)
         {
             
-            volScalarFieldHolder rAU(1.0/UEqn.A());
+            volScalarField rAU(1.0/UEqn->A());
             
-            U = rAU*UEqn.H();
-            
-            phi = ( fvc::interpolate(U) & mesh->Sf() ) + fvc::ddtPhiCorr(rAU, U, phi);
+            U = rAU * UEqn->H();
+            Info << "xx" << endl;
+            phi = ( fvc::interpolate(U) & mesh->Sf() ) + fvc::ddtPhiCorr(rAU, U(), phi());
             
             adjustPhi(phi, U, p);
 
             for (int nonOrth=0; nonOrth<=nNonOrthCorr; nonOrth++)
             {
-                fvScalarMatrixHolder pEqn
+                fvScalarMatrix pEqn
                 (
-                    fvm::laplacian(rAU, p) == fvc::div(phi)
+                    fvm::laplacian(rAU, p() ) == ( fvc::div(phi) )()
                 );
-
-                pEqn->setReference(pRefCell, pRefValue);
-                pEqn->solve();
+                
+                pEqn.setReference(pRefCell, pRefValue);
+                pEqn.solve();
 
                 if (nonOrth == nNonOrthCorr)
                 {
@@ -161,7 +161,7 @@ int main(int argc, char *argv[])
             
             continuityErrors( runTime, mesh, phi, cumulativeContErr );
             
-            U -= rAU*fvc::grad(p);
+            U -= rAU * ( fvc::grad(p) )();
             U->correctBoundaryConditions();
         }
 
