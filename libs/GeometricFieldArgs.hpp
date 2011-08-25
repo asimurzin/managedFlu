@@ -3,6 +3,8 @@
 
 
 //---------------------------------------------------------------------------
+#include "universalArgs.hpp"
+
 #include <boost/shared_ptr.hpp>
 
 
@@ -12,12 +14,14 @@ namespace Foam
   class fvMeshHolder;
    
   class GeometricFieldArgs
+    : universalArgs
   {
   public:
     fvMeshHolder mesh() const;
 
   protected:
     GeometricFieldArgs( const fvMeshHolder&);
+    GeometricFieldArgs( const universalArgs&);
     GeometricFieldArgs();
     
   private:

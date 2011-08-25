@@ -3,6 +3,7 @@
 
 
 //---------------------------------------------------------------------------
+#include "universalHolder.hpp"
 #include "GeometricFieldArgs.hpp"
 #include "smart_tmp/smart_tmp.hpp"
 
@@ -19,14 +20,15 @@ namespace Foam
   class GeometricFieldHolder 
     : public GeometricFieldArgs
     , public smart_tmp< GeometricField< Type, PatchField, GeoMesh > >
+    , public universalHolder
   {
   public:
     GeometricFieldHolder( const IOobjectHolder&, const fvMeshHolder& );
     GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& , const fvMeshHolder& );
     GeometricFieldHolder( const IOobjectHolder&, const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
-    GeometricFieldHolder( const GeometricField< Type, PatchField, GeoMesh >& );
-    GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& );
-    GeometricFieldHolder( const smart_tmp< GeometricField< Type, PatchField, GeoMesh > >& );
+    GeometricFieldHolder( const GeometricField< Type, PatchField, GeoMesh >&, const universalArgs& );
+    GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >&, const universalArgs& );
+    GeometricFieldHolder( const smart_tmp< GeometricField< Type, PatchField, GeoMesh > >&, const universalArgs& );
     GeometricFieldHolder();
     
     ~GeometricFieldHolder();
