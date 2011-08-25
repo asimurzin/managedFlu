@@ -28,6 +28,9 @@ namespace Foam
     fvMatrixHolder( const tmp< fvMatrix< Type > >& , const universalArgs& );
     
     fvMatrixHolder();
+    
+    virtual universalHolder* clone();
+    
     ~fvMatrixHolder();
     
     void operator = ( const fvMatrixHolder& );

@@ -17,6 +17,11 @@ namespace Foam
 #endif
   }
 
+  universalHolder* TimeHolder::clone()
+  {
+    return new TimeHolder( *this );
+  }
+
   TimeHolder::~TimeHolder()
   {
 #ifdef OUR_DEBUG

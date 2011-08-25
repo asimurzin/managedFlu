@@ -94,7 +94,13 @@ namespace Foam
     cout << "GeometricFieldHolder=" << this << nl;
 #endif
   }
-
+  
+  template<class Type, template<class> class PatchField, class GeoMesh>
+  universalHolder* GeometricFieldHolder< Type, PatchField, GeoMesh >::clone()
+  {
+    return new GeometricFieldHolder< Type, PatchField, GeoMesh >( *this );
+  }
+  
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::~GeometricFieldHolder()
   {

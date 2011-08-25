@@ -21,6 +21,9 @@ namespace Foam
                 const argList &args, 
                 const word &systemName="system", 
                 const word &constantName="constant" );
+
+    virtual universalHolder* clone();
+    
     ~TimeHolder();
 
     using boost::shared_ptr< Time >::operator->;

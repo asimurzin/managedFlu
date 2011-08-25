@@ -29,6 +29,11 @@ namespace Foam
 #endif
   }
 
+  universalHolder* fvMeshHolder::clone()
+  {
+    return new fvMeshHolder( *this );
+  }
+  
   fvMeshHolder::~fvMeshHolder()
   {
 #ifdef OUR_DEBUG

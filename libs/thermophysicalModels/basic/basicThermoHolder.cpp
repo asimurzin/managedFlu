@@ -13,6 +13,11 @@ namespace Foam
   {
   }
 
+  universalHolder* basicThermoHolder::clone()
+  {
+    return new basicThermoHolder( *this );
+  }
+  
   basicThermoHolder::~basicThermoHolder()
   {
 #ifdef OUR_DEBUG

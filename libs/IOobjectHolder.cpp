@@ -33,6 +33,11 @@ namespace Foam
 #endif
   }
 
+  universalHolder* IOobjectHolder::clone()
+  {
+    return new IOobjectHolder( *this );
+  }
+
   IOobjectHolder::~IOobjectHolder()
   {
 #ifdef OUR_DEBUG

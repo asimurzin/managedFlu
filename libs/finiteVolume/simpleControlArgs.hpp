@@ -24,7 +24,7 @@ namespace Foam
   private:
     boost::shared_ptr< fvMeshHolder > mesh_;
     simpleControlArgs(); // not implemented
-    simpleControlArgs( const simpleControlArgs& ); // not implemented 
+    //simpleControlArgs( const simpleControlArgs& ); // not implemented 
     void operator=( const simpleControlArgs& ); // not implemented 
   };
 } // Foam

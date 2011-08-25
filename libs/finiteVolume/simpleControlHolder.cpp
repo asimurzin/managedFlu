@@ -15,7 +15,12 @@ namespace Foam
     cout << "simpleControlHolder = " << this << nl;
 #endif
   }
- 
+  
+  universalHolder* simpleControlHolder::clone()
+  {
+    return new simpleControlHolder( *this );
+  }
+  
   simpleControlHolder::~simpleControlHolder()
   {
 #ifdef OUR_DEBUG

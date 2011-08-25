@@ -13,6 +13,13 @@ namespace Foam
     : boost::shared_ptr< dictionary >( new dictionary() )
     , universalHolder()
   {}
+  
+  universalHolder* dictionaryHolder::clone()
+  {
+    return new dictionaryHolder( *this );
+  }
+  
+  
 }//Foam
 
 

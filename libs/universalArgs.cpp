@@ -7,7 +7,7 @@ namespace Foam
 {
   universalArgs::universalArgs( universalHolder* uh )
   {
-    this->listArgs.push_back( boost::shared_ptr< universalHolder >( uh ) );
+    this->listArgs.push_back(  boost::shared_ptr< universalHolder >( uh->clone() ) );
   }
   
   universalArgs::universalArgs( universalHolder* uh1, universalHolder* uh2 )

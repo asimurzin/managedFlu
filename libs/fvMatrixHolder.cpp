@@ -50,6 +50,12 @@ template<class Type>
   }
 
   template<class Type>
+  universalHolder* fvMatrixHolder< Type >::clone()
+  {
+    return new fvMatrixHolder< Type >( *this );
+  }
+  
+  template<class Type>
   fvMatrixHolder< Type >::~fvMatrixHolder()
   {
 #ifdef OUR_DEBUG

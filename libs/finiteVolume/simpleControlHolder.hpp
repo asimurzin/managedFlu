@@ -23,13 +23,15 @@ namespace Foam
   public:
     simpleControlHolder( fvMeshHolder& mesh );
     ~simpleControlHolder();
-
+    
+    virtual universalHolder* clone();
+    
     using  boost::shared_ptr< simpleControl >::operator*;
     using  boost::shared_ptr< simpleControl >::operator->;
 
   private:
     simpleControlHolder(); // not implemented
-    simpleControlHolder( const simpleControlHolder& ); // not implemented
+    //simpleControlHolder( const simpleControlHolder& ); // not implemented
     void operator=( const simpleControlHolder& ); // not implemented
 
   };

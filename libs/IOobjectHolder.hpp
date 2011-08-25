@@ -28,6 +28,9 @@ namespace Foam
                     IOobject::readOption r = IOobject::NO_READ, 
                     IOobject::writeOption w = IOobject::NO_WRITE, 
                     bool registerObject=true );
+    
+    virtual universalHolder* clone();
+    
     ~IOobjectHolder();
 
     using  boost::shared_ptr< IOobject >::operator*;

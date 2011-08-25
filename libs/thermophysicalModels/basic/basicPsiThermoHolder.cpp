@@ -23,6 +23,10 @@ namespace Foam
 #endif
   }
 
+  universalHolder* basicPsiThermoHolder::clone()
+  {
+    return new basicPsiThermoHolder( *this );
+  }
 
   basicPsiThermoHolder basicPsiThermoHolder::New( const fvMeshHolder& mesh )
   {

@@ -33,6 +33,8 @@ namespace Foam
     
     ~GeometricFieldHolder();
     
+    virtual universalHolder* clone();
+    
     GeometricField< Type, PatchField, GeoMesh >& ref();
     
     void operator = ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
