@@ -24,10 +24,7 @@ namespace Foam
  
   fvMeshHolder GeometricFieldArgs::mesh() const
   {
-    if ( mesh_ )
       return *mesh_;
-    else
-      return fvMeshHolder();
   }
 }
 
