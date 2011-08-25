@@ -13,7 +13,7 @@ namespace Foam
   {
   }
 
-  universalHolder* basicThermoHolder::clone()
+  universalHolder* basicThermoHolder::clone() const
   {
     return new basicThermoHolder( *this );
   }

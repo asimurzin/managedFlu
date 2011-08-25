@@ -26,7 +26,7 @@ namespace Foam
 
     static basicPsiThermoHolder New( const fvMeshHolder& );
     
-    virtual universalHolder* clone();
+    virtual universalHolder* clone() const;
     
     using  boost::shared_ptr< basicPsiThermo >::operator*;
     using  boost::shared_ptr< basicPsiThermo >::operator->;

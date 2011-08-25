@@ -18,7 +18,7 @@ namespace Foam
     , public universalHolder
   {
   public:
-    virtual universalHolder* clone();
+    virtual universalHolder* clone() const;
     
   protected:
     dictionaryHolder( const boost::shared_ptr< dictionary >& );

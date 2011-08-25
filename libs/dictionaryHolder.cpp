@@ -14,7 +14,7 @@ namespace Foam
     , universalHolder()
   {}
   
-  universalHolder* dictionaryHolder::clone()
+  universalHolder* dictionaryHolder::clone() const
   {
     return new dictionaryHolder( *this );
   }
