@@ -20,8 +20,6 @@ namespace Foam
     private:
       std::list< boost::shared_ptr< universalHolder > > listArgs;
 
-      //void operator=( const universalArgs& ); // not implemented
-      //universalArgs( const universalArgs& ); // not implemented
   };
 } // Foam
 
