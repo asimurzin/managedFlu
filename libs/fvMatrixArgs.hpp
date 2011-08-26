@@ -16,7 +16,7 @@ namespace Foam
   
   template<class Type> 
   class fvMatrixArgs
-    : universalArgs  
+    : public universalArgs  
   {
   public:
     GeometricFieldHolder< Type, fvPatchField, volMesh >& psi() const;
