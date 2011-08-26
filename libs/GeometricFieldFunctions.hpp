@@ -99,6 +99,20 @@ namespace Foam
   {
     return volVectorFieldHolder( field1() * field2(), createArgs( field1, field2 ) );
   }
+  
+  inline volVectorFieldHolder operator * ( const volScalarFieldHolder& field1, 
+					   const volVectorField& field2 )
+  {
+    return volVectorFieldHolder( field1() * field2, createArgs( field1 ) );
+  }
+
+  inline volVectorFieldHolder operator * ( const volScalarFieldHolder& field1, 
+					   const tmp< volVectorField >& field2 )
+  {
+    return volVectorFieldHolder( field1() * field2, createArgs( field1 ) );
+  }
+
+
 } // Foam
 
 
