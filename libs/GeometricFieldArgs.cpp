@@ -12,8 +12,18 @@ namespace Foam
     , mesh_( new fvMeshHolder( fvmh ) )
   {}
 
-  GeometricFieldArgs::GeometricFieldArgs( const universalArgs& args ) 
+  GeometricFieldArgs::GeometricFieldArgs( const universalHolder* args ) 
     : universalArgs( args )
+    , mesh_()
+  {}
+
+  GeometricFieldArgs::GeometricFieldArgs( const universalHolder* args, const universalHolder* args1 ) 
+    : universalArgs( args, args1 )
+    , mesh_()
+  {}
+
+  GeometricFieldArgs::GeometricFieldArgs( const universalHolder* args, const universalHolder* args1, const universalHolder* args2 ) 
+    : universalArgs( args, args1, args2 )
     , mesh_()
   {}
 

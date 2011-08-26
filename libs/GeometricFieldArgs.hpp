@@ -14,13 +14,15 @@ namespace Foam
   class fvMeshHolder;
    
   class GeometricFieldArgs
-    : universalArgs
+    : public universalArgs
   {
   public:
     const boost::shared_ptr< fvMeshHolder >& mesh() const;
 
     GeometricFieldArgs( const fvMeshHolder&);
-    GeometricFieldArgs( const universalArgs&);
+    GeometricFieldArgs( const universalHolder* );
+    GeometricFieldArgs( const universalHolder*, const universalHolder*  );
+    GeometricFieldArgs( const universalHolder*, const universalHolder*, const universalHolder* );
 
   protected:
     GeometricFieldArgs();

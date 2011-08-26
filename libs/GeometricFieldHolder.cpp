@@ -23,18 +23,6 @@ namespace Foam
 
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& tmp_gf, 
-									   const universalArgs& args ) 
-    : GeometricFieldArgs( args )
-    , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( tmp_gf )
-    , universalHolder()
-  {
-#ifdef OUR_DEBUG
-    cout << "GeometricFieldHolder=" << this << nl;
-#endif
-  }
-
-  template<class Type, template<class> class PatchField, class GeoMesh>
-  GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& tmp_gf, 
 									   const GeometricFieldArgs& args ) 
     : GeometricFieldArgs( args )
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( tmp_gf )
@@ -125,14 +113,14 @@ namespace Foam
     this->ref() -= field;
   }
 
-
+/*
   template<class Type, template<class> class PatchField, class GeoMesh>
   void GeometricFieldHolder< Type, PatchField, GeoMesh >::operator () ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
   {
     GeometricFieldArgs::operator=( field );
     smart_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator=( field );
   }
- 
+*/ 
   //-------------------------------------------------------------------------
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldArgs createArgs( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
@@ -140,7 +128,7 @@ namespace Foam
     if ( field.mesh().get() != 0 )
       return *( field.mesh() );
     
-    return universalArgs( &field );
+    return GeometricFieldArgs( &field );
   }
   
   template<class Type, template<class> class PatchField, class GeoMesh, 
@@ -153,7 +141,7 @@ namespace Foam
     else if ( field1.mesh().get() != 0 )
       return *( field1.mesh() );
     
-    return universalArgs( &field, &field1 );
+    return GeometricFieldArgs( &field, &field1 );
   }
 
   template<class Type, template<class> class PatchField, class GeoMesh, 
@@ -170,7 +158,7 @@ namespace Foam
     else if ( field2.mesh().get() != 0 )
       return *( field2.mesh() );
     
-    return universalArgs( &field, &field1, &field2 );
+    return GeometricFieldArgs( &field, &field1, &field2 );
   }
 
   
