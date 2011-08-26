@@ -30,6 +30,10 @@ namespace compressible
     return RASModelHolder( boost::shared_ptr< RASModel >( result.ptr() ), rho, U, phi, thermo );
   }
 
+  universalHolder* RASModelHolder::clone() const
+  {
+    return new RASModelHolder( *this );
+  }
 
   RASModelHolder::~RASModelHolder()
   {

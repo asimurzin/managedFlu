@@ -36,6 +36,8 @@ namespace compressible
       const basicThermoHolder&,
       const word& turbulenceModelName = turbulenceModel::typeName );
     
+    virtual universalHolder* clone() const;
+    
     ~RASModelHolder();
     
     using  boost::shared_ptr< RASModel >::operator*;

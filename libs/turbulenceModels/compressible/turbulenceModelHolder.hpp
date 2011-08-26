@@ -4,6 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "turbulenceModelArgs.hpp" 
+#include "universalHolder.hpp"
 
 #include <compressible/turbulenceModel/turbulenceModel.H>
 #include <boost/shared_ptr.hpp>
@@ -18,6 +19,7 @@ namespace compressible
   class turbulenceModelHolder 
     : protected turbulenceModelArgs
     , public boost::shared_ptr< turbulenceModel >
+    , public universalHolder
   {
   public:
     turbulenceModelHolder( 
@@ -28,6 +30,8 @@ namespace compressible
       const basicThermoHolder& );
 
     ~turbulenceModelHolder();
+    
+    virtual universalHolder* clone() const;
     
     using  boost::shared_ptr< turbulenceModel >::operator*;
     using  boost::shared_ptr< turbulenceModel >::operator->;

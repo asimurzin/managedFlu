@@ -15,7 +15,12 @@ namespace compressible
     const basicThermoHolder& thermo )
     : turbulenceModelArgs( rho, U, phi, thermo )
     , boost::shared_ptr< turbulenceModel >( tm )
+    , universalHolder()
+  {}
+
+  universalHolder* turbulenceModelHolder::clone() const
   {
+    return new turbulenceModelHolder( *this );
   }
 
   turbulenceModelHolder::~turbulenceModelHolder()
