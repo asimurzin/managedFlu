@@ -135,7 +135,7 @@ int main(int argc, char *argv[])
         for (int corr=0; corr<nCorr; corr++)
         {
             
-            volScalarFieldHolder rAU( 1.0 / UEqn->A(), UEqn );
+            volScalarFieldHolder rAU( 1.0 / UEqn->A(), &UEqn );
 
             U = rAU * UEqn->H();
 
@@ -148,7 +148,7 @@ int main(int argc, char *argv[])
             {
                 fvScalarMatrixHolder pEqn
                 (
-                    fvm::laplacian(rAU, p ) == ( fvc::div(phi) )
+                    fvm::laplacian(rAU, p ) == fvc::div(phi)
                 );
                 
                 pEqn->setReference(pRefCell, pRefValue);
