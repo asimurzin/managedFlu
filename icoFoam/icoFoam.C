@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
             volScalarField rAU(1.0/UEqn->A());
             
             U = rAU * UEqn->H();
-            Info << "xx" << endl;
+
             phi = ( fvc::interpolate(U) & mesh->Sf() ) + fvc::ddtPhiCorr(rAU, U(), phi());
             
             adjustPhi(phi, U, p);
