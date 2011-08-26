@@ -14,9 +14,9 @@ namespace Foam
                                   IOobject::readOption r, 
                                   IOobject::writeOption w, 
                                   bool registerObject ) 
-    : IOobjectArgs( registry )
+    : universalHolder()
+    , IOobjectArgs( registry )
     , boost::shared_ptr< IOobject >( new IOobject( name, instance, *registry, r, w, registerObject ) )
-    , universalHolder()
   {
 #ifdef OUR_DEBUG
     cout << "IOobjectHolder = " << this << nl;
@@ -24,9 +24,9 @@ namespace Foam
   }
  
   IOobjectHolder::IOobjectHolder() 
-    : IOobjectArgs()
+    : universalHolder()
+    , IOobjectArgs()
     , boost::shared_ptr< IOobject >()
-    , universalHolder()
   {
 #ifdef OUR_DEBUG
     cout << "IOobjectHolder = " << this << nl;

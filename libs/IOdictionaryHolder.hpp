@@ -26,6 +26,8 @@ namespace Foam
     IOdictionaryHolder();
     
     ~IOdictionaryHolder();
+    
+    virtual universalHolder* clone() const;
 
     using boost::shared_ptr< IOdictionary >::operator->;
     using boost::shared_ptr< IOdictionary >::operator*;

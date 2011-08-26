@@ -19,7 +19,7 @@ namespace Foam
   class IOobjectHolder 
     : public IOobjectArgs
     , public boost::shared_ptr< IOobject >
-    , public universalHolder
+    , virtual public universalHolder
   {
   public:
     IOobjectHolder( const word &name, 
