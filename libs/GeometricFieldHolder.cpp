@@ -48,7 +48,7 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const IOobjectHolder& io, 
 									   const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
-    : GeometricFieldArgs( field.mesh() )
+    : GeometricFieldArgs( createArgs( field ) )
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( *io, field() ) )
     , universalHolder()
   {
@@ -138,7 +138,7 @@ namespace Foam
   GeometricFieldArgs createArgs( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
   {
     if ( field.mesh().get() != 0 )
-      return field.mesh();
+      return *( field.mesh() );
     
     return universalArgs( &field );
   }
@@ -149,9 +149,9 @@ namespace Foam
                                  const GeometricFieldHolder< Type1, PatchField1, GeoMesh1 >&  field1)
   {
     if ( field.mesh().get() != 0 )
-      return field.mesh();
+      return *( field.mesh() );
     else if ( field1.mesh().get() != 0 )
-      return field1.mesh();
+      return *( field1.mesh() );
     
     return universalArgs( &field, &field1 );
   }
@@ -164,11 +164,11 @@ namespace Foam
                                  const GeometricFieldHolder< Type2, PatchField2, GeoMesh2 >& field2 )
   {
     if ( field.mesh().get() != 0 )
-      return field.mesh();
+      return *( field.mesh() );
     else if ( field1.mesh().get() != 0 )
-      return field1.mesh();
+      return *( field1.mesh() );
     else if ( field2.mesh().get() != 0 )
-      return field2.mesh();
+      return *( field2.mesh() );
     
     return universalArgs( &field, &field1, &field2 );
   }
