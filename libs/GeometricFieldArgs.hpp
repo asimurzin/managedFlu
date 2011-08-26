@@ -17,7 +17,7 @@ namespace Foam
     : universalArgs
   {
   public:
-    fvMeshHolder mesh() const;
+    const boost::shared_ptr< fvMeshHolder >& mesh() const;
 
     GeometricFieldArgs( const fvMeshHolder&);
     GeometricFieldArgs( const universalArgs&);

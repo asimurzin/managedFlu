@@ -22,9 +22,9 @@ namespace Foam
     , mesh_()
   {}
  
-  fvMeshHolder GeometricFieldArgs::mesh() const
+  const boost::shared_ptr< fvMeshHolder >& GeometricFieldArgs::mesh() const
   {
-      return *mesh_;
+      return mesh_;
   }
 }
 
