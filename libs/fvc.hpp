@@ -17,19 +17,19 @@ namespace Foam
     //---------------------------------------------------------------------------
     inline volScalarFieldHolder surfaceSum( const surfaceScalarFieldHolder& field )
     {
-      return volScalarFieldHolder( surfaceSum( field() ), field.mesh() );
+      return volScalarFieldHolder( surfaceSum( field() ), createArgs( field ) );
     }
 
 
     //---------------------------------------------------------------------------
     inline volVectorFieldHolder grad( const surfaceScalarFieldHolder& field )
     {
-      return volVectorFieldHolder( grad( field() ), field.mesh() );
+      return volVectorFieldHolder( grad( field() ), createArgs( field ) );
     }
     
     inline volVectorFieldHolder grad( const volScalarFieldHolder& field )
     {
-      return volVectorFieldHolder( grad( field() ), field.mesh() );
+      return volVectorFieldHolder( grad( field() ), createArgs( field ) );
     }
 
 
@@ -38,14 +38,14 @@ namespace Foam
                                                 const volVectorFieldHolder& U,
                                                 const surfaceScalarFieldHolder& phi )
     {
-      return surfaceScalarFieldHolder( ddtPhiCorr( rA(), U(), phi() ), rA.mesh() );
+      return surfaceScalarFieldHolder( ddtPhiCorr( rA(), U(), phi() ), createArgs( rA, U, phi ) );
     }                   
     
 
     //---------------------------------------------------------------------------
     inline volScalarFieldHolder div( const surfaceScalarFieldHolder& phi )
     {
-      return volScalarFieldHolder( div( phi() ), phi.mesh() );
+      return volScalarFieldHolder( div( phi() ), createArgs( phi ) );
     }                   
   } // fvc
 } //Foam
