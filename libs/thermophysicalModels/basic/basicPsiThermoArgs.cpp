@@ -5,10 +5,12 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  basicPsiThermoArgs::basicPsiThermoArgs( const fvMeshHolder& mesh ) 
-    : basicThermoArgs( mesh )
-    , mesh_( new fvMeshHolder( mesh ) )
-    
+  basicPsiThermoArgs::basicPsiThermoArgs( const universalHolder* arg ) 
+    : universalArgs( arg )
+  {}
+
+  basicPsiThermoArgs::basicPsiThermoArgs() 
+    : universalArgs()
   {}
 
 }

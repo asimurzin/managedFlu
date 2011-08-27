@@ -3,6 +3,7 @@
 
 
 //---------------------------------------------------------------------------
+#include "fvMeshHolder.hpp"
 #include "universalHolder.hpp"
 #include "basicThermoArgs.hpp"
 
@@ -15,23 +16,20 @@ namespace Foam
 {
   
   class basicThermoHolder 
-    : protected basicThermoArgs
+    : public basicThermoArgs
     , public boost::shared_ptr< basicThermo >
     , public universalHolder
   {
   public:
     basicThermoHolder( const boost::shared_ptr< basicThermo >&, const fvMeshHolder& );
+    basicThermoHolder();
+    
     ~basicThermoHolder();
     
     virtual universalHolder* clone() const;
     
     using  boost::shared_ptr< basicThermo >::operator*;
     using  boost::shared_ptr< basicThermo >::operator->;
-
-  private:
-    basicThermoHolder(); // not implemented
-    //basicThermoHolder( const basicThermoHolder& ); // not implemented
-    void operator=( const basicThermoHolder& ); // not implemented
 
   };
 } // Foam

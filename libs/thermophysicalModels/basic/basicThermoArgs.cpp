@@ -5,14 +5,13 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  basicThermoArgs::basicThermoArgs( const fvMeshHolder& mesh ) 
-    : mesh_( new fvMeshHolder( mesh ) )
+  basicThermoArgs::basicThermoArgs( const universalHolder* arg ) 
+    : universalArgs( arg )
   {}
 
-  fvMeshHolder basicThermoArgs::mesh() const
-  {
-    return *mesh_;
-  }
+  basicThermoArgs::basicThermoArgs() 
+    : universalArgs()
+  {}
 }
 
 

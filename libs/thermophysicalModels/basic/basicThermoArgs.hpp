@@ -3,7 +3,8 @@
 
 
 //---------------------------------------------------------------------------
-#include "fvMeshHolder.hpp"
+#include "universalArgs.hpp"
+#include "universalHolder.hpp"
 
 #include <boost/shared_ptr.hpp>
 
@@ -12,19 +13,13 @@
 namespace Foam
 {
   class basicThermoArgs
+    : universalArgs
   {
   public:
-    fvMeshHolder  mesh() const ;
+    basicThermoArgs();   
+  protected:  
+    basicThermoArgs( const universalHolder* );
 
-  protected:
-    basicThermoArgs( const fvMeshHolder& );
-    
-  private:
-    boost::shared_ptr< fvMeshHolder > mesh_;
-    
-    basicThermoArgs(); // not implemented
-    //basicThermoArgs( const basicThermoArgs& ); // not implemented 
-    void operator=( const basicThermoArgs& ); // not implemented 
   };
 } // Foam
 
