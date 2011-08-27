@@ -4,6 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "universalArgs.hpp"
+#include "universalHolder.hpp"
 
 #include <boost/shared_ptr.hpp>
 
@@ -11,20 +12,13 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  class IOobjectHolder;
-  class dictionaryHolder;
-  
   class IOdictionaryArgs
-    : universalArgs
+    : public universalArgs
   {
   protected:
-    IOdictionaryArgs( const IOobjectHolder&, const dictionaryHolder& );
-    IOdictionaryArgs( const IOobjectHolder& );
+    IOdictionaryArgs( const universalHolder*, const universalHolder* );
+    IOdictionaryArgs( const universalHolder* );
     IOdictionaryArgs();
-
-  private:
-    boost::shared_ptr< IOobjectHolder > IOobjectArg;
-    boost::shared_ptr< dictionaryHolder > dictionaryArg;
 
   };
 } // Foam
