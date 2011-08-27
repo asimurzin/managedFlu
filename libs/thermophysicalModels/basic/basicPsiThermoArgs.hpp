@@ -15,10 +15,9 @@ namespace Foam
   class basicPsiThermoArgs
   : public universalArgs
   {
-  public:
+  protected:
     basicPsiThermoArgs();
   
-  protected:
     basicPsiThermoArgs( const universalHolder* );
   };
 } // Foam

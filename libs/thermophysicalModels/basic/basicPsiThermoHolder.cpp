@@ -16,6 +16,16 @@ namespace Foam
 #endif
   }
 
+  basicPsiThermoHolder::basicPsiThermoHolder() 
+    : basicPsiThermoArgs()
+    , boost::shared_ptr< basicPsiThermo >()
+    , basicThermoHolder()
+  {
+#ifdef OUR_DEBUG
+    cout << "basicPsiThermoHolder = " << this << nl;
+#endif
+  }
+
   basicPsiThermoHolder::~basicPsiThermoHolder()
   {
 #ifdef OUR_DEBUG

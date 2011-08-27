@@ -15,9 +15,9 @@ namespace Foam
   class basicThermoArgs
     : universalArgs
   {
-  public:
-    basicThermoArgs();   
   protected:  
+    basicThermoArgs();   
+
     basicThermoArgs( const universalHolder* );
 
   };
