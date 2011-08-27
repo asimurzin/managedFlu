@@ -18,7 +18,7 @@ namespace Foam
     //-----------------------------------------------------------------------
     inline fvVectorMatrixHolder ddt( const volVectorFieldHolder& field )
     {
-      return fvVectorMatrixHolder( ddt( field() ), field );
+      return fvVectorMatrixHolder( ddt( field() ), &field );
     }
 
 
@@ -26,7 +26,7 @@ namespace Foam
     inline fvVectorMatrixHolder div( const surfaceScalarFieldHolder& field1, 
 				     const volVectorFieldHolder& field2 )
     {
-      return fvVectorMatrixHolder( div( field1(), field2() ), field2 );
+      return fvVectorMatrixHolder( div( field1(), field2() ), universalArgs( &field2 ).deps() && universalArgs( &field1 ).deps()  );
     }
     
 
@@ -34,23 +34,13 @@ namespace Foam
     inline fvVectorMatrixHolder laplacian( const dimensionedScalar& ds, 
                                            const volVectorFieldHolder& field )
     {
-      return fvVectorMatrixHolder( laplacian( ds, field() ), universalArgs( &field ) );
+      return fvVectorMatrixHolder( laplacian( ds, field() ), universalArgs( &field ).deps() );
     }
 
     inline fvScalarMatrixHolder laplacian( const volScalarFieldHolder& field1, 
 					   const volScalarFieldHolder& field2 )
     {
-      tmp< fvScalarMatrix > result = laplacian( field1(), field2() );
-      
-      if ( &( result().psi() ) == &( field1() ) )
-	return fvScalarMatrixHolder( result, field1 );
-      else if ( &( result().psi() ) == &(  field2() ) )
-	return fvScalarMatrixHolder( result, field2  );
-      
-      FatalErrorIn( "fvScalarMatrixHolder laplacian( const volScalarFieldHolder& field1, const volScalarFieldHolder& field2 )")
-	<< exit(FatalError);
-
-      return fvScalarMatrixHolder( result, field2 ); //dummy return
+      return fvScalarMatrixHolder( laplacian( field1(), field2() ), universalArgs( &field2 ).deps() && universalArgs( &field1 ).deps()  );
     }
   } // fvm
 } // Foam
