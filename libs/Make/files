@@ -21,6 +21,10 @@ thermophysicalModels/basic/basicThermoHolder.cpp
 thermophysicalModels/basic/basicPsiThermoArgs.cpp
 thermophysicalModels/basic/basicPsiThermoHolder.cpp
 
+thermophysicalModels/radiationModel/radiationModelArgs.cpp
+thermophysicalModels/radiationModel/radiationModelHolder.cpp
+
+
 turbulenceModels/compressible/turbulenceModelArgs.cpp
 turbulenceModels/compressible/turbulenceModelHolder.cpp
 turbulenceModels/compressible/RASModelArgs.cpp
