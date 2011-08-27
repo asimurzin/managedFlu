@@ -40,6 +40,7 @@ Description
 #include "Allfunctions.hpp"
 #include "thermophysicalModels.hpp"
 #include "turbulenceModels.hpp"
+#include "radiationModels.hpp"
 
 
 
@@ -152,10 +153,10 @@ int main(int argc, char *argv[])
   
   dimensionedScalar initialMass = result.m_initialMass;
   dimensionedScalar totalVolume = result.m_totalVolume;
-
-    
-/*    #include "createFields.H"
-    #include "createRadiationModel.H"
+ 
+  radiation::radiationModelHolder radiation = createRadiationModel( pThermo );
+  
+/* 
     #include "initContinuityErrs.H"
 
     simpleControl simple(mesh);
