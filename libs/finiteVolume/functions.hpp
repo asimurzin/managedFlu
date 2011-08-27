@@ -103,5 +103,5 @@ surfaceScalarFieldHolder compressibleCreatePhi(
                                                    mesh,
                                                    IOobject::READ_IF_PRESENT,
                                                    IOobject::AUTO_WRITE ),
-                                    linearInterpolate( rho * U ) & mesh->Sf() );
+                                    linearInterpolate( rho * U ) & surfaceVectorFieldHolder( mesh->Sf(), &mesh ) );
 }
