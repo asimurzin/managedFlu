@@ -5,15 +5,10 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  simpleControlArgs::simpleControlArgs( const fvMeshHolder& mesh ) 
-    : universalArgs( new fvMeshHolder( mesh ) )
-    , mesh_( new fvMeshHolder( mesh ) )
+  simpleControlArgs::simpleControlArgs( const universalHolder* mesh ) 
+    : universalArgs( mesh )
   {}
 
-  const fvMeshHolder& simpleControlArgs::mesh() const
-  {
-    return *mesh_;
-  }
 }
 
 

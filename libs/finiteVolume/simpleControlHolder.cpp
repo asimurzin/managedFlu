@@ -7,7 +7,7 @@ namespace Foam
 {
 
   simpleControlHolder::simpleControlHolder( fvMeshHolder& mesh ) 
-    : simpleControlArgs( mesh )
+    : simpleControlArgs( &mesh )
     , boost::shared_ptr< simpleControl >( new simpleControl( *mesh ) )
     , universalHolder()
   {

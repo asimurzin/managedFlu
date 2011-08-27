@@ -4,7 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "universalArgs.hpp"
-#include "fvMeshHolder.hpp"
+#include "universalHolder.hpp"
 
 #include <boost/shared_ptr.hpp>
 
@@ -13,16 +13,12 @@
 namespace Foam
 {
   class simpleControlArgs
-    : universalArgs
+    : public universalArgs
   {
-  public:
-    const fvMeshHolder&  mesh() const ;
-
   protected:
-    simpleControlArgs( const fvMeshHolder& );
+    simpleControlArgs( const universalHolder* );
 
   private:
-    boost::shared_ptr< fvMeshHolder > mesh_;
     simpleControlArgs(); // not implemented
     //simpleControlArgs( const simpleControlArgs& ); // not implemented 
     void operator=( const simpleControlArgs& ); // not implemented 
