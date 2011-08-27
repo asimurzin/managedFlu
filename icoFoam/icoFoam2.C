@@ -128,11 +128,11 @@ int main(int argc, char *argv[])
         for (int corr=0; corr<nCorr; corr++)
         {
             
-            volScalarFieldHolder rAU( 1.0 / UEqn->A(), &UEqn );
+            volScalarFieldHolder rAU( 1.0 / volScalarFieldHolder( UEqn->A(), &UEqn ) );
 
-            U = rAU * UEqn->H();
+            U = rAU * volVectorFieldHolder( UEqn->H(), &UEqn );
 
-            phi = ( fvc::interpolate(U) & mesh->Sf() ) + fvc::ddtPhiCorr(rAU, U, phi);
+            phi = ( fvc::interpolate(U) & surfaceVectorFieldHolder( mesh->Sf(), &mesh ) ) + fvc::ddtPhiCorr(rAU, U, phi);
             
             
             adjustPhi(phi, U, p);
