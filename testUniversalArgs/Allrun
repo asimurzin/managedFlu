@@ -1,0 +1,8 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+( cd testMatrix && wmake  && testMatrix )
+( cd testField && wmake  && testUniversalArgs )
+
+
+# ----------------------------------------------------------------- end-of-file
