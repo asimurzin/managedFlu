@@ -10,12 +10,7 @@ namespace Foam
      , IOobjectHolder()
   {}
 
-  objectRegistryHolder::objectRegistryHolder( const IOobjectHolder& io ) 
-    : boost::shared_ptr< objectRegistry >( io.get_objectRegistryArg() )
-    , IOobjectHolder( io )
-  {}
-
-  universalHolder* objectRegistryHolder::clone() const 
+  universalHolder* objectRegistryHolder::clone() const
   {
     return new objectRegistryHolder( *this );
   }

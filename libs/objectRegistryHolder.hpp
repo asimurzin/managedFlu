@@ -24,7 +24,6 @@ namespace Foam
 
   protected:
     objectRegistryHolder( const boost::shared_ptr<objectRegistry>& );
-    objectRegistryHolder( const IOobjectHolder& );
 
   };
 } // Foam

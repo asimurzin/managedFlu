@@ -17,7 +17,7 @@ namespace Foam
   class objectRegistryHolder;
    
   class IOobjectHolder 
-    : public IOobjectArgs
+    : protected IOobjectArgs
     , public boost::shared_ptr< IOobject >
     , virtual public universalHolder
   {

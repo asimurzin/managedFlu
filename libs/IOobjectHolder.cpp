@@ -15,7 +15,7 @@ namespace Foam
                                   IOobject::writeOption w, 
                                   bool registerObject ) 
     : universalHolder()
-    , IOobjectArgs( registry )
+    , IOobjectArgs( &registry )
     , boost::shared_ptr< IOobject >( new IOobject( name, instance, *registry, r, w, registerObject ) )
   {
 #ifdef OUR_DEBUG

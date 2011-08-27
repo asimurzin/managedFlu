@@ -4,6 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "universalArgs.hpp"
+#include "universalHolder.hpp"
 
 #include <IOobject.H>
 #include <objectRegistry.H>
@@ -13,20 +14,12 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  class objectRegistryHolder;
-   
   class IOobjectArgs
-    : universalArgs
+    : public universalArgs
   {
-  public:
-    const objectRegistryHolder&  get_objectRegistryArg() const ;
-
   protected:
-    IOobjectArgs( const objectRegistryHolder & registry );
+    IOobjectArgs( const universalHolder* );
     IOobjectArgs();
-
-  private:
-    boost::shared_ptr< objectRegistryHolder > objectRegistryArg;
 
   };
 } // Foam
