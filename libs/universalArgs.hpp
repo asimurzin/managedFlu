@@ -3,7 +3,7 @@
 
 
 //---------------------------------------------------------------------------
-#include <list>
+#include <set>
 #include <boost/shared_ptr.hpp>
 
 namespace Foam
@@ -20,7 +20,7 @@ namespace Foam
       universalArgs();
 
     private:
-      std::list< boost::shared_ptr< universalHolder > > listArgs;
+      std::set< boost::shared_ptr< universalHolder > > args_;
 
   };
 } // Foam
