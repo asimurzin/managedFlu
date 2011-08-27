@@ -44,7 +44,7 @@ Description
 
 
 //---------------------------------------------------------------------------
-/*struct result_createFields
+struct result_createFields
 {
   dimensionedScalar m_initialMass;
   dimensionedScalar m_totalVolume;
@@ -52,30 +52,43 @@ Description
     : m_initialMass( the_initialMass )
     , m_totalVolume( the_totalVolume )
   {}
-};*/
+};
 
 
 //---------------------------------------------------------------------------
-void createFields( const TimeHolder& runTime, const fvMeshHolder& mesh )
+result_createFields createFields( const TimeHolder& runTime, const fvMeshHolder& mesh, const uniformDimensionedVectorField& g,
+                                   basicPsiThermoHolder& pThermo,
+                                   volScalarFieldHolder& rho,
+                                   volScalarFieldHolder& p,
+                                   volScalarFieldHolder& h,
+                                   volScalarFieldHolder& psi,
+                                   volVectorFieldHolder& U,
+                                   surfaceScalarFieldHolder& phi,
+                                   compressible::RASModelHolder& turbulence,
+                                   volScalarFieldHolder& gh,
+                                   surfaceScalarFieldHolder& ghf,
+                                   volScalarFieldHolder& p_rgh,
+                                   label& pRefCell,
+                                   scalar& pRefValue )
 {
   Info<< "Reading thermophysical properties\n" << endl;
 
-  basicPsiThermoHolder pThermo = basicPsiThermoHolder::New( mesh );
+  pThermo = basicPsiThermoHolder::New( mesh );
 
-  volScalarFieldHolder rho( IOobjectHolder( "rho", 
+  rho = volScalarFieldHolder( IOobjectHolder( "rho", 
                                             runTime->timeName(),
                                             mesh, 
                                             IOobject::NO_READ, 
                                             IOobject::NO_WRITE ),
-                            pThermo->rho() );
+                            volScalarFieldHolder( pThermo->rho(),&pThermo ) );
 
-  volScalarFieldHolder p = pThermo->p();
-  volScalarFieldHolder h = pThermo->h();
-  const volScalarFieldHolder psi = pThermo->psi();
+  p = volScalarFieldHolder( pThermo->p(), &pThermo );
+  h = volScalarFieldHolder( pThermo->h(), &pThermo );
+  psi = volScalarFieldHolder( pThermo->psi(), &pThermo );
   
 
   Info<< "Reading field U\n" << endl;
-  volVectorFieldHolder U( IOobjectHolder( "U",
+  U = volVectorFieldHolder( IOobjectHolder( "U",
                                           runTime->timeName(),
                                           mesh,
                                           IOobject::MUST_READ,
@@ -83,52 +96,38 @@ void createFields( const TimeHolder& runTime, const fvMeshHolder& mesh )
                           mesh );
 
 
-  surfaceScalarFieldHolder phi = compressibleCreatePhi( runTime, mesh, U, rho );
+  phi = compressibleCreatePhi( runTime, mesh, U, rho );
 
 
-    Info<< "Creating turbulence model\n" << endl;
-    compressible::RASModelHolder turbulence = compressible::RASModelHolder::New(
-      rho,
-      U,
-      phi,
-      pThermo );
-
-/*
-    Info<< "Calculating field g.h\n" << endl;
-    volScalarField gh("gh", g & mesh.C());
-    surfaceScalarField ghf("ghf", g & mesh.Cf());
-
-    Info<< "Reading field p_rgh\n" << endl;
-    volScalarField p_rgh
-    (
-        IOobject
-        (
-            "p_rgh",
-            runTime.timeName(),
-            mesh,
-            IOobject::MUST_READ,
-            IOobject::AUTO_WRITE
-        ),
-        mesh
-    );
-
-    // Force p_rgh to be consistent with p
-    p_rgh = p - rho*gh;
+  Info<< "Creating turbulence model\n" << endl;
+  turbulence = compressible::RASModelHolder::New( rho,
+                                                  U,
+                                                  phi,
+                                                  pThermo );
 
 
-    label pRefCell = 0;
-    scalar pRefValue = 0.0;
-    setRefCell
-    (
-        p,
-        p_rgh,
-        mesh.solutionDict().subDict("SIMPLE"),
-        pRefCell,
-        pRefValue
-    );
+  Info<< "Calculating field g.h\n" << endl;
+    
+  gh = volScalarFieldHolder("gh", g & volVectorFieldHolder( mesh->C(), &mesh ) );
+  ghf = surfaceScalarFieldHolder("ghf", g & surfaceVectorFieldHolder( mesh->Sf(), &mesh ) );
 
-    dimensionedScalar initialMass = fvc::domainIntegrate(rho);
-    dimensionedScalar totalVolume = sum(mesh.V());*/
+  Info<< "Reading field p_rgh\n" << endl;
+  p_rgh = volScalarFieldHolder( IOobjectHolder( "p_rgh",
+                                                runTime->timeName(),
+                                                mesh,
+                                                IOobject::MUST_READ,
+                                                IOobject::AUTO_WRITE ),
+                                mesh );
+
+  // Force p_rgh to be consistent with p
+  p_rgh = p - rho*gh;
+
+
+  pRefCell = 0;
+  pRefValue = 0.0;
+  setRefCell( p, p_rgh, mesh->solutionDict().subDict("SIMPLE"), pRefCell, pRefValue );
+
+  return result_createFields( fvc::domainIntegrate( rho() ), sum( mesh->V() ) );
 }
 
 int main(int argc, char *argv[])
@@ -141,8 +140,18 @@ int main(int argc, char *argv[])
     
   uniformDimensionedVectorField g = readGravitationalAcceleration( runTime, mesh );
   
-  createFields( runTime, mesh );
+  basicPsiThermoHolder pThermo; volScalarFieldHolder rho; volScalarFieldHolder p;
+  volScalarFieldHolder h; volScalarFieldHolder psi;
+  volVectorFieldHolder U; surfaceScalarFieldHolder phi;
+  compressible::RASModelHolder turbulence; volScalarFieldHolder gh;
+  surfaceScalarFieldHolder ghf; volScalarFieldHolder p_rgh; 
+  label pRefCell; scalar pRefValue;
   
+  result_createFields result = createFields( runTime, mesh, g, pThermo, rho, p,
+                                             h, psi, U,  phi, turbulence, gh, ghf, p_rgh, pRefCell, pRefValue );
+  
+  dimensionedScalar initialMass = result.m_initialMass;
+  dimensionedScalar totalVolume = result.m_totalVolume;
 
     
 /*    #include "createFields.H"
