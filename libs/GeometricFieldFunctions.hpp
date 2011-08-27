@@ -43,6 +43,12 @@ namespace Foam
     return surfaceScalarFieldHolder( field1() & field2(), createArgs( field1, field2 ) );
   }
 
+  inline surfaceScalarFieldHolder operator & ( const uniformDimensionedVectorField& field1, 
+					       const surfaceVectorFieldHolder& field2 )
+  {
+    return surfaceScalarFieldHolder( field1 & field2(), createArgs( field2 ) );
+  }
+
 
   //-------------------------------------------------------------------------
   inline volVectorFieldHolder operator + ( const volVectorFieldHolder& field1, 
@@ -62,12 +68,19 @@ namespace Foam
     return volVectorFieldHolder( -field(), createArgs( field ) );
   }
   
+  inline volScalarFieldHolder operator & ( const uniformDimensionedVectorField& field1, 
+                                           const volVectorFieldHolder& field2 )
+  {
+    return volScalarFieldHolder( field1 & field2(), createArgs( field2 ) );
+  }
+
 
   //-------------------------------------------------------------------------
   inline volScalarFieldHolder mag( const volScalarFieldHolder&  field)
   {
     return volScalarFieldHolder( mag( field() ), createArgs( field ) );
   }
+
   inline volScalarFieldHolder operator + ( const volScalarFieldHolder& field1, 
 					   const volScalarFieldHolder& field2 )
   {
@@ -85,6 +98,19 @@ namespace Foam
   {
     return volVectorFieldHolder( field1() * field2(), createArgs( field1, field2 ) );
   }
+
+  inline volScalarFieldHolder operator * ( const volScalarFieldHolder& field1, 
+					   const volScalarFieldHolder& field2 )
+  {
+    return volScalarFieldHolder( field1() * field2(), createArgs( field1, field2 ) );
+  }
+
+  inline volScalarFieldHolder operator - ( const volScalarFieldHolder& field1, 
+					   const volScalarFieldHolder& field2 )
+  {
+    return volScalarFieldHolder( field1() - field2(), createArgs( field1, field2 ) );
+  }
+
   
 } // Foam
 

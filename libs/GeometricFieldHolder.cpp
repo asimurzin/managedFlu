@@ -56,7 +56,7 @@ namespace Foam
     cout << "GeometricFieldHolder=" << this << nl;
 #endif
   }
-
+/*
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( 
     const IOobjectHolder& io, 
@@ -71,7 +71,7 @@ namespace Foam
 #endif
   }
 
-
+*/
 
 
 
@@ -86,7 +86,7 @@ namespace Foam
     cout << "GeometricFieldHolder=" << this << nl;
 #endif
   }
-
+/*
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( 
     const word& wd, 
@@ -101,7 +101,7 @@ namespace Foam
 #endif
   }
 
-
+*/
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder()
     : GeometricFieldArgs()
