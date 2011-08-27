@@ -64,9 +64,10 @@ volScalarFieldHolder createFields( const Foam::word& dict_name, const Foam::argL
                                                               IOobject::NO_WRITE ),
                                                     pThermo->rho() ) ) );
 
-  volScalarFieldHolder rho( rho1, universalArgs( &pThermo ) );
-                                               
-   return rho;
+  volScalarFieldHolder rho( rho1, &pThermo );
+  
+                                              
+  return rho;
 
 }
 
@@ -75,6 +76,8 @@ int main(int argc, char *argv[])
   Foam::argList args(argc, argv);
    
   volScalarFieldHolder rho = createFields( Foam::Time::controlDictName, args );
+  
+  Info << rho() << nl;
 
   return 0;
 }
