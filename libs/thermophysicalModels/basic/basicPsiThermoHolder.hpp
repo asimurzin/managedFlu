@@ -16,7 +16,7 @@ namespace Foam
 {
   
   class basicPsiThermoHolder 
-    : public basicPsiThermoArgs
+    : protected basicPsiThermoArgs
     , public boost::shared_ptr< basicPsiThermo >
     , public basicThermoHolder
   {
