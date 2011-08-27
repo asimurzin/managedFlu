@@ -23,13 +23,6 @@ namespace Foam
     return surfaceScalarFieldHolder( field1() + field2(), createArgs( field1, field2 ) );
   }
 
-  inline surfaceScalarFieldHolder operator + ( const surfaceScalarFieldHolder& field1, 
-					       const surfaceScalarField& field2 )
-  {
-    return surfaceScalarFieldHolder( field1() + field2, createArgs( field1 ) );
-  }
-
-
   inline surfaceScalarFieldHolder operator - ( const surfaceScalarFieldHolder& field1, 
 					       const surfaceScalarFieldHolder& field2 )
   {
@@ -49,13 +42,6 @@ namespace Foam
   {
     return surfaceScalarFieldHolder( field1() & field2(), createArgs( field1, field2 ) );
   }
-
-  inline surfaceScalarFieldHolder operator & ( const surfaceVectorFieldHolder& field1, 
-					       const surfaceVectorField& field2 )
-  {
-    return surfaceScalarFieldHolder( field1() & field2, createArgs( field1 ) );
-  }
-
 
 
   //-------------------------------------------------------------------------
@@ -100,19 +86,6 @@ namespace Foam
     return volVectorFieldHolder( field1() * field2(), createArgs( field1, field2 ) );
   }
   
-  inline volVectorFieldHolder operator * ( const volScalarFieldHolder& field1, 
-					   const volVectorField& field2 )
-  {
-    return volVectorFieldHolder( field1() * field2, createArgs( field1 ) );
-  }
-
-  inline volVectorFieldHolder operator * ( const volScalarFieldHolder& field1, 
-					   const tmp< volVectorField >& field2 )
-  {
-    return volVectorFieldHolder( field1() * field2, createArgs( field1 ) );
-  }
-
-
 } // Foam
 
 
