@@ -1,29 +1,19 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  template< class Type >
-  fvMatrixArgs< Type >::fvMatrixArgs( const GeometricFieldHolder< Type, fvPatchField, volMesh >& field ) 
-    : universalArgs( new GeometricFieldHolder< Type, fvPatchField, volMesh >( field) )
-    , psi_( new GeometricFieldHolder< Type, fvPatchField, volMesh >( field) )
+
+  fvMatrixArgs::fvMatrixArgs( const universalHolder* args ) 
+    : universalArgs( args )
   {}
 
-  template< class Type >
-  fvMatrixArgs< Type >::fvMatrixArgs() 
+  fvMatrixArgs::fvMatrixArgs( const std::set< holderPtr >& the_deps ) 
+    : universalArgs( the_deps )
+  {}
+
+  fvMatrixArgs::fvMatrixArgs() 
     : universalArgs()
-    , psi_()
   {}
   
-  template< class Type >
-  fvMatrixArgs< Type >::fvMatrixArgs( const universalArgs& args ) 
-    : universalArgs( args )
-    , psi_()
-  {}
-  
-  template< class Type >
-  GeometricFieldHolder< Type, fvPatchField, volMesh >& fvMatrixArgs< Type >::psi() const
-  {
-    return *psi_;
-  }
 }
 
 

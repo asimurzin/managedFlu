@@ -17,15 +17,15 @@ namespace Foam
 {
   template<class Type>
   class fvMatrixHolder 
-    : public fvMatrixArgs< Type >
+    : public fvMatrixArgs
     , public smart_tmp< fvMatrix< Type > >
     , public universalHolder
   {
   public:
     fvMatrixHolder( const tmp< fvMatrix< Type > >& , const GeometricFieldHolder< Type, fvPatchField, volMesh >& );
     
-    fvMatrixHolder( const fvMatrix< Type >& , const universalArgs& );
-    fvMatrixHolder( const tmp< fvMatrix< Type > >& , const universalArgs& );
+    fvMatrixHolder( const fvMatrix< Type >& , const fvMatrixArgs& );
+    fvMatrixHolder( const tmp< fvMatrix< Type > >& , const fvMatrixArgs& );
     
     fvMatrixHolder();
     

@@ -14,23 +14,18 @@ namespace Foam
 {
   class fvMeshHolder;
   
-  template<class Type> 
   class fvMatrixArgs
     : public universalArgs  
   {
   public:
-    GeometricFieldHolder< Type, fvPatchField, volMesh >& psi() const;
-    fvMatrixArgs();
+    fvMatrixArgs( const universalHolder* );
+    fvMatrixArgs( const std::set< holderPtr >& );
     
   protected:
-    fvMatrixArgs( const GeometricFieldHolder< Type, fvPatchField, volMesh >& );
-    fvMatrixArgs( const universalArgs& );
-
+    fvMatrixArgs();
   private:
-    boost::shared_ptr< GeometricFieldHolder< Type, fvPatchField, volMesh > > psi_;
-
     // fvMatrixArgs( const fvMatrixArgs& ); // not implemented 
-    //void operator = ( const fvMatrixArgs< Type >& ); // not implemented 
+    //void operator = ( const fvMatrixArgs& ); // not implemented 
     //fvMatrixArgs(); //not implemented
   };
 } // Foam
