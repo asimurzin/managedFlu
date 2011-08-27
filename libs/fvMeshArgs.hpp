@@ -4,6 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "universalArgs.hpp"
+#include "universalHolder.hpp"
 
 #include <boost/shared_ptr.hpp>
 
@@ -14,20 +15,17 @@ namespace Foam
   class IOobjectHolder;
    
   class fvMeshArgs
-    : universalArgs
+    : public universalArgs
   {
-  public:
+  protected:
     fvMeshArgs();
   
-  protected:
-    fvMeshArgs( const IOobjectHolder & registry );
+    fvMeshArgs( const universalHolder* );
     
-  private:
-    boost::shared_ptr< IOobjectHolder > IOobjectArg;
-
   };
 } // Foam
 
 
 //---------------------------------------------------------------------------
 #endif
+
