@@ -17,19 +17,14 @@ namespace Foam
     : public universalArgs
   {
   public:
-    const boost::shared_ptr< fvMeshHolder >& mesh() const;
-
-    GeometricFieldArgs( const fvMeshHolder&);
     GeometricFieldArgs( const universalHolder* );
-    GeometricFieldArgs( const universalHolder*, const universalHolder*  );
-    GeometricFieldArgs( const universalHolder*, const universalHolder*, const universalHolder* );
+    GeometricFieldArgs( const std::set< holderPtr >& );
+//    GeometricFieldArgs( const universalHolder*, const universalHolder*  );
+//    GeometricFieldArgs( const universalHolder*, const universalHolder*, const universalHolder* );
 
   protected:
     GeometricFieldArgs();
     
-  private:
-    boost::shared_ptr< fvMeshHolder > mesh_;
-
   private:
 //   GeometricFieldArgs( const GeometricFieldArgs& ); // not implemented 
 //   void operator = ( const GeometricFieldArgs& ); // not implemented 
