@@ -70,14 +70,7 @@ dimensionedScalar createFields( const TimeHolder& runTime,
                                             IOobject::AUTO_WRITE ), mesh );
 
     
-  Info<< "Reading/calculating face flux field phi\n" << endl;
-
-  phi = surfaceScalarFieldHolder( IOobjectHolder( "phi",
-                                                  runTime->timeName(),
-                                                  mesh,
-                                                  IOobject::READ_IF_PRESENT,
-                                                  IOobject::AUTO_WRITE ),
-                                  linearInterpolate( U ) & mesh->Sf() );
+  phi = createPhi( runTime, mesh, U );
   
   setRefCell( p, mesh->solutionDict().subDict("PISO"), pRefCell, pRefValue);
 
