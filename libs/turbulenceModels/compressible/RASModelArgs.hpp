@@ -3,7 +3,7 @@
 
 
 //---------------------------------------------------------------------------
-#include "turbulenceModelArgs.hpp"
+#include "universalArgs.hpp"
 
 
 //---------------------------------------------------------------------------
@@ -13,19 +13,16 @@ namespace Foam
 namespace compressible
 {
   class RASModelArgs
-    : turbulenceModelArgs
+    : public universalArgs
   {
   protected:
+    RASModelArgs();
+
     RASModelArgs( 
-      const volScalarFieldHolder&, 
-      const volVectorFieldHolder&, 
-      const surfaceScalarFieldHolder&, 
-      const basicThermoHolder& );
-    
-  private:
-    RASModelArgs(); // not implemented
-    //RASModelArgs( const RASModelArgs& ); // not implemented 
-    void operator=( const RASModelArgs& ); // not implemented 
+      const universalHolder*, 
+      const universalHolder*, 
+      const universalHolder*, 
+      const universalHolder* );
   };
 
 } //compressible

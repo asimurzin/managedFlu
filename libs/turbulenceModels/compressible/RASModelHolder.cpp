@@ -13,9 +13,15 @@ namespace compressible
     const volVectorFieldHolder& U,  
     const surfaceScalarFieldHolder& phi, 
     const basicThermoHolder& thermo )
-    : RASModelArgs( rho, U, phi, thermo )
+    : RASModelArgs( &rho, &U, &phi, &thermo )
     , boost::shared_ptr< RASModel >( tm )
     , turbulenceModelHolder( boost::shared_ptr< RASModel >( *this ), rho, U, phi, thermo )
+  {}
+
+  RASModelHolder::RASModelHolder()
+    : RASModelArgs()
+    , boost::shared_ptr< RASModel >()
+    , turbulenceModelHolder()
   {}
 
   RASModelHolder RASModelHolder::New( 

@@ -8,35 +8,16 @@ namespace Foam
 namespace compressible
 {
   turbulenceModelArgs::turbulenceModelArgs( 
-    const volScalarFieldHolder& rho, 
-    const volVectorFieldHolder& U, 
-    const surfaceScalarFieldHolder& phi, 
-    const basicThermoHolder& thermo )
-    : rho_( new volScalarFieldHolder( rho ) )
-    , U_( new volVectorFieldHolder( U ) )
-    , phi_( new surfaceScalarFieldHolder( phi ) )
-    , thermophysicalModel_( new basicThermoHolder( thermo ) )
+    const universalHolder* rho, 
+    const universalHolder* U, 
+    const universalHolder* phi, 
+    const universalHolder* thermo )
+    : universalArgs( rho, U, phi, thermo )
   {}
 
-  const volScalarFieldHolder& turbulenceModelArgs::rho() const
-  {
-    return *rho_;
-  }
-  
-  const volVectorFieldHolder& turbulenceModelArgs::U() const
-  {
-    return *U_;
-  }
-
-  const surfaceScalarFieldHolder& turbulenceModelArgs::phi() const
-  {
-    return *phi_;
-  }
-
-  const basicThermoHolder& turbulenceModelArgs::thermo() const
-  {
-    return *thermophysicalModel_;
-  }
+  turbulenceModelArgs::turbulenceModelArgs()
+    : universalArgs()
+  {}
 
 }//compressible
 

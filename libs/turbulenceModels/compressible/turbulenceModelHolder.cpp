@@ -13,10 +13,20 @@ namespace compressible
     const volVectorFieldHolder& U,  
     const surfaceScalarFieldHolder& phi, 
     const basicThermoHolder& thermo )
-    : turbulenceModelArgs( rho, U, phi, thermo )
+    : turbulenceModelArgs( &rho, &U, &phi, &thermo )
     , boost::shared_ptr< turbulenceModel >( tm )
     , universalHolder()
   {}
+
+  turbulenceModelHolder::turbulenceModelHolder()
+    : turbulenceModelArgs()
+    , boost::shared_ptr< turbulenceModel >()
+    , universalHolder()
+  {
+#ifdef OUR_DEBUG
+    cout << "~turbulenceModelHolder = " << this << nl;
+#endif
+  }
 
   universalHolder* turbulenceModelHolder::clone() const
   {

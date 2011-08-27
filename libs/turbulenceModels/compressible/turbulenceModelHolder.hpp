@@ -29,17 +29,14 @@ namespace compressible
       const surfaceScalarFieldHolder&, 
       const basicThermoHolder& );
 
+    turbulenceModelHolder();
+    
     ~turbulenceModelHolder();
     
     virtual universalHolder* clone() const;
     
     using  boost::shared_ptr< turbulenceModel >::operator*;
     using  boost::shared_ptr< turbulenceModel >::operator->;
-
-  private:
-    turbulenceModelHolder(); // not implemented
-    //turbulenceModelHolder( const turbulenceModelHolder& ); // not implemented
-    void operator=( const turbulenceModelHolder& ); // not implemented
 
   };
 

@@ -18,29 +18,17 @@ namespace Foam
 namespace compressible
 {
   class turbulenceModelArgs
+     : public universalArgs
   {
-  public:
-    const volScalarFieldHolder& rho() const ;
-    const volVectorFieldHolder& U() const ;
-    const surfaceScalarFieldHolder& phi() const ;
-    const basicThermoHolder& thermo() const ;
-
   protected:
+    turbulenceModelArgs();
+
     turbulenceModelArgs( 
-      const volScalarFieldHolder&, 
-      const volVectorFieldHolder&, 
-      const surfaceScalarFieldHolder&, 
-      const basicThermoHolder& );
+      const universalHolder*, 
+      const universalHolder*, 
+      const universalHolder*, 
+      const universalHolder* );
     
-  private:
-    boost::shared_ptr< volScalarFieldHolder > rho_;
-    boost::shared_ptr< volVectorFieldHolder > U_;
-    boost::shared_ptr< surfaceScalarFieldHolder >  phi_;
-    boost::shared_ptr< basicThermoHolder > thermophysicalModel_;
-    
-    turbulenceModelArgs(); // not implemented
-    //turbulenceModelArgs( const turbulenceModelArgs& ); // not implemented 
-    void operator=( const turbulenceModelArgs& ); // not implemented 
   };
 
 } //compressible

@@ -8,11 +8,15 @@ namespace Foam
 namespace compressible
 {
   RASModelArgs::RASModelArgs( 
-    const volScalarFieldHolder& rho, 
-    const volVectorFieldHolder& U, 
-    const surfaceScalarFieldHolder& phi, 
-    const basicThermoHolder& thermo )
-    : turbulenceModelArgs( rho, U, phi, thermo )
+    const universalHolder* rho, 
+    const universalHolder* U, 
+    const universalHolder* phi, 
+    const universalHolder* thermo )
+    : universalArgs( rho, U, phi, thermo )
+  {}
+
+  RASModelArgs::RASModelArgs()
+    : universalArgs()
   {}
 
 }//compressible
