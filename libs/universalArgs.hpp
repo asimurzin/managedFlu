@@ -19,6 +19,7 @@ namespace Foam
       universalArgs( const universalHolder* uh );
       universalArgs( const universalHolder*, const universalHolder* );
       universalArgs( const universalHolder*, const universalHolder*, const universalHolder* );
+      universalArgs( const universalHolder*, const universalHolder*, const universalHolder*, const universalHolder* );
       
       universalArgs( const std::set< holderPtr >& the_deps );
       

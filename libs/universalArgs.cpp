@@ -27,6 +27,14 @@ namespace Foam
     this->deps_.insert( holderPtr( uh3->clone() ) );
   }
 
+  universalArgs::universalArgs( const universalHolder* uh1, const universalHolder* uh2, const universalHolder* uh3, const universalHolder* uh4 )
+  {
+    this->deps_.insert( holderPtr( uh1->clone() ) );
+    this->deps_.insert( holderPtr( uh2->clone() ) );
+    this->deps_.insert( holderPtr( uh3->clone() ) );
+    this->deps_.insert( holderPtr( uh4->clone() ) );
+  }
+
   universalArgs::universalArgs()
   {}
   
