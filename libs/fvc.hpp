@@ -46,7 +46,27 @@ namespace Foam
     inline volScalarFieldHolder div( const surfaceScalarFieldHolder& phi )
     {
       return volScalarFieldHolder( div( phi() ), createArgs( phi ) );
-    }                   
+    }
+    
+    
+    //---------------------------------------------------------------------------
+    inline surfaceScalarFieldHolder snGrad( const volScalarFieldHolder& field)
+    {
+      return surfaceScalarFieldHolder( snGrad( field() ), createArgs( field ) );
+    }
+
+    inline surfaceScalarFieldHolder snGrad( const volScalarFieldHolder& field, const word& name)
+    {
+      return surfaceScalarFieldHolder( snGrad( field(), name ), createArgs( field ) );
+    }
+
+   //---------------------------------------------------------------------------
+   inline volVectorFieldHolder reconstruct( const surfaceScalarFieldHolder& field )
+    {
+      return volVectorFieldHolder( reconstruct( field() ), createArgs( field ) );
+    }
+
+                   
   } // fvc
 } //Foam
 
