@@ -18,7 +18,7 @@ namespace Foam
   inline fvVectorMatrixHolder operator + ( const fvVectorMatrixHolder& mt1, 
 					   const fvVectorMatrixHolder& mt2 )
   {
-      return fvVectorMatrixHolder( mt1() + mt2(), mt1.deps() && mt2.deps() );
+    return fvVectorMatrixHolder( mt1() + mt2(), mt1.deps() && mt2.deps() );
   }
 
   inline fvVectorMatrixHolder operator - ( const fvVectorMatrixHolder& mt1, 
@@ -26,13 +26,13 @@ namespace Foam
   {
     tmp< fvVectorMatrix > result = mt1() - mt2();
 
-      return fvVectorMatrixHolder( mt1() - mt2(), mt1.deps() && mt2.deps() );
+    return fvVectorMatrixHolder( mt1() - mt2(), mt1.deps() && mt2.deps() );
   }
 
   inline fvVectorMatrixHolder operator == ( const fvVectorMatrixHolder& mt1, 
 					    const fvVectorMatrixHolder& mt2 )
   {
-      return fvVectorMatrixHolder( mt1() == mt2(), mt1.deps() && mt2.deps() );
+    return fvVectorMatrixHolder( mt1() == mt2(), mt1.deps() && mt2.deps() );
   }
   
   inline fvVectorMatrixHolder operator == ( const fvVectorMatrixHolder& mt1, 
@@ -47,8 +47,7 @@ namespace Foam
   inline fvScalarMatrixHolder operator + ( const fvScalarMatrixHolder& mt1, 
 					   const fvScalarMatrixHolder& mt2 )
   {
-      return fvScalarMatrixHolder( mt1() + mt2(),  mt1.deps() && mt2.deps() );
-    
+    return fvScalarMatrixHolder( mt1() + mt2(),  mt1.deps() && mt2.deps() );
   }
   
   inline fvScalarMatrixHolder operator == ( const fvScalarMatrixHolder& mt1, 
