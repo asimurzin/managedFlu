@@ -1,0 +1,15 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+# Source tutorial run functions
+. ${TEST_MM_ROOT_DIR}/testing/common/RunFunctions
+
+application="buoyantSimpleRadiationFoamMF"
+
+echo 
+echo "   C++" 
+echo 
+runApplication blockMesh 
+runSolver ${application}
+
+# ----------------------------------------------------------------- end-of-file
