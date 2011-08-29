@@ -23,10 +23,21 @@ namespace Foam
     return surfaceScalarFieldHolder( field1() + field2(), createArgs( field1, field2 ) );
   }
 
+  inline surfaceScalarFieldHolder operator * ( const surfaceScalarFieldHolder& field1, 
+					       const surfaceScalarFieldHolder& field2 )
+  {
+    return surfaceScalarFieldHolder( field1() * field2(), createArgs( field1, field2 ) );
+  }
+
   inline surfaceScalarFieldHolder operator - ( const surfaceScalarFieldHolder& field1, 
 					       const surfaceScalarFieldHolder& field2 )
   {
     return surfaceScalarFieldHolder( field1() - field2(), createArgs( field1, field2 ) );
+  }
+
+  inline surfaceScalarFieldHolder operator - ( const surfaceScalarFieldHolder& field )
+  {
+    return surfaceScalarFieldHolder( -field(), createArgs( field ) );
   }
 
 

@@ -170,6 +170,25 @@ namespace Foam
     this->ref() -= field;
   }
 
+  template<class Type, template<class> class PatchField, class GeoMesh>
+  void GeometricFieldHolder< Type, PatchField, GeoMesh >::operator += ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field)
+  {
+    this->ref() += field();
+  }
+
+  template<class Type, template<class> class PatchField, class GeoMesh>
+  void GeometricFieldHolder< Type, PatchField, GeoMesh >::operator += ( const GeometricField< Type, PatchField, GeoMesh >& field)
+  {
+    this->ref() += field;
+  }
+
+  template<class Type, template<class> class PatchField, class GeoMesh>
+  void GeometricFieldHolder< Type, PatchField, GeoMesh >::operator += ( const dimensioned< Type >& value)
+  {
+    this->ref() += value;
+  }
+
+
 /*
   template<class Type, template<class> class PatchField, class GeoMesh>
   void GeometricFieldHolder< Type, PatchField, GeoMesh >::operator () ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )

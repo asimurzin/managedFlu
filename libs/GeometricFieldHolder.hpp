@@ -49,6 +49,10 @@ namespace Foam
     void operator -= ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
     void operator -= ( const GeometricField< Type, PatchField, GeoMesh >& );
     
+    void operator += ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
+    void operator += ( const GeometricField< Type, PatchField, GeoMesh >& );
+    void operator += ( const dimensioned< Type >& );
+
     //void operator()( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
     
     using smart_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator();
