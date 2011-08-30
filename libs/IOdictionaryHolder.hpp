@@ -5,7 +5,8 @@
 //---------------------------------------------------------------------------
 #include "dictionaryHolder.hpp"
 #include "IOobjectHolder.hpp"
-#include "IOdictionaryArgs.hpp"
+#include "universalArgs.hpp"
+#include "Deps.hpp"
 
 #include <IOdictionary.H>
 #include <boost/shared_ptr.hpp>
@@ -15,7 +16,7 @@
 namespace Foam
 {
   class IOdictionaryHolder 
-    : protected IOdictionaryArgs
+    : virtual protected universalArgs
     , public boost::shared_ptr< IOdictionary >
     , protected dictionaryHolder
     , protected IOobjectHolder

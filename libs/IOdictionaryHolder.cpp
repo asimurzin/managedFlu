@@ -6,7 +6,7 @@
 namespace Foam
 {
   IOdictionaryHolder::IOdictionaryHolder( const IOobjectHolder&  ioh ) 
-    : IOdictionaryArgs( Foam::deps( &ioh ) )
+    : universalArgs( Foam::deps( &ioh ) )
     , boost::shared_ptr< IOdictionary >( new IOdictionary( *ioh ) )
     , dictionaryHolder()
     , IOobjectHolder( ioh )
@@ -18,7 +18,7 @@ namespace Foam
 
   IOdictionaryHolder::IOdictionaryHolder( const IOobjectHolder& ioh, 
 					  const dictionaryHolder& dict ) 
-    : IOdictionaryArgs( Foam::deps( &ioh, &dict ) )
+    : universalArgs( Foam::deps( &ioh, &dict ) )
     , boost::shared_ptr< IOdictionary >( new IOdictionary( *ioh, *dict ) )
     , dictionaryHolder( dict )
     , IOobjectHolder( ioh )
@@ -29,7 +29,7 @@ namespace Foam
   }
 
   IOdictionaryHolder::IOdictionaryHolder() 
-    : IOdictionaryArgs()
+    : universalArgs()
     , boost::shared_ptr< IOdictionary >()
     , dictionaryHolder()
     , IOobjectHolder()
