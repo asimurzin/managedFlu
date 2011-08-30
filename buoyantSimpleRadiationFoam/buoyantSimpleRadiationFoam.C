@@ -145,7 +145,7 @@ fvVectorMatrixHolder fun_Ueqn( const simpleControlHolder& simple,
 {
   // Solve the Momentum equation
 
-  fvVectorMatrixHolder UEqn = fvm::div(phi, U) + fvVectorMatrixHolder( turbulence->divDevRhoReff( U() ), &turbulence ); // turbulence && U
+  fvVectorMatrixHolder UEqn = fvm::div(phi, U) + fvVectorMatrixHolder( turbulence->divDevRhoReff( U() ), deps( &turbulence, &U ) ); // turbulence && U
 
   UEqn->relax();
  
