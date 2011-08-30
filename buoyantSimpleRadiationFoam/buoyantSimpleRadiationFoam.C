@@ -83,11 +83,11 @@ result_createFields createFields( const TimeHolder& runTime, const fvMeshHolder&
                                             mesh, 
                                             IOobject::NO_READ, 
                                             IOobject::NO_WRITE ),
-                            volScalarFieldHolder( pThermo->rho(), &pThermo ) );
+                            volScalarFieldHolder( pThermo->rho(), deps( &pThermo ) ) );
 
-  p = volScalarFieldHolder( pThermo->p(), &pThermo );
-  h = volScalarFieldHolder( pThermo->h(), &pThermo );
-  psi = volScalarFieldHolder( pThermo->psi(), &pThermo );
+  p = volScalarFieldHolder( pThermo->p(), deps( &pThermo ) );
+  h = volScalarFieldHolder( pThermo->h(), deps( &pThermo ) );
+  psi = volScalarFieldHolder( pThermo->psi(), deps( &pThermo ) );
   
 
   Info<< "Reading field U\n" << endl;
@@ -111,8 +111,8 @@ result_createFields createFields( const TimeHolder& runTime, const fvMeshHolder&
 
   Info<< "Calculating field g.h\n" << endl;
     
-  gh = volScalarFieldHolder("gh", g & volVectorFieldHolder( mesh->C(), &mesh ) );
-  ghf = surfaceScalarFieldHolder("ghf", g & surfaceVectorFieldHolder( mesh->Cf(), &mesh ) );
+  gh = volScalarFieldHolder("gh", g & volVectorFieldHolder( mesh->C(), deps( &mesh ) ) );
+  ghf = surfaceScalarFieldHolder("ghf", g & surfaceVectorFieldHolder( mesh->Cf(), deps( &mesh ) ) );
   
   Info<< "Reading field p_rgh\n" << endl;
   p_rgh = volScalarFieldHolder( IOobjectHolder( "p_rgh",
@@ -150,7 +150,7 @@ fvVectorMatrixHolder fun_Ueqn( const simpleControlHolder& simple,
   UEqn->relax();
  
   if ( simple->momentumPredictor() )
-     solve( UEqn == fvc::reconstruct( ( ( - ghf*fvc::snGrad(rho) - fvc::snGrad(p_rgh) ) * surfaceScalarFieldHolder( mesh->magSf(), &mesh ) ) ) );
+     solve( UEqn == fvc::reconstruct( ( ( - ghf*fvc::snGrad(rho) - fvc::snGrad(p_rgh) ) * surfaceScalarFieldHolder( mesh->magSf(), deps( &mesh ) ) ) ) );
 
   return UEqn;
 
