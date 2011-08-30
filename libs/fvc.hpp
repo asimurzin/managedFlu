@@ -17,19 +17,19 @@ namespace Foam
     //---------------------------------------------------------------------------
     inline volScalarFieldHolder surfaceSum( const surfaceScalarFieldHolder& field )
     {
-      return volScalarFieldHolder( surfaceSum( field() ), createArgs( field ) );
+      return volScalarFieldHolder( surfaceSum( field() ), deps( &field ) );
     }
 
 
     //---------------------------------------------------------------------------
     inline volVectorFieldHolder grad( const surfaceScalarFieldHolder& field )
     {
-      return volVectorFieldHolder( grad( field() ), createArgs( field ) );
+      return volVectorFieldHolder( grad( field() ), deps( &field ) );
     }
     
     inline volVectorFieldHolder grad( const volScalarFieldHolder& field )
     {
-      return volVectorFieldHolder( grad( field() ), createArgs( field ) );
+      return volVectorFieldHolder( grad( field() ), deps( &field ) );
     }
 
 
@@ -38,32 +38,32 @@ namespace Foam
                                                 const volVectorFieldHolder& U,
                                                 const surfaceScalarFieldHolder& phi )
     {
-      return surfaceScalarFieldHolder( ddtPhiCorr( rA(), U(), phi() ), createArgs( rA, U, phi ) );
+      return surfaceScalarFieldHolder( ddtPhiCorr( rA(), U(), phi() ), deps( &rA, deps( &U, &phi ) ) );
     }                   
     
 
     //---------------------------------------------------------------------------
     inline volScalarFieldHolder div( const surfaceScalarFieldHolder& phi )
     {
-      return volScalarFieldHolder( div( phi() ), createArgs( phi ) );
+      return volScalarFieldHolder( div( phi() ), deps( &phi ) );
     }
     
     
     //---------------------------------------------------------------------------
     inline surfaceScalarFieldHolder snGrad( const volScalarFieldHolder& field)
     {
-      return surfaceScalarFieldHolder( snGrad( field() ), createArgs( field ) );
+      return surfaceScalarFieldHolder( snGrad( field() ), deps( &field ) );
     }
 
     inline surfaceScalarFieldHolder snGrad( const volScalarFieldHolder& field, const word& name)
     {
-      return surfaceScalarFieldHolder( snGrad( field(), name ), createArgs( field ) );
+      return surfaceScalarFieldHolder( snGrad( field(), name ), deps( &field ) );
     }
 
    //---------------------------------------------------------------------------
    inline volVectorFieldHolder reconstruct( const surfaceScalarFieldHolder& field )
     {
-      return volVectorFieldHolder( reconstruct( field() ), createArgs( field ) );
+      return volVectorFieldHolder( reconstruct( field() ), deps( &field ) );
     }
 
                    

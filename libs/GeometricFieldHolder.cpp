@@ -23,7 +23,7 @@ namespace Foam
 
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& tmp_gf, 
-									   const GeometricFieldArgs& args ) 
+									   const Deps& args ) 
     : GeometricFieldArgs( args )
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( tmp_gf )
     , universalHolder()
@@ -35,7 +35,7 @@ namespace Foam
 
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const GeometricField< Type, PatchField, GeoMesh >& gf, 
-									   const GeometricFieldArgs& args ) 
+									   const Deps& args ) 
     : GeometricFieldArgs( args )
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( gf )
     , universalHolder()
@@ -56,24 +56,6 @@ namespace Foam
     cout << "GeometricFieldHolder=" << this << nl;
 #endif
   }
-/*
-  template<class Type, template<class> class PatchField, class GeoMesh>
-  GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( 
-    const IOobjectHolder& io, 
-    const GeometricField< Type, PatchField, GeoMesh >& field,
-    const GeometricFieldArgs& args )
-    : GeometricFieldArgs( args )
-    , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( *io, field ) )
-    , universalHolder()
-  {
-#ifdef OUR_DEBUG
-    cout << "GeometricFieldHolder=" << this << nl;
-#endif
-  }
-
-*/
-
-
 
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const word& wd, 
@@ -86,22 +68,7 @@ namespace Foam
     cout << "GeometricFieldHolder=" << this << nl;
 #endif
   }
-/*
-  template<class Type, template<class> class PatchField, class GeoMesh>
-  GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( 
-    const word& wd, 
-    const GeometricField< Type, PatchField, GeoMesh >& field,
-    const GeometricFieldArgs& args )
-    : GeometricFieldArgs( args )
-    , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( wd, field ) )
-    , universalHolder()
-  {
-#ifdef OUR_DEBUG
-    cout << "GeometricFieldHolder=" << this << nl;
-#endif
-  }
 
-*/
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder()
     : GeometricFieldArgs()

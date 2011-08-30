@@ -4,6 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "universalArgs.hpp"
+#include "Deps.hpp"
 
 #include <boost/shared_ptr.hpp>
 
@@ -17,10 +18,7 @@ namespace Foam
     : public universalArgs
   {
   public:
-    GeometricFieldArgs( const universalHolder* );
-    GeometricFieldArgs( const std::set< holderPtr >& );
-//    GeometricFieldArgs( const universalHolder*, const universalHolder*  );
-//    GeometricFieldArgs( const universalHolder*, const universalHolder*, const universalHolder* );
+    GeometricFieldArgs( const Deps& );
 
   protected:
     GeometricFieldArgs();

@@ -4,6 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "universalHolder.hpp"
+#include "Deps.hpp"
 #include "GeometricFieldArgs.hpp"
 #include "smart_tmp/smart_tmp.hpp"
 
@@ -23,17 +24,14 @@ namespace Foam
     , public universalHolder
   {
   public:
+    //reference constructor
     GeometricFieldHolder( const IOobjectHolder&, const fvMeshHolder& );
-    
-    GeometricFieldHolder( const GeometricField< Type, PatchField, GeoMesh >& , const GeometricFieldArgs& );
-    GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& , const GeometricFieldArgs& );
-
     GeometricFieldHolder( const IOobjectHolder&, const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
-    //GeometricFieldHolder( const IOobjectHolder&, const GeometricField< Type, PatchField, GeoMesh >&, const GeometricFieldArgs& );
-    
     GeometricFieldHolder( const word&, const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
-    //GeometricFieldHolder( const word&, const GeometricField< Type, PatchField, GeoMesh >&, const GeometricFieldArgs& );
-
+    
+    // constructors with deps
+    GeometricFieldHolder( const GeometricField< Type, PatchField, GeoMesh >& , const Deps& );
+    GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& , const Deps& );
 
     GeometricFieldHolder();
     
