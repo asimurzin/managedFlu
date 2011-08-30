@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------
 #include "universalHolder.hpp"
 #include "Deps.hpp"
-#include "GeometricFieldArgs.hpp"
+#include "universalArgs.hpp"
 #include "smart_tmp/smart_tmp.hpp"
 
 #include <GeometricField.H>
@@ -16,10 +16,11 @@ namespace Foam
 {
 
   class IOobjectHolder;
+  class fvMeshHolder;
   
   template<class Type, template<class> class PatchField, class GeoMesh>
   class GeometricFieldHolder 
-    : public GeometricFieldArgs
+    : public universalArgs
     , public smart_tmp< GeometricField< Type, PatchField, GeoMesh > >
     , public universalHolder
   {
