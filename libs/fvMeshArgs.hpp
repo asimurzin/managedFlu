@@ -3,6 +3,7 @@
 
 
 //---------------------------------------------------------------------------
+#include "Deps.hpp"
 #include "universalArgs.hpp"
 #include "universalHolder.hpp"
 
@@ -20,7 +21,7 @@ namespace Foam
   protected:
     fvMeshArgs();
   
-    fvMeshArgs( const universalHolder* );
+    fvMeshArgs( const Deps& );
     
   };
 } // Foam

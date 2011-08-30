@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  radiationModelArgs::radiationModelArgs( const universalHolder* arg ) 
+  radiationModelArgs::radiationModelArgs( const Deps& arg ) 
     : universalArgs( arg )
   {}
 

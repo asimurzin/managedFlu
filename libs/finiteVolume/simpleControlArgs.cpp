@@ -5,8 +5,8 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  simpleControlArgs::simpleControlArgs( const universalHolder* mesh ) 
-    : universalArgs( mesh )
+  simpleControlArgs::simpleControlArgs( const Deps& arg ) 
+    : universalArgs( arg )
   {}
 
 }

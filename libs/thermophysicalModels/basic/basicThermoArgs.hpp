@@ -5,6 +5,7 @@
 //---------------------------------------------------------------------------
 #include "universalArgs.hpp"
 #include "universalHolder.hpp"
+#include "Deps.hpp"
 
 #include <boost/shared_ptr.hpp>
 
@@ -18,7 +19,7 @@ namespace Foam
   protected:  
     basicThermoArgs();   
 
-    basicThermoArgs( const universalHolder* );
+    basicThermoArgs( const Deps& );
 
   };
 } // Foam

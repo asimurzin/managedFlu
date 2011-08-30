@@ -7,7 +7,7 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  IOobjectArgs::IOobjectArgs( const universalHolder* registry ) 
+  IOobjectArgs::IOobjectArgs( const Deps& registry ) 
     : universalArgs( registry )
   {}
 

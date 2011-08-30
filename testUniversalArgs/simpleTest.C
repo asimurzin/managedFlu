@@ -37,72 +37,16 @@ Description
 
 
 //---------------------------------------------------------------------------
-class holder1Args
-  : public universalArgs
+void func( int* arg )
 {
-  public:
-    holder1Args( const universalArgs& args)
-      : universalArgs( args )
-    {
-      cout << "holder1Args( args ) = " << this << nl;
-    }
-  
-    ~holder1Args()
-    {
-      cout << "~holder1Args() = " << this << nl;
-    }
-};
-
-
-class holder1
-  : public holder1Args
-  , public universalHolder
-{
-  public:
-    holder1( const universalArgs& args)
-      : holder1Args( args )
-      , universalHolder()
-    {
-      cout << "holder1( args ) = " << this << nl;
-    }
-  
-    ~holder1()
-    {
-      cout << "~holder1() = " << this << nl;
-   }
-};
-
-
-
-class holder2
-  : public universalHolder
-{
-  public:
-    holder2( const int& int_)
-      : universalHolder()
-    {
-      cout << "holder2(  ) = " << this << nl;
-    }
-  
-    ~holder2()
-    {
-      cout << "~holder2() = " << this << nl;
-    }
-};
-
-holder1 testing()
-{
-  boost::shared_ptr< holder2 > h2( new holder2( 10 ) );
-  
-  //holder2 h2(10);
-  
-  return holder1( universalArgs( h2 ) );
+  cout << "arg= " << arg << nl;
 }
+
 
 int main(int argc, char *argv[])
 {
  
-  holder1 rho = testing();
+  func( *( new int( 1 + 3 ) ) );
   
   cout << "The end " << nl;
   return 0;

@@ -5,6 +5,7 @@
 //---------------------------------------------------------------------------
 #include "universalArgs.hpp"
 #include "universalHolder.hpp"
+#include "Deps.hpp"
 
 #include <boost/shared_ptr.hpp>
 
@@ -16,8 +17,7 @@ namespace Foam
     : public universalArgs
   {
   protected:
-    IOdictionaryArgs( const universalHolder*, const universalHolder* );
-    IOdictionaryArgs( const universalHolder* );
+    IOdictionaryArgs( const Deps& );
     IOdictionaryArgs();
 
   };

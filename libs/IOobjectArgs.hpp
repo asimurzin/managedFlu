@@ -5,6 +5,7 @@
 //---------------------------------------------------------------------------
 #include "universalArgs.hpp"
 #include "universalHolder.hpp"
+#include "Deps.hpp"
 
 #include <IOobject.H>
 #include <objectRegistry.H>
@@ -18,7 +19,7 @@ namespace Foam
     : public universalArgs
   {
   protected:
-    IOobjectArgs( const universalHolder* );
+    IOobjectArgs( const Deps& );
     IOobjectArgs();
 
   };

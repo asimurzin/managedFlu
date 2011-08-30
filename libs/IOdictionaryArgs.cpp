@@ -9,13 +9,8 @@
 namespace Foam
 {
 
-  IOdictionaryArgs::IOdictionaryArgs( const universalHolder*  ioh ) 
-    : universalArgs( ioh )
-  {}
-
-  IOdictionaryArgs::IOdictionaryArgs( const universalHolder* ioh, 
-				      const universalHolder* dict ) 
-    : universalArgs( ioh, dict )
+  IOdictionaryArgs::IOdictionaryArgs( const Deps& args ) 
+    : universalArgs( args )
   {}
 
   IOdictionaryArgs::IOdictionaryArgs() 

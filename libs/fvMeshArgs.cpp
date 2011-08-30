@@ -7,8 +7,8 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  fvMeshArgs::fvMeshArgs( const universalHolder* ioh ) 
-    : universalArgs( ioh )
+  fvMeshArgs::fvMeshArgs( const Deps& arg ) 
+    : universalArgs( arg )
   {}
 
 fvMeshArgs::fvMeshArgs() 

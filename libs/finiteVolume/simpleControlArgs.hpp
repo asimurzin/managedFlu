@@ -5,6 +5,7 @@
 //---------------------------------------------------------------------------
 #include "universalArgs.hpp"
 #include "universalHolder.hpp"
+#include "Deps.hpp"
 
 #include <boost/shared_ptr.hpp>
 
@@ -16,7 +17,7 @@ namespace Foam
     : public universalArgs
   {
   protected:
-    simpleControlArgs( const universalHolder* );
+    simpleControlArgs( const Deps& );
 
   private:
     simpleControlArgs(); // not implemented

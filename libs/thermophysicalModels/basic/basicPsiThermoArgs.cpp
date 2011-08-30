@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  basicPsiThermoArgs::basicPsiThermoArgs( const universalHolder* arg ) 
+  basicPsiThermoArgs::basicPsiThermoArgs( const Deps& arg ) 
     : universalArgs( arg )
   {}
 

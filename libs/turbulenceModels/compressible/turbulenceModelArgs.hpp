@@ -3,6 +3,7 @@
 
 
 //---------------------------------------------------------------------------
+#include "Deps.hpp"
 #include "volFields.hpp"
 #include "surfaceFields.hpp"
 #include "basicThermoHolder.hpp"
@@ -23,11 +24,7 @@ namespace compressible
   protected:
     turbulenceModelArgs();
 
-    turbulenceModelArgs( 
-      const universalHolder*, 
-      const universalHolder*, 
-      const universalHolder*, 
-      const universalHolder* );
+    turbulenceModelArgs( const Deps& );
     
   };
 

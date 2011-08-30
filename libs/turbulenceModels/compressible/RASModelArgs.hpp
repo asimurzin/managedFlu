@@ -4,6 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "universalArgs.hpp"
+#include "Deps.hpp"
 
 
 //---------------------------------------------------------------------------
@@ -18,11 +19,7 @@ namespace compressible
   protected:
     RASModelArgs();
 
-    RASModelArgs( 
-      const universalHolder*, 
-      const universalHolder*, 
-      const universalHolder*, 
-      const universalHolder* );
+    RASModelArgs( const Deps& );
   };
 
 } //compressible
