@@ -6,6 +6,9 @@
 #include "universalArgs.hpp" 
 #include "universalHolder.hpp"
 #include "Deps.hpp"
+#include "volFields.hpp"
+#include "basicThermoHolder.hpp"
+
 
 #include <compressible/turbulenceModel/turbulenceModel.H>
 #include <boost/shared_ptr.hpp>
@@ -18,7 +21,7 @@ namespace Foam
 namespace compressible
 {
   class turbulenceModelHolder 
-    : protected universalArgs
+    : virtual protected universalArgs
     , public boost::shared_ptr< turbulenceModel >
     , public universalHolder
   {
