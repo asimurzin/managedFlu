@@ -3,8 +3,9 @@
 
 
 //---------------------------------------------------------------------------
-#include "IOobjectArgs.hpp"
+#include "universalArgs.hpp"
 #include "universalHolder.hpp"
+#include "Deps.hpp"
 
 #include <IOobject.H>
 #include <objectRegistry.H>
@@ -17,7 +18,7 @@ namespace Foam
   class objectRegistryHolder;
    
   class IOobjectHolder 
-    : protected IOobjectArgs
+    : virtual protected universalArgs
     , public boost::shared_ptr< IOobject >
     , virtual public universalHolder
   {
