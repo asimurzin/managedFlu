@@ -60,7 +60,7 @@ runBasic ()
 runApplication ()
 {
    app_run=$1; shift
-   app_name=`echo ${app_run} | sed -e "s/Flux/Foam/"`
+   app_name=`echo ${app_run} | sed -e "s/MF//"`
 
    runBasic ${app_run} ${app_name} $*
 }
@@ -96,7 +96,7 @@ runSolver ()
    
    solvername=`basename ${app_run}`
    app_name=`echo ${solvername} | sed -e "s/MF//"`
-   app_name=`echo ${solvername} | sed -e "s/.py//"`
+   #app_name=`echo ${solvername} | sed -e "s/.py//"`
    
    
    source_case=`get_source_case $*` 
