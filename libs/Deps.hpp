@@ -18,9 +18,9 @@ namespace Foam
       Deps( const std::set< holderPtr >& );
       
     private:
-      Deps();
-      //Deps( const Deps&);
-      void operator=( const Deps&);
+      Deps(); //not implemented
+      //Deps( const Deps&); //not implemented
+      void operator=( const Deps&); //not implemented
 
   };
 
