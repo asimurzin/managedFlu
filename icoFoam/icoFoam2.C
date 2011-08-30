@@ -31,7 +31,8 @@ Description
 
 #include "fvCFD.H"
 #include "core.hpp"
-#include "Allfunctions.hpp"
+#include "OpenFOAM/functions.hpp"
+#include "finiteVolume/functions.hpp"
 
 
 //---------------------------------------------------------------------------
