@@ -3,7 +3,8 @@
 
 
 //---------------------------------------------------------------------------
-#include "fvMeshArgs.hpp"
+#include "universalArgs.hpp"
+#include "Deps.hpp"
 #include "objectRegistryHolder.hpp"
 #include "volFieldsFwd.hpp"
 #include "surfaceFieldsFwd.hpp"
@@ -18,7 +19,7 @@ namespace Foam
   class IOobjectHolder;
   
   class fvMeshHolder 
-    : protected fvMeshArgs
+    : virtual protected universalArgs
     , public boost::shared_ptr< fvMesh >
     , public objectRegistryHolder
   {
