@@ -13,13 +13,13 @@ namespace compressible
     const volVectorFieldHolder& U,  
     const surfaceScalarFieldHolder& phi, 
     const basicThermoHolder& thermo )
-    : turbulenceModelArgs( Foam::deps( &rho, Foam::deps( &U, Foam::deps( &phi, &thermo ) ) ) )
+    : universalArgs( Foam::deps( &rho, Foam::deps( &U, Foam::deps( &phi, &thermo ) ) ) )
     , boost::shared_ptr< turbulenceModel >( tm )
     , universalHolder()
   {}
 
   turbulenceModelHolder::turbulenceModelHolder()
-    : turbulenceModelArgs()
+    : universalArgs()
     , boost::shared_ptr< turbulenceModel >()
     , universalHolder()
   {

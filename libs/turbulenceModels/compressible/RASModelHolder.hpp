@@ -4,7 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "Deps.hpp"
-#include "RASModelArgs.hpp"
+#include "universalArgs.hpp"
 #include "turbulenceModelHolder.hpp"
 
 #include <compressible/RAS/RASModel/RASModel.H>
@@ -18,7 +18,7 @@ namespace Foam
 namespace compressible
 {
   class RASModelHolder 
-    : protected RASModelArgs
+    : virtual protected universalArgs
     , public boost::shared_ptr< RASModel >
     , public turbulenceModelHolder
   {
