@@ -83,7 +83,7 @@ result_createFields createFields( const TimeHolder& runTime, const fvMeshHolder&
                                             mesh, 
                                             IOobject::NO_READ, 
                                             IOobject::NO_WRITE ),
-                            volScalarFieldHolder( pThermo->rho(),&pThermo ) );
+                            volScalarFieldHolder( pThermo->rho(), &pThermo ) );
 
   p = volScalarFieldHolder( pThermo->p(), &pThermo );
   h = volScalarFieldHolder( pThermo->h(), &pThermo );
@@ -314,7 +314,8 @@ int main(int argc, char *argv[])
         {
             fvVectorMatrixHolder UEqn = fun_Ueqn( simple, mesh, rho, U, phi, turbulence, ghf, p_rgh );
             fun_hEqn( pThermo, rho, p, h, phi, radiation, turbulence );
-          /*#include "pEqn.H"*/
+            fun_pEqn( mesh, runTime, simple, pThermo, rho, p, h, psi, U, phi, turbulence, 
+                      gh, ghf, p_rgh, UEqn, pRefCell, pRefValue, cumulativeContErr, initialMass);
         }
         
         turbulence->correct();
