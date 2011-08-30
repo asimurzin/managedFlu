@@ -5,7 +5,7 @@ namespace Foam
   template<class Type>
   fvMatrixHolder< Type >::fvMatrixHolder( const fvMatrix< Type >& mt, 
 					  const Deps& args ) 
-    : fvMatrixArgs( args )
+    : universalArgs( args )
     , smart_tmp< fvMatrix< Type > >( mt )
     , universalHolder()
   {
@@ -17,7 +17,7 @@ namespace Foam
   template<class Type>
   fvMatrixHolder< Type >::fvMatrixHolder( const tmp< fvMatrix< Type > >& mt, 
 					  const Deps& args ) 
-    : fvMatrixArgs( args )
+    : universalArgs( args )
     , smart_tmp< fvMatrix< Type > >( mt )
     , universalHolder()
   {
@@ -29,7 +29,7 @@ namespace Foam
 
 template<class Type>
   fvMatrixHolder< Type >::fvMatrixHolder() 
-    : fvMatrixArgs()
+    : universalArgs()
     , smart_tmp< fvMatrix< Type > >()
     , universalHolder()
   {
@@ -57,7 +57,7 @@ template<class Type>
   {
     if ( this->empty() )
     {
-      fvMatrixArgs::operator=( mt );
+      universalArgs::operator=( mt );
       smart_tmp< fvMatrix< Type > >::operator=( mt );
     }
     else

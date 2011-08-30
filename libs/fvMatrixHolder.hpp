@@ -4,8 +4,8 @@
 
 //---------------------------------------------------------------------------
 #include "universalHolder.hpp"
+#include "universalArgs.hpp"
 #include "Deps.hpp"
-#include "fvMatrixArgs.hpp"
 #include "surfaceFields.hpp"
 #include "volFields.hpp"
 #include "smart_tmp/smart_tmp.hpp"
@@ -18,7 +18,7 @@ namespace Foam
 {
   template<class Type>
   class fvMatrixHolder 
-    : public fvMatrixArgs
+    : public universalArgs
     , public smart_tmp< fvMatrix< Type > >
     , public universalHolder
   {
