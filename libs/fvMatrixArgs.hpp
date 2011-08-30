@@ -18,8 +18,7 @@ namespace Foam
     : public universalArgs  
   {
   public:
-    fvMatrixArgs( const universalHolder* );
-    fvMatrixArgs( const std::set< holderPtr >& );
+    fvMatrixArgs( const Deps& );
     
   protected:
     fvMatrixArgs();

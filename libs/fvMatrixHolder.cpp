@@ -1,21 +1,10 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  template<class Type>
-  fvMatrixHolder< Type >::fvMatrixHolder( const tmp< fvMatrix< Type > >& tmp_mt, 
-					  const GeometricFieldHolder< Type, fvPatchField, volMesh >& field ) 
-    : fvMatrixArgs( &field )
-    , smart_tmp< fvMatrix< Type > >( tmp_mt )
-    , universalHolder()
-  {
-#ifdef OUR_DEBUG
-    cout << "flufvMatrix = " << this << nl;
-#endif
-  }
   
   template<class Type>
   fvMatrixHolder< Type >::fvMatrixHolder( const fvMatrix< Type >& mt, 
-					  const fvMatrixArgs& args ) 
+					  const Deps& args ) 
     : fvMatrixArgs( args )
     , smart_tmp< fvMatrix< Type > >( mt )
     , universalHolder()
@@ -27,7 +16,7 @@ namespace Foam
 
   template<class Type>
   fvMatrixHolder< Type >::fvMatrixHolder( const tmp< fvMatrix< Type > >& mt, 
-					  const fvMatrixArgs& args ) 
+					  const Deps& args ) 
     : fvMatrixArgs( args )
     , smart_tmp< fvMatrix< Type > >( mt )
     , universalHolder()

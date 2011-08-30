@@ -18,7 +18,7 @@ namespace Foam
     //-----------------------------------------------------------------------
     inline fvVectorMatrixHolder ddt( const volVectorFieldHolder& field )
     {
-      return fvVectorMatrixHolder( ddt( field() ), &field );
+      return fvVectorMatrixHolder( ddt( field() ), deps( &field ) );
     }
 
 
@@ -26,7 +26,7 @@ namespace Foam
     inline fvVectorMatrixHolder div( const surfaceScalarFieldHolder& field1, 
 				     const volVectorFieldHolder& field2 )
     {
-      return fvVectorMatrixHolder( div( field1(), field2() ), universalArgs( &field2 ).deps() && universalArgs( &field1 ).deps()  );
+      return fvVectorMatrixHolder( div( field1(), field2() ), deps( &field1, &field2 ) );
     }
     
 
@@ -34,13 +34,13 @@ namespace Foam
     inline fvVectorMatrixHolder laplacian( const dimensionedScalar& ds, 
                                            const volVectorFieldHolder& field )
     {
-      return fvVectorMatrixHolder( laplacian( ds, field() ), universalArgs( &field ).deps() );
+      return fvVectorMatrixHolder( laplacian( ds, field() ), deps( &field ) );
     }
 
     inline fvScalarMatrixHolder laplacian( const volScalarFieldHolder& field1, 
 					   const volScalarFieldHolder& field2 )
     {
-      return fvScalarMatrixHolder( laplacian( field1(), field2() ), universalArgs( &field2 ).deps() && universalArgs( &field1 ).deps()  );
+      return fvScalarMatrixHolder( laplacian( field1(), field2() ), deps( &field1, &field2 )  );
     }
   } // fvm
 } // Foam

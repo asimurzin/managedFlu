@@ -4,6 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "universalHolder.hpp"
+#include "Deps.hpp"
 #include "fvMatrixArgs.hpp"
 #include "surfaceFields.hpp"
 #include "volFields.hpp"
@@ -22,10 +23,8 @@ namespace Foam
     , public universalHolder
   {
   public:
-    fvMatrixHolder( const tmp< fvMatrix< Type > >& , const GeometricFieldHolder< Type, fvPatchField, volMesh >& );
-    
-    fvMatrixHolder( const fvMatrix< Type >& , const fvMatrixArgs& );
-    fvMatrixHolder( const tmp< fvMatrix< Type > >& , const fvMatrixArgs& );
+    fvMatrixHolder( const fvMatrix< Type >& , const Deps& );
+    fvMatrixHolder( const tmp< fvMatrix< Type > >& , const Deps& );
     
     fvMatrixHolder();
     
