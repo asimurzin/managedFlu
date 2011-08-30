@@ -123,7 +123,7 @@ result_createFields createFields( const TimeHolder& runTime, const fvMeshHolder&
                                 mesh );
 
   // Force p_rgh to be consistent with p
-  p_rgh = p() - rho()*gh();
+  p_rgh = p - rho*gh;
 
   pRefCell = 0;
   pRefValue = 0.0;
@@ -208,20 +208,20 @@ void fun_pEqn( const fvMeshHolder& mesh,
                scalar& cumulativeContErr, 
                dimensionedScalar& initialMass)
 {
-  rho = thermo->rho();
+  rho() = thermo->rho();
   rho->relax();
 
   volScalarField rAU(1.0/UEqn->A());
   
   surfaceScalarField rhorAUf( "(rho*(1|A(U)))", fvc::interpolate( rho()*rAU ) );
 
-  U = rAU * UEqn->H();
+  U() = rAU * UEqn->H();
   //UEqn.clear();
 
-  phi = fvc::interpolate( rho() ) * ( fvc::interpolate( U() ) & mesh->Sf());
+  phi() = fvc::interpolate( rho() ) * ( fvc::interpolate( U() ) & mesh->Sf());
   bool closedVolume = adjustPhi(phi, U, p_rgh);
   surfaceScalarField buoyancyPhi( rhorAUf * ghf() * fvc::snGrad( rho() ) * mesh->magSf() );
-  phi -= buoyancyPhi;
+  phi() -= buoyancyPhi;
 
   for (int nonOrth=0; nonOrth<= simple->nNonOrthCorr(); nonOrth++)
   {
@@ -236,32 +236,32 @@ void fun_pEqn( const fvMeshHolder& mesh,
         if (nonOrth == simple->nNonOrthCorr())
         {
             // Calculate the conservative fluxes
-            phi -= p_rghEqn.flux();
+            phi() -= p_rghEqn.flux();
 
             // Explicitly relax pressure for momentum corrector
             p_rgh->relax();
 
             // Correct the momentum source with the pressure gradient flux
             // calculated from the relaxed pressure
-            U -= rAU * fvc::reconstruct( ( buoyancyPhi + p_rghEqn.flux() ) / rhorAUf );
+            U() -= rAU * fvc::reconstruct( ( buoyancyPhi + p_rghEqn.flux() ) / rhorAUf );
             U->correctBoundaryConditions();
         }
     }
 
     continuityErrors( runTime, mesh, phi, cumulativeContErr );
 
-    p = p_rgh() + rho() * gh();
+    p = p_rgh + rho * gh;
 
     // For closed-volume cases adjust the pressure level
     // to obey overall mass continuity
     if (closedVolume)
     {
         dimensionedScalar xx = ( initialMass - fvc::domainIntegrate( psi() * p() ) ) / fvc::domainIntegrate( psi() );
-        p += ( initialMass - fvc::domainIntegrate( psi() * p() ) ) / fvc::domainIntegrate( psi() );
-        p_rgh = p() - rho() * gh();
+        p() += ( initialMass - fvc::domainIntegrate( psi() * p() ) ) / fvc::domainIntegrate( psi() );
+        p_rgh = p - rho * gh;
     }
 
-    rho = thermo->rho();
+    rho() = thermo->rho();
     rho->relax();
     Info<< "rho max/min : " << max( rho() ).value() << " " << min( rho() ).value()
         << endl;

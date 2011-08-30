@@ -1,6 +1,7 @@
 EXE_INC = \
     -I$(TEST_MM_ROOT_DIR)/libs \
     -I$(TEST_MM_ROOT_DIR)/libs/finiteVolume \
+    -I$(TEST_MM_ROOT_DIR)/libs/thermophysicalModels/basic \
     -I$(LIB_SRC)/finiteVolume/lnInclude \
     -I$(LIB_SRC)/thermophysicalModels/basic/lnInclude \
     -I$(LIB_SRC)/thermophysicalModels/radiationModels/lnInclude \
