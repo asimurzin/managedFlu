@@ -14,7 +14,7 @@ namespace Foam
     : deps_( the_deps )
   {}
 
-  universalArgs::universalArgs( const universalHolder* uh1, const universalHolder* uh2 )
+/*  universalArgs::universalArgs( const universalHolder* uh1, const universalHolder* uh2 )
   {
     this->deps_.insert( holderPtr( uh1->clone() ) );
     this->deps_.insert( holderPtr( uh2->clone() ) );
@@ -33,7 +33,7 @@ namespace Foam
     this->deps_.insert( holderPtr( uh2->clone() ) );
     this->deps_.insert( holderPtr( uh3->clone() ) );
     this->deps_.insert( holderPtr( uh4->clone() ) );
-  }
+  }*/
 
   universalArgs::universalArgs()
   {}
