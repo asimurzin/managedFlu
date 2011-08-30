@@ -3,7 +3,8 @@
 
 
 //---------------------------------------------------------------------------
-#include "basicPsiThermoArgs.hpp"
+#include "universalArgs.hpp"
+#include "Deps.hpp"
 #include "basicThermoHolder.hpp"
 #include "fvMeshHolder.hpp"
 
@@ -16,7 +17,7 @@ namespace Foam
 {
   
   class basicPsiThermoHolder 
-    : protected basicPsiThermoArgs
+    : virtual protected universalArgs
     , public boost::shared_ptr< basicPsiThermo >
     , public basicThermoHolder
   {

@@ -5,7 +5,8 @@
 //---------------------------------------------------------------------------
 #include "fvMeshHolder.hpp"
 #include "universalHolder.hpp"
-#include "basicThermoArgs.hpp"
+#include "universalArgs.hpp"
+#include "Deps.hpp"
 
 #include <basicThermo.H>
 #include <boost/shared_ptr.hpp>
@@ -16,7 +17,7 @@ namespace Foam
 {
   
   class basicThermoHolder 
-    : protected basicThermoArgs
+    : virtual protected universalArgs
     , public boost::shared_ptr< basicThermo >
     , public universalHolder
   {
