@@ -56,22 +56,6 @@ namespace Foam
     using smart_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator();
   };
 
-  template<class Type, template<class> class PatchField, class GeoMesh>
-  GeometricFieldArgs createArgs( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
-  
-  template<class Type, template<class> class PatchField, class GeoMesh, 
-           class Type1, template<class> class PatchField1, class GeoMesh1>
-  GeometricFieldArgs createArgs( const GeometricFieldHolder< Type, PatchField, GeoMesh >&, 
-                                 const GeometricFieldHolder< Type1, PatchField1, GeoMesh1 >& );
-
-  template<class Type, template<class> class PatchField, class GeoMesh, 
-           class Type1, template<class> class PatchField1, class GeoMesh1,
-           class Type2, template<class> class PatchField2, class GeoMesh2>
-  GeometricFieldArgs createArgs( const GeometricFieldHolder< Type, PatchField, GeoMesh >&, 
-                                 const GeometricFieldHolder< Type1, PatchField1, GeoMesh1 >&,
-                                 const GeometricFieldHolder< Type2, PatchField2, GeoMesh2 >& );
-  
-
 } // Foam
 
 

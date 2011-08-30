@@ -12,7 +12,7 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const IOobjectHolder& io, 
 									   const fvMeshHolder& mesh ) 
-    : GeometricFieldArgs( &mesh )
+    : GeometricFieldArgs( Foam::deps( &mesh ) )
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( *io, *mesh ) )
     , universalHolder()
   {
@@ -48,7 +48,7 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const IOobjectHolder& io, 
 									   const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
-    : GeometricFieldArgs( createArgs( field ) )
+    : GeometricFieldArgs( Foam::deps( &field ) )
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( *io, field() ) )
     , universalHolder()
   {
@@ -60,7 +60,7 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const word& wd, 
 									   const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
-    : GeometricFieldArgs( createArgs( field ) )
+    : GeometricFieldArgs( Foam::deps( &field ) )
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( wd, field() ) )
     , universalHolder()
   {
@@ -164,31 +164,6 @@ namespace Foam
     smart_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator=( field );
   }
 */ 
-  //-------------------------------------------------------------------------
-  template<class Type, template<class> class PatchField, class GeoMesh>
-  GeometricFieldArgs createArgs( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
-  {
-    return GeometricFieldArgs( field.deps() );
-  }
-  
-  template<class Type, template<class> class PatchField, class GeoMesh, 
-           class Type1, template<class> class PatchField1, class GeoMesh1>
-  GeometricFieldArgs createArgs( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field, 
-                                 const GeometricFieldHolder< Type1, PatchField1, GeoMesh1 >&  field1)
-  {
-    return GeometricFieldArgs( field.deps() && field1.deps() );
-  }
-
-  template<class Type, template<class> class PatchField, class GeoMesh, 
-           class Type1, template<class> class PatchField1, class GeoMesh1,
-           class Type2, template<class> class PatchField2, class GeoMesh2>
-  GeometricFieldArgs createArgs( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field, 
-                                 const GeometricFieldHolder< Type1, PatchField1, GeoMesh1 >& field1,
-                                 const GeometricFieldHolder< Type2, PatchField2, GeoMesh2 >& field2 )
-  {
-    return GeometricFieldArgs( field.deps() && field1.deps() && field2.deps() );
-  }
-
   
 } //Foam
 
