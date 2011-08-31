@@ -44,32 +44,20 @@ sources = \
 	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_dictionary.cxx \
 	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_IOdictionary.cxx \
 	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_fvMesh.cxx \
-	@abs_top_builddir@/wrappers/src/Args/IOobjectArgs.cxx \
-	@abs_top_builddir@/wrappers/src/Args/IOdictionaryArgs.cxx \
-	@abs_top_builddir@/wrappers/src/Args/fvMeshArgs.cxx \
-	@abs_top_builddir@/wrappers/src/Args/GeometricFieldArgs.cxx \
-	@abs_top_builddir@/wrappers/src/Args/fvScalarMatrixArgs.cxx \
-	@abs_top_builddir@/wrappers/src/Args/fvVectorMatrixArgs.cxx \
-	@abs_top_builddir@/wrappers/src/IOobjectHolder.cxx \
-	@abs_top_builddir@/wrappers/src/dictionaryHolder.cxx \
-	@abs_top_builddir@/wrappers/src/IOdictionaryHolder.cxx \
-	@abs_top_builddir@/wrappers/src/objectRegistryHolder.cxx \
-	@abs_top_builddir@/wrappers/src/TimeHolder.cxx \
 	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_volScalarField.cxx \
 	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_volVectorField.cxx \
 	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_surfaceVectorField.cxx \
 	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_surfaceScalarField.cxx \
-	@abs_top_builddir@/wrappers/src/GeometricFieldHolders.cxx \
-	@abs_top_builddir@/wrappers/src/fvMeshHolder.cxx \
 	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_fvVectorMatrix.cxx \
 	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_fvScalarMatrix.cxx \
-	@abs_top_builddir@/wrappers/src/fvMatrices.cxx \
-	@abs_top_builddir@/wrappers/src/adjustPhi.cxx \
-	@abs_top_builddir@/wrappers/src/findRefCell.cxx \
-	@abs_top_builddir@/wrappers/src/fvc.cxx \
-	@abs_top_builddir@/wrappers/src/fvm.cxx \
-	@abs_top_builddir@/wrappers/src/linear.cxx \
-	@abs_top_builddir@/wrappers/src/surfaceInterpolate.cxx \
+	@abs_top_builddir@/wrappers/src/SimpleHolder.cxx \
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_SimpleHolder.cxx \
+	@abs_top_builddir@/wrappers/src/set_SimpleHolder.cxx \
+	@abs_top_builddir@/wrappers/src/Args.cxx \
+	@abs_top_builddir@/wrappers/src/Deps.cxx \
+	@abs_top_builddir@/wrappers/src/DependentHolder.cxx \
+	\
+	@abs_top_builddir@/wrappers/src/OpenFOAM/IOobjectHolder.cxx  \
 	
 include $(pythonflu_root_dir)/Foam/include.foam.makefile
 

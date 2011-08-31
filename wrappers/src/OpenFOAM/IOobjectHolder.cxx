@@ -20,17 +20,34 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef IOobjectHolder_hh
-#define IOobjectHolder_hh
+#ifndef IOobjectHolder_cxx
+#define IOobjectHolder_cxx
 
 
 //---------------------------------------------------------------------------
-#include "Foam/src/common.hh"
-#include "IOobjectHolder.hpp"
-#include "shared_ptr/shared_ptr_IOobject.hh"
-#include "Args/IOobjectArgs.hh"
+%module "wrappers.src.OpenFOAM.IOobjectHolder"
+
+%{
+  #include "IOobjectHolder.hh"
+%}
+
+
+//---------------------------------------------------------------------------
+%import "shared_ptr/shared_ptr_IOobject.cxx"
+
+%import "DependentHolder.cxx"
+
+%include "IOobjectHolder.hpp"
+
+
+//---------------------------------------------------------------------------
+%feature( "pythonappend" ) Foam::IOobjectHolder::SMARTPTR_PYAPPEND_GETATTR( IOobjectHolder );
+
+%extend Foam::IOobjectHolder
+{
+  SMARTPTR_EXTEND_ATTR( IOobjectHolder );
+}
 
 
 //--------------------------------------------------------------------------------------
 #endif
-
