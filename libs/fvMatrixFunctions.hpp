@@ -38,7 +38,7 @@ namespace Foam
   inline fvVectorMatrixHolder operator == ( const fvVectorMatrixHolder& mt1, 
 					    const volVectorFieldHolder& field )
   {
-    return fvVectorMatrixHolder( mt1() == field() , mt1.deps() && universalArgs( &field ).deps() );
+    return fvVectorMatrixHolder( mt1() == field() , mt1.deps() && Args( &field ).deps() );
   }
   
   
@@ -53,7 +53,7 @@ namespace Foam
   inline fvScalarMatrixHolder operator == ( const fvScalarMatrixHolder& mt1, 
 					    const volScalarFieldHolder& field )
   {
-    return fvScalarMatrixHolder( mt1() == field() , mt1.deps() && universalArgs( &field ).deps() );
+    return fvScalarMatrixHolder( mt1() == field() , mt1.deps() && Args( &field ).deps() );
   }
 
 

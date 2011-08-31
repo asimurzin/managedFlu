@@ -54,7 +54,7 @@ template<class Type>
   {
     if ( this->empty() )
     {
-      universalArgs::operator=( mt );
+      Args::operator=( mt );
       smart_tmp< fvMatrix< Type > >::operator=( mt );
     }
     else

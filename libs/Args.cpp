@@ -1,33 +1,33 @@
-#include "universalArgs.hpp"
+#include "Args.hpp"
 #include "universalHolder.hpp"
 
 
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  universalArgs::universalArgs( const universalHolder* uh )
+  Args::Args( const universalHolder* uh )
   {
     this->deps_.insert(  holderPtr( uh->clone() ) );
   }
   
-  universalArgs::universalArgs( const std::set< holderPtr >& the_deps )
+  Args::Args( const std::set< holderPtr >& the_deps )
     : deps_( the_deps )
   {}
 
-/*  universalArgs::universalArgs( const universalHolder* uh1, const universalHolder* uh2 )
+/*  Args::Args( const universalHolder* uh1, const universalHolder* uh2 )
   {
     this->deps_.insert( holderPtr( uh1->clone() ) );
     this->deps_.insert( holderPtr( uh2->clone() ) );
   }
 
-  universalArgs::universalArgs( const universalHolder* uh1, const universalHolder* uh2, const universalHolder* uh3 )
+  Args::Args( const universalHolder* uh1, const universalHolder* uh2, const universalHolder* uh3 )
   {
     this->deps_.insert( holderPtr( uh1->clone() ) );
     this->deps_.insert( holderPtr( uh2->clone() ) );
     this->deps_.insert( holderPtr( uh3->clone() ) );
   }
 
-  universalArgs::universalArgs( const universalHolder* uh1, const universalHolder* uh2, const universalHolder* uh3, const universalHolder* uh4 )
+  Args::Args( const universalHolder* uh1, const universalHolder* uh2, const universalHolder* uh3, const universalHolder* uh4 )
   {
     this->deps_.insert( holderPtr( uh1->clone() ) );
     this->deps_.insert( holderPtr( uh2->clone() ) );
@@ -35,10 +35,10 @@ namespace Foam
     this->deps_.insert( holderPtr( uh4->clone() ) );
   }*/
 
-  universalArgs::universalArgs()
+  Args::Args()
   {}
   
-  const std::set< holderPtr >& universalArgs::deps() const
+  const std::set< holderPtr >& Args::deps() const
   {
     return deps_;
   }

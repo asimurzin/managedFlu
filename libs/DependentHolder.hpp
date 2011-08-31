@@ -3,14 +3,14 @@
 
 
 //---------------------------------------------------------------------------
-#include "universalArgs.hpp"
+#include "Args.hpp"
 #include "universalHolder.hpp"
 #include "Deps.hpp"
 
 namespace Foam
 {
   class DependentHolder
-    : public universalArgs
+    : public Args
     , virtual public universalHolder
   {
     public:

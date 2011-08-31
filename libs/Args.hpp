@@ -1,5 +1,5 @@
-#ifndef universalArgs_hpp
-#define universalArgs_hpp
+#ifndef Args_hpp
+#define Args_hpp
 
 
 //---------------------------------------------------------------------------
@@ -12,20 +12,20 @@ namespace Foam
   
   typedef boost::shared_ptr< universalHolder > holderPtr;
   
-  class universalArgs 
+  class Args 
   {
    
     public:
-      universalArgs( const universalHolder* uh );
-/*      universalArgs( const universalHolder*, const universalHolder* );
-      universalArgs( const universalHolder*, const universalHolder*, const universalHolder* );
-      universalArgs( const universalHolder*, const universalHolder*, const universalHolder*, const universalHolder* );*/
+      Args( const universalHolder* uh );
+/*      Args( const universalHolder*, const universalHolder* );
+      Args( const universalHolder*, const universalHolder*, const universalHolder* );
+      Args( const universalHolder*, const universalHolder*, const universalHolder*, const universalHolder* );*/
       
-      universalArgs( const std::set< holderPtr >& the_deps );
+      Args( const std::set< holderPtr >& the_deps );
       
       const std::set< holderPtr >& deps() const;
     protected:
-      universalArgs();
+      Args();
 
     private:
       std::set< holderPtr > deps_;

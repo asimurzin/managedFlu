@@ -4,14 +4,14 @@
 
 //---------------------------------------------------------------------------
 #include "universalHolder.hpp"
-#include "universalArgs.hpp"
+#include "Args.hpp"
 
 
 namespace Foam
 {
   
   class Deps 
-    : public universalArgs
+    : public Args
   {
     public:
       Deps( const universalHolder* );

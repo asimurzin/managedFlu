@@ -5,12 +5,12 @@ namespace Foam
 {
   DependentHolder::DependentHolder( const Deps& dp )
     : universalHolder()
-    , universalArgs( dp )
+    , Args( dp )
   {}
       
   DependentHolder::DependentHolder()
     : universalHolder()
-    , universalArgs()
+    , Args()
   {}
   
   universalHolder* DependentHolder::clone() const

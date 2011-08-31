@@ -5,11 +5,11 @@
 namespace Foam
 {
   Deps::Deps( const universalHolder* uh )
-    : universalArgs( uh )
+    : Args( uh )
   {}
   
   Deps::Deps( const std::set< holderPtr >& the_deps )
-    : universalArgs( the_deps )
+    : Args( the_deps )
   {}
 
   Deps deps( const Deps& deps1 )

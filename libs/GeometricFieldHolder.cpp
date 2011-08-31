@@ -103,7 +103,7 @@ namespace Foam
   {
     if ( this->empty() )
     {
-      universalArgs::operator=( field );
+      Args::operator=( field );
       smart_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator=( field );
     }
     else
@@ -130,7 +130,7 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   void GeometricFieldHolder< Type, PatchField, GeoMesh >::operator () ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
   {
-    universalArgs::operator=( field );
+    Args::operator=( field );
     smart_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator=( field );
   }
 */ 
