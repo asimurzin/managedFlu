@@ -5,9 +5,8 @@ namespace Foam
   template<class Type>
   fvMatrixHolder< Type >::fvMatrixHolder( const fvMatrix< Type >& mt, 
 					  const Deps& args ) 
-    : universalArgs( args )
+    : DependentHolder( args )
     , smart_tmp< fvMatrix< Type > >( mt )
-    , universalHolder()
   {
 #ifdef OUR_DEBUG
     cout << "flufvMatrix = " << this << nl;
@@ -17,9 +16,8 @@ namespace Foam
   template<class Type>
   fvMatrixHolder< Type >::fvMatrixHolder( const tmp< fvMatrix< Type > >& mt, 
 					  const Deps& args ) 
-    : universalArgs( args )
+    : DependentHolder( args )
     , smart_tmp< fvMatrix< Type > >( mt )
-    , universalHolder()
   {
 #ifdef OUR_DEBUG
     cout << "flufvMatrix = " << this << nl;
@@ -29,9 +27,8 @@ namespace Foam
 
 template<class Type>
   fvMatrixHolder< Type >::fvMatrixHolder() 
-    : universalArgs()
+    : DependentHolder()
     , smart_tmp< fvMatrix< Type > >()
-    , universalHolder()
   {
 #ifdef OUR_DEBUG
     cout << "flufvMatrix = " << this << nl;
