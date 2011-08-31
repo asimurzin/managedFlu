@@ -18,7 +18,7 @@ namespace Foam
 {
   template<class Type>
   class fvMatrixHolder 
-    : public DependentHolder
+    : virtual public DependentHolder
     , public smart_tmp< fvMatrix< Type > >
   {
   public:

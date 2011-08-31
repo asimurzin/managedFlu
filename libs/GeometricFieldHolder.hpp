@@ -20,7 +20,7 @@ namespace Foam
   
   template<class Type, template<class> class PatchField, class GeoMesh>
   class GeometricFieldHolder 
-    : public DependentHolder
+    : virtual public DependentHolder
     , public smart_tmp< GeometricField< Type, PatchField, GeoMesh > >
   {
   public:
