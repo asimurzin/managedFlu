@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.objectRegistryHolder"
+%module "wrappers.src.OpenFOAM.objectRegistryHolder"
 
 %{
   #include "objectRegistryHolder.hh"
