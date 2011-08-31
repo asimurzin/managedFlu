@@ -19,8 +19,8 @@ namespace Foam
   class IOdictionaryHolder 
     : virtual public DependentHolder
     , public boost::shared_ptr< IOdictionary >
-    , protected dictionaryHolder
-    , protected IOobjectHolder
+    , public dictionaryHolder
+    , public IOobjectHolder
   {
   public:
     IOdictionaryHolder( const IOobjectHolder& );
