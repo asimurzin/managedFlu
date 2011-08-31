@@ -20,38 +20,19 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef IOdictionaryHolder_cxx
-#define IOdictionaryHolder_cxx
+#ifndef IOdictionaryHolder_hh
+#define IOdictionaryHolder_hh
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.IOdictionaryHolder"
-
-%{
-  #include "IOdictionaryHolder.hh"
-%}
-
-
-//---------------------------------------------------------------------------
-%import "shared_ptr/shared_ptr_IOdictionary.cxx"
-
-%import "Args/IOdictionaryArgs.cxx"
-
-%import "dictionaryHolder.cxx"
-
-%import "IOobjectHolder.cxx"
-
-%include "IOdictionaryHolder.hpp"
-
-
-//---------------------------------------------------------------------------
-%feature( "pythonappend" ) Foam::IOdictionaryHolder::SMARTPTR_PYAPPEND_GETATTR( IOdictionaryHolder );
-
-%extend Foam::IOdictionaryHolder
-{
-  SMARTPTR_EXTEND_ATTR( IOdictionaryHolder );
-}
+#include "Foam/src/common.hh"
+#include "IOdictionaryHolder.hpp"
+#include "dictionaryHolder.hh"
+#include "IOobjectHolder.hh"
+#include "shared_ptr/shared_ptr_IOdictionary.hh"
 
 
 //--------------------------------------------------------------------------------------
 #endif
+
+
