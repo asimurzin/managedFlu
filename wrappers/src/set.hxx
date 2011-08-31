@@ -33,8 +33,8 @@
 
 namespace std
 {
-  template<typename _Key, typename _Compare = less<_Key>,
-	   typename _Alloc = allocator<_Key> >
+  template<typename _Key, typename _Compare = std::less<_Key>,
+	   typename _Alloc = std::allocator<_Key> >
   struct set
   {
     set( const set & r );
