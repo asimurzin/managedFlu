@@ -25,7 +25,7 @@ pythonflu_root_dir:=@PYTHONFLU_ROOT_DIR@
 
 include $(pythonflu_root_dir)/Foam/foam.version.makefile
 
-TEST_MM_CPPFLAGS=-I@abs_top_builddir@/libs -I@abs_top_builddir@/wrappers/src
+TEST_MM_CPPFLAGS=-I@abs_top_builddir@/libs -I@abs_top_builddir@/wrappers/src -I@abs_top_builddir@/wrappers/src/OpenFOAM -I@abs_top_builddir@/wrappers/src/finiteVolume
 
 __CPPFLAGS__ := $(__CPPFLAGS__) \
 	@OPENFOAM_FINITEVOLUME_CPPFLAGS@ \
@@ -40,16 +40,6 @@ __LDFLAGS__ := $(__LDFLAGS__) \
 	-L${FOAM_USER_LIBBIN} -ltestFixingBug
 	
 sources = \
-	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_IOobject.cxx \
-	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_dictionary.cxx \
-	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_IOdictionary.cxx \
-	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_fvMesh.cxx \
-	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_volScalarField.cxx \
-	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_volVectorField.cxx \
-	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_surfaceVectorField.cxx \
-	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_surfaceScalarField.cxx \
-	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_fvVectorMatrix.cxx \
-	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_fvScalarMatrix.cxx \
 	@abs_top_builddir@/wrappers/src/SimpleHolder.cxx \
 	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_SimpleHolder.cxx \
 	@abs_top_builddir@/wrappers/src/set_SimpleHolder.cxx \
@@ -57,7 +47,36 @@ sources = \
 	@abs_top_builddir@/wrappers/src/Deps.cxx \
 	@abs_top_builddir@/wrappers/src/DependentHolder.cxx \
 	\
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_IOobject.cxx \
 	@abs_top_builddir@/wrappers/src/OpenFOAM/IOobjectHolder.cxx  \
+	@abs_top_builddir@/wrappers/src/OpenFOAM/objectRegistryHolder.cxx \
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_dictionary.cxx \
+	@abs_top_builddir@/wrappers/src/OpenFOAM/dictionaryHolder.cxx \
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_IOdictionary.cxx \
+	@abs_top_builddir@/wrappers/src/OpenFOAM/IOdictionaryHolder.cxx \
+	@abs_top_builddir@/wrappers/src/OpenFOAM/TimeHolder.cxx \
+	\
+	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_volScalarField.cxx \
+	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_volVectorField.cxx \
+	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_surfaceVectorField.cxx \
+	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_surfaceScalarField.cxx \
+	@abs_top_builddir@/wrappers/src/OpenFOAM/GeometricFieldHolders.cxx \
+	\
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_fvMesh.cxx \
+	@abs_top_builddir@/wrappers/src/finiteVolume/fvMeshHolder.cxx \
+	\
+	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_fvVectorMatrix.cxx \
+	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_fvScalarMatrix.cxx \
+	@abs_top_builddir@/wrappers/src/finiteVolume/fvMatrices.cxx \
+	\
+	@abs_top_builddir@/wrappers/src/finiteVolume/fvc.cxx \
+	@abs_top_builddir@/wrappers/src/finiteVolume/fvm.cxx \
+	@abs_top_builddir@/wrappers/src/finiteVolume/adjustPhi.cxx \
+	@abs_top_builddir@/wrappers/src/finiteVolume/findRefCell.cxx \
+	@abs_top_builddir@/wrappers/src/finiteVolume/linear.cxx \
+	@abs_top_builddir@/wrappers/src/finiteVolume/surfaceInterpolate.cxx \
+
+
 	
 include $(pythonflu_root_dir)/Foam/include.foam.makefile
 
