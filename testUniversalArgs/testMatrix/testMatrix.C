@@ -122,9 +122,9 @@ int main(int argc, char *argv[])
 {
     fvVectorMatrixHolder UEqn = createMatrix( argc, argv);
     //fvVectorMatrix UEqn = createMatrix( argc, argv);
-    solve( UEqn );
-    Info<< "UEqn() = " << UEqn() << endl;
-    //Info<< "UEqn() = " << UEqn << endl;
+    //solve( UEqn );
+    Info<< "UEqn() = " << UEqn().psi() << endl;
+    //Info<< "UEqn() = " << UEqn.psi() << endl;
     Info<< "End\n" << endl;
 
     return 0;
