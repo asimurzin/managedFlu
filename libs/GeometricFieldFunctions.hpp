@@ -6,6 +6,8 @@
 #include "surfaceFields.hpp"
 #include "volFields.hpp"
 
+#include <uniformDimensionedFields.H>
+
 
 //---------------------------------------------------------------------------
 namespace Foam
