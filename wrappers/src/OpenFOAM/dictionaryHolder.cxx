@@ -20,16 +20,34 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef dictionaryHolder_hh
-#define dictionaryHolder_hh
+#ifndef dictionaryHolder_cxx
+#define dictionaryHolder_cxx
 
 
 //---------------------------------------------------------------------------
-#include "Foam/src/common.hh"
-#include "dictionaryHolder.hpp"
-#include "shared_ptr/shared_ptr_dictionary.hh"
+%module "wrappers.src.OpenFOAM.dictionaryHolder"
+
+%{
+  #include "dictionaryHolder.hh"
+%}
+
+
+//---------------------------------------------------------------------------
+%import "shared_ptr/shared_ptr_dictionary.cxx"
+
+%import "SimpleHolder.cxx"
+
+%include "dictionaryHolder.hpp"
+
+
+//---------------------------------------------------------------------------
+%feature( "pythonappend" ) Foam::dictionaryHolder::SMARTPTR_PYAPPEND_GETATTR( dictionaryHolder );
+
+%extend Foam::dictionaryHolder
+{
+  SMARTPTR_EXTEND_ATTR( dictionaryHolder );
+}
 
 
 //--------------------------------------------------------------------------------------
 #endif
-
