@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.TimeHolder"
+%module "wrappers.src.OpenFOAM.TimeHolder"
 %{
   #include "TimeHolder.hh"
 %}
