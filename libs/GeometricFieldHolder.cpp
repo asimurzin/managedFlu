@@ -12,9 +12,8 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const IOobjectHolder& io, 
 									   const fvMeshHolder& mesh ) 
-    : universalArgs( Foam::deps( &mesh ) )
+    : DependentHolder( Foam::deps( &mesh ) )
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( *io, *mesh ) )
-    , universalHolder()
   {
 #ifdef OUR_DEBUG
     cout << "GeometricFieldHolder=" << this << nl;
@@ -24,9 +23,8 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& tmp_gf, 
 									   const Deps& args ) 
-    : universalArgs( args )
+    : DependentHolder( args )
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( tmp_gf )
-    , universalHolder()
   {
 #ifdef OUR_DEBUG
     cout << "GeometricFieldHolder=" << this << nl;
@@ -36,9 +34,8 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const GeometricField< Type, PatchField, GeoMesh >& gf, 
 									   const Deps& args ) 
-    : universalArgs( args )
+    : DependentHolder( args )
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( gf )
-    , universalHolder()
   {
 #ifdef OUR_DEBUG
     cout << "GeometricFieldHolder=" << this << nl;
@@ -48,9 +45,8 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const IOobjectHolder& io, 
 									   const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
-    : universalArgs( Foam::deps( &field ) )
+    : DependentHolder( Foam::deps( &field ) )
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( *io, field() ) )
-    , universalHolder()
   {
 #ifdef OUR_DEBUG
     cout << "GeometricFieldHolder=" << this << nl;
@@ -60,9 +56,8 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const word& wd, 
 									   const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
-    : universalArgs( Foam::deps( &field ) )
+    : DependentHolder( Foam::deps( &field ) )
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( wd, field() ) )
-    , universalHolder()
   {
 #ifdef OUR_DEBUG
     cout << "GeometricFieldHolder=" << this << nl;
@@ -71,9 +66,8 @@ namespace Foam
 
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder()
-    : universalArgs()
+    : DependentHolder()
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >()
-    , universalHolder()
   {
 #ifdef OUR_DEBUG
     cout << "GeometricFieldHolder=" << this << nl;

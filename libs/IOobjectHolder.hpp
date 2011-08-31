@@ -4,7 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "universalArgs.hpp"
-#include "universalHolder.hpp"
+#include "DependentHolder.hpp"
 #include "Deps.hpp"
 
 #include <IOobject.H>
@@ -18,9 +18,8 @@ namespace Foam
   class objectRegistryHolder;
    
   class IOobjectHolder 
-    : virtual protected universalArgs
+    : virtual protected DependentHolder
     , public boost::shared_ptr< IOobject >
-    , virtual public universalHolder
   {
   public:
     IOobjectHolder( const word &name, 
