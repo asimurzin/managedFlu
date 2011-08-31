@@ -8,18 +8,18 @@
 
 namespace Foam
 {
-  class universalHolder;
+  class SimpleHolder;
   
-  typedef boost::shared_ptr< universalHolder > holderPtr;
+  typedef boost::shared_ptr< SimpleHolder > holderPtr;
   
   class Args 
   {
    
     public:
-      Args( const universalHolder* uh );
-/*      Args( const universalHolder*, const universalHolder* );
-      Args( const universalHolder*, const universalHolder*, const universalHolder* );
-      Args( const universalHolder*, const universalHolder*, const universalHolder*, const universalHolder* );*/
+      Args( const SimpleHolder* uh );
+/*      Args( const SimpleHolder*, const SimpleHolder* );
+      Args( const SimpleHolder*, const SimpleHolder*, const SimpleHolder* );
+      Args( const SimpleHolder*, const SimpleHolder*, const SimpleHolder*, const SimpleHolder* );*/
       
       Args( const std::set< holderPtr >& the_deps );
       

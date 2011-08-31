@@ -4,7 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "Args.hpp"
-#include "universalHolder.hpp"
+#include "SimpleHolder.hpp"
 
 #include <dictionary.H>
 #include <boost/shared_ptr.hpp>
@@ -15,10 +15,10 @@ namespace Foam
 {
   class dictionaryHolder 
     : public boost::shared_ptr< dictionary >
-    , virtual public universalHolder
+    , virtual public SimpleHolder
   {
   public:
-    virtual universalHolder* clone() const;
+    virtual SimpleHolder* clone() const;
     
   protected:
     dictionaryHolder( const boost::shared_ptr< dictionary >& );

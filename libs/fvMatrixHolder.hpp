@@ -3,7 +3,7 @@
 
 
 //---------------------------------------------------------------------------
-#include "universalHolder.hpp"
+#include "SimpleHolder.hpp"
 #include "DependentHolder.hpp"
 #include "Deps.hpp"
 #include "surfaceFields.hpp"
@@ -27,7 +27,7 @@ namespace Foam
     
     fvMatrixHolder();
     
-    virtual universalHolder* clone() const;
+    virtual SimpleHolder* clone() const;
     
     ~fvMatrixHolder();
     

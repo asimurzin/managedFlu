@@ -35,7 +35,7 @@ namespace compressible
     
     ~turbulenceModelHolder();
     
-    virtual universalHolder* clone() const;
+    virtual SimpleHolder* clone() const;
     
     using  boost::shared_ptr< turbulenceModel >::operator*;
     using  boost::shared_ptr< turbulenceModel >::operator->;

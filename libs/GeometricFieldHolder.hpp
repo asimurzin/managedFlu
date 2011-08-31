@@ -3,7 +3,7 @@
 
 
 //---------------------------------------------------------------------------
-#include "universalHolder.hpp"
+#include "SimpleHolder.hpp"
 #include "Deps.hpp"
 #include "DependentHolder.hpp"
 #include "smart_tmp/smart_tmp.hpp"
@@ -37,7 +37,7 @@ namespace Foam
     
     ~GeometricFieldHolder();
     
-    virtual universalHolder* clone() const;
+    virtual SimpleHolder* clone() const;
     
     GeometricField< Type, PatchField, GeoMesh >& ref();
     

@@ -25,7 +25,7 @@ namespace Foam
     
     ~basicThermoHolder();
     
-    virtual universalHolder* clone() const;
+    virtual SimpleHolder* clone() const;
     
     using  boost::shared_ptr< basicThermo >::operator*;
     using  boost::shared_ptr< basicThermo >::operator->;

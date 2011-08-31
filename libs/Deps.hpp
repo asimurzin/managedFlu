@@ -3,7 +3,7 @@
 
 
 //---------------------------------------------------------------------------
-#include "universalHolder.hpp"
+#include "SimpleHolder.hpp"
 #include "Args.hpp"
 
 
@@ -14,7 +14,7 @@ namespace Foam
     : public Args
   {
     public:
-      Deps( const universalHolder* );
+      Deps( const SimpleHolder* );
       Deps( const std::set< holderPtr >& );
       
     private:

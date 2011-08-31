@@ -39,7 +39,7 @@ namespace compressible
       const basicThermoHolder&,
       const word& turbulenceModelName = turbulenceModel::typeName );
 
-    virtual universalHolder* clone() const;
+    virtual SimpleHolder* clone() const;
     
     ~RASModelHolder();
     

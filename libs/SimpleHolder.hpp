@@ -1,16 +1,16 @@
-#ifndef universalHolder_hpp
-#define universalHolder_hpp
+#ifndef SimpleHolder_hpp
+#define SimpleHolder_hpp
 
 
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  class universalHolder
+  class SimpleHolder
   {
     public:
-      virtual universalHolder* clone() const = 0;
+      virtual SimpleHolder* clone() const = 0;
       
-      virtual ~universalHolder()
+      virtual ~SimpleHolder()
       {}
   };
 } // Foam
