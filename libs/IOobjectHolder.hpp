@@ -18,7 +18,7 @@ namespace Foam
   class objectRegistryHolder;
    
   class IOobjectHolder 
-    : virtual protected DependentHolder
+    : virtual public DependentHolder
     , public boost::shared_ptr< IOobject >
   {
   public:
