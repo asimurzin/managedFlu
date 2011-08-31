@@ -39,7 +39,7 @@ namespace Foam
 #endif
   }
 
-  universalHolder* IOdictionaryHolder::clone() const
+  SimpleHolder* IOdictionaryHolder::clone() const
   {
     return new IOdictionaryHolder( *this );
   }

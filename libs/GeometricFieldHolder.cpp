@@ -76,7 +76,7 @@ namespace Foam
 
   
   template<class Type, template<class> class PatchField, class GeoMesh>
-  universalHolder* GeometricFieldHolder< Type, PatchField, GeoMesh >::clone() const
+  SimpleHolder* GeometricFieldHolder< Type, PatchField, GeoMesh >::clone() const
   {
     return new GeometricFieldHolder< Type, PatchField, GeoMesh >( *this );
   }

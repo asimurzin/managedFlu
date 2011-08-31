@@ -16,7 +16,7 @@ namespace Foam
     , boost::shared_ptr< basicThermo >()
   {}
 
-  universalHolder* basicThermoHolder::clone() const
+  SimpleHolder* basicThermoHolder::clone() const
   {
     return new basicThermoHolder( *this );
   }

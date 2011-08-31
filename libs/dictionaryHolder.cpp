@@ -5,16 +5,16 @@
 namespace Foam
 {
   dictionaryHolder::dictionaryHolder( const boost::shared_ptr< dictionary >& dict )
-    : universalHolder()
+    : SimpleHolder()
     , boost::shared_ptr< dictionary >( dict )
   {}
 
   dictionaryHolder::dictionaryHolder()
-    : universalHolder()
+    : SimpleHolder()
     , boost::shared_ptr< dictionary >( new dictionary() )
   {}
   
-  universalHolder* dictionaryHolder::clone() const
+  SimpleHolder* dictionaryHolder::clone() const
   {
     return new dictionaryHolder( *this );
   }

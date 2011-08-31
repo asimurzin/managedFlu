@@ -10,7 +10,7 @@ namespace Foam
      , IOobjectHolder()
   {}
 
-  universalHolder* objectRegistryHolder::clone() const
+  SimpleHolder* objectRegistryHolder::clone() const
   {
     return new objectRegistryHolder( *this );
   }

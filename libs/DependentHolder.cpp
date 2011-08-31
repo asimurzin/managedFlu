@@ -4,12 +4,12 @@
 namespace Foam
 {
   DependentHolder::DependentHolder( const Deps& dp )
-    : universalHolder()
+    : SimpleHolder()
     , Args( dp )
   {}
       
   DependentHolder::DependentHolder()
-    : universalHolder()
+    : SimpleHolder()
     , Args()
   {}
       

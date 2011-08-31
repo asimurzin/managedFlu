@@ -33,7 +33,7 @@ namespace Foam
 #endif
   }
 
-  universalHolder* basicPsiThermoHolder::clone() const
+  SimpleHolder* basicPsiThermoHolder::clone() const
   {
     return new basicPsiThermoHolder( *this );
   }

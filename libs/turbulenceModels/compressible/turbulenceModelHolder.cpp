@@ -26,7 +26,7 @@ namespace compressible
 #endif
   }
 
-  universalHolder* turbulenceModelHolder::clone() const
+  SimpleHolder* turbulenceModelHolder::clone() const
   {
     return new turbulenceModelHolder( *this );
   }

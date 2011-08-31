@@ -4,7 +4,7 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  Deps::Deps( const universalHolder* uh )
+  Deps::Deps( const SimpleHolder* uh )
     : Args( uh )
   {}
   

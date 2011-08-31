@@ -25,7 +25,7 @@ namespace Foam
       return radiationModelHolder( boost::shared_ptr< radiationModel >( a_model.ptr() ), T );
     }
     
-    universalHolder* radiationModelHolder::clone() const
+    SimpleHolder* radiationModelHolder::clone() const
     {
       return new radiationModelHolder( *this );
     }

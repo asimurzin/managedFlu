@@ -29,7 +29,7 @@ namespace Foam
 #endif
   }
 
-  universalHolder* fvMeshHolder::clone() const
+  SimpleHolder* fvMeshHolder::clone() const
   {
     return new fvMeshHolder( *this );
   }

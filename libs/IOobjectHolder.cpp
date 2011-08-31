@@ -31,7 +31,7 @@ namespace Foam
 #endif
   }
 
-  universalHolder* IOobjectHolder::clone() const
+  SimpleHolder* IOobjectHolder::clone() const
   {
     return new IOobjectHolder( *this );
   }

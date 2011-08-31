@@ -1,11 +1,11 @@
 #include "Args.hpp"
-#include "universalHolder.hpp"
+#include "SimpleHolder.hpp"
 
 
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  Args::Args( const universalHolder* uh )
+  Args::Args( const SimpleHolder* uh )
   {
     this->deps_.insert(  holderPtr( uh->clone() ) );
   }
@@ -14,20 +14,20 @@ namespace Foam
     : deps_( the_deps )
   {}
 
-/*  Args::Args( const universalHolder* uh1, const universalHolder* uh2 )
+/*  Args::Args( const SimpleHolder* uh1, const SimpleHolder* uh2 )
   {
     this->deps_.insert( holderPtr( uh1->clone() ) );
     this->deps_.insert( holderPtr( uh2->clone() ) );
   }
 
-  Args::Args( const universalHolder* uh1, const universalHolder* uh2, const universalHolder* uh3 )
+  Args::Args( const SimpleHolder* uh1, const SimpleHolder* uh2, const SimpleHolder* uh3 )
   {
     this->deps_.insert( holderPtr( uh1->clone() ) );
     this->deps_.insert( holderPtr( uh2->clone() ) );
     this->deps_.insert( holderPtr( uh3->clone() ) );
   }
 
-  Args::Args( const universalHolder* uh1, const universalHolder* uh2, const universalHolder* uh3, const universalHolder* uh4 )
+  Args::Args( const SimpleHolder* uh1, const SimpleHolder* uh2, const SimpleHolder* uh3, const SimpleHolder* uh4 )
   {
     this->deps_.insert( holderPtr( uh1->clone() ) );
     this->deps_.insert( holderPtr( uh2->clone() ) );
