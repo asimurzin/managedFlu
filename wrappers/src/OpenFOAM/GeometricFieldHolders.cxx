@@ -20,21 +20,25 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef GeometricFieldHolder_vector_fvPatchField_volMesh_hh
-#define GeometricFieldHolder_vector_fvPatchField_volMesh_hh
+#ifndef GeometricFieldHolders_cxx
+#define GeometricFieldHolders_cxx
 
 
 //---------------------------------------------------------------------------
-#include "Foam/src/common.hh"
+%module "wrappers.src.OpenFOAM/GeometricFieldHolders"
+%{
+  #include "OpenFOAM/GeometricFieldHolders.hh"
+%}
 
-#include "smart_tmp/smart_tmp_volVectorField.hh"
 
-#include "GeometricFieldHolder.hh"
+//---------------------------------------------------------------------------
+%include "OpenFOAM/GeometricFieldHolder_scalar_fvPatchField_volMesh.cpp"
+%include "OpenFOAM/GeometricFieldHolder_vector_fvPatchField_volMesh.cpp"
 
-#include "Args/GeometricFieldArgs.hh"
+%include "OpenFOAM/GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh.cpp"
+%include "OpenFOAM/GeometricFieldHolder_vector_fvsPatchField_surfaceMesh.cpp"
+
 
 
 //--------------------------------------------------------------------------------------
 #endif
-
-

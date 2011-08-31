@@ -20,18 +20,16 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh_hh
-#define GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh_hh
+#ifndef GeometricFieldHolder_scalar_fvPatchField_volMesh_hh
+#define GeometricFieldHolder_scalar_fvPatchField_volMesh_hh
 
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
 
-#include "smart_tmp/smart_tmp_surfaceScalarField.hh"
+#include "smart_tmp/smart_tmp_volScalarField.hh"
 
 #include "GeometricFieldHolder.hh"
-
-#include "Args/GeometricFieldArgs.hh"
 
 
 //--------------------------------------------------------------------------------------

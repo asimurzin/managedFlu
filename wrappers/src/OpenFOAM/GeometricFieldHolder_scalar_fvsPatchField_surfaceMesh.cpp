@@ -33,8 +33,6 @@
 //---------------------------------------------------------------------------
 %import "smart_tmp/smart_tmp_surfaceScalarField.cxx"
 
-%import "Args/GeometricFieldArgs.cxx"
-
 %import "GeometricFieldHolder.hxx"
 
 %include "surfaceFields.hpp"

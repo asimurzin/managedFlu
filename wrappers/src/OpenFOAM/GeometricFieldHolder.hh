@@ -20,25 +20,21 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef GeometricFieldHolders_cxx
-#define GeometricFieldHolders_cxx
+#ifndef GeometricFieldHolder_hh
+#define GeometricFieldHolder_hh
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.GeometricFieldHolders"
-%{
-  #include "GeometricFieldHolders.hh"
-%}
+#include "GeometricFieldHolder.hpp"
 
+#include "GeometricFieldFunctions.hh"
 
-//---------------------------------------------------------------------------
-%include "GeometricFieldHolder_scalar_fvPatchField_volMesh.cpp"
-%include "GeometricFieldHolder_vector_fvPatchField_volMesh.cpp"
+#include "Foam/src/finiteVolume/fvMesh/fvMeshes.hh"
 
-%include "GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh.cpp"
-%include "GeometricFieldHolder_vector_fvsPatchField_surfaceMesh.cpp"
-
+#include "DependentHolder.hh"
 
 
 //--------------------------------------------------------------------------------------
 #endif
+
+

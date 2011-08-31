@@ -20,38 +20,18 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef GeometricFieldHolder_vector_fvsPatchField_surfaceMesh_cxx
-#define GeometricFieldHolder_vector_fvsPatchField_surfaceMesh_cxx
+#ifndef GeometricFieldHolder_hxx
+#define GeometricFieldHolder_hxx
 
 
 //---------------------------------------------------------------------------
-%{
-  #include "GeometricFieldHolder_vector_fvsPatchField_surfaceMesh.hh"
-%}
+%import "DependentHolder.cxx"
 
 
 //---------------------------------------------------------------------------
-%import "smart_tmp/smart_tmp_surfaceVectorField.cxx"
+%include "GeometricFieldHolder.hpp"
 
-%import "Args/GeometricFieldArgs.cxx"
-
-%import "GeometricFieldHolder.hxx"
-
-%include "surfaceFields.hpp"
-
-%template ( GeometricFieldHolder_vector_fvsPatchField_surfaceMesh ) Foam::GeometricFieldHolder< Foam::vector, Foam::fvsPatchField, Foam::surfaceMesh >;
-
-EXTEND_SURFACEVECTORFIELDHOLDER;
-
-
-//---------------------------------------------------------------------------
-%feature( "pythonappend" ) Foam::GeometricFieldHolder< Foam::vector, Foam::fvsPatchField, Foam::surfaceMesh >::SMARTPTR_PYAPPEND_GETATTR( GeometricFieldHolder_vector_fvsPatchField_surfaceMesh );
-
-%extend Foam::GeometricFieldHolder< Foam::vector, Foam::fvsPatchField, Foam::surfaceMesh >
-{
-  SMARTPTR_EXTEND_ATTR( GeometricFieldHolder_vector_fvsPatchField_surfaceMesh );
-}
-
+%import "GeometricFieldFunctions.hxx"
 
 
 //--------------------------------------------------------------------------------------

@@ -20,38 +20,34 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef GeometricFieldHolder_scalar_fvPatchField_volMesh_cxx
-#define GeometricFieldHolder_scalar_fvPatchField_volMesh_cxx
+#ifndef GeometricFieldHolder_vector_fvPatchField_volMesh_cxx
+#define GeometricFieldHolder_vector_fvPatchField_volMesh_cxx
 
 
 //---------------------------------------------------------------------------
 %{
-  #include "GeometricFieldHolder_scalar_fvPatchField_volMesh.hh"
+  #include "GeometricFieldHolder_vector_fvPatchField_volMesh.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "smart_tmp/smart_tmp_volScalarField.cxx"
-
-%import "Foam/src/finiteVolume/fvMesh/fvMeshes.cxx"
-
-%import "Args/GeometricFieldArgs.cxx"
+%import "smart_tmp/smart_tmp_volVectorField.cxx"
 
 %import "GeometricFieldHolder.hxx"
 
 %include "volFields.hpp"
 
-%template ( GeometricFieldHolder_scalar_fvPatchField_volMesh ) Foam::GeometricFieldHolder< Foam::scalar, Foam::fvPatchField, Foam::volMesh >;
+%template ( GeometricFieldHolder_vector_fvPatchField_volMesh ) Foam::GeometricFieldHolder< Foam::vector, Foam::fvPatchField, Foam::volMesh >;
 
-EXTEND_VOLSCALARFIELDHOLDER;
+EXTEND_VOLVECTORFIELDHOLDER;
 
 
 //---------------------------------------------------------------------------
-%feature( "pythonappend" ) Foam::GeometricFieldHolder< Foam::scalar, Foam::fvPatchField, Foam::volMesh >::SMARTPTR_PYAPPEND_GETATTR( GeometricFieldHolder_scalar_fvPatchField_volMesh );
+%feature( "pythonappend" ) Foam::GeometricFieldHolder< Foam::vector, Foam::fvPatchField, Foam::volMesh >::SMARTPTR_PYAPPEND_GETATTR( GeometricFieldHolder_vector_fvPatchField_volMesh );
 
-%extend Foam::GeometricFieldHolder< Foam::scalar, Foam::fvPatchField, Foam::volMesh >
+%extend Foam::GeometricFieldHolder< Foam::vector, Foam::fvPatchField, Foam::volMesh >
 {
-  SMARTPTR_EXTEND_ATTR( GeometricFieldHolder_scalar_fvPatchField_volMesh );
+  SMARTPTR_EXTEND_ATTR( GeometricFieldHolder_vector_fvPatchField_volMesh );
 }
 
 
