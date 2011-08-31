@@ -19,8 +19,6 @@ namespace Foam
       
       DependentHolder();
       
-      virtual universalHolder* clone() const;
-      
       virtual ~DependentHolder();
   };
 } // Foam

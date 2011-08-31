@@ -12,11 +12,6 @@ namespace Foam
     : universalHolder()
     , Args()
   {}
-  
-  universalHolder* DependentHolder::clone() const
-  {
-    return new DependentHolder( *this );
-  }
       
   DependentHolder::~DependentHolder()
   {}
