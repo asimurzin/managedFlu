@@ -27,10 +27,9 @@
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
 #include "fvMeshHolder.hpp"
-#include "objectRegistryHolder.hh"
-#include "IOobjectHolder.hh"
+#include "OpenFOAM/objectRegistryHolder.hh"
+#include "DependentHolder.hh"
 #include "shared_ptr/shared_ptr_fvMesh.hh"
-#include "Args/fvMeshArgs.hh"
 
 #include "GeometricFieldHolders.hh"
 

@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.fvMeshHolder"
+%module "wrappers.src.finiteVolume.fvMeshHolder"
 
 %{
   #include "fvMeshHolder.hh"
@@ -35,11 +35,9 @@
 //---------------------------------------------------------------------------
 %import "shared_ptr/shared_ptr_fvMesh.cxx"
 
-%import "Args/fvMeshArgs.cxx"
+%import "DependentHolder.cxx"
 
 %import "objectRegistryHolder.cxx"
-
-%import "IOobjectHolder.cxx"
 
 %import "GeometricFieldHolders.cxx"
 
