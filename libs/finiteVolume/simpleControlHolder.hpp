@@ -3,8 +3,7 @@
 
 
 //---------------------------------------------------------------------------
-#include "universalArgs.hpp"
-#include "universalHolder.hpp"
+#include "DependentHolder.hpp"
 #include "Deps.hpp"
 #include "fvMeshHolder.hpp"
 
@@ -17,9 +16,8 @@ namespace Foam
 {
   
   class simpleControlHolder 
-    : protected universalArgs
+    : virtual protected DependentHolder
     , public boost::shared_ptr< simpleControl >
-    , public universalHolder
   {
   public:
     simpleControlHolder( fvMeshHolder& mesh );

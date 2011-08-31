@@ -4,8 +4,7 @@
 
 //---------------------------------------------------------------------------
 #include "fvMeshHolder.hpp"
-#include "universalHolder.hpp"
-#include "universalArgs.hpp"
+#include "DependentHolder.hpp"
 #include "Deps.hpp"
 #include "volFields.hpp"
 
@@ -19,9 +18,8 @@ namespace Foam
   namespace radiation
   {
     class radiationModelHolder 
-      : protected universalArgs
+      : virtual public DependentHolder
       , public boost::shared_ptr< radiationModel >
-      , public universalHolder
     {
     public:
       radiationModelHolder( const boost::shared_ptr< radiationModel >&, const volScalarFieldHolder& );

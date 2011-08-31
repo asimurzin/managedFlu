@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------
 #include "universalHolder.hpp"
 #include "Deps.hpp"
-#include "universalArgs.hpp"
+#include "DependentHolder.hpp"
 #include "smart_tmp/smart_tmp.hpp"
 
 #include <GeometricField.H>
@@ -20,9 +20,8 @@ namespace Foam
   
   template<class Type, template<class> class PatchField, class GeoMesh>
   class GeometricFieldHolder 
-    : public universalArgs
+    : virtual public DependentHolder
     , public smart_tmp< GeometricField< Type, PatchField, GeoMesh > >
-    , public universalHolder
   {
   public:
     //reference constructor

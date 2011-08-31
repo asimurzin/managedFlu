@@ -7,7 +7,7 @@ namespace Foam
 {
 
   basicPsiThermoHolder::basicPsiThermoHolder( const boost::shared_ptr< basicPsiThermo >& pThermo, const fvMeshHolder& mesh ) 
-    : universalArgs( Foam::deps( &mesh ) )
+    : DependentHolder( Foam::deps( &mesh ) )
     , boost::shared_ptr< basicPsiThermo >( pThermo )
     , basicThermoHolder( boost::shared_ptr< basicPsiThermo >( *this ), mesh )
   {
@@ -17,7 +17,7 @@ namespace Foam
   }
 
   basicPsiThermoHolder::basicPsiThermoHolder() 
-    : universalArgs()
+    : DependentHolder()
     , boost::shared_ptr< basicPsiThermo >()
     , basicThermoHolder()
   {
