@@ -1,4 +1,4 @@
-from wrappers.src.fvm import *
+from wrappers.src.finiteVolume.fvm import *
 
 
 ddt = fvm_ddt

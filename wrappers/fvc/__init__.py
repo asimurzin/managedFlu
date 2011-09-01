@@ -1,5 +1,5 @@
-from wrappers.src.fvc import *
-from wrappers.src.surfaceInterpolate import *
+from wrappers.src.finiteVolume.fvc import *
+from wrappers.src.finiteVolume.surfaceInterpolate import *
 
 interpolate = fvc_interpolate
 

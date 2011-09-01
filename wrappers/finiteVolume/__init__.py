@@ -1,10 +1,10 @@
-from wrappers.src.fvMeshHolder import *
-from wrappers.src.GeometricFieldHolders import *
-from wrappers.src.fvMatrices import *
-from wrappers.src.findRefCell import *
+from wrappers.src.finiteVolume.fvMeshHolder import *
+from wrappers.src.OpenFOAM.GeometricFieldHolders import *
+from wrappers.src.finiteVolume.fvMatrices import *
+from wrappers.src.finiteVolume.findRefCell import *
 
-from wrappers.src.linear import *
-from wrappers.src.adjustPhi import *
+from wrappers.src.finiteVolume.linear import *
+from wrappers.src.finiteVolume.adjustPhi import *
 
 #----------------------------------------------------------------------------
 volScalarFieldHolder = GeometricFieldHolder_scalar_fvPatchField_volMesh

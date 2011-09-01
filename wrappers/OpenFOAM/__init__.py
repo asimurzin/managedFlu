@@ -1,3 +1,3 @@
-from wrappers.src.TimeHolder import *
-from wrappers.src.IOobjectHolder import *
-from wrappers.src.IOdictionaryHolder import *
+from wrappers.src.OpenFOAM.TimeHolder import *
+from wrappers.src.OpenFOAM.IOobjectHolder import *
+from wrappers.src.OpenFOAM.IOdictionaryHolder import *
