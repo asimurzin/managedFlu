@@ -11,7 +11,7 @@ echo " RUN testMeshDictField/testMF.C in \"testField\""
 ( cd testField && testMF )> /dev/null
 echo
 echo "==============================================="
-echo "RUN testField/testUniversalArgs.C in \"testUniversalArgs\""
+echo "RUN testField/testUniversalArgs.C in \"testField\""
 ( cd testField && testUniversalArgs ) > /dev/null
 echo
 echo "==============================================="
