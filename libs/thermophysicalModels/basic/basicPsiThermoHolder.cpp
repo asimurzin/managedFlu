@@ -9,29 +9,17 @@ namespace Foam
   basicPsiThermoHolder::basicPsiThermoHolder( const boost::shared_ptr< basicPsiThermo >& pThermo, const fvMeshHolder& mesh ) 
     : DependentHolder( Foam::deps( &mesh ) )
     , boost::shared_ptr< basicPsiThermo >( pThermo )
-    , basicThermoHolder( boost::shared_ptr< basicPsiThermo >( *this ), mesh )
   {
-#ifdef OUR_DEBUG
-    cout << "basicPsiThermoHolder = " << this << nl;
-#endif
+    basicThermoHolder::operator=( boost::shared_ptr< basicPsiThermo >( *this ) );
   }
 
   basicPsiThermoHolder::basicPsiThermoHolder() 
-    : DependentHolder()
+    : basicThermoHolder()
     , boost::shared_ptr< basicPsiThermo >()
-    , basicThermoHolder()
-  {
-#ifdef OUR_DEBUG
-    cout << "basicPsiThermoHolder = " << this << nl;
-#endif
-  }
+  {}
 
   basicPsiThermoHolder::~basicPsiThermoHolder()
-  {
-#ifdef OUR_DEBUG
-    cout << "~basicPsiThermoHolder = " << this << nl;
-#endif
-  }
+  {}
 
   SimpleHolder* basicPsiThermoHolder::clone() const
   {

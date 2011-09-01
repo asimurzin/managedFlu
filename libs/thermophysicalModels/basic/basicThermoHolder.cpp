@@ -6,15 +6,15 @@
 namespace Foam
 {
 
-  basicThermoHolder::basicThermoHolder( const boost::shared_ptr< basicThermo >& bt, const fvMeshHolder& mesh ) 
-    : DependentHolder( Foam::deps( &mesh ) )
-    , boost::shared_ptr< basicThermo >( bt )
-  {}
-
   basicThermoHolder::basicThermoHolder() 
     : DependentHolder()
     , boost::shared_ptr< basicThermo >()
   {}
+
+  void basicThermoHolder::operator=( const boost::shared_ptr< basicThermo >& bt ) 
+  {
+    boost::shared_ptr< basicThermo >::operator=( bt );
+  }
 
   SimpleHolder* basicThermoHolder::clone() const
   {
@@ -22,11 +22,7 @@ namespace Foam
   }
   
   basicThermoHolder::~basicThermoHolder()
-  {
-#ifdef OUR_DEBUG
-    cout << "~basicThermoHolder = " << this << nl;
-#endif
-  }
+  {}
 }
 
 

@@ -20,7 +20,6 @@ namespace Foam
     , public boost::shared_ptr< basicThermo >
   {
   public:
-    basicThermoHolder( const boost::shared_ptr< basicThermo >&, const fvMeshHolder& );
     basicThermoHolder();
     
     ~basicThermoHolder();
@@ -29,7 +28,8 @@ namespace Foam
     
     using  boost::shared_ptr< basicThermo >::operator*;
     using  boost::shared_ptr< basicThermo >::operator->;
-
+  protected:
+    void operator=( const boost::shared_ptr< basicThermo >& );
   };
 } // Foam
 

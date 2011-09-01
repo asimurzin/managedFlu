@@ -17,9 +17,8 @@ namespace Foam
 {
   
   class basicPsiThermoHolder 
-    : virtual public DependentHolder
+    : public basicThermoHolder
     , public boost::shared_ptr< basicPsiThermo >
-    , public basicThermoHolder
   {
   public:
     basicPsiThermoHolder( const boost::shared_ptr< basicPsiThermo >&, const fvMeshHolder& );
