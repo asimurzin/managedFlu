@@ -1,8 +1,26 @@
 #!/bin/sh
 cd ${0%/*} || exit 1    # run from this directory
 
-( cd testMatrix && wmake  && testMatrix )
-( cd testField && wmake  && testUniversalArgs )
+
+( cd testMeshDictField && wmake )
+( cd testField && wmake )
+( cd testMatrix && wmake )
+
+echo "==============================================="
+echo " RUN testMeshDictField/testMF.C in \"testField\"" 
+( cd testField && testMF )> /dev/null
+echo
+echo "==============================================="
+echo "RUN testField/testUniversalArgs.C in \"testUniversalArgs\""
+( cd testField && testUniversalArgs ) > /dev/null
+echo
+echo "==============================================="
+echo   "RUN testMatrix/testMatrix.C in \"testMatrix\""
+( cd testMatrix && testMatrix ) > /dev/null
+echo
+echo "==============================================="
+
+
 
 
 # ----------------------------------------------------------------- end-of-file
