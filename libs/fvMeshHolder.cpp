@@ -16,7 +16,7 @@ namespace Foam
     objectRegistryHolder::operator=( boost::shared_ptr< fvMesh >( *this ) );
   }
 
- fvMeshHolder::fvMeshHolder()
+  fvMeshHolder::fvMeshHolder()
     : DependentHolder()
     , boost::shared_ptr< fvMesh >()
   {}
