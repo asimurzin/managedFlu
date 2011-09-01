@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.OpenFOAM/GeometricFieldHolders"
+%module "wrappers.src.OpenFOAM.GeometricFieldHolders"
 %{
   #include "OpenFOAM/GeometricFieldHolders.hh"
 %}
