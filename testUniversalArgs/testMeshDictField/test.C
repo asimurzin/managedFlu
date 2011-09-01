@@ -87,8 +87,10 @@ void testing_IOdictionary( const Foam::word& dict_name, const Foam::argList& arg
 {
   Foam::IOdictionaryHolder iodh = create_IOdictionary( dict_name, args );
  
-  dimensionedScalar nu( iodh->lookup("nu") );
-    
+  Foam::dictionaryHolder dh( iodh );
+  
+  dimensionedScalar nu( dh->lookup("nu") );
+  
   Info << endl << "Reading from IOdictionary -> nu.value = " << nu.value() << 
                     "     nu.dimen = " << nu.dimensions() << nl << nl;
 
