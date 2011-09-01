@@ -7,24 +7,11 @@ namespace Foam
 {
 namespace compressible
 {
-  turbulenceModelHolder::turbulenceModelHolder( 
-    const boost::shared_ptr< turbulenceModel >& tm, 
-    const volScalarFieldHolder& rho, 
-    const volVectorFieldHolder& U,  
-    const surfaceScalarFieldHolder& phi, 
-    const basicThermoHolder& thermo )
-    : DependentHolder( Foam::deps( &rho, Foam::deps( &U, Foam::deps( &phi, &thermo ) ) ) )
-    , boost::shared_ptr< turbulenceModel >( tm )
-  {}
 
   turbulenceModelHolder::turbulenceModelHolder()
     : DependentHolder()
     , boost::shared_ptr< turbulenceModel >()
-  {
-#ifdef OUR_DEBUG
-    cout << "~turbulenceModelHolder = " << this << nl;
-#endif
-  }
+  {}
 
   SimpleHolder* turbulenceModelHolder::clone() const
   {
@@ -32,11 +19,13 @@ namespace compressible
   }
 
   turbulenceModelHolder::~turbulenceModelHolder()
+  {}
+
+  void turbulenceModelHolder::operator=( const boost::shared_ptr< turbulenceModel >& tm )
   {
-#ifdef OUR_DEBUG
-    cout << "~turbulenceModelHolder = " << this << nl;
-#endif
+    boost::shared_ptr< turbulenceModel >::operator=( tm );
   }
+  
 }//compressible
 }//Foam
 

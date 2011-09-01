@@ -15,8 +15,9 @@ namespace compressible
     const basicThermoHolder& thermo )
     : DependentHolder( Foam::deps( &rho, Foam::deps( &U, Foam::deps( &phi, &thermo ) ) ) )
     , boost::shared_ptr< RASModel >( tm )
-    , turbulenceModelHolder( boost::shared_ptr< RASModel >( *this ), rho, U, phi, thermo )
-  {}
+  {
+    turbulenceModelHolder::operator=( boost::shared_ptr< RASModel >( *this ) );
+  }
 
   RASModelHolder::RASModelHolder()
     : DependentHolder()
@@ -41,11 +42,8 @@ namespace compressible
   }
 
   RASModelHolder::~RASModelHolder()
-  {
-#ifdef OUR_DEBUG
-    cout << "~RASModelHolder = " << this << nl;
-#endif
-  }
+  {}
+  
 }//compressible
 }//Foam
 

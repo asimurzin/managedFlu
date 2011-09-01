@@ -18,9 +18,8 @@ namespace Foam
 namespace compressible
 {
   class RASModelHolder 
-    : virtual public DependentHolder
+    : public turbulenceModelHolder
     , public boost::shared_ptr< RASModel >
-    , public turbulenceModelHolder
   {
   public:
     RASModelHolder( 
