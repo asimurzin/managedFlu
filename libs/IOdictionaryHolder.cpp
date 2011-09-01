@@ -8,8 +8,8 @@ namespace Foam
   IOdictionaryHolder::IOdictionaryHolder( const IOobjectHolder&  ioh ) 
     : DependentHolder( Foam::deps( &ioh ) )
     , boost::shared_ptr< IOdictionary >( new IOdictionary( *ioh ) )
-    , dictionaryHolder()
-    , IOobjectHolder( ioh )
+    , dictionaryHolder( boost::shared_ptr< IOdictionary >( *this ) )
+    , IOobjectHolder( boost::shared_ptr< IOdictionary >( *this ) )
   {
 #ifdef OUR_DEBUG
     cout << "IOdictionaryHolder = " << this << nl;
@@ -20,8 +20,8 @@ namespace Foam
 					  const dictionaryHolder& dict ) 
     : DependentHolder( Foam::deps( &ioh, &dict ) )
     , boost::shared_ptr< IOdictionary >( new IOdictionary( *ioh, *dict ) )
-    , dictionaryHolder( dict )
-    , IOobjectHolder( ioh )
+    , dictionaryHolder( boost::shared_ptr< IOdictionary >( *this ) )
+    , IOobjectHolder( boost::shared_ptr< IOdictionary >( *this ) )
   {
 #ifdef OUR_DEBUG
     cout << "IOdictionaryHolder = " << this << nl;

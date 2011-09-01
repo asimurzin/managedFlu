@@ -37,7 +37,7 @@ namespace Foam
     using  boost::shared_ptr< IOobject >::operator->;
 
   protected:
-    IOobjectHolder( const boost::shared_ptr< objectRegistry >& ); 
+    IOobjectHolder( const boost::shared_ptr< IOobject >& ); 
     IOobjectHolder();
 
   };

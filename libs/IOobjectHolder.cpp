@@ -21,7 +21,11 @@ namespace Foam
     cout << "IOobjectHolder = " << this << nl;
 #endif
   }
- 
+  
+  IOobjectHolder::IOobjectHolder( const boost::shared_ptr< IOobject >& ioPtr )
+    : boost::shared_ptr< IOobject >( ioPtr )  
+  {}
+  
   IOobjectHolder::IOobjectHolder() 
     : DependentHolder()
     , boost::shared_ptr< IOobject >()
