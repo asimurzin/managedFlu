@@ -13,8 +13,8 @@
 namespace Foam
 {
   class TimeHolder 
-    : public boost::shared_ptr< Time >
-    , public objectRegistryHolder
+    : public objectRegistryHolder
+    , public boost::shared_ptr< Time >
   {
   public:
     TimeHolder( const word &name, 

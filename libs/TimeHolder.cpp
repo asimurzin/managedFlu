@@ -9,12 +9,10 @@ namespace Foam
 			  const argList &args, 
 			  const word &systemName, 
 			  const word &constantName ) 
-    : boost::shared_ptr< Time >( new Time( name, args, systemName, constantName ) )
-    , objectRegistryHolder( boost::shared_ptr< Time >( *this ) )
+    : DependentHolder()
+    , boost::shared_ptr< Time >( new Time( name, args, systemName, constantName ) )
   {
-#ifdef OUR_DEBUG
-    cout << "TimeHolder = " << this << nl;
-#endif
+    objectRegistryHolder::operator=( boost::shared_ptr< Time >( *this ) );
   }
 
   SimpleHolder* TimeHolder::clone() const
@@ -23,11 +21,8 @@ namespace Foam
   }
 
   TimeHolder::~TimeHolder()
-  {
-#ifdef OUR_DEBUG
-    cout << "~TimeHolder = " << this << nl;
-#endif
-  }
+  {}
+
 } //Foam
 
 

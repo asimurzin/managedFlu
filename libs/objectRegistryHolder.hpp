@@ -13,17 +13,18 @@
 namespace Foam
 {
   class objectRegistryHolder 
-    : public boost::shared_ptr<objectRegistry>
-    , public IOobjectHolder 
+    : public IOobjectHolder 
+    , public boost::shared_ptr<objectRegistry>
+    
   {
   public:
     objectRegistryHolder();
-    using boost::shared_ptr< objectRegistry >::operator*;
-    
-    virtual SimpleHolder* clone() const;
 
+    virtual SimpleHolder* clone() const;
+    
+    using boost::shared_ptr< objectRegistry >::operator*;
   protected:
-    objectRegistryHolder( const boost::shared_ptr<objectRegistry>& );
+    void operator=( const boost::shared_ptr<objectRegistry>& );
 
   };
 } // Foam

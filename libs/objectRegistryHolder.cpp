@@ -5,10 +5,11 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  objectRegistryHolder::objectRegistryHolder( const boost::shared_ptr< objectRegistry >& obr ) 
-     : boost::shared_ptr< objectRegistry >( obr )
-     , IOobjectHolder()
-  {}
+  void objectRegistryHolder::operator=( const boost::shared_ptr< objectRegistry >& obr ) 
+  {
+    boost::shared_ptr< objectRegistry >::operator=( boost::shared_ptr< objectRegistry >( obr ) );
+    IOobjectHolder::operator=( boost::shared_ptr< objectRegistry >( *this ) );
+  }
 
   SimpleHolder* objectRegistryHolder::clone() const
   {
@@ -16,8 +17,8 @@ namespace Foam
   }
 
   objectRegistryHolder::objectRegistryHolder() 
-    : boost::shared_ptr< objectRegistry >(  )
-    , IOobjectHolder()
+    : IOobjectHolder()
+    , boost::shared_ptr< objectRegistry >()
   {}
 
 } //Foam
