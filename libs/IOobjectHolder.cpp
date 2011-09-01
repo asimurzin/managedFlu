@@ -14,26 +14,19 @@ namespace Foam
                                   IOobject::readOption r, 
                                   IOobject::writeOption w, 
                                   bool registerObject ) 
-    : DependentHolder( Foam::deps( &registry ) )
+    : DependentHolder( Foam::deps( &registry )  )
     , boost::shared_ptr< IOobject >( new IOobject( name, instance, *registry, r, w, registerObject ) )
-  {
-#ifdef OUR_DEBUG
-    cout << "IOobjectHolder = " << this << nl;
-#endif
-  }
-  
-  IOobjectHolder::IOobjectHolder( const boost::shared_ptr< IOobject >& ioPtr )
-    : boost::shared_ptr< IOobject >( ioPtr )  
   {}
+  
+  void IOobjectHolder::operator=( const boost::shared_ptr< IOobject >& ioPtr )
+  {
+   boost::shared_ptr< IOobject >::operator=( ioPtr );
+  }
   
   IOobjectHolder::IOobjectHolder() 
     : DependentHolder()
     , boost::shared_ptr< IOobject >()
-  {
-#ifdef OUR_DEBUG
-    cout << "IOobjectHolder = " << this << nl;
-#endif
-  }
+  {}
 
   SimpleHolder* IOobjectHolder::clone() const
   {
@@ -41,11 +34,7 @@ namespace Foam
   }
 
   IOobjectHolder::~IOobjectHolder()
-  {
-#ifdef OUR_DEBUG
-    cout << "~IOobjectHolder = " << this << nl;
-#endif
-  }
+  {}
 }
 
 

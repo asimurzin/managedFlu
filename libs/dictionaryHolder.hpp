@@ -21,7 +21,7 @@ namespace Foam
     virtual SimpleHolder* clone() const;
     
   protected:
-    dictionaryHolder( const boost::shared_ptr< dictionary >& );
+    void operator=( const boost::shared_ptr< dictionary >& );
     dictionaryHolder();
 
   };

@@ -4,14 +4,14 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  dictionaryHolder::dictionaryHolder( const boost::shared_ptr< dictionary >& dict )
-    : SimpleHolder()
-    , boost::shared_ptr< dictionary >( dict )
-  {}
+  void dictionaryHolder::operator=( const boost::shared_ptr< dictionary >& dict )
+  {
+    boost::shared_ptr< dictionary >::operator=( dict );
+  }
 
   dictionaryHolder::dictionaryHolder()
     : SimpleHolder()
-    , boost::shared_ptr< dictionary >( new dictionary() )
+    , boost::shared_ptr< dictionary >()
   {}
   
   SimpleHolder* dictionaryHolder::clone() const
