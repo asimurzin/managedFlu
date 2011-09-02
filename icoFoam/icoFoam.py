@@ -65,14 +65,15 @@ def createPhi( runTime, mesh, U ):
 
     from Foam.OpenFOAM import IOobject, fileName, word
     from wrappers.OpenFOAM import IOobjectHolder
-    from wrappers.finiteVolume import surfaceScalarFieldHolder
+    from wrappers import deps
+    from wrappers.finiteVolume import surfaceScalarFieldHolder, surfaceVectorFieldHolder
     from wrappers.finiteVolume import linearInterpolate
     phi = surfaceScalarFieldHolder( IOobjectHolder( word( "phi" ),
                                                     fileName( runTime.timeName() ),
                                                     mesh,
                                                     IOobject.READ_IF_PRESENT,
                                                     IOobject.AUTO_WRITE ),
-                                    linearInterpolate(U) & mesh.Sf() ) 
+                                    linearInterpolate(U) & surfaceVectorFieldHolder( mesh.Sf(), deps( mesh ) ) ) 
     
     return phi
 
@@ -207,35 +208,35 @@ def main_standalone( argc, argv ):
 
         from wrappers import fvc
         from wrappers.finiteVolume import solve
-        
+
         solve( UEqn == -fvc.grad( p ) )
 
         # --- PISO loop
 
         for corr in range( nCorr ) :
             rUA = 1.0 / UEqn.A()
-
-            U.ext_assign( rUA * UEqn.H() )
-            phi.ext_assign( ( fvc.interpolate( U ) & mesh.Sf() ) + fvc.ddtPhiCorr( rUA, U, phi ) )
+            from Foam import fvc, fvm
+            U().ext_assign( rUA * UEqn.H() )
+            phi().ext_assign( ( fvc.interpolate( U() ) & mesh.Sf() ) + fvc.ddtPhiCorr( rUA(), U(), phi() ) )
 
             from wrappers.finiteVolume import adjustPhi
             adjustPhi( phi, U, p )
 
             for nonOrth in range( nNonOrthCorr + 1 ) :
-                pEqn = ( fvm.laplacian( rUA, p ) == fvc.div( phi ) )
+                pEqn = ( fvm.laplacian( rUA, p() ) == fvc.div( phi() ) )
 
                 pEqn.setReference( pRefCell, pRefValue ) 
                 pEqn.solve()                             
 
                 if nonOrth == nNonOrthCorr:
-                    phi.ext_assign( phi - pEqn.flux() )
+                    phi().ext_assign( phi() - pEqn.flux() )
                     pass
                 
                 pass
             
             cumulativeContErr = continuityErrs( mesh, phi, runTime, cumulativeContErr )
 
-            U.ext_assign( U - rUA * fvc.grad( p ) )
+            U().ext_assign( U() - rUA * fvc.grad( p() ) )
             U.correctBoundaryConditions()    
 
             pass
