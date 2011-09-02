@@ -33,6 +33,7 @@
 
 %import "Args.cxx"
 %import "SimpleHolder.cxx"
+%import "Deps.cxx"
 
 
 //---------------------------------------------------------------------------

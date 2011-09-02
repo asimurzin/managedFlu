@@ -29,6 +29,7 @@
 #include "DependentHolder.hpp"
 #include "SimpleHolder.hpp"
 #include "Args.hpp"
+#include "Deps.hh"
 
 
 //--------------------------------------------------------------------------------------
