@@ -9,8 +9,8 @@ application="icoFoamMF"
 echo 
 echo "   C++" 
 echo 
-(cd cavity && runApplication blockMesh && runSolver ${application} )
-#./Allclean > /dev/null 2>&1
+(cd cavity && runApplication blockMesh "" && runSolver ${application} "C" )
+./Allclean > /dev/null 2>&1
 
 echo
 echo 
@@ -18,7 +18,7 @@ echo "   Python                   "
 echo 
 echo
 application="${TEST_MM_ROOT_DIR}/icoFoam/icoFoam.py"
-#(cd cavity && runApplication blockMesh && runSolver ${application} )
+(cd cavity && runApplication blockMesh "" && runSolver ${application} "Python" )
 
 
 # ----------------------------------------------------------------- end-of-file

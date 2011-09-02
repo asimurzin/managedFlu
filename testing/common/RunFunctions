@@ -56,11 +56,30 @@ runBasic ()
 
 
 #------------------------------------------------------------------------------
+get_app_name()
+{
+ solvername=$1; shift
+ run_type=$1; shift
+ if [ "x${run_type}" == "xC" ]; then
+   app_name=`echo ${solvername} | sed -e "s/MF//"`
+ elif [ "x${run_type}" == "xPython" ]; then
+   app_name=`echo ${solvername} | sed -e "s/.py//"` 
+ else
+   app_name=`echo ${solvername}`
+ fi
+ export MF_APP_NAME=${app_name}
+}
+
+
+#------------------------------------------------------------------------------
 # Customize some functions
 runApplication ()
 {
    app_run=$1; shift
-   app_name=`echo ${app_run} | sed -e "s/MF//"`
+   run_type=$1; shift
+   
+   get_app_name ${app_run} ${run_type}
+   app_name="${MF_APP_NAME}"
 
    runBasic ${app_run} ${app_name} $*
 }
@@ -93,11 +112,12 @@ cloneSolverCase ()
 runSolver ()
 {
    app_run=$1; shift
+   run_type=$1;shift #C++ - C, # Python - "Python"
    
-   solvername=`basename ${app_run}`
-   app_name=`echo ${solvername} | sed -e "s/MF//"`
-   #app_name=`echo ${solvername} | sed -e "s/.py//"`
+  solvername=`basename ${app_run}`
    
+   get_app_name ${solvername} ${run_type}
+   app_name=${MF_APP_NAME}
    
    source_case=`get_source_case $*` 
    reference_case=`get_reference_case $*`
