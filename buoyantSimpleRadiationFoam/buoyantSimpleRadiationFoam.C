@@ -256,7 +256,6 @@ void fun_pEqn( const fvMeshHolder& mesh,
     // to obey overall mass continuity
     if (closedVolume)
     {
-        dimensionedScalar xx = ( initialMass - fvc::domainIntegrate( psi() * p() ) ) / fvc::domainIntegrate( psi() );
         p() += ( initialMass - fvc::domainIntegrate( psi() * p() ) ) / fvc::domainIntegrate( psi() );
         p_rgh = p - rho * gh;
     }
@@ -298,7 +297,7 @@ int main(int argc, char *argv[])
   scalar cumulativeContErr = initContinuityErrs();
   
   simpleControlHolder simple( mesh );
-  simple->nNonOrthCorr();
+
   // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
   Info<< "\nStarting time loop\n" << endl;
