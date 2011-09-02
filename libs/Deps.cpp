@@ -8,6 +8,10 @@ namespace Foam
     : Args( uh )
   {}
   
+  Deps::Deps()
+    : Args()
+  {}
+  
   Deps::Deps( const std::set< holderPtr >& the_deps )
     : Args( the_deps )
   {}

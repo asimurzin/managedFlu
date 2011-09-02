@@ -35,6 +35,43 @@
 
 %import "SimpleHolder.cxx"
 
+%import "set_SimpleHolder.cxx"
+
+
+//---------------------------------------------------------------------------
+%typecheck( SWIG_TYPECHECK_POINTER ) const Foam::Deps&
+{
+  void *ptr;
+  int res_Deps = SWIG_ConvertPtr( $input, (void **) &ptr, $descriptor( Foam::Deps* ), 0 );
+  int res_Simpl = SWIG_ConvertPtr( $input, (void **) &ptr, $descriptor( Foam::SimpleHolder * ), 0 );
+  int res_Set = SWIG_ConvertPtr( $input, (void **) &ptr, $descriptor( std::set< boost::shared_ptr< Foam::SimpleHolder > > * ), 0 );
+  $1 = SWIG_CheckState( res_Deps ) || SWIG_CheckState( res_Simpl ) || SWIG_CheckState( res_Set );
+}
+
+
+%typemap( in ) const Foam::Deps& ( void  *argp = 0, int check = 0, Foam::Deps result ) 
+{
+  // First check the simplest case, complete coinsidence of the types
+  check = SWIG_ConvertPtr( $input, &argp, $descriptor( Foam::Deps * ), %convertptr_flags );
+  if ( SWIG_IsOK( check ) && argp ) {
+    result = *%reinterpret_cast( argp, Foam::Deps * );
+  } else {
+    check = SWIG_ConvertPtr( $input, &argp, $descriptor( Foam::SimpleHolder * ), %convertptr_flags );
+    if ( SWIG_IsOK( check ) && argp ) {
+      Foam::SimpleHolder* arg = %reinterpret_cast( argp, Foam::SimpleHolder * );
+      result = Foam::deps( arg );
+    } else {
+      check = SWIG_ConvertPtr( $input, &argp, $descriptor( std::set< boost::shared_ptr< Foam::SimpleHolder > > * ), %convertptr_flags );
+      if ( SWIG_IsOK( check ) && argp ) {
+        std::set< boost::shared_ptr< Foam::SimpleHolder > >* arg = %reinterpret_cast( argp, std::set< boost::shared_ptr< Foam::SimpleHolder > > * );
+        result = Foam::deps( *arg );
+      } else {
+      %argument_fail( check, "$type", $symname, $argnum ); 
+      }
+    }
+  }
+  $1 = &result;
+}
 
 //---------------------------------------------------------------------------
 %include "Deps.hpp"
