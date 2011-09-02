@@ -25,10 +25,15 @@ pythonflu_root_dir:=@PYTHONFLU_ROOT_DIR@
 
 include $(pythonflu_root_dir)/Foam/foam.version.makefile
 
-TEST_MM_CPPFLAGS=-I@abs_top_builddir@/libs -I@abs_top_builddir@/wrappers/src -I@abs_top_builddir@/wrappers/src/OpenFOAM -I@abs_top_builddir@/wrappers/src/finiteVolume
+TEST_MM_CPPFLAGS=-I@abs_top_builddir@/libs -I@abs_top_builddir@/libs/lnInclude -I@abs_top_builddir@/wrappers/src -I@abs_top_builddir@ -I@abs_top_builddir@/wrappers/src/OpenFOAM -I@abs_top_builddir@/wrappers/src/finiteVolume 
 
 __CPPFLAGS__ := $(__CPPFLAGS__) \
 	@OPENFOAM_FINITEVOLUME_CPPFLAGS@ \
+	@OPENFOAM_BASICTHERMOPHYSICALMODELS_CPPFLAGS@ \
+	@OPENFOAM_TURBULENCEMODELS_CPPFLAGS@ \
+	@OPENFOAM_COMPRESSIBLETURBULENCEMODELS_CPPFLAGS@ \
+	@OPENFOAM_RADIATION_CPPFLAGS@ \
+	@OPENFOAM_SPECIE_CPPFLAGS@ \
 	$(TEST_MM_CPPFLAGS)
 
 
@@ -37,6 +42,11 @@ __CXXFLAGS__ := $(__CXXFLAGS__)  $(TEST_MM_CPPFLAGS)
 
 __LDFLAGS__ := $(__LDFLAGS__) \
 	@OPENFOAM_FINITEVOLUME_LIBS@ \
+	@OPENFOAM_BASICTHERMOPHYSICALMODELS_LIBS@ \
+	@OPENFOAM_TURBULENCEMODELS_LIBS@ \
+	@OPENFOAM_COMPRESSIBLETURBULENCEMODELS_LIBS@ \
+	@OPENFOAM_RADIATION_LIBS@ \
+	@OPENFOAM_SPECIE_LIBS@ \
 	-L${FOAM_USER_LIBBIN} -ltestFixingBug
 	
 sources = \
@@ -75,6 +85,19 @@ sources = \
 	@abs_top_builddir@/wrappers/src/finiteVolume/findRefCell.cxx \
 	@abs_top_builddir@/wrappers/src/finiteVolume/linear.cxx \
 	@abs_top_builddir@/wrappers/src/finiteVolume/surfaceInterpolate.cxx \
+	\
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_basicThermo.cxx \
+	@abs_top_builddir@/wrappers/src/thermophysicalModels/basicThermoHolder.cxx \
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_basicPsiThermo.cxx \
+	@abs_top_builddir@/wrappers/src/thermophysicalModels/basicPsiThermoHolder.cxx \
+	\
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_radiationModel.cxx \
+	@abs_top_builddir@/wrappers/src/thermophysicalModels/radiationModelHolder.cxx \
+	\
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_compressible_turbulenceModel.cxx \
+	@abs_top_builddir@/wrappers/src/turbulenceModels/compressible_turbulenceModelHolder.cxx \
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_compressible_RASModel.cxx \
+	@abs_top_builddir@/wrappers/src/turbulenceModels/compressible_RASModelHolder.cxx \
 
 
 	
