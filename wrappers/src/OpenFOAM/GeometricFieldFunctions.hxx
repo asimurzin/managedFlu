@@ -55,6 +55,18 @@
     return *self * field;
   }
 
+  Foam::GeometricFieldHolder< Foam::scalar, Foam::fvPatchField, Foam::volMesh > __mul__ ( 
+    const Foam::GeometricFieldHolder< Foam::scalar, Foam::fvPatchField, Foam::volMesh >& field )
+  {
+    return *self * field;
+  }
+
+  Foam::GeometricFieldHolder< Foam::scalar, Foam::fvPatchField, Foam::volMesh > __sub__ ( 
+    const Foam::GeometricFieldHolder< Foam::scalar, Foam::fvPatchField, Foam::volMesh >& field )
+  {
+    return *self - field;
+  }
+
 }
 %enddef
 
