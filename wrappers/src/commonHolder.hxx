@@ -26,14 +26,14 @@
 
 //---------------------------------------------------------------------------
 %define HOLDERS_CALL_SHARED_PTR_EXTENSION( Type )
-Type& __call__()
+Foam::Type& __call__()
 {
   return self->operator*();
 }
 %enddef
 
 %define HOLDERS_CALL_SMART_TMP_EXTENSION( Type )
-Type& __call__() const
+Foam::Type& __call__() const
 {
   return self->operator()();
 }
