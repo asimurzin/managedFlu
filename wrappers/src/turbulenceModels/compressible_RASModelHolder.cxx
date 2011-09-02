@@ -20,36 +20,36 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef compressible_turbulenceModelHolder_cxx
-#define compressible_turbulenceModelHolder_cxx
+#ifndef compressible_RASModelHolder_cxx
+#define compressible_RASModelHolder_cxx
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.PsiThermophysicalModels.compressible_turbulenceModelHolder"
+%module "wrappers.src.turbulenceModels.compressible_RASModelHolder"
 
 %{
-  #include "compressible_turbulenceModelHolder.hh"
+  #include "compressible_RASModelHolder.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "wrappers/src/shared_ptr/shared_ptr_compressible_turbulenceModel.cxx"
+%import "wrappers/src/shared_ptr/shared_ptr_compressible_RASModel.cxx"
 
 %import "wrappers/src/DependentHolder.cxx"
 
 %import "wrappers/src/OpenFOAM/GeometricFieldHolders.cxx"
 
-%import "wrappers/src/thermophysicalModels/basicThermoHolder.cxx"
+%import "wrappers/src/turbulenceModels/compressible_turbulenceModelHolder.cxx"
 
-%include "turbulenceModels/compressible/turbulenceModelHolder.hpp"
+%include "turbulenceModels/compressible/RASModelHolder.hpp"
 
 
 //---------------------------------------------------------------------------
-%feature( "pythonappend" ) Foam::compressible::turbulenceModelHolder::SMARTPTR_PYAPPEND_GETATTR( compressible_turbulenceModelHolder );
+%feature( "pythonappend" ) Foam::compressible::RASModelHolder::SMARTPTR_PYAPPEND_GETATTR( compressible_RASModelHolder );
 
-%extend Foam::compressible::turbulenceModelHolder
+%extend Foam::compressible::RASModelHolder
 {
-  SMARTPTR_EXTEND_ATTR( compressible_turbulenceModelHolder );
+  SMARTPTR_EXTEND_ATTR( compressible_RASModelHolder );
 }
 
 
