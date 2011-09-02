@@ -20,40 +20,24 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef fvMeshHolder_cxx
-#define fvMeshHolder_cxx
+#ifndef commonHolder_hxx
+#define commonHolder_hxx
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.finiteVolume.fvMeshHolder"
-
-%{
-  #include "fvMeshHolder.hh"
-%}
-
-
-//---------------------------------------------------------------------------
-%import "commonHolder.hxx"
-
-%import "shared_ptr/shared_ptr_fvMesh.cxx"
-
-%import "DependentHolder.cxx"
-
-%import "objectRegistryHolder.cxx"
-
-%import "GeometricFieldHolders.cxx"
-
-%include "fvMeshHolder.hpp"
-
-
-//---------------------------------------------------------------------------
-%feature( "pythonappend" ) Foam::fvMeshHolder::SMARTPTR_PYAPPEND_GETATTR( fvMeshHolder );
-
-%extend Foam::fvMeshHolder
+%define HOLDERS_CALL_SHARED_PTR_EXTENSION( Type )
+Type& __call__()
 {
-  SMARTPTR_EXTEND_ATTR( fvMeshHolder );
-  HOLDERS_CALL_SHARED_PTR_EXTENSION( fvMesh );
+  return self->operator*();
 }
+%enddef
+
+%define HOLDERS_CALL_SMART_TMP_EXTENSION( Type )
+Type& __call__() const
+{
+  return self->operator()();
+}
+%enddef
 
 
 //--------------------------------------------------------------------------------------

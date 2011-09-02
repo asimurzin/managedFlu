@@ -30,6 +30,7 @@
   #include "TimeHolder.hh"
 %}
 
+%import "commonHolder.hxx"
 
 %import "Foam/ext/common/OpenFOAM/shared_ptr/shared_ptr_Time.cxx"
 
@@ -44,6 +45,7 @@
 %extend Foam::TimeHolder
 {
 SMARTPTR_EXTEND_ATTR( TimeHolder );
+HOLDERS_CALL_SHARED_PTR_EXTENSION( Time );
 }
 
 
