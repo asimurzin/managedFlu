@@ -45,11 +45,11 @@
 
 
 //---------------------------------------------------------------------------
-%feature( "pythonappend" ) Foam::compressible::RASModelHolder::SMARTPTR_PYAPPEND_GETATTR( compressible_RASModelHolder );
+%feature( "pythonappend" ) Foam::compressible::RASModelHolder::SMARTPTR_PYAPPEND_GETATTR( RASModelHolder );
 
 %extend Foam::compressible::RASModelHolder
 {
-  SMARTPTR_EXTEND_ATTR( compressible_RASModelHolder );
+  SMARTPTR_EXTEND_ATTR( RASModelHolder );
   HOLDERS_CALL_SHARED_PTR_EXTENSION( compressible::RASModel );
 }
 

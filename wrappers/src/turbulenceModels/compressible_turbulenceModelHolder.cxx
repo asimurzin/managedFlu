@@ -45,11 +45,11 @@
 
 
 //---------------------------------------------------------------------------
-%feature( "pythonappend" ) Foam::compressible::turbulenceModelHolder::SMARTPTR_PYAPPEND_GETATTR( compressible_turbulenceModelHolder );
+%feature( "pythonappend" ) Foam::compressible::turbulenceModelHolder::SMARTPTR_PYAPPEND_GETATTR( turbulenceModelHolder );
 
 %extend Foam::compressible::turbulenceModelHolder
 {
-  SMARTPTR_EXTEND_ATTR( compressible_turbulenceModelHolder );
+  SMARTPTR_EXTEND_ATTR( turbulenceModelHolder );
   HOLDERS_CALL_SHARED_PTR_EXTENSION( compressible::turbulenceModel );
 }
 
