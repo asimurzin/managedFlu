@@ -35,11 +35,13 @@
 //---------------------------------------------------------------------------
 %import "shared_ptr/shared_ptr_basicPsiThermo.cxx"
 
-%import "DependentHolder.cxx"
+%import "wrappers/src/thermophysicalModels/basicThermoHolder.cxx"
 
-%import "fvMeshHolder.cxx"
+%import "wrappers/src/DependentHolder.cxx"
 
-%import "GeometricFieldHolders.cxx"
+%import "wrappers/src/finiteVolume/fvMeshHolder.cxx"
+
+%import "wrappers/src/OpenFOAM/GeometricFieldHolders.cxx"
 
 %include "basicPsiThermoHolder.hpp"
 
@@ -50,6 +52,7 @@
 %extend Foam::basicPsiThermoHolder
 {
   SMARTPTR_EXTEND_ATTR( basicPsiThermoHolder );
+  HOLDERS_CALL_SHARED_PTR_EXTENSION( basicPsiThermo );
 }
 
 

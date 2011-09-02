@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.PsiThermophysicalModels.compressible_turbulenceModelHolder"
+%module "wrappers.src.turbulenceModels.compressible_turbulenceModelHolder"
 
 %{
   #include "compressible_turbulenceModelHolder.hh"
@@ -50,6 +50,7 @@
 %extend Foam::compressible::turbulenceModelHolder
 {
   SMARTPTR_EXTEND_ATTR( compressible_turbulenceModelHolder );
+  HOLDERS_CALL_SHARED_PTR_EXTENSION( compressible::turbulenceModel );
 }
 
 

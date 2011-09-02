@@ -26,11 +26,13 @@
 
 //---------------------------------------------------------------------------
 #include "basicPsiThermoHolder.hpp"
-#include "fvMeshHolder.hh"
-#include "DependentHolder.hh"
-#include "shared_ptr/shared_ptr_basicPsiThermo.hh"
+#include "wrappers/src/finiteVolume/fvMeshHolder.hh"
+#include "wrappers/src/DependentHolder.hh"
+#include "wrappers/src/shared_ptr/shared_ptr_basicPsiThermo.hh"
 
-#include "GeometricFieldHolders.hh"
+#include "wrappers/src/OpenFOAM/GeometricFieldHolders.hh"
+
+#include "wrappers/src/thermophysicalModels/basicThermoHolder.hh"
 
 
 //--------------------------------------------------------------------------------------

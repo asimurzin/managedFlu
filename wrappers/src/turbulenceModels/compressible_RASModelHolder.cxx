@@ -50,6 +50,7 @@
 %extend Foam::compressible::RASModelHolder
 {
   SMARTPTR_EXTEND_ATTR( compressible_RASModelHolder );
+  HOLDERS_CALL_SHARED_PTR_EXTENSION( compressible::RASModel );
 }
 
 

@@ -50,6 +50,7 @@
 %extend Foam::basicThermoHolder
 {
   SMARTPTR_EXTEND_ATTR( basicThermoHolder );
+  HOLDERS_CALL_SHARED_PTR_EXTENSION( basicThermo );
 }
 
 
