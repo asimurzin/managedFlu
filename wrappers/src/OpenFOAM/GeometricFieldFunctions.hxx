@@ -136,6 +136,12 @@
   {
     return *self + field;
   }
+
+  Foam::GeometricFieldHolder< Foam::scalar, Foam::fvsPatchField, Foam::surfaceMesh > __mul__ ( 
+    const Foam::GeometricFieldHolder< Foam::scalar, Foam::fvsPatchField, Foam::surfaceMesh >& field )
+  {
+    return *self * field;
+  }
   
   Foam::GeometricFieldHolder< Foam::scalar, Foam::fvsPatchField, Foam::surfaceMesh > __sub__ ( 
     const Foam::GeometricFieldHolder< Foam::scalar, Foam::fvsPatchField, Foam::surfaceMesh >& field )
@@ -152,6 +158,11 @@
   Foam::GeometricFieldHolder< Foam::scalar, Foam::fvsPatchField, Foam::surfaceMesh > mag ()
   {
     return Foam::mag( *self );
+  }
+  
+  Foam::GeometricFieldHolder< Foam::scalar, Foam::fvsPatchField, Foam::surfaceMesh > __neg__ ()
+  {
+    return - *self;
   }
 
 }
