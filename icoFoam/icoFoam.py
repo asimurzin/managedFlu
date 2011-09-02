@@ -25,60 +25,6 @@
 
 
 #---------------------------------------------------------------------------
-def createTime( args ):
-    from Foam.OpenFOAM import ext_Info, nl
-    ext_Info() << "Create time\n" << nl
-    
-    from Foam.OpenFOAM import Time
-    from wrappers.OpenFOAM import TimeHolder 
-
-    runTime = TimeHolder( Time.controlDictName.fget(), args )  #Time && TimeHolder. It must be one class.
-
-    return runTime
-
-#---------------------------------------------------------------------------
-def createMesh( runTime ):
-    from Foam.OpenFOAM import ext_Info, nl
-    ext_Info() << "Create mesh for time = " << runTime.timeName() << nl << nl 
-
-    from Foam.OpenFOAM import IOobject
-    from Foam.OpenFOAM import fileName
-    from Foam.finiteVolume import fvMesh
-    from wrappers.OpenFOAM import IOobjectHolder
-    from wrappers.finiteVolume import fvMeshHolder
-    
-    
-    mesh = fvMeshHolder( IOobjectHolder( fvMesh.defaultRegion.fget(),           # fvMesh && fvMeshHolder
-                                         fileName( runTime.timeName() ),      
-                                         runTime,
-                                         IOobject.MUST_READ ) )                 # IOobject && IOobjectHolder
-    
-   
-    return mesh
-
-
-#---------------------------------------------------------------------------
-def createPhi( runTime, mesh, U ):
-    from Foam.OpenFOAM import ext_Info, nl
-    ext_Info() << "Reading/calculating face flux field phi\n" << nl;
-
-
-    from Foam.OpenFOAM import IOobject, fileName, word
-    from wrappers.OpenFOAM import IOobjectHolder
-    from wrappers import deps
-    from wrappers.finiteVolume import surfaceScalarFieldHolder, surfaceVectorFieldHolder
-    from wrappers.finiteVolume import linearInterpolate
-    phi = surfaceScalarFieldHolder( IOobjectHolder( word( "phi" ),
-                                                    fileName( runTime.timeName() ),
-                                                    mesh,
-                                                    IOobject.READ_IF_PRESENT,
-                                                    IOobject.AUTO_WRITE ),
-                                    linearInterpolate(U) & surfaceVectorFieldHolder( mesh.Sf(), deps( mesh ) ) ) 
-    
-    return phi
-
-
-#---------------------------------------------------------------------------
 def createFields( runTime, mesh ):
     from Foam.OpenFOAM import ext_Info, nl
     ext_Info() << "Reading transportProperties\n"
@@ -111,6 +57,7 @@ def createFields( runTime, mesh ):
                                               IOobject.MUST_READ,
                                               IOobject.AUTO_WRITE ), mesh );
 
+    from wrappers.finiteVolume import createPhi
     phi = createPhi( runTime, mesh, U )
 
     pRefCell = 0
@@ -122,70 +69,15 @@ def createFields( runTime, mesh ):
 
 
 #--------------------------------------------------------------------------------------
-def readPISOControls( mesh ):
-    from Foam.OpenFOAM import dictionary, readInt, Switch, word
-
-    piso = dictionary( mesh.solutionDict().subDict( word( "PISO" ) ) )
-    nCorr = readInt( piso.lookup( word( "nCorrectors" ) ) )
-    
-    nNonOrthCorr = piso.lookupOrDefault( word( "nNonOrthogonalCorrectors" ), 0 )
-       
-    momentumPredictor = piso.lookupOrDefault( word( "momentumPredictor" ), Switch( True ) )
-      
-    transonic = piso.lookupOrDefault( word( "transonic" ), Switch( False ) )
-      
-    nOuterCorr = piso.lookupOrDefault( word( "nOuterCorrectors" ), 1 )
-
-    return piso, nCorr, nNonOrthCorr, momentumPredictor, transonic, nOuterCorr
-
-
-#--------------------------------------------------------------------------------------
-def CourantNo( mesh, phi, runTime ):
-
-    CoNum = 0.0
-    meanCoNum = 0.0
-    from Foam.OpenFOAM import ext_Info, nl
-    
-    if mesh.nInternalFaces() :
-        from wrappers import fvc
-        tmp = fvc.surfaceSum( phi.mag() )
-        sumPhi = tmp.internalField()
-        CoNum =  0.5 * ( sumPhi / mesh.V().field() ).gMax() * runTime.deltaTValue()
-        meanCoNum =  0.5 * ( sumPhi.gSum() / mesh.V().field().gSum() ) * runTime.deltaTValue()
-        pass
-
-    
-    ext_Info() << "Courant Number mean: " << meanCoNum << " max: " << CoNum << nl
-
-    return CoNum, meanCoNum
-
-
-#--------------------------------------------------------------------------------------
-def continuityErrs( mesh, phi, runTime, cumulativeContErr ):
-
-    from wrappers import fvm, fvc
-
-    contErr = fvc.div( phi )
-    sumLocalContErr = runTime.deltaT().value() * contErr.mag().weightedAverage( mesh.V() ).value()
-    globalContErr = runTime.deltaT().value() * contErr.weightedAverage( mesh.V() ).value()
-    cumulativeContErr += globalContErr
-
-    from Foam.OpenFOAM import ext_Info, nl
-    ext_Info() << "time step continuity errors : sum local = " << sumLocalContErr \
-               << ", global = " << globalContErr \
-               << ", cumulative = " << cumulativeContErr << nl
-               
-    return cumulativeContErr
-
-
-#--------------------------------------------------------------------------------------
 def main_standalone( argc, argv ):
 
     from Foam.OpenFOAM.include import setRootCase
     args = setRootCase( argc, argv )
 
+    from wrappers.OpenFOAM import createTime
     runTime = createTime( args )
 
+    from wrappers.OpenFOAM import createMesh
     mesh = createMesh( runTime )
 
     transportProperties, nu, p, U, phi, pRefCell, pRefValue = createFields( runTime, mesh )
@@ -199,9 +91,11 @@ def main_standalone( argc, argv ):
     while runTime.loop() :
         ext_Info() << "Time = " <<  runTime.timeName() << nl << nl
 
-        piso, nCorr, nNonOrthCorr, momentumPredictor, transonic, nOuterCorr = readPISOControls( mesh )
+        from Foam.finiteVolume.cfdTools.general.include import readPISOControls
+        piso, nCorr, nNonOrthCorr, momentumPredictor, transonic, nOuterCorr = readPISOControls( mesh() )
 
-        CoNum, meanCoNum = CourantNo( mesh, phi, runTime )
+        from Foam.finiteVolume.cfdTools.general.include import CourantNo
+        CoNum, meanCoNum = CourantNo( mesh(), phi(), runTime )
 
         from wrappers import fvm
         UEqn = ( fvm.ddt( U ) + fvm.div( phi, U ) - fvm.laplacian( nu, U ) )
@@ -234,7 +128,8 @@ def main_standalone( argc, argv ):
                 
                 pass
             
-            cumulativeContErr = continuityErrs( mesh, phi, runTime, cumulativeContErr )
+            from Foam.finiteVolume.cfdTools.incompressible import continuityErrs
+            cumulativeContErr = continuityErrs( mesh(), phi(), runTime(), cumulativeContErr )
 
             U().ext_assign( U() - rUA * fvc.grad( p() ) )
             U.correctBoundaryConditions()    
