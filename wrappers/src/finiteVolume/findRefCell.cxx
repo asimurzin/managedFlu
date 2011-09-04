@@ -26,9 +26,9 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.findRefCell";
+%module "wrappers.src.finiteVolume.findRefCell";
 %{
-  #include "findRefCell.hh"
+  #include "wrappers/src/finiteVolume/findRefCell.hh"
 %}
 
 
@@ -37,7 +37,7 @@
 
 %import "Foam/src/OpenFOAM/primitives/scalar.cxx"
 
-%import "GeometricFieldHolders.cxx"
+%import "wrappers/src/OpenFOAM/GeometricFieldHolders.cxx"
 
 
 //--------------------------------------------------------------------------------------

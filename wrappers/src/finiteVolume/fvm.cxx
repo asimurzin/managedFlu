@@ -25,16 +25,17 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.fvm"
+%module "wrappers.src.finiteVolume.fvm"
 
 %{
-  #include "fvm.hh"
+  #include "wrappers/src/finiteVolume/fvm.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "GeometricFieldHolders.cxx"
-%import "fvMatrices.cxx"
+%import "wrappers/src/OpenFOAM/GeometricFieldHolders.cxx"
+
+%import "wrappers/src/finiteVolume/fvMatrixHolders.cxx"
 
 
 //---------------------------------------------------------------------------

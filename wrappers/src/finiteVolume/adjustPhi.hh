@@ -26,9 +26,10 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
+
 #include "adjustPhi.hpp"
 
-#include "GeometricFieldHolders.hh"
+#include "wrappers/src/OpenFOAM/GeometricFieldHolders.hh"
 
 
 

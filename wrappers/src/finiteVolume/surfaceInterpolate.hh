@@ -26,8 +26,10 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
+
 #include "surfaceInterpolate.hpp"
-#include "GeometricFieldHolders.hh"
+
+#include "wrappers/src/OpenFOAM/GeometricFieldHolders.hh"
 
 
 //--------------------------------------------------------------------------------------

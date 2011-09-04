@@ -25,15 +25,15 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.adjustPhi"
+%module "wrappers.src.finiteVolume.adjustPhi"
 
 %{
-  #include "adjustPhi.hh"
+  #include "wrappers/src/finiteVolume/adjustPhi.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "GeometricFieldHolders.cxx"
+%import "wrappers/src/OpenFOAM/GeometricFieldHolders.cxx"
 
 
 //---------------------------------------------------------------------------

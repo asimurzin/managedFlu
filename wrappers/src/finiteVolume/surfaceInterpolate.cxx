@@ -25,15 +25,15 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.surfaceInterpolate"
+%module "wrappers.src.finiteVolume.surfaceInterpolate"
 
 %{
-  #include "surfaceInterpolate.hh"
+  #include "wrappers/src/finiteVolume/surfaceInterpolate.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "GeometricFieldHolders.cxx"
+%import "wrappers/src/OpenFOAM/GeometricFieldHolders.cxx"
 
 
 //---------------------------------------------------------------------------

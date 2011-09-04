@@ -27,8 +27,8 @@
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
 #include "fvm.hpp"
-#include "GeometricFieldHolders.hh"
-#include "fvMatrices.hh"
+#include "wrappers/src/OpenFOAM/GeometricFieldHolders.hh"
+#include "wrappers/src/finiteVolume/fvMatrixHolders.hh"
 
 
 //--------------------------------------------------------------------------------------

@@ -25,15 +25,15 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.fvc"
+%module "wrappers.src.finiteVolume.fvc"
 
 %{
-  #include "fvc.hh"
+  #include "wrappers/src/finiteVolume/fvc.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "GeometricFieldHolders.cxx"
+%import "wrappers/src/OpenFOAM/GeometricFieldHolders.cxx"
 
 //---------------------------------------------------------------------------
 %rename( fvc_div ) Foam::fvc::div;

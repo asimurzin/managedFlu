@@ -25,15 +25,15 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.linear"
+%module "wrappers.src.finiteVolume.linear"
 
 %{
-  #include "linear.hh"
+  #include "wrappers/src/finiteVolume/linear.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "GeometricFieldHolders.cxx"
+%import "wrappers/src/OpenFOAM/GeometricFieldHolders.cxx"
 
 
 //---------------------------------------------------------------------------
