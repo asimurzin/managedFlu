@@ -26,10 +26,12 @@
 
 //---------------------------------------------------------------------------
 #include "radiationModelHolder.hpp"
-#include "DependentHolder.hh"
-#include "shared_ptr/shared_ptr_radiationModel.hh"
 
-#include "GeometricFieldHolders.hh"
+#include "wrappers/src/DependentHolder.hh"
+
+#include "wrappers/src/shared_ptr/shared_ptr_radiationModel.hh"
+
+#include "wrappers/src/OpenFOAM/GeometricFieldHolders.hh"
 
 
 //--------------------------------------------------------------------------------------

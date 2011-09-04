@@ -28,18 +28,18 @@
 %module "wrappers.src.thermophysicalModels.basicThermoHolder"
 
 %{
-  #include "basicThermoHolder.hh"
+  #include "wrappers/src/thermophysicalModels/basicThermoHolder.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "shared_ptr/shared_ptr_basicThermo.cxx"
+%import "wrappers/src/shared_ptr/shared_ptr_basicThermo.cxx"
 
-%import "DependentHolder.cxx"
+%import "wrappers/src/DependentHolder.cxx"
 
-%import "fvMeshHolder.cxx"
+%import "wrappers/src/finiteVolume/fvMeshHolder.cxx"
 
-%import "GeometricFieldHolders.cxx"
+%import "wrappers/src/OpenFOAM/GeometricFieldHolders.cxx"
 
 %include "basicThermoHolder.hpp"
 

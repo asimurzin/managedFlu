@@ -28,7 +28,7 @@
 //---------------------------------------------------------------------------
 %module "wrappers.src.shared_ptr.shared_ptr_basicPsiThermo"
 %{
-  #include "shared_ptr/shared_ptr_basicPsiThermo.hh"
+  #include "wrappers/src/shared_ptr/shared_ptr_basicPsiThermo.hh"
 %}
 
 %include "Foam/ext/common/shared_ptr.hxx"

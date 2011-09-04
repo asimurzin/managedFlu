@@ -28,7 +28,7 @@
 %module "wrappers.src.turbulenceModels.compressible_turbulenceModelHolder"
 
 %{
-  #include "compressible_turbulenceModelHolder.hh"
+  #include "wrappers/src/turbulenceModels/compressible_turbulenceModelHolder.hh"
 %}
 
 

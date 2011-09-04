@@ -28,7 +28,7 @@
 //---------------------------------------------------------------------------
 %module "wrappers.src.shared_ptr.shared_ptr_compressible_RASModel"
 %{
-  #include "shared_ptr/shared_ptr_compressible_RASModel.hh"
+  #include "wrappers/src/shared_ptr/shared_ptr_compressible_RASModel.hh"
 %}
 
 %include "Foam/ext/common/shared_ptr.hxx"

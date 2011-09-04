@@ -28,7 +28,7 @@
 %module "wrappers.src.turbulenceModels.compressible_RASModelHolder"
 
 %{
-  #include "compressible_RASModelHolder.hh"
+  #include "wrappers/src/turbulenceModels/compressible_RASModelHolder.hh"
 %}
 
 

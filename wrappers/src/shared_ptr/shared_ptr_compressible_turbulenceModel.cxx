@@ -28,7 +28,7 @@
 //---------------------------------------------------------------------------
 %module "wrappers.src.shared_ptr.shared_ptr_compressible_turbulenceModel"
 %{
-  #include "shared_ptr/shared_ptr_compressible_turbulenceModel.hh"
+  #include "wrappers/src/shared_ptr/shared_ptr_compressible_turbulenceModel.hh"
 %}
 
 %include "Foam/ext/common/shared_ptr.hxx"

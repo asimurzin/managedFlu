@@ -26,11 +26,14 @@
 
 //---------------------------------------------------------------------------
 #include "basicThermoHolder.hpp"
-#include "fvMeshHolder.hh"
-#include "DependentHolder.hh"
-#include "shared_ptr/shared_ptr_basicThermo.hh"
 
-#include "GeometricFieldHolders.hh"
+#include "wrappers/src/finiteVolume/fvMeshHolder.hh"
+
+#include "wrappers/src/DependentHolder.hh"
+
+#include "wrappers/src/shared_ptr/shared_ptr_basicThermo.hh"
+
+#include "wrappers/src/OpenFOAM/GeometricFieldHolders.hh"
 
 
 //--------------------------------------------------------------------------------------

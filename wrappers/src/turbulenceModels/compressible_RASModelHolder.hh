@@ -26,9 +26,13 @@
 
 //---------------------------------------------------------------------------
 #include "turbulenceModels/compressible/RASModelHolder.hpp"
+
 #include "wrappers/src/DependentHolder.hh"
+
 #include "wrappers/src/shared_ptr/shared_ptr_compressible_RASModel.hh"
+
 #include "wrappers/src/OpenFOAM/GeometricFieldHolders.hh"
+
 #include "wrappers/src/turbulenceModels/compressible_turbulenceModelHolder.hh"
 
 

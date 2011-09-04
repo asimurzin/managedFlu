@@ -25,19 +25,19 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.PsiThermophysicalModels.radiationModelHolder"
+%module "wrappers.src.thermophysicalModels.radiationModelHolder"
 
 %{
-  #include "radiationModelHolder.hh"
+  #include "wrappers/src/thermophysicalModels/radiationModelHolder.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "shared_ptr/shared_ptr_radiationModel.cxx"
+%import "wrappers/src/shared_ptr/shared_ptr_radiationModel.cxx"
 
-%import "DependentHolder.cxx"
+%import "wrappers/src/DependentHolder.cxx"
 
-%import "GeometricFieldHolders.cxx"
+%import "wrappers/src/OpenFOAM/GeometricFieldHolders.cxx"
 
 %include "radiationModelHolder.hpp"
 

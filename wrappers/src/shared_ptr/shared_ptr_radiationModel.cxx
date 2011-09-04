@@ -27,8 +27,9 @@
 
 //---------------------------------------------------------------------------
 %module "wrappers.src.shared_ptr.shared_ptr_radiationModel"
+
 %{
-  #include "shared_ptr/shared_ptr_radiationModel.hh"
+  #include "wrappers/src/shared_ptr/shared_ptr_radiationModel.hh"
 %}
 
 %include "Foam/ext/common/shared_ptr.hxx"

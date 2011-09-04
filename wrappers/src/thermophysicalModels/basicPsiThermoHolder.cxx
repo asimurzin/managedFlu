@@ -25,15 +25,15 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.PsiThermophysicalModels.basicPsiThermoHolder"
+%module "wrappers.src.thermophysicalModels.basicPsiThermoHolder"
 
 %{
-  #include "basicPsiThermoHolder.hh"
+  #include "wrappers/src/thermophysicalModels/basicPsiThermoHolder.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "shared_ptr/shared_ptr_basicPsiThermo.cxx"
+%import "wrappers/src/shared_ptr/shared_ptr_basicPsiThermo.cxx"
 
 %import "wrappers/src/thermophysicalModels/basicThermoHolder.cxx"
 
