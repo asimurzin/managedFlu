@@ -26,10 +26,14 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
+
 #include "DependentHolder.hpp"
-#include "SimpleHolder.hpp"
-#include "Args.hpp"
-#include "Deps.hh"
+
+#include "wrappers/src/SimpleHolder.hh"
+
+#include "wrappers/src/Args.hh"
+
+#include "wrappers/src/Deps.hh"
 
 
 //--------------------------------------------------------------------------------------

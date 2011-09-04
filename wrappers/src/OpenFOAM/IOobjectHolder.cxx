@@ -28,14 +28,14 @@
 %module "wrappers.src.OpenFOAM.IOobjectHolder"
 
 %{
-  #include "IOobjectHolder.hh"
+  #include "wrappers/src/OpenFOAM/IOobjectHolder.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "shared_ptr/shared_ptr_IOobject.cxx"
+%import "wrappers/src/shared_ptr/shared_ptr_IOobject.cxx"
 
-%import "DependentHolder.cxx"
+%import "wrappers/src/DependentHolder.cxx"
 
 %include "IOobjectHolder.hpp"
 

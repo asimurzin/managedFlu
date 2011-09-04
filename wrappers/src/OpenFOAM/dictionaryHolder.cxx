@@ -33,9 +33,9 @@
 
 
 //---------------------------------------------------------------------------
-%import "shared_ptr/shared_ptr_dictionary.cxx"
+%import "wrappers/src/shared_ptr/shared_ptr_dictionary.cxx"
 
-%import "SimpleHolder.cxx"
+%import "wrappers/src/SimpleHolder.cxx"
 
 %include "dictionaryHolder.hpp"
 

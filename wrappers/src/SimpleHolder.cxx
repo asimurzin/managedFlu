@@ -31,10 +31,10 @@
   #include "SimpleHolder.hh"
 %}
 
-%import "Args.cxx"
-
 
 //---------------------------------------------------------------------------
+%include "Foam/src/common.hxx"
+
 %include "SimpleHolder.hpp"
 
 

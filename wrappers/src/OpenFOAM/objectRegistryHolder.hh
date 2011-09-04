@@ -26,6 +26,9 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
+
+#include "wrappers/src/OpenFOAM/IOobjectHolder.hh"
+
 #include "objectRegistryHolder.hpp"
 
 

@@ -26,7 +26,9 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
-#include "set_SimpleHolder.hh"
+
+#include "wrappers/src/set_SimpleHolder.hh"
+
 #include "Args.hpp"
 
 

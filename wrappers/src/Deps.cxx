@@ -31,11 +31,9 @@
   #include "Deps.hh"
 %}
 
-%import "Args.cxx"
+%import "wrappers/src/Args.cxx"
 
-%import "SimpleHolder.cxx"
-
-%import "set_SimpleHolder.cxx"
+%import "wrappers/src/set_SimpleHolder.cxx"
 
 
 //---------------------------------------------------------------------------

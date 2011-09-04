@@ -28,12 +28,12 @@
 //---------------------------------------------------------------------------
 %module "wrappers.src.shared_ptr.shared_ptr_SimpleHolder"
 %{
-  #include "shared_ptr/shared_ptr_SimpleHolder.hh"
+  #include "wrappers/src/shared_ptr/shared_ptr_SimpleHolder.hh"
 %}
 
 %include "Foam/ext/common/shared_ptr.hxx"
 
-%import "SimpleHolder.cxx"
+%import "wrappers/src/SimpleHolder.cxx"
 
 SHAREDPTR_TYPEMAP( Foam::SimpleHolder );
 

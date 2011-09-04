@@ -26,9 +26,12 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
+
 #include "IOobjectHolder.hpp"
-#include "shared_ptr/shared_ptr_IOobject.hh"
-#include "DependentHolder.hh"
+
+#include "wrappers/src/shared_ptr/shared_ptr_IOobject.hh"
+
+#include "wrappers/src/DependentHolder.hh"
 
 
 //--------------------------------------------------------------------------------------

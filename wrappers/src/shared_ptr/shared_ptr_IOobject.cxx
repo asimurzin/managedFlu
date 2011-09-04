@@ -28,7 +28,7 @@
 //---------------------------------------------------------------------------
 %module "wrappers.src.shared_ptr.shared_ptr_IOobject"
 %{
-  #include "shared_ptr/shared_ptr_IOobject.hh"
+  #include "wrappers/src/shared_ptr/shared_ptr_IOobject.hh"
 %}
 
 %include "Foam/ext/common/shared_ptr.hxx"

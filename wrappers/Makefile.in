@@ -25,7 +25,7 @@ pythonflu_root_dir:=@PYTHONFLU_ROOT_DIR@
 
 include $(pythonflu_root_dir)/Foam/foam.version.makefile
 
-TEST_MM_CPPFLAGS=-I@abs_top_builddir@/libs -I@abs_top_builddir@/libs/lnInclude -I@abs_top_builddir@/wrappers/src -I@abs_top_builddir@ -I@abs_top_builddir@/wrappers/src/OpenFOAM -I@abs_top_builddir@/wrappers/src/finiteVolume 
+TEST_MM_CPPFLAGS=-I@abs_top_builddir@/libs -I@abs_top_builddir@/libs/lnInclude -I@abs_top_builddir@ 
 
 __CPPFLAGS__ := $(__CPPFLAGS__) \
 	@OPENFOAM_FINITEVOLUME_CPPFLAGS@ \

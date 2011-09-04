@@ -26,9 +26,12 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
+
 #include "dictionaryHolder.hpp"
-#include "SimpleHolder.hh"
-#include "shared_ptr/shared_ptr_dictionary.hh"
+
+#include "wrappers/src/SimpleHolder.hh"
+
+#include "wrappers/src/shared_ptr/shared_ptr_dictionary.hh"
 
 
 

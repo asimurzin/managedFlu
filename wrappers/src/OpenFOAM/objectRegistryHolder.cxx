@@ -28,14 +28,14 @@
 %module "wrappers.src.OpenFOAM.objectRegistryHolder"
 
 %{
-  #include "objectRegistryHolder.hh"
+  #include "wrappers/src/OpenFOAM/objectRegistryHolder.hh"
 %}
 
 
 //---------------------------------------------------------------------------
 %import "Foam/ext/common/OpenFOAM/shared_ptr/shared_ptr_objectRegistry.cxx"
 
-%import "IOobjectHolder.cxx"
+%import "wrappers/src/OpenFOAM/IOobjectHolder.cxx"
 
 %include "objectRegistryHolder.hpp"
 

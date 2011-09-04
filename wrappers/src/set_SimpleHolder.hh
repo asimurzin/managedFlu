@@ -26,10 +26,11 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
-#include "SimpleHolder.hh"
-#include "shared_ptr/shared_ptr_SimpleHolder.hh"
+
+#include "wrappers/src/shared_ptr/shared_ptr_SimpleHolder.hh"
+
 #include "boost/shared_ptr.hpp"
-//#include "set.hh"
+
 
 
 //--------------------------------------------------------------------------------------

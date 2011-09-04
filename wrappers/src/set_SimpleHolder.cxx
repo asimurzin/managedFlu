@@ -31,9 +31,7 @@
   #include "set_SimpleHolder.hh"
 %}
 
-%import "shared_ptr/shared_ptr_SimpleHolder.cxx"
-
-//%import "set.hxx"
+%import "wrappers/src/shared_ptr/shared_ptr_SimpleHolder.cxx"
 
 %include "std_set.i"
 

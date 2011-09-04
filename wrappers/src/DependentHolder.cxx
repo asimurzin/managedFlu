@@ -31,9 +31,11 @@
   #include "DependentHolder.hh"
 %}
 
-%import "Args.cxx"
-%import "SimpleHolder.cxx"
-%import "Deps.cxx"
+%import "wrappers/src/Args.cxx"
+
+%import "wrappers/src/SimpleHolder.cxx"
+
+%import "wrappers/src/Deps.cxx"
 
 
 //---------------------------------------------------------------------------
