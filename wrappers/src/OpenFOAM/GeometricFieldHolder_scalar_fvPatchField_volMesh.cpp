@@ -26,16 +26,16 @@
 
 //---------------------------------------------------------------------------
 %{
-  #include "GeometricFieldHolder_scalar_fvPatchField_volMesh.hh"
+  #include "wrappers/src/OpenFOAM/GeometricFieldHolder_scalar_fvPatchField_volMesh.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "smart_tmp/smart_tmp_volScalarField.cxx"
+%import "wrappers/src/smart_tmp/smart_tmp_volScalarField.cxx"
 
 %import "Foam/src/finiteVolume/fvMesh/fvMeshes.cxx"
 
-%import "GeometricFieldHolder.hxx"
+%include "wrappers/src/OpenFOAM/GeometricFieldHolder.hxx"
 
 %include "volFields.hpp"
 

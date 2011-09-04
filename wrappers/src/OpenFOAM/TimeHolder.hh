@@ -26,7 +26,9 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
-#include "objectRegistryHolder.hh"
+
+#include "wrappers/src/OpenFOAM/objectRegistryHolder.hh"
+
 #include "TimeHolder.hpp"
 
 

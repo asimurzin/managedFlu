@@ -26,12 +26,16 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
-#include "fvMeshHolder.hpp"
-#include "OpenFOAM/objectRegistryHolder.hh"
-#include "DependentHolder.hh"
-#include "shared_ptr/shared_ptr_fvMesh.hh"
 
-#include "GeometricFieldHolders.hh"
+#include "fvMeshHolder.hpp"
+
+#include "wrappers/src/OpenFOAM/objectRegistryHolder.hh"
+
+#include "wrappers/src/DependentHolder.hh"
+
+#include "wrappers/src/shared_ptr/shared_ptr_fvMesh.hh"
+
+#include "wrappers/src/OpenFOAM/GeometricFieldHolders.hh"
 
 
 //--------------------------------------------------------------------------------------

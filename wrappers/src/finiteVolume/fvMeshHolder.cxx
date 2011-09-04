@@ -28,20 +28,20 @@
 %module "wrappers.src.finiteVolume.fvMeshHolder"
 
 %{
-  #include "fvMeshHolder.hh"
+  #include "wrappers/src/finiteVolume/fvMeshHolder.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "commonHolder.hxx"
+%import "wrappers/src/commonHolder.hxx"
 
-%import "shared_ptr/shared_ptr_fvMesh.cxx"
+%import "wrappers/src/shared_ptr/shared_ptr_fvMesh.cxx"
 
-%import "DependentHolder.cxx"
+%import "wrappers/src/DependentHolder.cxx"
 
-%import "objectRegistryHolder.cxx"
+%import "wrappers/src/OpenFOAM/objectRegistryHolder.cxx"
 
-%import "GeometricFieldHolders.cxx"
+%import "wrappers/src/OpenFOAM/GeometricFieldHolders.cxx"
 
 %include "fvMeshHolder.hpp"
 

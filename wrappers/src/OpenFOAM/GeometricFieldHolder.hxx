@@ -25,14 +25,13 @@
 
 
 //---------------------------------------------------------------------------
-%import "DependentHolder.cxx"
+%import "wrappers/src/DependentHolder.cxx"
 
 
 //---------------------------------------------------------------------------
+%include "wrappers/src/OpenFOAM/GeometricFieldFunctions.hxx"
+
 %include "GeometricFieldHolder.hpp"
-
-%import "GeometricFieldFunctions.hxx"
-
 
 //--------------------------------------------------------------------------------------
 #endif

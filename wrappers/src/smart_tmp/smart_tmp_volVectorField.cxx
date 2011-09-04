@@ -28,12 +28,12 @@
 //---------------------------------------------------------------------------
 %module "wrappers.src.smart_tmp.smart_tmp_volVectorField";
 %{
-  #include "smart_tmp/smart_tmp_volVectorField.hh"
+  #include "wrappers/src/smart_tmp/smart_tmp_volVectorField.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "smart_tmp/smart_tmp.hxx"
+%include "wrappers/src/smart_tmp/smart_tmp.hxx"
 
 %import "Foam/src/finiteVolume/fvMesh/fvMeshes.cxx"
 

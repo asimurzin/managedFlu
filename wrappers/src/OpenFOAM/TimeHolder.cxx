@@ -27,14 +27,14 @@
 //---------------------------------------------------------------------------
 %module "wrappers.src.OpenFOAM.TimeHolder"
 %{
-  #include "TimeHolder.hh"
+  #include "wrappers/src/OpenFOAM/TimeHolder.hh"
 %}
 
-%import "commonHolder.hxx"
+%import "wrappers/src/commonHolder.hxx"
 
 %import "Foam/ext/common/OpenFOAM/shared_ptr/shared_ptr_Time.cxx"
 
-%import "objectRegistryHolder.cxx"
+%import "wrappers/src/OpenFOAM/objectRegistryHolder.cxx"
 
 %include "TimeHolder.hpp"
 

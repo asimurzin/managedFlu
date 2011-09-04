@@ -26,14 +26,14 @@
 
 //---------------------------------------------------------------------------
 %{
-  #include "GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh.hh"
+  #include "wrappers/src/OpenFOAM/GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "smart_tmp/smart_tmp_surfaceScalarField.cxx"
+%import "wrappers/src/smart_tmp/smart_tmp_surfaceScalarField.cxx"
 
-%import "GeometricFieldHolder.hxx"
+%include "wrappers/src/OpenFOAM/GeometricFieldHolder.hxx"
 
 %include "surfaceFields.hpp"
 

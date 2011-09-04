@@ -27,9 +27,9 @@
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
 
-#include "smart_tmp/smart_tmp_volVectorField.hh"
+#include "wrappers/src/smart_tmp/smart_tmp_volVectorField.hh"
 
-#include "GeometricFieldHolder.hh"
+#include "wrappers/src/OpenFOAM/GeometricFieldHolder.hh"
 
 
 //--------------------------------------------------------------------------------------

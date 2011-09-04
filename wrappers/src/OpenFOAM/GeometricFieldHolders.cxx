@@ -27,16 +27,18 @@
 //---------------------------------------------------------------------------
 %module "wrappers.src.OpenFOAM.GeometricFieldHolders"
 %{
-  #include "OpenFOAM/GeometricFieldHolders.hh"
+  #include "wrappers/src/OpenFOAM/GeometricFieldHolders.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%include "OpenFOAM/GeometricFieldHolder_scalar_fvPatchField_volMesh.cpp"
-%include "OpenFOAM/GeometricFieldHolder_vector_fvPatchField_volMesh.cpp"
+%include "wrappers/src/OpenFOAM/GeometricFieldHolder_scalar_fvPatchField_volMesh.cpp"
 
-%include "OpenFOAM/GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh.cpp"
-%include "OpenFOAM/GeometricFieldHolder_vector_fvsPatchField_surfaceMesh.cpp"
+%include "wrappers/src/OpenFOAM/GeometricFieldHolder_vector_fvPatchField_volMesh.cpp"
+
+%include "wrappers/src/OpenFOAM/GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh.cpp"
+
+%include "wrappers/src/OpenFOAM/GeometricFieldHolder_vector_fvsPatchField_surfaceMesh.cpp"
 
 
 

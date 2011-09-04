@@ -27,11 +27,11 @@
 //---------------------------------------------------------------------------
 #include "GeometricFieldHolder.hpp"
 
-#include "GeometricFieldFunctions.hh"
+#include "wrappers/src/OpenFOAM/GeometricFieldFunctions.hh"
 
 #include "Foam/src/finiteVolume/fvMesh/fvMeshes.hh"
 
-#include "DependentHolder.hh"
+#include "wrappers/src/DependentHolder.hh"
 
 
 //--------------------------------------------------------------------------------------

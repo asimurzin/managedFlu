@@ -25,11 +25,13 @@
 
 
 //---------------------------------------------------------------------------
-#include "GeometricFieldHolder_scalar_fvPatchField_volMesh.hh"
-#include "GeometricFieldHolder_vector_fvPatchField_volMesh.hh"
+#include "wrappers/src/OpenFOAM/GeometricFieldHolder_scalar_fvPatchField_volMesh.hh"
 
-#include "GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh.hh"
-#include "GeometricFieldHolder_vector_fvsPatchField_surfaceMesh.hh"
+#include "wrappers/src/OpenFOAM/GeometricFieldHolder_vector_fvPatchField_volMesh.hh"
+
+#include "wrappers/src/OpenFOAM/GeometricFieldHolder_scalar_fvsPatchField_surfaceMesh.hh"
+
+#include "wrappers/src/OpenFOAM/GeometricFieldHolder_vector_fvsPatchField_surfaceMesh.hh"
 
 
 //--------------------------------------------------------------------------------------
