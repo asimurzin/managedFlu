@@ -25,6 +25,8 @@
 
 
 //---------------------------------------------------------------------------
+%module "wrappers.src.finiteVolume.fvMatrixHolders"
+
 %include "wrappers/src/finiteVolume/fvScalarMatrixHolder.cpp"
 
 %include "wrappers/src/finiteVolume/fvVectorMatrixHolder.cpp"
