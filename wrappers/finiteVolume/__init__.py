@@ -1,7 +1,7 @@
 from wrappers.src.finiteVolume.fvMeshHolder import *
 from wrappers.src.finiteVolume.simpleControlHolder import *
 from wrappers.src.OpenFOAM.GeometricFieldHolders import *
-from wrappers.src.finiteVolume.fvMatrices import *
+from wrappers.src.finiteVolume.fvMatrixHolders import *
 from wrappers.src.finiteVolume.findRefCell import *
 
 from wrappers.src.finiteVolume.linear import *
