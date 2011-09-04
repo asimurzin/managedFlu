@@ -26,12 +26,14 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
-#include "simpleControlHolder.hpp"
-#include "SimpleHolder.hh"
-#include "fvMeshHolder.hh"
-#include "shared_ptr/shared_ptr_simpleControl.hh"
 
-#include "GeometricFieldHolders.hh"
+#include "simpleControlHolder.hpp"
+
+#include "wrappers/src/SimpleHolder.hh"
+
+#include "wrappers/src/finiteVolume/fvMeshHolder.hh"
+
+#include "wrappers/src/shared_ptr/shared_ptr_simpleControl.hh"
 
 
 //--------------------------------------------------------------------------------------

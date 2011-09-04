@@ -28,18 +28,18 @@
 %module "wrappers.src.finiteVolume.simpleControlHolder"
 
 %{
-  #include "simpleControlHolder.hh"
+  #include "wrappers/src/finiteVolume/simpleControlHolder.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "commonHolder.hxx"
+%import "wrappers/src/commonHolder.hxx"
 
-%import "shared_ptr/shared_ptr_simpleControl.cxx"
+%import "wrappers/src/shared_ptr/shared_ptr_simpleControl.cxx"
 
-%import "SimpleHolder.cxx"
+%import "wrappers/src/SimpleHolder.cxx"
 
-%import "fvMeshHolder.cxx"
+%import "wrappers/src/finiteVolume/fvMeshHolder.cxx"
 
 %include "simpleControlHolder.hpp"
 

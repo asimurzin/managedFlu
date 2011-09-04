@@ -28,7 +28,7 @@
 //---------------------------------------------------------------------------
 %module "wrappers.src.shared_ptr.shared_ptr_simpleControl"
 %{
-  #include "shared_ptr/shared_ptr_simpleControl.hh"
+  #include "wrappers/src/shared_ptr/shared_ptr_simpleControl.hh"
 %}
 
 %import "Foam/src/OpenFOAM/db/typeInfo/typeInfo.hxx"
