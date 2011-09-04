@@ -26,7 +26,7 @@
 
 
 //---------------------------------------------------------------------------
-#include "smart_tmp/smart_tmp.hpp"
+#include "wrappers/src/smart_tmp/smart_tmp.hh"
 
 #include "Foam/src/finiteVolume/fvMatrices/fvMatrices.hh"
 

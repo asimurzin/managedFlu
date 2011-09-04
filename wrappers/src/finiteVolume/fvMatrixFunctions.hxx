@@ -25,7 +25,7 @@
 
 
 //---------------------------------------------------------------------------
-%import "GeometricFieldHolders.cxx"
+%import "wrappers/src/OpenFOAM/GeometricFieldHolders.cxx"
 
 %define __COMMON_FVMATRIXHOLDER_TEMPLATE_FUNC__( Type )
 {

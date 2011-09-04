@@ -77,7 +77,7 @@ sources = \
 	\
 	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_fvVectorMatrix.cxx \
 	@abs_top_builddir@/wrappers/src/smart_tmp/smart_tmp_fvScalarMatrix.cxx \
-	@abs_top_builddir@/wrappers/src/finiteVolume/fvMatrices.cxx \
+	@abs_top_builddir@/wrappers/src/finiteVolume/fvMatrixHolders.cxx \
 	\
 	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_simpleControl.cxx \
 	@abs_top_builddir@/wrappers/src/finiteVolume/simpleControlHolder.cxx \

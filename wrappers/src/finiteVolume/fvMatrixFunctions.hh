@@ -26,7 +26,8 @@
 
 //---------------------------------------------------------------------------
 #include "fvMatrixFunctions.hpp"
-#include "GeometricFieldHolders.hh"
+
+#include "wrappers/src/OpenFOAM/GeometricFieldHolders.hh"
 
 
 //--------------------------------------------------------------------------------------

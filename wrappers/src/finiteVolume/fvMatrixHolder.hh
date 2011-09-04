@@ -20,13 +20,18 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef fvMatrices_hh
-#define fvMatrices_hh
+#ifndef fvMatrixHolder_hh
+#define fvMatrixHolder_hh
 
 
 //---------------------------------------------------------------------------
-#include "fvScalarMatrixHolder.hh"
-#include "fvVectorMatrixHolder.hh"
+#include "fvMatrixHolder.hpp"
+
+#include "wrappers/src/finiteVolume/fvMatrixFunctions.hh"
+
+#include "wrappers/src/DependentHolder.hh"
+
+#include "fvMatrices.hpp"
 
 
 //--------------------------------------------------------------------------------------

@@ -25,17 +25,15 @@
 
 
 //---------------------------------------------------------------------------
-%module "wrappers.src.fvScalarMatrixHolder"
-
 %{
-  #include "fvScalarMatrixHolder.hh"
+  #include "wrappers/src/finiteVolume/fvScalarMatrixHolder.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "smart_tmp/smart_tmp_fvScalarMatrix.cxx"
+%import "wrappers/src/smart_tmp/smart_tmp_fvScalarMatrix.cxx"
 
-%include "fvMatrix.hxx"
+%include "wrappers/src/finiteVolume/fvMatrixHolder.hxx"
 
 %template (fvScalarMatrixHolder) Foam::fvMatrixHolder< Foam::scalar >;
 

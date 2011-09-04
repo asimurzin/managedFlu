@@ -28,12 +28,12 @@
 //---------------------------------------------------------------------------
 %module "wrappers.src.smart_tmp.smart_tmp_fvScalarMatrix";
 %{
-  #include "smart_tmp/smart_tmp_fvScalarMatrix.hh"
+  #include "wrappers/src/smart_tmp/smart_tmp_fvScalarMatrix.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "smart_tmp/smart_tmp.hxx"
+%include "wrappers/src/smart_tmp/smart_tmp.hxx"
 
 %import "Foam/src/finiteVolume/fvMatrices/fvMatrices.cxx"
 
