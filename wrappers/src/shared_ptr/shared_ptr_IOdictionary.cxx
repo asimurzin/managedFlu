@@ -28,7 +28,7 @@
 //---------------------------------------------------------------------------
 %module "wrappers.src.shared_ptr.shared_ptr_IOdictionary"
 %{
-  #include "shared_ptr/shared_ptr_IOdictionary.hh"
+  #include "wrappers/src/shared_ptr/shared_ptr_IOdictionary.hh"
 %}
 
 %include "Foam/ext/common/shared_ptr.hxx"

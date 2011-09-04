@@ -28,16 +28,16 @@
 %module "wrappers.src.OpenFOAM.IOdictionaryHolder"
 
 %{
-  #include "IOdictionaryHolder.hh"
+  #include "wrappers/src/OpenFOAM/IOdictionaryHolder.hh"
 %}
 
 
 //---------------------------------------------------------------------------
-%import "shared_ptr/shared_ptr_IOdictionary.cxx"
+%import "wrappers/src/shared_ptr/shared_ptr_IOdictionary.cxx"
 
-%import "dictionaryHolder.cxx"
+%import "wrappers/src/OpenFOAM/dictionaryHolder.cxx"
 
-%import "IOobjectHolder.cxx"
+%import "wrappers/src/OpenFOAM/IOobjectHolder.cxx"
 
 %include "IOdictionaryHolder.hpp"
 

@@ -26,10 +26,14 @@
 
 //---------------------------------------------------------------------------
 #include "Foam/src/common.hh"
+
 #include "IOdictionaryHolder.hpp"
-#include "dictionaryHolder.hh"
-#include "IOobjectHolder.hh"
-#include "shared_ptr/shared_ptr_IOdictionary.hh"
+
+#include "wrappers/src/OpenFOAM/dictionaryHolder.hh"
+
+#include "wrappers/src/OpenFOAM/IOobjectHolder.hh"
+
+#include "wrappers/src/shared_ptr/shared_ptr_IOdictionary.hh"
 
 
 //--------------------------------------------------------------------------------------
