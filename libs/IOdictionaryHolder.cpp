@@ -31,7 +31,14 @@ namespace Foam
   {
     return new IOdictionaryHolder( *this );
   }
-
+  
+  void IOdictionaryHolder::operator=( const boost::shared_ptr< IOdictionary >&  iodic)
+  {
+    boost::shared_ptr< IOdictionary >::operator=( iodic );
+    dictionaryHolder::operator=( boost::shared_ptr< IOdictionary >( *this ) );
+    IOobjectHolder::operator=( boost::shared_ptr< IOdictionary >( *this ) );
+  }
+  
   IOdictionaryHolder::~IOdictionaryHolder()
   {}
 

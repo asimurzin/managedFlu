@@ -32,7 +32,8 @@ namespace Foam
 
     using boost::shared_ptr< IOdictionary >::operator->;
     using boost::shared_ptr< IOdictionary >::operator*;
-
+  protected:
+    void operator=( const boost::shared_ptr< IOdictionary >& );
   };
 } // Foam
 
