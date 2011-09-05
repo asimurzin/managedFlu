@@ -8,7 +8,7 @@ namespace Foam
   
   singlePhaseTransportModelHolder::singlePhaseTransportModelHolder( const volVectorFieldHolder& U, const surfaceScalarFieldHolder& phi )
     : DependentHolder( Foam::deps( &U, &phi ) )
-    , boost::shared_ptr< singlePhaseTransportModel >( new singlePhaseTransportModel( U(), phi() )
+    , boost::shared_ptr< singlePhaseTransportModel >( new singlePhaseTransportModel( U(), phi() ) )
   {
     transportModelHolder::operator=( boost::shared_ptr< singlePhaseTransportModel >( *this ) );
   }
