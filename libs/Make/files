@@ -19,9 +19,6 @@ thermophysicalModels/basic/basicPsiThermoHolder.cpp
 
 thermophysicalModels/radiationModel/radiationModelHolder.cpp
 
-turbulenceModels/compressible/turbulenceModelHolder.cpp
-turbulenceModels/compressible/RASModelHolder.cpp
-
 transportModels/incompressible/transportModelHolder.cpp
 transportModels/incompressible/singlePhaseTransportModelHolder.cpp
 
