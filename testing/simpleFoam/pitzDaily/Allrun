@@ -11,14 +11,14 @@ echo "   C++"
 echo 
 runApplication blockMesh ""
 runSolver ${application} "C"
-#./Allclean > /dev/null 2>&1
+./Allclean > /dev/null 2>&1
 
 echo 
 echo "   Python                   " 
 echo
 application="${TEST_MM_ROOT_DIR}/simpleFoam/simpleFoam.py"
-#runApplication blockMesh ""
-#runSolver ${application} "Python"
+runApplication blockMesh ""
+runSolver ${application} "Python"
 
 
 # ----------------------------------------------------------------- end-of-file
