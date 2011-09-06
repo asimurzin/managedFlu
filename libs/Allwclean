@@ -1,0 +1,3 @@
+wclean
+( cd turbulenceModels/compressible && wclean )
+( cd turbulenceModels/incompressible && wclean )
