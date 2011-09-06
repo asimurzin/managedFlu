@@ -33,6 +33,8 @@
 
 
 //---------------------------------------------------------------------------
+%import "wrappers/src/OpenFOAM/GeometricFieldHolders.cxx"
+
 %import "wrappers/src/transportModels/incompressible/transportModelHolder.cxx"
 
 %import "wrappers/src/shared_ptr/shared_ptr_singlePhaseTransportModel.cxx"

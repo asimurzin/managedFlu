@@ -33,6 +33,8 @@
 
 
 //---------------------------------------------------------------------------
+%import "wrappers/src/OpenFOAM/GeometricFieldHolders.cxx"
+
 %import "wrappers/src/shared_ptr/shared_ptr_transportModel.cxx"
 
 %import "wrappers/src/OpenFOAM/IOdictionaryHolder.cxx"

@@ -26,6 +26,8 @@
 
 
 //---------------------------------------------------------------------------
+#include "wrappers/src/OpenFOAM/GeometricFieldHolders.hh"
+
 #include "wrappers/src/shared_ptr/shared_ptr_transportModel.hh"
 
 #include "wrappers/src/OpenFOAM/IOdictionaryHolder.hh"
