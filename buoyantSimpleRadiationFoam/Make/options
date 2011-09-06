@@ -20,4 +20,5 @@ EXE_LIBS = \
     -lcompressibleRASModels \
     -lfiniteVolume \
     -lmeshTools \
-    -L$(FOAM_USER_LIBBIN) -ltestFixingBug
+    -L$(FOAM_USER_LIBBIN) -ltestFixingBug \
+    -L$(FOAM_USER_LIBBIN) -lcompressibleTurbulenceHolders
