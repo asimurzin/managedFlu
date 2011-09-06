@@ -33,6 +33,8 @@ __CPPFLAGS__ := $(__CPPFLAGS__) \
 	@OPENFOAM_TURBULENCEMODELS_CPPFLAGS@ \
 	@OPENFOAM_COMPRESSIBLETURBULENCEMODELS_CPPFLAGS@ \
 	@OPENFOAM_INCOMPRESSIBLETURBULENCEMODELS_CPPFLAGS@ \
+	@OPENFOAM_INCOMPRESSIBLETRANSPORTMODELS_CPPFLAGS@ \
+	@OPENFOAM_TRANSPORTMODELS_CPPFLAGS@ \
 	@OPENFOAM_RADIATION_CPPFLAGS@ \
 	@OPENFOAM_SPECIE_CPPFLAGS@ \
 	$(TEST_MM_CPPFLAGS)
@@ -47,9 +49,11 @@ __LDFLAGS__ := $(__LDFLAGS__) \
 	@OPENFOAM_TURBULENCEMODELS_LIBS@ \
 	@OPENFOAM_COMPRESSIBLETURBULENCEMODELS_LIBS@ \
 	@OPENFOAM_INCOMPRESSIBLETURBULENCEMODELS_LIBS@ \
+	@OPENFOAM_INCOMPRESSIBLETRANSPORTMODELS_LIBS@ \
+	@OPENFOAM_TRANSPORTMODELS_LIBS@ \
 	@OPENFOAM_RADIATION_LIBS@ \
 	@OPENFOAM_SPECIE_LIBS@ \
-	-L${FOAM_USER_LIBBIN} -ltestFixingBug
+	-L${FOAM_USER_LIBBIN} -ltestFixingBug \
 	-L${FOAM_USER_LIBBIN} -lcompressibleTurbulenceHolders \
 	-L${FOAM_USER_LIBBIN} -lincompressibleTurbulenceHolders
 	
@@ -105,7 +109,16 @@ sources = \
 	@abs_top_builddir@/wrappers/src/turbulenceModels/compressible_turbulenceModelHolder.cxx \
 	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_compressible_RASModel.cxx \
 	@abs_top_builddir@/wrappers/src/turbulenceModels/compressible_RASModelHolder.cxx \
-
+	\
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_transportModel.cxx \
+	@abs_top_builddir@/wrappers/src/transportModels/incompressible/transportModelHolder.cxx \
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_singlePhaseTransportModel.cxx \
+	@abs_top_builddir@/wrappers/src/transportModels/incompressible/singlePhaseTransportModelHolder.cxx \
+	\
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_incompressible_turbulenceModel.cxx \
+	@abs_top_builddir@/wrappers/src/turbulenceModels/incompressible_turbulenceModelHolder.cxx \
+	@abs_top_builddir@/wrappers/src/shared_ptr/shared_ptr_incompressible_RASModel.cxx \
+	@abs_top_builddir@/wrappers/src/turbulenceModels/incompressible_RASModelHolder.cxx \
 
 	
 include $(pythonflu_root_dir)/Foam/include.foam.makefile
