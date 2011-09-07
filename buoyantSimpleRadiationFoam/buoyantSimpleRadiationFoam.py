@@ -84,9 +84,10 @@ def createFields( runTime, mesh, g ):
     ext_Info()<< "Calculating field g.h\n" << nl
     
     from wrappers.finiteVolume import surfaceScalarFieldHolder, surfaceVectorFieldHolder
-    gh = volScalarFieldHolder( word( "gh" ), volScalarFieldHolder( g & mesh.C(), deps( mesh ) ) )
-    ghf = surfaceScalarFieldHolder( word( "ghf" ), surfaceScalarFieldHolder( g & mesh.Cf(), deps( mesh ) ) )
-    
+    field = g & mesh.C()                                                                                   #####################
+    gh = volScalarFieldHolder( word( "gh" ), volScalarFieldHolder( field, deps( mesh ) ) )                 #We should discuss it
+    field = g & mesh.Cf()                                                                                  #
+    ghf = surfaceScalarFieldHolder( word( "ghf" ), surfaceScalarFieldHolder( field, deps( mesh ) ) )       ##################################    
     ext_Info() << "Reading field p_rgh\n" << nl
     p_rgh = volScalarFieldHolder( IOobjectHolder( word( "p_rgh" ),
                                                   fileName( runTime.timeName() ),
@@ -203,7 +204,8 @@ def fun_pEqn( mesh, runTime, simple, thermo, rho, p, h, psi, U, phi, turbulence,
       rho.relax()
       from Foam.OpenFOAM import ext_Info, nl
       ext_Info() << "rho max/min : " <<  rho().ext_max().value() << " " << rho().ext_min().value() << nl
-      pass
+      
+      return cumulativeContErr
 
     
                       
@@ -247,8 +249,8 @@ def main_standalone( argc, argv ):
 
         fun_hEqn( pThermo, rho, p, h, phi, radiation, turbulence )
 
-        fun_pEqn( mesh, runTime, simple, pThermo, rho, p, h, psi, U, phi, turbulence, 
-                      gh, ghf, p_rgh, UEqn, pRefCell, pRefValue, cumulativeContErr, initialMass)
+        cumulativeContErr = fun_pEqn( mesh, runTime, simple, pThermo, rho, p, h, psi, U, phi, turbulence, 
+                                      gh, ghf, p_rgh, UEqn, pRefCell, pRefValue, cumulativeContErr, initialMass)
 
         turbulence.correct()
 
