@@ -84,10 +84,8 @@ def createFields( runTime, mesh, g ):
     ext_Info()<< "Calculating field g.h\n" << nl
     
     from wrappers.finiteVolume import surfaceScalarFieldHolder, surfaceVectorFieldHolder
-    field = g & mesh.C()                                                                                   #####################
-    gh = volScalarFieldHolder( word( "gh" ), volScalarFieldHolder( field, deps( mesh ) ) )                 #We should discuss it
-    field = g & mesh.Cf()                                                                                  #
-    ghf = surfaceScalarFieldHolder( word( "ghf" ), surfaceScalarFieldHolder( field, deps( mesh ) ) )       ##################################
+    gh = volScalarFieldHolder( word( "gh" ), volScalarFieldHolder( g & mesh.C(), deps( mesh ) ) )
+    ghf = surfaceScalarFieldHolder( word( "ghf" ), surfaceScalarFieldHolder( g & mesh.Cf(), deps( mesh ) ) )
     
     ext_Info() << "Reading field p_rgh\n" << nl
     p_rgh = volScalarFieldHolder( IOobjectHolder( word( "p_rgh" ),
