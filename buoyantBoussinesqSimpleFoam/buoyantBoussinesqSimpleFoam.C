@@ -319,7 +319,9 @@ int main(int argc, char *argv[])
   incompressible::RASModelHolder turbulence;
   volScalarFieldHolder rhok; volScalarFieldHolder kappat;
   volScalarFieldHolder gh; surfaceScalarFieldHolder ghf;
-  volScalarFieldHolder p; label pRefCell; scalar pRefValue;
+  volScalarFieldHolder p; 
+  label pRefCell = 0; 
+  scalar pRefValue = 0.0;
   
   result_readTransportProperties result = createFields( runTime, mesh, g, T, p_rgh, U, phi, laminarTransport, turbulence, rhok,
                                                         kappat, gh, ghf, p, pRefCell, pRefValue );
