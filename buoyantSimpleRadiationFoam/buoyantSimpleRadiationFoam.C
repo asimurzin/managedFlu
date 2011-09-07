@@ -111,9 +111,11 @@ result_createFields createFields( const TimeHolder& runTime, const fvMeshHolder&
 
   Info<< "Calculating field g.h\n" << endl;
     
-  gh = volScalarFieldHolder("gh", g & volVectorFieldHolder( mesh->C(), deps( &mesh ) ) );
-  ghf = surfaceScalarFieldHolder("ghf", g & surfaceVectorFieldHolder( mesh->Cf(), deps( &mesh ) ) );
-  
+  field = g & mesh.C()                                                                                   #####################
+  gh = volScalarFieldHolder( word( "gh" ), volScalarFieldHolder( field, deps( mesh ) ) )                 #We should discuss it
+  field = g & mesh.Cf()                                                                                  #
+  ghf = surfaceScalarFieldHolder( word( "ghf" ), surfaceScalarFieldHolder( field, deps( mesh ) ) )       ##################################  
+
   Info<< "Reading field p_rgh\n" << endl;
   p_rgh = volScalarFieldHolder( IOobjectHolder( "p_rgh",
                                                 runTime->timeName(),
