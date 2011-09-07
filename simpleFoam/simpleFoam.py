@@ -57,7 +57,7 @@ def createFields( runTime, mesh ):
   pRefValue = 0.0
  
   from wrappers.finiteVolume import setRefCell
-  setRefCell( p, mesh.solutionDict().subDict( word( "SIMPLE" ) ), pRefCell, pRefValue )
+  pRefCell, pRefValue = setRefCell( p, mesh.solutionDict().subDict( word( "SIMPLE" ) ), pRefCell, pRefValue )
 
   from wrappers.transportModels import singlePhaseTransportModelHolder
   laminarTransport = singlePhaseTransportModelHolder( U, phi )
