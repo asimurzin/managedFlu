@@ -1,0 +1,21 @@
+EXE_INC = \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/turbulenceModels \
+    -I$(LIB_SRC)/turbulenceModels/incompressible/RAS/lnInclude \
+    -I$(LIB_SRC)/transportModels \
+    -I$(LIB_SRC)/transportModels/incompressible/lnInclude \
+    -I$(TEST_MM_ROOT_DIR)/libs \
+    -I$(TEST_MM_ROOT_DIR)/libs/finiteVolume \
+    -I$(TEST_MM_ROOT_DIR)/libs/thermophysicalModels/basic \
+    -I$(TEST_MM_ROOT_DIR)/libs/thermophysicalModels/radiationModel \
+    -I$(TEST_MM_ROOT_DIR)/libs/transportModels/incompressible \
+    -I$(TEST_MM_ROOT_DIR)/libs/turbulenceModels/incompressible/RAS/RASModel \
+
+EXE_LIBS = \
+    -lfiniteVolume \
+    -lmeshTools \
+    -lincompressibleTurbulenceModel \
+    -lincompressibleRASModels \
+    -lincompressibleTransportModels \
+    -L$(FOAM_USER_LIBBIN) -ltestFixingBug \
+    -L$(FOAM_USER_LIBBIN) -lincompressibleTurbulenceHolders
