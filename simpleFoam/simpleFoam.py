@@ -121,7 +121,8 @@ def fun_pEqn( mesh, runTime, simple, U, phi, turbulence, p, UEqn, pRefCell, pRef
   # Momentum corrector
   U().ext_assign( U() - rAU * fvc.grad( p() ) )
   U.correctBoundaryConditions()
-  pass
+  
+  return cumulativeContErr
 
 
 
@@ -157,7 +158,7 @@ def main_standalone( argc, argv ):
 
     # --- Pressure-velocity SIMPLE corrector
     UEqn = fun_UEqn( U, phi, turbulence, p )
-    fun_pEqn( mesh, runTime, simple, U, phi, turbulence, p, UEqn, pRefCell, pRefValue, cumulativeContErr )
+    cumulativeContErr = fun_pEqn( mesh, runTime, simple, U, phi, turbulence, p, UEqn, pRefCell, pRefValue, cumulativeContErr )
 
     turbulence.correct()
 
