@@ -43,7 +43,7 @@
 
 
 //--------------------------------------------------------------------------
-%feature( "pythonappend" ) Foam::IOobjectHolder::SMARTPTR_PYAPPEND_GETATTR( singlePhaseTransportModelHolder );
+%feature( "pythonappend" ) Foam::singlePhaseTransportModelHolder::SMARTPTR_PYAPPEND_GETATTR( singlePhaseTransportModelHolder );
 
 %extend Foam::singlePhaseTransportModelHolder
 {
