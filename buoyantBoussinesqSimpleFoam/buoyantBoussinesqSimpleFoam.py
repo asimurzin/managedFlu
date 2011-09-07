@@ -226,7 +226,7 @@ def fun_pEqn( mesh, runTime, simple, p, rhok, U, phi, turbulence, gh, ghf, p_rgh
     pass
 
   from Foam.finiteVolume.cfdTools.general.include import ContinuityErrs
-  ContinuityErrs( phi(), runTime(), mesh(), cumulativeContErr )
+  cumulativeContErr = ContinuityErrs( phi(), runTime(), mesh(), cumulativeContErr )
 
   p.ext_assign( p_rgh + rhok * gh )
 
@@ -235,7 +235,8 @@ def fun_pEqn( mesh, runTime, simple, p, rhok, U, phi, turbulence, gh, ghf, p_rgh
     p().ext_assign( p() + dimensionedScalar( word( "p" ), p.dimensions(), pRefValue - getRefCellValue( p(), pRefCell ) ) )
     p_rgh.ext_assign( p - rhok * gh )
     pass
-  pass
+  
+  return cumulativeContErr
 
 
 
@@ -278,7 +279,7 @@ def main_standalone( argc, argv ):
     UEqn = fun_UEqn( mesh, simple, U, phi, turbulence, p, rhok, p_rgh, ghf )
     fun_TEqn( phi, turbulence, kappat, T, rhok, beta, TRef, Prt, Pr )
 
-    fun_pEqn( mesh, runTime, simple, p, rhok, U, phi, turbulence, gh, ghf, p_rgh, UEqn, pRefCell, pRefValue, cumulativeContErr )
+    cumulativeContErr = fun_pEqn( mesh, runTime, simple, p, rhok, U, phi, turbulence, gh, ghf, p_rgh, UEqn, pRefCell, pRefValue, cumulativeContErr )
     
     turbulence.correct()
     runTime.write()
