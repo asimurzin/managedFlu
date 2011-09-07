@@ -1,0 +1,14 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+# Source tutorial run functions
+. ${TEST_MM_ROOT_DIR}/testing/common/RunFunctions
+
+application=buoyantBoussinesqSimpleFoamMF
+
+runApplication blockMesh ""
+cp 0/T.org 0/T
+runApplication setFields ""
+runSolver $application "C"
+
+# ----------------------------------------------------------------- end-of-file
