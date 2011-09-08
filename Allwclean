@@ -1,9 +1,12 @@
 #!/bin/sh
 cd ${0%/*} || exit 1    # run from this directory
 
-( cd libs && wclean )
+( cd libs && ./Allwclean )
 ( cd icoFoam && wclean )
 ( cd buoyantSimpleRadiationFoam && wclean )
+( cd buoyantBoussinesqSimpleFoam && wclean )
+( cd simpleFoam && wclean )
+( cd icoFoam && wclean )
 
 
 # ----------------------------------------------------------------- end-of-file

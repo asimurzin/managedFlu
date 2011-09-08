@@ -1,9 +1,13 @@
 #!/bin/sh
 cd ${0%/*} || exit 1    # run from this directory
 
-( cd libs && wmake libso )
+( cd libs && ./Allwmake )
 ( cd icoFoam && wmake )
 ( cd buoyantSimpleRadiationFoam && wmake )
+( cd buoyantBoussinesqSimpleFoam && wmake )
+( cd simpleFoam && wmake )
+( cd icoFoam && wmake )
+
 
 
 # ----------------------------------------------------------------- end-of-file
