@@ -14,7 +14,7 @@ namespace Foam
 {
   inline surfaceVectorFieldHolder linearInterpolate( const volVectorFieldHolder& field )
   {
-    return surfaceVectorFieldHolder( linearInterpolate( field() ) , deps( &field ) );
+    return surfaceVectorFieldHolder( linearInterpolate( field() ) , &field );
   }
 } // Foam
 

@@ -14,7 +14,7 @@ namespace Foam
                                   IOobject::readOption r, 
                                   IOobject::writeOption w, 
                                   bool registerObject ) 
-    : DependentHolder( Foam::deps( &registry )  )
+    : DependentHolder( &registry )
     , boost::shared_ptr< IOobject >( new IOobject( name, instance, *registry, r, w, registerObject ) )
   {}
   

@@ -9,7 +9,7 @@ namespace Foam
   {
 
     radiationModelHolder::radiationModelHolder( const boost::shared_ptr< radiationModel >& bt, const volScalarFieldHolder& T ) 
-      : DependentHolder( Foam::deps( &T ) )
+      : DependentHolder( &T )
       , boost::shared_ptr< radiationModel >( bt )
     {}
 

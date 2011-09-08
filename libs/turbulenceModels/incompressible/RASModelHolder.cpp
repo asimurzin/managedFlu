@@ -12,7 +12,7 @@ namespace incompressible
     const volVectorFieldHolder& U,
     const surfaceScalarFieldHolder& phi,
     transportModelHolder& transport )
-    : DependentHolder( Foam::deps( &U, Foam::deps( &phi, &transport ) ) )
+    : DependentHolder( Deps( &U, &phi, &transport ) )
     , boost::shared_ptr< RASModel >( tm )
   {
     turbulenceModelHolder::operator=( boost::shared_ptr< RASModel >( *this ) );

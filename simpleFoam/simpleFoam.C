@@ -84,7 +84,7 @@ fvVectorMatrixHolder fun_UEqn( volVectorFieldHolder& U,
 {
   // Solve the Momentum equation
 
-  fvVectorMatrixHolder UEqn = fvm::div( phi, U ) + fvVectorMatrixHolder( turbulence->divDevReff( U() ), deps( &turbulence, &U ) ) ;
+  fvVectorMatrixHolder UEqn = fvm::div( phi, U ) + fvVectorMatrixHolder( turbulence->divDevReff( U() ), Deps( &turbulence, &U ) ) ;
 
   UEqn->relax();
 

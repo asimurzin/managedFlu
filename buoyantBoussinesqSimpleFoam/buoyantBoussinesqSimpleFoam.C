@@ -199,7 +199,7 @@ fvVectorMatrixHolder fun_UEqn( const fvMeshHolder& mesh,
                                const volScalarFieldHolder& p_rgh,
                                const surfaceScalarFieldHolder& ghf )
 {
-  fvVectorMatrixHolder UEqn = fvm::div(phi, U) + fvVectorMatrixHolder( turbulence->divDevReff( U() ), deps( &turbulence, &U ) ) ;
+  fvVectorMatrixHolder UEqn = fvm::div(phi, U) + fvVectorMatrixHolder( turbulence->divDevReff( U() ), Deps( &turbulence, &U ) ) ;
 
   UEqn().relax();
 

@@ -12,7 +12,7 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const IOobjectHolder& io, 
 									   const fvMeshHolder& mesh ) 
-    : DependentHolder( Foam::deps( &mesh ) )
+    : DependentHolder( &mesh )
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( *io, *mesh ) )
   {
 #ifdef OUR_DEBUG
@@ -45,7 +45,7 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const IOobjectHolder& io, 
 									   const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
-    : DependentHolder( Foam::deps( &field ) )
+    : DependentHolder( &field )
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( *io, field() ) )
   {
 #ifdef OUR_DEBUG
@@ -56,7 +56,7 @@ namespace Foam
   template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const word& wd, 
 									   const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
-    : DependentHolder( Foam::deps( &field ) )
+    : DependentHolder( &field )
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( wd, field() ) )
   {
 #ifdef OUR_DEBUG
