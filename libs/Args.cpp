@@ -5,42 +5,22 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
+
   Args::Args( const SimpleHolder* uh )
   {
-    this->deps_.insert(  holderPtr( uh->clone() ) );
+    this->args_.insert(  holderPtr( uh->clone() ) );
   }
-  
+
   Args::Args( const std::set< holderPtr >& the_deps )
-    : deps_( the_deps )
+    : args_( the_deps )
   {}
-
-/*  Args::Args( const SimpleHolder* uh1, const SimpleHolder* uh2 )
-  {
-    this->deps_.insert( holderPtr( uh1->clone() ) );
-    this->deps_.insert( holderPtr( uh2->clone() ) );
-  }
-
-  Args::Args( const SimpleHolder* uh1, const SimpleHolder* uh2, const SimpleHolder* uh3 )
-  {
-    this->deps_.insert( holderPtr( uh1->clone() ) );
-    this->deps_.insert( holderPtr( uh2->clone() ) );
-    this->deps_.insert( holderPtr( uh3->clone() ) );
-  }
-
-  Args::Args( const SimpleHolder* uh1, const SimpleHolder* uh2, const SimpleHolder* uh3, const SimpleHolder* uh4 )
-  {
-    this->deps_.insert( holderPtr( uh1->clone() ) );
-    this->deps_.insert( holderPtr( uh2->clone() ) );
-    this->deps_.insert( holderPtr( uh3->clone() ) );
-    this->deps_.insert( holderPtr( uh4->clone() ) );
-  }*/
 
   Args::Args()
   {}
   
-  const std::set< holderPtr >& Args::deps() const
+  const std::set< holderPtr >& Args::args() const
   {
-    return deps_;
+    return args_;
   }
   
   std::set< holderPtr > operator&&( const std::set< holderPtr >& deps1, const std::set< holderPtr >& deps2)

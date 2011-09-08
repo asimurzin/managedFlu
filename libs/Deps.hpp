@@ -15,19 +15,20 @@ namespace Foam
   {
     public:
       Deps( const SimpleHolder* );
-      Deps( const std::set< holderPtr >& );
-      Deps();
+      Deps( const std::set< holderPtr >& the_deps );
+      Deps( const Deps&, const Deps& );
+      Deps( const Deps&, const Deps&, const Deps& );
+      Deps( const Deps&, const Deps&, const Deps&, const Deps& );
+      
       
     private:
-      //Deps(); //not implemented
+      Deps(); //not implemented
       //Deps( const Deps&); //not implemented
       //void operator=( const Deps&); //not implemented
 
   };
 
- Deps deps( const Deps& deps1 );
- Deps deps( const Deps& deps1, const Deps& deps2 );
-    
+   
 } // Foam
 
 

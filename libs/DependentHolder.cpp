@@ -16,6 +16,11 @@ namespace Foam
   DependentHolder::~DependentHolder()
   {}
   
+  const Deps DependentHolder::deps() const
+  { 
+    return this->args();
+  }
+  
 } // Foam
 
 

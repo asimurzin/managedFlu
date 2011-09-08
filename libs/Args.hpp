@@ -15,20 +15,15 @@ namespace Foam
   class Args 
   {
    
-    public:
-      Args( const SimpleHolder* uh );
-/*      Args( const SimpleHolder*, const SimpleHolder* );
-      Args( const SimpleHolder*, const SimpleHolder*, const SimpleHolder* );
-      Args( const SimpleHolder*, const SimpleHolder*, const SimpleHolder*, const SimpleHolder* );*/
-      
-      Args( const std::set< holderPtr >& the_deps );
-      
-      const std::set< holderPtr >& deps() const;
     protected:
       Args();
+      Args( const SimpleHolder* uh );
+      Args( const std::set< holderPtr >& the_deps );
 
+      const std::set< holderPtr >& args() const;
+      
     private:
-      std::set< holderPtr > deps_;
+      std::set< holderPtr > args_;
       
   };
 

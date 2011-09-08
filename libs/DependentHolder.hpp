@@ -17,6 +17,8 @@ namespace Foam
       
       DependentHolder( const Deps& dp );
       
+      const Deps deps() const;
+      
       DependentHolder();
       
       virtual ~DependentHolder();
