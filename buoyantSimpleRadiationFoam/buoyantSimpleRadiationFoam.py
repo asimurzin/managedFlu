@@ -48,7 +48,7 @@ def createFields( runTime, mesh, g ):
     pThermo = basicPsiThermoHolder.New( mesh );
 
     from wrappers.OpenFOAM import IOobjectHolder
-    from wrappers import deps, Deps
+    from wrappers import Deps, Deps
     from Foam.OpenFOAM import IOobject, word, fileName
     from wrappers.finiteVolume import volScalarFieldHolder
     
@@ -58,11 +58,11 @@ def createFields( runTime, mesh, g ):
                                                 mesh, 
                                                 IOobject.NO_READ, 
                                                 IOobject.NO_WRITE ),
-                                volScalarFieldHolder( field, deps( pThermo ) ) );
+                                volScalarFieldHolder( field, Deps( pThermo ) ) );
     
-    p = volScalarFieldHolder( pThermo.p(), deps( pThermo ) )
-    h = volScalarFieldHolder( pThermo.h(), deps( pThermo ) )
-    psi = volScalarFieldHolder( pThermo.psi(), deps( pThermo ) )
+    p = volScalarFieldHolder( pThermo.p(), Deps( pThermo ) )
+    h = volScalarFieldHolder( pThermo.h(), Deps( pThermo ) )
+    psi = volScalarFieldHolder( pThermo.psi(), Deps( pThermo ) )
     
     from wrappers.finiteVolume import volVectorFieldHolder
     ext_Info() << "Reading field U\n" << nl
@@ -85,9 +85,9 @@ def createFields( runTime, mesh, g ):
     
     from wrappers.finiteVolume import surfaceScalarFieldHolder, surfaceVectorFieldHolder
     field = g & mesh.C()                                                                                   #####################
-    gh = volScalarFieldHolder( word( "gh" ), volScalarFieldHolder( field, deps( mesh ) ) )                 #We should discuss it
+    gh = volScalarFieldHolder( word( "gh" ), volScalarFieldHolder( field, Deps( mesh ) ) )                 #We should discuss it
     field = g & mesh.Cf()                                                                                  #
-    ghf = surfaceScalarFieldHolder( word( "ghf" ), surfaceScalarFieldHolder( field, deps( mesh ) ) )       ##################################    
+    ghf = surfaceScalarFieldHolder( word( "ghf" ), surfaceScalarFieldHolder( field, Deps( mesh ) ) )       ##################################    
     ext_Info() << "Reading field p_rgh\n" << nl
     p_rgh = volScalarFieldHolder( IOobjectHolder( word( "p_rgh" ),
                                                   fileName( runTime.timeName() ),
@@ -113,16 +113,16 @@ def createFields( runTime, mesh, g ):
 
 #--------------------------------------------------------------------------------------
 def fun_Ueqn( simple, mesh, rho, U, phi, turbulence, ghf, p_rgh ):
-    from wrappers import deps
+    from wrappers import Deps
     from wrappers import fvc, fvm 
     from wrappers.finiteVolume import fvVectorMatrixHolder
-    UEqn = fvm.div( phi, U ) + fvVectorMatrixHolder( turbulence.divDevRhoReff( U() ), deps( turbulence, U) )
+    UEqn = fvm.div( phi, U ) + fvVectorMatrixHolder( turbulence.divDevRhoReff( U() ), Deps( turbulence, U) )
     
     UEqn.relax()
  
     from wrappers.finiteVolume import solve, surfaceScalarFieldHolder
     if simple.momentumPredictor():
-     solve( UEqn == fvc.reconstruct( ( ( - ghf * fvc.snGrad( rho ) - fvc.snGrad( p_rgh ) ) * surfaceScalarFieldHolder( mesh.magSf(), deps( mesh ) ) ) ) )
+     solve( UEqn == fvc.reconstruct( ( ( - ghf * fvc.snGrad( rho ) - fvc.snGrad( p_rgh ) ) * surfaceScalarFieldHolder( mesh.magSf(), Deps( mesh ) ) ) ) )
 
     return UEqn
 

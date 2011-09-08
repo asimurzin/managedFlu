@@ -150,9 +150,9 @@ def createFields( runTime, mesh, g ):
 #---------------------------------------------------------------------------
 def fun_UEqn( mesh, simple, U, phi, turbulence, p, rhok, p_rgh, ghf ):
 
-  from wrappers import fvm, deps, fvc
+  from wrappers import fvm, Deps, fvc
   from wrappers.finiteVolume import fvVectorMatrixHolder
-  UEqn = fvm.div(phi, U) + fvVectorMatrixHolder( turbulence.divDevReff( U() ), deps( turbulence, U ) ) 
+  UEqn = fvm.div(phi, U) + fvVectorMatrixHolder( turbulence.divDevReff( U() ), Deps( turbulence, U ) ) 
 
   UEqn().relax();
 

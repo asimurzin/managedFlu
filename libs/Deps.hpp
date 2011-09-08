@@ -19,10 +19,10 @@ namespace Foam
       Deps( const Deps&, const Deps& );
       Deps( const Deps&, const Deps&, const Deps& );
       Deps( const Deps&, const Deps&, const Deps&, const Deps& );
-      
+      Deps();
       
     private:
-      Deps(); //not implemented
+      //Deps(); //not implemented
       //Deps( const Deps&); //not implemented
       //void operator=( const Deps&); //not implemented
 

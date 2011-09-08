@@ -72,9 +72,9 @@ def createFields( runTime, mesh ):
 def fun_UEqn( U, phi, turbulence, p ):
   # Solve the Momentum equation
   
-  from wrappers import fvm, deps, fvc
+  from wrappers import fvm, Deps, fvc
   from wrappers.finiteVolume import fvVectorMatrixHolder
-  UEqn = fvm.div( phi, U ) + fvVectorMatrixHolder( turbulence.divDevReff( U() ), deps( turbulence, U ) ) 
+  UEqn = fvm.div( phi, U ) + fvVectorMatrixHolder( turbulence.divDevReff( U() ), Deps( turbulence, U ) ) 
 
   UEqn.relax()
   from wrappers.finiteVolume import solve

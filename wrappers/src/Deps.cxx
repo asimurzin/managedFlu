@@ -33,7 +33,7 @@
 
 %import "wrappers/src/Args.cxx"
 
-%import "wrappers/src/set_SimpleHolder.cxx"
+//%import "wrappers/src/set_SimpleHolder.cxx"
 
 
 //---------------------------------------------------------------------------
@@ -42,8 +42,7 @@
   void *ptr;
   int res_Deps = SWIG_ConvertPtr( $input, (void **) &ptr, $descriptor( Foam::Deps* ), 0 );
   int res_Simpl = SWIG_ConvertPtr( $input, (void **) &ptr, $descriptor( Foam::SimpleHolder * ), 0 );
-  int res_Set = SWIG_ConvertPtr( $input, (void **) &ptr, $descriptor( std::set< boost::shared_ptr< Foam::SimpleHolder > > * ), 0 );
-  $1 = SWIG_CheckState( res_Deps ) || SWIG_CheckState( res_Simpl ) || SWIG_CheckState( res_Set );
+  $1 = SWIG_CheckState( res_Deps ) || SWIG_CheckState( res_Simpl );
 }
 
 
@@ -57,16 +56,10 @@
     check = SWIG_ConvertPtr( $input, &argp, $descriptor( Foam::SimpleHolder * ), %convertptr_flags );
     if ( SWIG_IsOK( check ) && argp ) {
       Foam::SimpleHolder* arg = %reinterpret_cast( argp, Foam::SimpleHolder * );
-      result = Foam::deps( arg );
+      result = Foam::Deps( arg );
     } else {
-      check = SWIG_ConvertPtr( $input, &argp, $descriptor( std::set< boost::shared_ptr< Foam::SimpleHolder > > * ), %convertptr_flags );
-      if ( SWIG_IsOK( check ) && argp ) {
-        std::set< boost::shared_ptr< Foam::SimpleHolder > >* arg = %reinterpret_cast( argp, std::set< boost::shared_ptr< Foam::SimpleHolder > > * );
-        result = Foam::deps( *arg );
-      } else {
       %argument_fail( check, "$type", $symname, $argnum ); 
       }
-    }
   }
   $1 = &result;
 }
