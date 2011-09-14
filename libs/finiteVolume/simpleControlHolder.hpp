@@ -1,3 +1,11 @@
+//---------------------------------------------------------------------------
+#include "common.hpp"
+#if FOAM_VERSION( <, 020000 )
+#define simpleControlHolder_hpp
+#endif
+
+
+//---------------------------------------------------------------------------
 #ifndef simpleControlHolder_hpp
 #define simpleControlHolder_hpp
 
