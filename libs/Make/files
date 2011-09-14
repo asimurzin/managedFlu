@@ -4,7 +4,7 @@ Deps.cpp
 DependentHolder.cpp
 objectRegistryHolder.cpp
 IOobjectHolder.cpp
-TimeHolder.cpp
+OpenFOAM/TimeHolder.cpp
 dictionaryHolder.cpp
 IOdictionaryHolder.cpp
 finiteVolume/simpleControlHolder.cpp
