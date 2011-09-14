@@ -27,7 +27,9 @@ namespace Foam
       
   };
 
+#ifndef SWIG
   std::set< holderPtr > operator&&( const std::set< holderPtr >&, const std::set< holderPtr >& );
+#endif
     
 } // Foam
 
