@@ -1,0 +1,20 @@
+EXE_INC = \
+    @OPENFOAM_FINITEVOLUME_CPPFLAGS@ \
+    @OPENFOAM_TURBULENCEMODELS_CPPFLAGS@ \
+    @OPENFOAM_INCOMPRESSIBLETURBULENCEMODELS_CPPFLAGS@ \
+    @OPENFOAM_INCOMPRESSIBLETRANSPORTMODELS_CPPFLAGS@ \
+    @OPENFOAM_TRANSPORTMODELS_CPPFLAGS@ \
+    -I$(TEST_MM_ROOT_DIR)/libs \
+    -I$(TEST_MM_ROOT_DIR)/libs/lnInclude \
+    -I$(TEST_MM_ROOT_DIR)/libs/thermophysicalModels/basic \
+    -I$(TEST_MM_ROOT_DIR)/libs/thermophysicalModels/radiationModel \
+    -I$(TEST_MM_ROOT_DIR)/libs/transportModels/incompressible \
+    -I$(TEST_MM_ROOT_DIR)/libs/turbulenceModels/incompressible/RAS/RASModel \
+    @DEFINE_FOAM_VERSION@ @DEFINE_FOAM_BRANCH@ \
+
+EXE_LIBS = \
+    @OPENFOAM_FINITEVOLUME_LIBS@ \
+    @OPENFOAM_MESHTOOLS_LIBS@ \
+    @OPENFOAM_INCOMPRESSIBLETURBULENCEMODELS_LIBS@ \
+    -L$(FOAM_USER_LIBBIN) -ltestFixingBug \
+    -L$(FOAM_USER_LIBBIN) -lincompressibleTurbulenceHolders
