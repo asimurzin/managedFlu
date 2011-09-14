@@ -3,52 +3,19 @@
 
 
 //---------------------------------------------------------------------------
-#include "Deps.hpp"
-#include "DependentHolder.hpp"
-#include "turbulenceModelHolder.hpp"
-
-#include <compressible/RAS/RASModel/RASModel.H>
-#include <boost/shared_ptr.hpp>
+#include "common.hpp"
 
 
 //---------------------------------------------------------------------------
-namespace Foam
-{
+#if FOAM_VERSION( >=, 020000 )
+#include "turbulenceModels/compressible/RASModel_impl/RASModelHolder_020000.hpp"
+#endif
 
-namespace compressible
-{
-  class RASModelHolder 
-    : public turbulenceModelHolder
-    , public boost::shared_ptr< RASModel >
-  {
-  public:
-    RASModelHolder( 
-      const boost::shared_ptr< RASModel >&, 
-      const volScalarFieldHolder&, 
-      const volVectorFieldHolder&, 
-      const surfaceScalarFieldHolder&, 
-      const basicThermoHolder& );
 
-    RASModelHolder();
-    
-    static RASModelHolder New( 
-      const volScalarFieldHolder&, 
-      const volVectorFieldHolder&, 
-      const surfaceScalarFieldHolder&, 
-      const basicThermoHolder&,
-      const word& turbulenceModelName = turbulenceModel::typeName );
+#if FOAM_VERSION( <, 020000 )
+#include "turbulenceModels/compressible/RASModel_impl/RASModelHolder_010701.hpp"
+#endif
 
-    virtual SimpleHolder* clone() const;
-    
-    ~RASModelHolder();
-    
-    using  boost::shared_ptr< RASModel >::operator*;
-    using  boost::shared_ptr< RASModel >::operator->;
-
-  };
-
-} //compressible
-} // Foam
 
 
 //---------------------------------------------------------------------------
