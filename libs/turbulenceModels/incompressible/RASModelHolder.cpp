@@ -2,47 +2,16 @@
 #include "RASModelHolder.hpp"
 
 
+
 //---------------------------------------------------------------------------
-namespace Foam
-{
-namespace incompressible
-{
-  RASModelHolder::RASModelHolder( 
-    const boost::shared_ptr< RASModel >& tm, 
-    const volVectorFieldHolder& U,
-    const surfaceScalarFieldHolder& phi,
-    transportModelHolder& transport )
-    : DependentHolder( Deps( &U, &phi, &transport ) )
-    , boost::shared_ptr< RASModel >( tm )
-  {
-    turbulenceModelHolder::operator=( boost::shared_ptr< RASModel >( *this ) );
-  }
+#if FOAM_VERSION( >=, 020000 )
+#include "turbulenceModels/incompressible/RASModel_impl/RASModelHolder_020000.cpp"
+#endif
 
-  RASModelHolder::RASModelHolder()
-    : DependentHolder()
-    , boost::shared_ptr< RASModel >()
-  {}
 
-  RASModelHolder RASModelHolder::New( 
-    const volVectorFieldHolder& U,
-    const surfaceScalarFieldHolder& phi,
-    transportModelHolder& transport,
-    const word& turbulenceModelName )
-  {
-    autoPtr< RASModel > result = RASModel::New( U(), phi(), *transport, turbulenceModelName );
-    
-    return RASModelHolder( boost::shared_ptr< RASModel >( result.ptr() ), U, phi, transport );
-  }
+#if FOAM_VERSION( <, 020000 )
+#include "turbulenceModels/incompressible/RASModel_impl/RASModelHolder_010701.cpp"
+#endif
 
-  SimpleHolder* RASModelHolder::clone() const
-  {
-    return new RASModelHolder( *this );
-  }
-
-  RASModelHolder::~RASModelHolder()
-  {}
-  
-}//incompressible
-}//Foam
 
 //---------------------------------------------------------------------------
