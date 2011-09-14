@@ -49,7 +49,7 @@ namespace Foam
 
     //void operator()( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
     
-    using smart_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator();
+    //using Foam::smart_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator*;
   };
 
 } // Foam
