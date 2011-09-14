@@ -1,9 +1,0 @@
-EXE_INC = \
-    -I$(LIB_SRC)/finiteVolume/lnInclude \
-    -I$(TEST_MM_ROOT_DIR)/libs \
-    -I$(TEST_MM_ROOT_DIR)/libs/finiteVolume \
-
-
-EXE_LIBS = \
-    -lfiniteVolume \
-    -L$(FOAM_USER_LIBBIN) -ltestFixingBug

@@ -60,6 +60,7 @@ AC_OUTPUT( [ bashrc \
 	     libs/turbulenceModels/incompressible/Make/options \
 	     buoyantBoussinesqSimpleFoam/Make/options \
 	     buoyantSimpleRadiationFoam/Make/options \
+	     icoFoam/Make/options \
 	     wrappers/Makefile \
 	     Makefile ] )
 
