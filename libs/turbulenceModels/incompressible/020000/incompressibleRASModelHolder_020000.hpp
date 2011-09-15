@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------
 #include "Deps.hpp"
 #include "DependentHolder.hpp"
-#include "incompressibleturbulenceModelHolder.hpp"
+#include "incompressibleTurbulenceModelHolder.hpp"
 #include "transportModelHolder.hpp"
 #include "volFields.hpp"
 #include "surfaceFields.hpp"
