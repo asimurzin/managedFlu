@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------
 #include "Deps.hpp"
 #include "DependentHolder.hpp"
-#include "turbulenceModels/compressible/turbulenceModelHolder.hpp"
+#include "turbulenceModels/compressible/compressibleTurbulenceModelHolder.hpp"
 
 #include <compressible/RAS/RASModel/RASModel.H>
 #include <boost/shared_ptr.hpp>
