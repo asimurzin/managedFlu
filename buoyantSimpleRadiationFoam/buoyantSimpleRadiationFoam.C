@@ -38,7 +38,7 @@ Description
 #include "simpleControl.H"
 #include "core.hpp"
 #include "thermophysicalModels.hpp"
-#include "turbulenceModels.hpp"
+#include "turbulenceModels/compressible/compressibleRASModelHolder.hpp"
 #include "radiationModels.hpp"
 
 #include "OpenFOAM/functions.hpp"
