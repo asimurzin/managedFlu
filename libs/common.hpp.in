@@ -4,6 +4,14 @@
 
 
 //---------------------------------------------------------------------------
+#define MANAGEDFLU_HEADER_SUFFIX @MANAGEDFLU_HEADER_SUFFIX@
+
+#define BRACKETLEFT <
+#define BRACKETRIGHT >
+#define SUFFIX _@MANAGEDFLU_HEADER_SUFFIX@.hpp
+
+#define HEADER_NAME(Type) BRACKETLEFT Type SUFFIX BRACKETRIGHT
+
 @CXX_DEFINE_BRANCHES@
 
 #define FOAM_VERSION( CMP, VERSION ) \
