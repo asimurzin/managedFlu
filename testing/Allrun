@@ -1,0 +1,10 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+( cd buoyantBoussinesqSimpleFoam/hotRoom && ./Allrun )
+( cd buyantSimpleRadiationFoam/hotRadiationRoom && ./Allrun )
+( cd icoFoam && ./Allrun )
+( cd simpleFoam/pitzDaily && ./Allrun )
+
+
+# ----------------------------------------------------------------- end-of-file
