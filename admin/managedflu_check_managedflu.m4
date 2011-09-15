@@ -16,7 +16,7 @@ dnl along with this program.  If not, see <http://www.gnu.org/licenses/>.
 dnl 
 dnl See http://sourceforge.net/projects/managedflu
 dnl
-dnl Author : Alexey PETROV
+dnl Author : Alexey PETROV, Andrey SIMURZIN
 dnl
 
 
