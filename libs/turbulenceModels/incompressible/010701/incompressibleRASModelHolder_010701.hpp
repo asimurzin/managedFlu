@@ -1,11 +1,11 @@
-#ifndef incompressibleRASModelHolder_020000_hpp
-#define incompressibleRASModelHolder_020000_hpp
+#ifndef incompressibleRASModelHolder_010701_hpp
+#define incompressibleRASModelHolder_010701_hpp
 
 
 //---------------------------------------------------------------------------
 #include "Deps.hpp"
 #include "DependentHolder.hpp"
-#include "turbulenceModels/incompressible/turbulenceModelHolder.hpp"
+#include "incompressibleTurbulenceModelHolder.hpp"
 #include "transportModelHolder.hpp"
 #include "volFields.hpp"
 #include "surfaceFields.hpp"
@@ -37,8 +37,7 @@ namespace incompressible
     static RASModelHolder New( 
       const volVectorFieldHolder& U,
       const surfaceScalarFieldHolder& phi,
-      transportModelHolder& transport,
-      const word& turbulenceModelName = turbulenceModel::typeName );
+      transportModelHolder& transport );
 
     virtual SimpleHolder* clone() const;
     
