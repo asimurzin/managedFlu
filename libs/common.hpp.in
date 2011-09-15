@@ -4,8 +4,6 @@
 
 
 //---------------------------------------------------------------------------
-#define MANAGEDFLU_HEADER_SUFFIX @MANAGEDFLU_HEADER_SUFFIX@
-
 #define BRACKETLEFT <
 #define BRACKETRIGHT >
 #define SUFFIX _@MANAGEDFLU_HEADER_SUFFIX@.
