@@ -4,7 +4,7 @@
 
 
 //---------------------------------------------------------------------------
-#include FILE_NAME(incompressibleRASModelHolder,cpp)
+#include FILENAME(incompressibleRASModelHolder,cpp)
 
 
 //---------------------------------------------------------------------------

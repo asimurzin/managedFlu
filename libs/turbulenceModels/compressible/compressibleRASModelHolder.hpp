@@ -7,7 +7,7 @@
 
 
 //---------------------------------------------------------------------------
-#include FILE_NAME(compressibleRASModelHolder,hpp)
+#include FILENAME(compressibleRASModelHolder,hpp)
 
 
 //---------------------------------------------------------------------------
