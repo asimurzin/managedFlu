@@ -25,45 +25,30 @@
 
 
 #---------------------------------------------------------------------------
+from Foam.fvCFD import *
+
 def createFields( runTime, mesh ):
-
-  from Foam.OpenFOAM import ext_Info, nl
-  ext_Info() << "Reading field p\n" << nl
-
-  from Foam.OpenFOAM import IOobject, word, fileName
-  from wrappers.OpenFOAM import IOobjectHolder
-  from wrappers.finiteVolume import volScalarFieldHolder
   
-  p = volScalarFieldHolder( IOobjectHolder( word( "p" ),
-                                            fileName( runTime.timeName() ),
-                                            mesh,
-                                            IOobject.MUST_READ,
-                                            IOobject.AUTO_WRITE ),
-                            mesh )
+  ext_Info() << "Reading field p\n" << nl
+  p = man.volScalarField( man.IOobject( word( "p" ), fileName( runTime.timeName() ), mesh, IOobject.MUST_READ, IOobject.AUTO_WRITE ), mesh )
 
   ext_Info() << "Reading field U\n" << nl
-  from wrappers.finiteVolume import volVectorFieldHolder
-  U = volVectorFieldHolder( IOobjectHolder( word( "U" ),
+  U = man.volVectorField( man.IOobject( word( "U" ),
                                             fileName( runTime.timeName() ),
                                             mesh,
                                             IOobject.MUST_READ,
                                             IOobject.AUTO_WRITE ),
                             mesh );
   
-  from wrappers.finiteVolume import createPhi
-  phi = createPhi( runTime, mesh, U );
+  phi = man.createPhi( runTime, mesh, U );
   
   pRefCell = 0
   pRefValue = 0.0
- 
-  from wrappers.finiteVolume import setRefCell
   pRefCell, pRefValue = setRefCell( p, mesh.solutionDict().subDict( word( "SIMPLE" ) ), pRefCell, pRefValue )
 
-  from wrappers.transportModels import singlePhaseTransportModelHolder
-  laminarTransport = singlePhaseTransportModelHolder( U, phi )
+  laminarTransport = man.singlePhaseTransportModel( U, phi )
 
-  from wrappers import incompressible
-  turbulence = incompressible.RASModelHolder.New( U, phi, laminarTransport )
+  turbulence = man.incompressible.RASModel.New( U, phi, laminarTransport )
   
   return p, U, phi, pRefCell, pRefValue, laminarTransport, turbulence
 
@@ -72,13 +57,10 @@ def createFields( runTime, mesh ):
 def fun_UEqn( U, phi, turbulence, p ):
   # Solve the Momentum equation
   
-  from wrappers import fvm, Deps, fvc
-  from wrappers.finiteVolume import fvVectorMatrixHolder
-  UEqn = fvm.div( phi, U ) + fvVectorMatrixHolder( turbulence.divDevReff( U() ), Deps( turbulence, U ) ) 
+  UEqn = man.fvm.div( phi, U ) + man.fvVectorMatrix( turbulence.divDevReff( U ), man.Deps( turbulence, U ) ) 
 
   UEqn.relax()
-  from wrappers.finiteVolume import solve
-  solve( UEqn == -fvc.grad( p ) )
+  solve( UEqn == -man.fvc.grad( p ) )
 
   return UEqn
 
@@ -91,17 +73,13 @@ def fun_pEqn( mesh, runTime, simple, U, phi, turbulence, p, UEqn, pRefCell, pRef
   rAU = 1.0 / UEqn().A();
   U().ext_assign( rAU * UEqn().H() )
   
-  from Foam import fvm, fvc
-  from Foam.OpenFOAM import word
-  phi().ext_assign( fvc.interpolate( U(), word( "interpolate(HbyA)" ) ) & mesh.Sf() )
+  phi().ext_assign( fvc.interpolate( U, word( "interpolate(HbyA)" ) ) & mesh.Sf() )
   
-  from wrappers.finiteVolume import adjustPhi
   adjustPhi(phi, U, p)
 
   # Non-orthogonal pressure corrector loop
   for nonOrth in range( simple.nNonOrthCorr() + 1 ):
-    from Foam import fvc
-    pEqn = fvm.laplacian( rAU, p() ) == fvc.div( phi() )
+    pEqn = fvm.laplacian( rAU, p ) == fvc.div( phi )
 
     pEqn.setReference( pRefCell, pRefValue )
 
@@ -112,43 +90,34 @@ def fun_pEqn( mesh, runTime, simple, U, phi, turbulence, p, UEqn, pRefCell, pRef
       pass
     pass
   
-  from Foam.finiteVolume.cfdTools.general.include import ContinuityErrs
-  cumulativeContErr = ContinuityErrs( phi(), runTime(), mesh(), cumulativeContErr )
+  cumulativeContErr = ContinuityErrs( phi, runTime, mesh, cumulativeContErr )
 
   # Explicitly relax pressure for momentum corrector
   p.relax()
 
   # Momentum corrector
-  U().ext_assign( U() - rAU * fvc.grad( p() ) )
+  U().ext_assign( U() - rAU * fvc.grad( p ) )
   U.correctBoundaryConditions()
   
   return cumulativeContErr
 
 
-
-
 #---------------------------------------------------------------------------
 def main_standalone( argc, argv ):
   
-  from Foam.OpenFOAM.include import setRootCase
   args = setRootCase( argc, argv )
   
-  from wrappers.OpenFOAM import createTime  
   runTime=createTime( args )
     
-  from wrappers.OpenFOAM import createMesh
   mesh = createMesh( runTime )
     
   p, U, phi, pRefCell, pRefValue, laminarTransport, turbulence = createFields( runTime, mesh )
 
-  from Foam.finiteVolume.cfdTools.general.include import initContinuityErrs
   cumulativeContErr = initContinuityErrs()
-
-  from wrappers.finiteVolume import simpleControlHolder
-  simple = simpleControlHolder (mesh)
+  
+  simple = man.simpleControl (mesh)
 
   # * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * #
-  from Foam.OpenFOAM import ext_Info, nl
   ext_Info() << "\nStarting time loop\n" << nl
 
   while simple.loop():
