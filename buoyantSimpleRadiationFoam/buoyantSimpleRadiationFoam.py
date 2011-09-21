@@ -25,12 +25,13 @@
 
 
 #---------------------------------------------------------------------------
+from Foam.fvCFD import *
+
+
+#---------------------------------------------------------------------------
 def readGravitationalAcceleration( runTime, mesh ):
-    from Foam.OpenFOAM import ext_Info, nl
     ext_Info() << "\nReading g" << nl
     
-    from Foam.OpenFOAM import uniformDimensionedVectorField
-    from Foam.OpenFOAM import word, IOobject,fileName
     g= uniformDimensionedVectorField( IOobject( word("g"),
                                                 fileName( runTime.constant() ),
                                                 mesh,
@@ -41,70 +42,57 @@ def readGravitationalAcceleration( runTime, mesh ):
     
 #---------------------------------------------------------------------------
 def createFields( runTime, mesh, g ):
-    from Foam.OpenFOAM import ext_Info, nl
+
     ext_Info() << "Reading thermophysical properties\n" << nl
     
-    from wrappers.thermophysicalModels import basicPsiThermoHolder
-    pThermo = basicPsiThermoHolder.New( mesh );
+    pThermo = man.basicPsiThermo.New( mesh );
 
-    from wrappers.OpenFOAM import IOobjectHolder
-    from wrappers import Deps, Deps
-    from Foam.OpenFOAM import IOobject, word, fileName
-    from wrappers.finiteVolume import volScalarFieldHolder
-    
     field = pThermo.rho()
-    rho = volScalarFieldHolder( IOobjectHolder( word( "rho" ), 
-                                                fileName( runTime.timeName() ),
-                                                mesh, 
-                                                IOobject.NO_READ, 
-                                                IOobject.NO_WRITE ),
-                                volScalarFieldHolder( field, Deps( pThermo ) ) );
+    rho = man.volScalarField( man.IOobject( word( "rho" ), 
+                                            fileName( runTime.timeName() ),
+                                            mesh, 
+                                            IOobject.NO_READ, 
+                                            IOobject.NO_WRITE ),
+                              man.volScalarField( field, man.Deps( pThermo ) ) );
     
-    p = volScalarFieldHolder( pThermo.p(), Deps( pThermo ) )
-    h = volScalarFieldHolder( pThermo.h(), Deps( pThermo ) )
-    psi = volScalarFieldHolder( pThermo.psi(), Deps( pThermo ) )
+    p = man.volScalarField( pThermo.p(), man.Deps( pThermo ) )
+    h = man.volScalarField( pThermo.h(), man.Deps( pThermo ) )
+    psi = man.volScalarField( pThermo.psi(), man.Deps( pThermo ) )
     
-    from wrappers.finiteVolume import volVectorFieldHolder
     ext_Info() << "Reading field U\n" << nl
-    U = volVectorFieldHolder( IOobjectHolder( word( "U" ),
+    U = man.volVectorField( man.IOobject( word( "U" ),
                                           fileName( runTime.timeName() ),
                                           mesh,
                                           IOobject.MUST_READ,
                                           IOobject.AUTO_WRITE ),
                               mesh )
-    from wrappers.finiteVolume import compressibleCreatePhi
-    phi = compressibleCreatePhi( runTime, mesh, U, rho );
+    
+    phi = man.compressibleCreatePhi( runTime, mesh, U, rho );
 
     ext_Info() << "Creating turbulence model\n" << nl
-    from wrappers import compressible
-    turbulence = compressible.RASModelHolder.New( rho,
-                                                  U,
-                                                  phi,
-                                                  pThermo );
+    turbulence = man.compressible.RASModel.New( rho, U,  phi, pThermo );
+
     ext_Info()<< "Calculating field g.h\n" << nl
     
-    from wrappers.finiteVolume import surfaceScalarFieldHolder, surfaceVectorFieldHolder
     field = g & mesh.C()                                                                                   #####################
-    gh = volScalarFieldHolder( word( "gh" ), volScalarFieldHolder( field, Deps( mesh ) ) )                 #We should discuss it
+    gh = man.volScalarField( word( "gh" ), man.volScalarField( field, man.Deps( mesh ) ) )                 #We should discuss it
     field = g & mesh.Cf()                                                                                  #
-    ghf = surfaceScalarFieldHolder( word( "ghf" ), surfaceScalarFieldHolder( field, Deps( mesh ) ) )       ##################################    
+    ghf = man.surfaceScalarField( word( "ghf" ), man.surfaceScalarField( field, man.Deps( mesh ) ) )       ##################################    
     ext_Info() << "Reading field p_rgh\n" << nl
-    p_rgh = volScalarFieldHolder( IOobjectHolder( word( "p_rgh" ),
-                                                  fileName( runTime.timeName() ),
-                                                  mesh,
-                                                  IOobject.MUST_READ,
-                                                  IOobject.AUTO_WRITE ),
-                                  mesh );
+    p_rgh = man.volScalarField( man.IOobject( word( "p_rgh" ),
+                                              fileName( runTime.timeName() ),
+                                              mesh,
+                                              IOobject.MUST_READ,
+                                              IOobject.AUTO_WRITE ),
+                                mesh );
     # Force p_rgh to be consistent with p
     p_rgh.ext_assign( p - rho * gh )
     
     pRefCell = 0
     pRefValue = 0.0
     
-    from wrappers.finiteVolume import setRefCell
     pRefCell, pRefValue = setRefCell( p, p_rgh, mesh.solutionDict().subDict( word( "SIMPLE" ) ), pRefCell, pRefValue );
 
-    from Foam import fvc
     initialMass = fvc.domainIntegrate( rho() )
     totalVolume = mesh.V().ext_sum()
     
@@ -113,24 +101,19 @@ def createFields( runTime, mesh, g ):
 
 #--------------------------------------------------------------------------------------
 def fun_Ueqn( simple, mesh, rho, U, phi, turbulence, ghf, p_rgh ):
-    from wrappers import Deps
-    from wrappers import fvc, fvm 
-    from wrappers.finiteVolume import fvVectorMatrixHolder
-    UEqn = fvm.div( phi, U ) + fvVectorMatrixHolder( turbulence.divDevRhoReff( U() ), Deps( turbulence, U) )
+    UEqn = man.fvm.div( phi, U ) + man.fvVectorMatrix( turbulence.divDevRhoReff( U() ), man.Deps( turbulence, U) )
     
     UEqn.relax()
  
-    from wrappers.finiteVolume import solve, surfaceScalarFieldHolder
     if simple.momentumPredictor():
-     solve( UEqn == fvc.reconstruct( ( ( - ghf * fvc.snGrad( rho ) - fvc.snGrad( p_rgh ) ) * surfaceScalarFieldHolder( mesh.magSf(), Deps( mesh ) ) ) ) )
+     solve( UEqn == man.fvc.reconstruct( ( ( - ghf * man.fvc.snGrad( rho ) - man.fvc.snGrad( p_rgh ) ) * man.surfaceScalarField( mesh.magSf(), man.Deps( mesh ) ) ) ) )
 
     return UEqn
 
 #--------------------------------------------------------------------------------------
 def fun_hEqn( thermo, rho, p, h, phi, radiation, turbulence ):
-    from Foam import fvc, fvm 
-    hEqn = fvm.div( phi(), h() ) - fvm.Sp(fvc.div( phi() ), h() ) - fvm.laplacian(turbulence.alphaEff(), h() ) \
-            == fvc.div( phi() / fvc.interpolate( rho() ) * fvc.interpolate( p() ) ) - p() * fvc.div( phi() / fvc.interpolate( rho() ) ) \
+    hEqn = fvm.div( phi, h ) - fvm.Sp( fvc.div( phi ), h ) - fvm.laplacian(turbulence.alphaEff(), h ) \
+            == fvc.div( phi() / fvc.interpolate( rho ) * fvc.interpolate( p ) ) - p() * fvc.div( phi() / fvc.interpolate( rho ) ) \
                + radiation.Sh( thermo() )
 
 
@@ -149,30 +132,25 @@ def fun_pEqn( mesh, runTime, simple, thermo, rho, p, h, psi, U, phi, turbulence,
 
       rAU = 1.0 / UEqn.A()
       
-      from Foam import fvc
-      from Foam.finiteVolume import surfaceScalarField
-      from Foam.OpenFOAM import word
       rhorAUf = surfaceScalarField( word( "(rho*(1|A(U)))" ), fvc.interpolate( rho() * rAU ) )
       
       U().ext_assign( rAU * UEqn.H() )
       
       #UEqn.clear()
       
-      phi().ext_assign(  fvc.interpolate( rho() ) * ( fvc.interpolate( U() ) & mesh.Sf() ) )
+      phi().ext_assign(  fvc.interpolate( rho ) * ( fvc.interpolate( U() ) & mesh.Sf() ) )
       
-      from wrappers.finiteVolume import adjustPhi
       closedVolume = adjustPhi( phi, U, p_rgh )
       
-      buoyancyPhi = rhorAUf * ghf() * fvc.snGrad( rho() ) * mesh.magSf()
+      buoyancyPhi = rhorAUf * ghf * fvc.snGrad( rho ) * mesh.magSf()
       
       phi().ext_assign( phi() - buoyancyPhi )
 
       for nonOrth in range( simple.nNonOrthCorr() + 1 ):
-          from Foam import fvm
-          p_rghEqn = ( fvm.laplacian( rhorAUf, p_rgh() ) == fvc.div( phi() ) )
+
+          p_rghEqn = ( fvm.laplacian( rhorAUf, p_rgh ) == fvc.div( phi ) )
           
-          from Foam.finiteVolume import getRefCellValue
-          p_rghEqn.setReference( pRefCell, getRefCellValue( p_rgh(), pRefCell ) )
+          p_rghEqn.setReference( pRefCell, getRefCellValue( p_rgh, pRefCell ) )
           p_rghEqn.solve()
 
           if nonOrth == simple.nNonOrthCorr():
@@ -189,21 +167,20 @@ def fun_pEqn( mesh, runTime, simple, thermo, rho, p, h, psi, U, phi, turbulence,
               pass
           pass
   
-      from Foam.finiteVolume.cfdTools.general.include import ContinuityErrs
-      cumulativeContErr = ContinuityErrs( phi(), runTime(), mesh(), cumulativeContErr )
+      cumulativeContErr = ContinuityErrs( phi, runTime, mesh, cumulativeContErr )
       
       p.ext_assign( p_rgh + rho * gh )
 
       # For closed-volume cases adjust the pressure level
       # to obey overall mass continuity
       if closedVolume:
-          p().ext_assign( p() + ( initialMass - fvc.domainIntegrate( psi() * p() ) ) / fvc.domainIntegrate( psi() ) )
+          p().ext_assign( p() + ( initialMass - fvc.domainIntegrate( psi * p ) ) / fvc.domainIntegrate( psi ) )
           p_rgh.ext_assign( p - rho * gh )
           pass
       rho().ext_assign( thermo.rho() )
       rho.relax()
-      from Foam.OpenFOAM import ext_Info, nl
-      ext_Info() << "rho max/min : " <<  rho().ext_max().value() << " " << rho().ext_min().value() << nl
+
+      ext_Info() << "rho max/min : " <<  rho.ext_max().value() << " " << rho.ext_min().value() << nl
       
       return cumulativeContErr
 
@@ -212,13 +189,10 @@ def fun_pEqn( mesh, runTime, simple, thermo, rho, p, h, psi, U, phi, turbulence,
 #--------------------------------------------------------------------------------------
 def main_standalone( argc, argv ):
 
-    from Foam.OpenFOAM.include import setRootCase
     args = setRootCase( argc, argv )
 
-    from wrappers.OpenFOAM import createTime
     runTime = createTime( args )
 
-    from wrappers.OpenFOAM import createMesh
     mesh = createMesh( runTime )
     
     g = readGravitationalAcceleration( runTime(), mesh() )
@@ -226,17 +200,12 @@ def main_standalone( argc, argv ):
     pThermo, rho, p, h, psi, U, phi, turbulence, gh, ghf, p_rgh, \
          pRefCell, pRefValue, initialMass, totalVolume = createFields( runTime, mesh, g )
 
-    from wrappers.radiation import createRadiationModel
-    radiation = createRadiationModel( pThermo )
+    radiation = man.radiation.createRadiationModel( pThermo )
     
-    from Foam.finiteVolume.cfdTools.general.include import initContinuityErrs
     cumulativeContErr = initContinuityErrs()
     
+    simple = man.simpleControl( mesh )
     
-    from wrappers.finiteVolume import simpleControlHolder
-    simple = simpleControlHolder ( mesh )
-    
-    from Foam.OpenFOAM import ext_Info, nl
     ext_Info() << "\nStarting time loop\n" << nl
 
     while simple.loop():
