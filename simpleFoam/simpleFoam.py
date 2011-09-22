@@ -25,11 +25,15 @@
 
 
 #---------------------------------------------------------------------------
-from Foam.fvCFD import *
+from Foam import man
 
+
+#---------------------------------------------------------------------------
 def createFields( runTime, mesh ):
-  
+  from Foam.OpenFOAM import ext_Info, nl
   ext_Info() << "Reading field p\n" << nl
+  
+  from Foam.OpenFOAM import IOobject, word, fileName
   p = man.volScalarField( man.IOobject( word( "p" ), fileName( runTime.timeName() ), mesh, IOobject.MUST_READ, IOobject.AUTO_WRITE ), mesh )
 
   ext_Info() << "Reading field U\n" << nl
@@ -44,6 +48,7 @@ def createFields( runTime, mesh ):
   
   pRefCell = 0
   pRefValue = 0.0
+  from Foam.finiteVolume import setRefCell
   pRefCell, pRefValue = setRefCell( p, mesh.solutionDict().subDict( word( "SIMPLE" ) ), pRefCell, pRefValue )
 
   laminarTransport = man.singlePhaseTransportModel( U, phi )
@@ -60,6 +65,7 @@ def fun_UEqn( U, phi, turbulence, p ):
   UEqn = man.fvm.div( phi, U ) + man.fvVectorMatrix( turbulence.divDevReff( U ), man.Deps( turbulence, U ) ) 
 
   UEqn.relax()
+  from Foam.finiteVolume import solve
   solve( UEqn == -man.fvc.grad( p ) )
 
   return UEqn
@@ -73,10 +79,14 @@ def fun_pEqn( mesh, runTime, simple, U, phi, turbulence, p, UEqn, pRefCell, pRef
   rAU = 1.0 / UEqn().A();
   U().ext_assign( rAU * UEqn().H() )
   
+  from Foam import fvc
+  from Foam.OpenFOAM import word
   phi().ext_assign( fvc.interpolate( U, word( "interpolate(HbyA)" ) ) & mesh.Sf() )
   
+  from Foam.finiteVolume import adjustPhi
   adjustPhi(phi, U, p)
 
+  from Foam import fvm
   # Non-orthogonal pressure corrector loop
   for nonOrth in range( simple.nNonOrthCorr() + 1 ):
     pEqn = fvm.laplacian( rAU, p ) == fvc.div( phi )
@@ -89,8 +99,8 @@ def fun_pEqn( mesh, runTime, simple, U, phi, turbulence, p, UEqn, pRefCell, pRef
       phi().ext_assign( phi() - pEqn.flux() )
       pass
     pass
-  
-  cumulativeContErr = ContinuityErrs( phi, runTime, mesh, cumulativeContErr )
+  from Foam.finiteVolume.cfdTools.incompressible import continuityErrs
+  cumulativeContErr = continuityErrs(  mesh, phi, runTime, cumulativeContErr )
 
   # Explicitly relax pressure for momentum corrector
   p.relax()
@@ -105,19 +115,22 @@ def fun_pEqn( mesh, runTime, simple, U, phi, turbulence, p, UEqn, pRefCell, pRef
 #---------------------------------------------------------------------------
 def main_standalone( argc, argv ):
   
+  from Foam.OpenFOAM.include import setRootCase
   args = setRootCase( argc, argv )
   
-  runTime=createTime( args )
-    
-  mesh = createMesh( runTime )
+  runTime = man.createTime( args )
+  
+  mesh = man.createMesh( runTime )
     
   p, U, phi, pRefCell, pRefValue, laminarTransport, turbulence = createFields( runTime, mesh )
 
+  from Foam.finiteVolume.cfdTools.general.include import initContinuityErrs
   cumulativeContErr = initContinuityErrs()
   
   simple = man.simpleControl (mesh)
 
   # * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * #
+  from Foam.OpenFOAM import ext_Info, nl
   ext_Info() << "\nStarting time loop\n" << nl
 
   while simple.loop():
