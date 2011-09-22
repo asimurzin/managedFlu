@@ -41,25 +41,7 @@ fi
 
 
 #--------------------------------------------------------------------------------------
-pythonflu_include=""
-
-if test "x${PYTHONFLU_ROOT_DIR}" != "x"; then
-   pythonflu_include="-I ${PYTHONFLU_ROOT_DIR}/admin"
-fi
-
-if test "x${pythonflu_include}" = "x" && test -d /usr/local/share/pythonFlu/admin; then
-   pythonflu_include="-I /usr/local/share/pythonFlu/admin"
-fi
-
-if test "${pythonflu_include}x" = "x"; then
-   echo "ERROR:pythonFlu need to be installed or sourced"
-   exit 0
-fi
-
-
-#--------------------------------------------------------------------------------------
 ${confflu_path}/build_configure \
-     ${pythonflu_include} \
 
 
 #--------------------------------------------------------------------------------------
