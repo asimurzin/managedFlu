@@ -25,13 +25,15 @@
 
 
 #---------------------------------------------------------------------------
-from Foam.fvCFD import *
+from Foam import man
 
 
 #---------------------------------------------------------------------------
 def readGravitationalAcceleration( runTime, mesh ):
+    from Foam.OpenFOAM import ext_Info, nl
     ext_Info() << "\nReading g" << nl
     
+    from Foam.OpenFOAM import uniformDimensionedVectorField, IOobject, word, fileName
     g= uniformDimensionedVectorField( IOobject( word("g"),
                                                 fileName( runTime.constant() ),
                                                 mesh,
@@ -42,7 +44,8 @@ def readGravitationalAcceleration( runTime, mesh ):
     
 #---------------------------------------------------------------------------
 def createFields( runTime, mesh, g ):
-
+    
+    from Foam.OpenFOAM import ext_Info, nl
     ext_Info() << "Reading thermophysical properties\n" << nl
     
     pThermo = man.basicPsiThermo.New( mesh );
@@ -189,11 +192,12 @@ def fun_pEqn( mesh, runTime, simple, thermo, rho, p, h, psi, U, phi, turbulence,
 #--------------------------------------------------------------------------------------
 def main_standalone( argc, argv ):
 
+    from Foam.OpenFOAM.include import setRootCase
     args = setRootCase( argc, argv )
 
-    runTime = createTime( args )
+    runTime = man.createTime( args )
 
-    mesh = createMesh( runTime )
+    mesh = man.createMesh( runTime )
     
     g = readGravitationalAcceleration( runTime(), mesh() )
 
@@ -202,10 +206,12 @@ def main_standalone( argc, argv ):
 
     radiation = man.radiation.createRadiationModel( pThermo )
     
+    from Foam.finiteVolume.cfdTools.general.include import initContinuityErrs
     cumulativeContErr = initContinuityErrs()
     
     simple = man.simpleControl( mesh )
     
+    from Foam.OpenFOAM import ext_Info, nl
     ext_Info() << "\nStarting time loop\n" << nl
 
     while simple.loop():
