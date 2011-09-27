@@ -22,6 +22,9 @@ namespace Foam
                 const fileName& caseName,
                 const word& systemName = "system",
                 const word& constantName = "constant" );
+    TimeHolder( Time*, const Deps& );
+    //TimeHolder( const Time*, const Deps& ); will be implemented after change shared_ptr with smart_ptr
+
     virtual SimpleHolder* clone() const;
     
     ~TimeHolder();
