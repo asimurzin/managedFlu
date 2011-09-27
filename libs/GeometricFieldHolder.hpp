@@ -30,8 +30,7 @@ namespace Foam
     GeometricFieldHolder( const word&, const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
     
     // constructors with deps
-    GeometricFieldHolder( const GeometricField< Type, PatchField, GeoMesh >& , const Deps& );
-    GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& , const Deps& );
+    GeometricFieldHolder( const smart_tmp< GeometricField< Type, PatchField, GeoMesh > >& , const Deps& );
 
     GeometricFieldHolder();
     
