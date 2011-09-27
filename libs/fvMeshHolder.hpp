@@ -25,6 +25,9 @@ namespace Foam
   public:
     fvMeshHolder( const IOobjectHolder& io );
     
+    fvMeshHolder( fvMesh*, const Deps& );
+    //fvMeshHolder( const fvMesh*, const Deps& );
+    
     virtual SimpleHolder* clone() const;
     
     fvMeshHolder();
