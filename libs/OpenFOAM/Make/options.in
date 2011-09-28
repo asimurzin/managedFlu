@@ -1,7 +1,8 @@
 EXE_INC = \
     -I/$@abs_top_builddir@/libs \
     -I/$@abs_top_builddir@/libs/managedFlu \
+    @DEFINE_FOAM_VERSION@ @DEFINE_FOAM_BRANCH@ \
 #    -DOUR_DEBUG
 
 LIB_LIBS = \
-
+    -L$(FOAM_USER_LIBBIN) -lmanagedFlu
