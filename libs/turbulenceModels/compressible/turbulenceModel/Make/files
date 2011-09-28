@@ -1,0 +1,3 @@
+turbulenceModelHolder.cpp
+
+LIB = $(FOAM_USER_LIBBIN)/libmanagedFlu-compressibleTurbulenceModel

@@ -70,7 +70,8 @@ AC_OUTPUT( [ bashrc \
 	     libs/thermophysicalModels/radiationModel/Make/options \
 	     libs/transportModels/incompressible/Make/options \
 	     libs/common.hpp \
-	     libs/turbulenceModels/compressible/Make/options \
+	     libs/turbulenceModels/compressible/turbulenceModel/Make/options \
+	     libs/turbulenceModels/compressible/RAS/Make/options \
 	     libs/turbulenceModels/incompressible/Make/options \
 	     buoyantBoussinesqSimpleFoam/Make/options \
 	     buoyantSimpleRadiationFoam/Make/options \

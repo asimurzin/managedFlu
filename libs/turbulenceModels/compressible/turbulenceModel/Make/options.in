@@ -1,8 +1,9 @@
 EXE_INC = \
-    -I$(TEST_MM_ROOT_DIR)/libs \
-    -I$(TEST_MM_ROOT_DIR)/libs/lnInclude \
-    -I$(TEST_MM_ROOT_DIR)/libs/finiteVolume \
-    -I$(TEST_MM_ROOT_DIR)/libs/thermophysicalModels/basic \
+    -I/$@abs_top_builddir@/libs \
+    -I/$@abs_top_builddir@/libs/managedFlu \
+    -I/$@abs_top_builddir@/libs/OpenFOAM \
+    -I/$@abs_top_builddir@/libs/finiteVolume \
+    -I/$@abs_top_builddir@/libs/thermophysicalModels/basic \
     @OPENFOAM_FINITEVOLUME_CPPFLAGS@ \
     @OPENFOAM_BASICTHERMOPHYSICALMODELS_CPPFLAGS@ \
     @OPENFOAM_TURBULENCEMODELS_CPPFLAGS@ \

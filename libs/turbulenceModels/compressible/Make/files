@@ -1,4 +1,0 @@
-compressibleTurbulenceModelHolder.cpp
-compressibleRASModelHolder.cpp
-
-LIB = $(FOAM_USER_LIBBIN)/libcompressibleTurbulenceHolders

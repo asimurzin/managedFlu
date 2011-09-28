@@ -1,11 +1,11 @@
-#ifndef RASModelHolder_020000_hpp
-#define RASModelHolder_020000_hpp
+#ifndef RASModelHolder_010701_hpp
+#define RASModelHolder_010701_hpp
 
 
 //---------------------------------------------------------------------------
 #include "Deps.hpp"
 #include "DependentHolder.hpp"
-#include "turbulenceModels/compressible/turbulenceModelHolder.hpp"
+#include "turbulenceModels/compressible/turbulenceModel/turbulenceModelHolder.hpp"
 
 #include <compressible/RAS/RASModel/RASModel.H>
 #include <boost/shared_ptr.hpp>
@@ -35,8 +35,7 @@ namespace compressible
       const volScalarFieldHolder&, 
       const volVectorFieldHolder&, 
       const surfaceScalarFieldHolder&, 
-      const basicThermoHolder&,
-      const word& turbulenceModelName = turbulenceModel::typeName );
+      const basicThermoHolder& );
 
     virtual SimpleHolder* clone() const;
     
