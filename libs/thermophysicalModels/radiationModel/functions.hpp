@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 #include "core.hpp"
-#include "thermophysicalModels.hpp"
-#include "radiationModels.hpp"
+#include "basicThermoHolder.hpp"
+#include "radiationModelHolder.hpp"
 
 
 //---------------------------------------------------------------------------
