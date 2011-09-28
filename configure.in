@@ -72,7 +72,8 @@ AC_OUTPUT( [ bashrc \
 	     libs/common.hpp \
 	     libs/turbulenceModels/compressible/turbulenceModel/Make/options \
 	     libs/turbulenceModels/compressible/RAS/Make/options \
-	     libs/turbulenceModels/incompressible/Make/options \
+	     libs/turbulenceModels/incompressible/turbulenceModel/Make/options \
+	     libs/turbulenceModels/incompressible/RAS/Make/options \
 	     buoyantBoussinesqSimpleFoam/Make/options \
 	     buoyantSimpleRadiationFoam/Make/options \
 	     icoFoam/Make/options \

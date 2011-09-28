@@ -1,5 +1,5 @@
-#ifndef incompressibleTurbulenceModelHolder_hpp
-#define incompressibleTurbulenceModelHolder_hpp
+#ifndef turbulenceModelHolder_hpp
+#define turbulenceModelHolder_hpp
 
 
 //---------------------------------------------------------------------------

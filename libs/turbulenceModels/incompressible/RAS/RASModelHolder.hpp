@@ -1,5 +1,5 @@
-#ifndef incompressibleRASModelHolder_hpp
-#define incompressibleRASModelHolder_hpp
+#ifndef RASModelHolder_hpp
+#define RASModelHolder_hpp
 
 
 //---------------------------------------------------------------------------
@@ -7,7 +7,7 @@
 
 
 //---------------------------------------------------------------------------
-#include FILENAME(incompressibleRASModelHolder,hpp)
+#include FILENAME(RASModelHolder,hpp)
 
 
 //---------------------------------------------------------------------------

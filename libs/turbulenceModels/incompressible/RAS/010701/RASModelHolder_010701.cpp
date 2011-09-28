@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------
-#include "incompressibleRASModelHolder.hpp"
+#include "RASModelHolder.hpp"
 
 
 //---------------------------------------------------------------------------
@@ -26,10 +26,9 @@ namespace incompressible
   RASModelHolder RASModelHolder::New( 
     const volVectorFieldHolder& U,
     const surfaceScalarFieldHolder& phi,
-    transportModelHolder& transport,
-    const word& turbulenceModelName )
+    transportModelHolder& transport )
   {
-    autoPtr< RASModel > result = RASModel::New( U(), phi(), *transport, turbulenceModelName );
+    autoPtr< RASModel > result = RASModel::New( U(), phi(), *transport );
     
     return RASModelHolder( boost::shared_ptr< RASModel >( result.ptr() ), U, phi, transport );
   }
