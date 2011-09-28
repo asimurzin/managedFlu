@@ -68,6 +68,7 @@ AC_OUTPUT( [ bashrc \
 	     libs/finiteVolume/Make/options \
 	     libs/thermophysicalModels/basic/Make/options \
 	     libs/thermophysicalModels/radiationModel/Make/options \
+	     libs/transportModels/incompressible/Make/options \
 	     libs/common.hpp \
 	     libs/turbulenceModels/compressible/Make/options \
 	     libs/turbulenceModels/incompressible/Make/options \
