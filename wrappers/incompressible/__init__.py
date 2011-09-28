@@ -1,6 +1,0 @@
-from wrappers.src.turbulenceModels.incompressible_turbulenceModelHolder import *
-from wrappers.src.turbulenceModels.incompressible_RASModelHolder import *
-
-
-RASModelHolder = wrappers.src.turbulenceModels.incompressible_RASModelHolder.RASModelHolder
-turbulenceModelHolder = wrappers.src.turbulenceModels.incompressible_turbulenceModelHolder.turbulenceModelHolder
