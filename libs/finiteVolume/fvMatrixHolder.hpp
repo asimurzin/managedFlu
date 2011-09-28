@@ -22,6 +22,8 @@ namespace Foam
     , public smart_tmp< fvMatrix< Type > >
   {
   public:
+    fvMatrixHolder( const fvMatrix< Type >& , const Deps& );
+    fvMatrixHolder( const tmp< fvMatrix< Type > >& , const Deps& );
     fvMatrixHolder( const smart_tmp< fvMatrix< Type > >& , const Deps& );
     
     fvMatrixHolder();

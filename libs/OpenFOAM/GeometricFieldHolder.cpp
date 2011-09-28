@@ -21,6 +21,28 @@ namespace Foam
   }
 
   template<class Type, template<class> class PatchField, class GeoMesh>
+  GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& tmp_gf, 
+									   const Deps& args ) 
+    : DependentHolder( args )
+    , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( tmp_gf )
+  {
+#ifdef OUR_DEBUG
+    cout << "GeometricFieldHolder=" << this << nl;
+#endif
+  }
+
+  template<class Type, template<class> class PatchField, class GeoMesh>
+  GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const GeometricField< Type, PatchField, GeoMesh >& gf, 
+									   const Deps& args ) 
+    : DependentHolder( args )
+    , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( gf )
+  {
+#ifdef OUR_DEBUG
+    cout << "GeometricFieldHolder=" << this << nl;
+#endif
+  }
+  
+  template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const smart_tmp< GeometricField< Type, PatchField, GeoMesh > >& tmp_gf, 
 									   const Deps& args ) 
     : DependentHolder( args )
