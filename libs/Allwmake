@@ -1,3 +1,10 @@
-wmake libso
-( cd turbulenceModels/compressible && wmake libso )
-( cd turbulenceModels/incompressible && wmake libso )
+( cd managedFlu && wmake libso )
+( cd OpenFOAM && wmake libso )
+( cd finiteVolume && wmake libso )
+( cd thermophysicalModels/basic && wmake libso )
+( cd thermophysicalModels/radiationModel && wmake libso )
+( cd transportModels/incompressible && wmake libso )
+( cd turbulenceModels/compressible/turbulenceModel && wmake libso )
+( cd turbulenceModels/compressible/RAS && wmake libso )
+( cd turbulenceModels/incompressible/turbulenceModel && wmake libso )
+( cd turbulenceModels/incompressible/RAS && wmake libso )

@@ -1,3 +1,10 @@
-wclean
-( cd turbulenceModels/compressible && wclean )
-( cd turbulenceModels/incompressible && wclean )
+( cd managedFlu && wclean )
+( cd OpenFOAM && wclean )
+( cd finiteVolume && wclean )
+( cd thermophysicalModels/basic && wclean )
+( cd thermophysicalModels/radiationModel && wclean )
+( cd transportModels/incompressible && wclean )
+( cd turbulenceModels/compressible/turbulenceModel && wclean )
+( cd turbulenceModels/compressible/RAS && wclean )
+( cd turbulenceModels/incompressible/turbulenceModel && wclean )
+( cd turbulenceModels/incompressible/RAS && wclean )
