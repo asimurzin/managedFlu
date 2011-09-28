@@ -20,4 +20,4 @@ EXE_LIBS = \
     @OPENFOAM_INCOMPRESSIBLETURBULENCEMODELS_LIBS@ \
     @OPENFOAM_SPECIE_LIBS@ \
     -L$(FOAM_USER_LIBBIN) -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume -lmanagedFlu-basicThermophysicalModels \
-    -lmanagedFlu-incompressibleTransportModels -lmanagedFlu-incompressibleTurbulenceModels -lmanagedFlu-incompressibleRASModels
+    -lmanagedFlu-incompressibleTransportModels -lmanagedFlu-incompressibleTurbulenceModel -lmanagedFlu-incompressibleRASModels

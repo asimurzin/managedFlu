@@ -1,4 +1,4 @@
 turbulenceModelHolder.cpp
 
 
-LIB = $(FOAM_USER_LIBBIN)/libmanagedFlu-incompressibleTurbulenceModels
+LIB = $(FOAM_USER_LIBBIN)/libmanagedFlu-incompressibleTurbulenceModel
