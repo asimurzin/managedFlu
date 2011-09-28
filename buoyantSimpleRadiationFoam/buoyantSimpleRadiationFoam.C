@@ -37,9 +37,9 @@ Description
 #include "radiationModel.H"
 #include "simpleControl.H"
 #include "core.hpp"
-#include "thermophysicalModels.hpp"
-#include "turbulenceModels/compressible/compressibleRASModelHolder.hpp"
-#include "radiationModels.hpp"
+#include "basicPsiThermoHolder.hpp"
+#include "turbulenceModels/compressible/RAS/RASModelHolder.hpp"
+#include "radiationModelHolder.hpp"
 
 #include "OpenFOAM/functions.hpp"
 #include "finiteVolume/functions.hpp"
