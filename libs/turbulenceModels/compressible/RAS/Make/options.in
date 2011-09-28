@@ -5,7 +5,7 @@ EXE_INC = \
     -I/$@abs_top_builddir@/libs/finiteVolume \
     -I/$@abs_top_builddir@/libs/thermophysicalModels/basic \
     -I/$@abs_top_builddir@/libs/turbulenceModels/compressible/turbulenceModel/lnInclude \
-    -I/$@abs_top_builddir@/libs/turbulenceModels/compressible/RASModel/lnInclude \
+    -I/$@abs_top_builddir@/libs/turbulenceModels/compressible/RAS/lnInclude \
     @OPENFOAM_FINITEVOLUME_CPPFLAGS@ \
     @OPENFOAM_BASICTHERMOPHYSICALMODELS_CPPFLAGS@ \
     @OPENFOAM_TURBULENCEMODELS_CPPFLAGS@ \
@@ -14,4 +14,5 @@ EXE_INC = \
 
 LIB_LIBS = \
     @OPENFOAM_COMPRESSIBLETURBULENCEMODELS_LIBS@ \
-    @OPENFOAM_FINITEVOLUME_LIBS@
+    @OPENFOAM_FINITEVOLUME_LIBS@ \
+    -L$(FOAM_USER_LIBBIN) -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume -lmanagedFlu-basicThermophysicalModels
