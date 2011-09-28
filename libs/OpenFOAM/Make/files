@@ -1,0 +1,11 @@
+objectRegistryHolder.cpp
+
+IOobjectHolder.cpp
+
+TimeHolder.cpp
+
+dictionaryHolder.cpp
+
+IOdictionaryHolder.cpp
+
+LIB = $(FOAM_USER_LIBBIN)/libmanagedFlu-OpenFOAM
