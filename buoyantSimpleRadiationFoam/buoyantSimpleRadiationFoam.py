@@ -51,6 +51,7 @@ def createFields( runTime, mesh, g ):
     pThermo = man.basicPsiThermo.New( mesh );
 
     field = pThermo.rho()
+    from Foam.OpenFOAM import word, fileName, IOobject
     rho = man.volScalarField( man.IOobject( word( "rho" ), 
                                             fileName( runTime.timeName() ),
                                             mesh, 
@@ -94,9 +95,11 @@ def createFields( runTime, mesh, g ):
     pRefCell = 0
     pRefValue = 0.0
     
+    from Foam.finiteVolume import setRefCell
     pRefCell, pRefValue = setRefCell( p, p_rgh, mesh.solutionDict().subDict( word( "SIMPLE" ) ), pRefCell, pRefValue );
 
-    initialMass = fvc.domainIntegrate( rho() )
+    from Foam import fvc
+    initialMass = fvc.domainIntegrate( rho )
     totalVolume = mesh.V().ext_sum()
     
     return pThermo, rho, p, h, psi, U, phi, turbulence, gh, ghf, p_rgh, pRefCell, pRefValue, initialMass, totalVolume
@@ -109,12 +112,14 @@ def fun_Ueqn( simple, mesh, rho, U, phi, turbulence, ghf, p_rgh ):
     UEqn.relax()
  
     if simple.momentumPredictor():
+     from Foam.finiteVolume import solve
      solve( UEqn == man.fvc.reconstruct( ( ( - ghf * man.fvc.snGrad( rho ) - man.fvc.snGrad( p_rgh ) ) * man.surfaceScalarField( mesh.magSf(), man.Deps( mesh ) ) ) ) )
 
     return UEqn
 
 #--------------------------------------------------------------------------------------
 def fun_hEqn( thermo, rho, p, h, phi, radiation, turbulence ):
+    from Foam import fvc, fvm
     hEqn = fvm.div( phi, h ) - fvm.Sp( fvc.div( phi ), h ) - fvm.laplacian(turbulence.alphaEff(), h ) \
             == fvc.div( phi() / fvc.interpolate( rho ) * fvc.interpolate( p ) ) - p() * fvc.div( phi() / fvc.interpolate( rho ) ) \
                + radiation.Sh( thermo() )
@@ -130,11 +135,14 @@ def fun_hEqn( thermo, rho, p, h, phi, radiation, turbulence ):
 #--------------------------------------------------------------------------------------
 def fun_pEqn( mesh, runTime, simple, thermo, rho, p, h, psi, U, phi, turbulence, \
                       gh, ghf, p_rgh, UEqn, pRefCell, pRefValue, cumulativeContErr, initialMass):
+      
       rho().ext_assign( thermo.rho() )
       rho.relax()
 
       rAU = 1.0 / UEqn.A()
-      
+      from Foam.OpenFOAM import word
+      from Foam import fvc,fvm
+      from Foam.finiteVolume import surfaceScalarField
       rhorAUf = surfaceScalarField( word( "(rho*(1|A(U)))" ), fvc.interpolate( rho() * rAU ) )
       
       U().ext_assign( rAU * UEqn.H() )
@@ -143,6 +151,7 @@ def fun_pEqn( mesh, runTime, simple, thermo, rho, p, h, psi, U, phi, turbulence,
       
       phi().ext_assign(  fvc.interpolate( rho ) * ( fvc.interpolate( U() ) & mesh.Sf() ) )
       
+      from Foam.finiteVolume import adjustPhi
       closedVolume = adjustPhi( phi, U, p_rgh )
       
       buoyancyPhi = rhorAUf * ghf * fvc.snGrad( rho ) * mesh.magSf()
@@ -153,6 +162,7 @@ def fun_pEqn( mesh, runTime, simple, thermo, rho, p, h, psi, U, phi, turbulence,
 
           p_rghEqn = ( fvm.laplacian( rhorAUf, p_rgh ) == fvc.div( phi ) )
           
+          from Foam.finiteVolume import getRefCellValue
           p_rghEqn.setReference( pRefCell, getRefCellValue( p_rgh, pRefCell ) )
           p_rghEqn.solve()
 
@@ -170,6 +180,7 @@ def fun_pEqn( mesh, runTime, simple, thermo, rho, p, h, psi, U, phi, turbulence,
               pass
           pass
   
+      from Foam.finiteVolume.cfdTools.general.include import ContinuityErrs
       cumulativeContErr = ContinuityErrs( phi, runTime, mesh, cumulativeContErr )
       
       p.ext_assign( p_rgh + rho * gh )
@@ -182,7 +193,8 @@ def fun_pEqn( mesh, runTime, simple, thermo, rho, p, h, psi, U, phi, turbulence,
           pass
       rho().ext_assign( thermo.rho() )
       rho.relax()
-
+      
+      from Foam.OpenFOAM import ext_Info, nl
       ext_Info() << "rho max/min : " <<  rho.ext_max().value() << " " << rho.ext_min().value() << nl
       
       return cumulativeContErr
