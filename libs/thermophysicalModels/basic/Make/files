@@ -2,4 +2,4 @@ basicThermoHolder.cpp
 
 basicPsiThermoHolder.cpp
 
-LIB = $(FOAM_USER_LIBBIN)/libManagedFlu-basicThermophysicalModels
+LIB = $(FOAM_USER_LIBBIN)/libmanagedFlu-basicThermophysicalModels
