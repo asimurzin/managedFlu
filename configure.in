@@ -63,6 +63,7 @@ CONFFLU_CHECK_MANDATORY( "openfoam_ok boost_shared_ptr_ok" )
 #--------------------------------------------------------------------------------------
 AC_OUTPUT( [ bashrc \
 	     libs/Make/options \
+	     libs/managedFlu/Make/options \
 	     libs/common.hpp \
 	     libs/turbulenceModels/compressible/Make/options \
 	     libs/turbulenceModels/incompressible/Make/options \

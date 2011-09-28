@@ -1,0 +1,6 @@
+EXE_INC = \
+    -I$@abs_top_builddir@/libs \
+#    -DOUR_DEBUG
+
+LIB_LIBS = \
+
