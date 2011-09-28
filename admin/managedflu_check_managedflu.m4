@@ -30,14 +30,58 @@ AC_REQUIRE([CONFFLU_CHECK_OPENFOAM])
 MANAGEDFLU_CPPFLAGS=""
 AC_SUBST(MANAGEDFLU_CPPFLAGS)
 
+MANAGEDFLU_OPENFOAM_CPPFLAGS=""
+AC_SUBST(MANAGEDFLU_OPENFOAM_CPPFLAGS)
+
+MANAGEDFLU_FINITEVOLUME_CPPFLAGS=""
+AC_SUBST(MANAGEDFLU_FINITEVOLUME_CPPFLAGS)
+
+MANAGEDFLU_INCOMPRESSIBLETRANSPORTMODELS_CPPFLAGS=""
+AC_SUBST(MANAGEDFLU_INCOMPRESSIBLETRANSPORTMODELS_CPPFLAGS)
+
+MANAGEDFLU_BASICTHERMOPHYSICALMODELS_CPPFLAGS=""
+AC_SUBST(MANAGEDFLU_BASICTHERMOPHYSICALMODELS_CPPFLAGS)
+
+MANAGEDFLU_RADIATIONMODELS_CPPFLAGS=""
+AC_SUBST(MANAGEDFLU_RADIATIONMODELS_CPPFLAGS)
+
+MANAGEDFLU_COMPRESSIBLETURBULENSEMODELS_CPPFLAGS=""
+AC_SUBST(MANAGEDFLU_COMPRESSIBLETURBULENSEMODELS_CPPFLAGS)
+
+MANAGEDFLU_INCOMPRESSIBLETURBULENSEMODELS_CPPFLAGS=""
+AC_SUBST(MANAGEDFLU_INCOMPRESSIBLETURBULENSEMODELS_CPPFLAGS)
+
+
 MANAGEDFLU_CXXFLAGS=""
 AC_SUBST(MANAGEDFLU_CXXFLAGS)
 
 MANAGEDFLU_LDFLAGS=""
 AC_SUBST(MANAGEDFLU_LDFLAGS)
 
-MANAGEDFLU_LIBS=""
-AC_SUBST(MANAGEDFLU_LIBS)
+MANAGEDFLU_LIB=""
+AC_SUBST(MANAGEDFLU_LIB)
+
+MANAGEDFLU_OPENFOAM_LIB=""
+AC_SUBST(MANAGEDFLU_OPENFOAM_LIB)
+
+MANAGEDFLU_FINITEVOLUME_LIB=""
+AC_SUBST(MANAGEDFLU_FINITEVOLUME_LIB)
+
+MANAGEDFLU_INCOMPRESSIBLETRANSPORTMODELS_LIB=""
+AC_SUBST(MANAGEDFLU_INCOMPRESSIBLETRANSPORTMODELS_LIB)
+
+MANAGEDFLU_BASICTHERMOPHYSICALMODELS_LIB=""
+AC_SUBST(MANAGEDFLU_BASICTHERMOPHYSICALMODELS_LIB)
+
+MANAGEDFLU_RADIATIONMODELS_LIB=""
+AC_SUBST(MANAGEDFLU_RADIATIONMODELS_LIB)
+
+MANAGEDFLU_COMPRESSIBLETURBULENSEMODELS_LIBS=""
+AC_SUBST(MANAGEDFLU_COMPRESSIBLETURBULENSEMODELS_LIBS)
+
+MANAGEDFLU_INCOMPRESSIBLETURBULENSEMODELS_LIBS=""
+AC_SUBST(MANAGEDFLU_INCOMPRESSIBLETURBULENSEMODELS_LIBS)
+
 
 AC_SUBST(ENABLE_MANAGEDFLU)
 
@@ -58,7 +102,7 @@ if test "x${with_managedflu_includes}" = "x" ; then
    fi
 fi
 
-AC_CHECK_FILE( [${managedflu_header_dir}/DependentHolder.hpp], [ managedflu_includes=yes ], [ managedflu_includes=no ] )
+AC_CHECK_FILE( [${managedflu_header_dir}/managedFlu/DependentHolder.hpp], [ managedflu_includes=yes ], [ managedflu_includes=no ] )
 
 dnl if test "x${managedflu_includes}" = "xno" ; then
 dnl    managedflu_header_dir=/usr/local/include/managedflu/libs
@@ -66,8 +110,15 @@ dnl   AC_CHECK_FILE( [${managedflu_header_dir}/DependentHolder.hpp], [ managedfl
 dnl fi
 
 if test "x${managedflu_includes}" = "xyes" ; then
-   MANAGEDFLU_CPPFLAGS="-I${managedflu_header_dir} -I${managedflu_header_dir}/lnInclude"
-   CPPFLAGS=${MANAGEDFLU_CPPFLAGS}
+   MANAGEDFLU_CPPFLAGS="-I${managedflu_header_dir} -I${managedflu_header_dir}/managedFlu/lnInclude"
+   
+   MANAGEDFLU_OPENFOAM_CPPFLAGS="-I${managedflu_header_dir}/OpenFOAM/lnInclude"
+   MANAGEDFLU_FINITEVOLUME_CPPFLAGS="-I${managedflu_header_dir}/finiteVolume/lnInclude"
+   MANAGEDFLU_INCOMPRESSIBLETRANSPORTMODELS_CPPFLAGS="-I${managedflu_header_dir}/transportModels/incompressible/lnInclude"
+   MANAGEDFLU_BASICTHERMOPHYSICALMODELS_CPPFLAGS="-I${managedflu_header_dir}/thermophysicalModels/basic/lnInclude"
+   MANAGEDFLU_RADIATIONMODELS_CPPFLAGS="-I${managedflu_header_dir}/thermophysicalModels/radiationModel/lnInclude" 
+   MANAGEDFLU_COMPRESSIBLETURBULENSEMODELS_CPPFLAGS="-I${managedflu_header_dir}/turbulenceModels/compressible/turbulenceModel/lnInclude -I${managedflu_header_dir}/turbulenceModels/compressible/RAS/lnInclude"
+   MANAGEDFLU_INCOMPRESSIBLETURBULENSEMODELS_CPPFLAGS="-I${managedflu_header_dir}/turbulenceModels/incompressible/turbulenceModel/lnInclude -I${managedflu_header_dir}/turbulenceModels/incompressible/RAS/lnInclude"
 fi
 
 if test "x${managedflu_includes}" = "xno" ; then
@@ -90,21 +141,29 @@ if test "x${with_managedflu_libraries}" = "x" ; then
    fi
 fi
 
-AC_CHECK_FILE( [${managedflu_libraries_dir}/libtestFixingBug.so], [ managedflu_libraries=yes ], [ managedflu_libraries=no ] )
+AC_CHECK_FILE( [${managedflu_libraries_dir}/libmanagedFlu.so], [ managedflu_libraries=yes ], [ managedflu_libraries=no ] )
 
 dnl if test "x${managedflu_libraries}" = "xno" ; then
 dnl   managedflu_libraries_dir=/usr/local/lib
-dnl   AC_CHECK_FILE( [${managedflu_libraries_dir}/libtestFixingBug.so], [ managedflu_libraries=yes ], [ managedflu_libraries=no ] )
+dnl   AC_CHECK_FILE( [${managedflu_libraries_dir}/libmanagedFlu.so], [ managedflu_libraries=yes ], [ managedflu_libraries=no ] )
 dnl fi
 
 if test "x${managedflu_libraries}" = "xno" ; then
   managedflu_libraries_dir=${FOAM_USER_LIBBIN}
-  AC_CHECK_FILE( [${managedflu_libraries_dir}/libtestFixingBug.so], [ managedflu_libraries=yes ], [ managedflu_libraries=no ] )
+  AC_CHECK_FILE( [${managedflu_libraries_dir}/libmanagedFlu.so], [ managedflu_libraries=yes ], [ managedflu_libraries=no ] )
 fi
 
 if test "x${managedflu_libraries}" = "xyes" ; then
    MANAGEDFLU_LDFLAGS="-L${managedflu_libraries_dir}"
-   MANAGEDFLU_LIBS="-ltestFixingBug -lcompressibleTurbulenceHolders -lincompressibleTurbulenceHolders"
+   MANAGEDFLU_LIB="-lmanagedFlu"
+   
+   MANAGEDFLU_OPENFOAM_LIB="-lmanagedFlu-OpenFOAM"
+   MANAGEDFLU_FINITEVOLUME_LIB="-lmanagedFlu-finiteVolume"
+   MANAGEDFLU_INCOMPRESSIBLETRANSPORTMODELS_LIB="-lmanagedFlu-incompressibleTransportModels"
+   MANAGEDFLU_BASICTHERMOPHYSICALMODELS_LIB="-lmanagedFlu-basicThermophysicalModels"
+   MANAGEDFLU_RADIATIONMODELS_LIB="-lmanagedFlu-radiationModels"
+   MANAGEDFLU_COMPRESSIBLETURBULENSEMODELS_LIBS="-lmanagedFlu-compressibleTurbulenceModel -lmanagedFlu-compressibleRASModels"
+   MANAGEDFLU_INCOMPRESSIBLETURBULENSEMODELS_LIBS="-lmanagedFlu-incompressibleTurbulenceModel -lmanagedFlu-incompressibleRASModels"
 fi
 
 if test "x${managedflu_libraries}" = "xno" ; then
@@ -122,10 +181,39 @@ AC_MSG_NOTICE( @ENABLE_MANAGEDFLU@ == "${ENABLE_MANAGEDFLU}" )
 AC_MSG_NOTICE( @MANAGEDFLU_CXXFLAGS@ == "${MANAGEDFLU_CXXFLAGS}" )
 
 AC_MSG_NOTICE( @MANAGEDFLU_CPPFLAGS@ == "${MANAGEDFLU_CPPFLAGS}" )
+  
+AC_MSG_NOTICE( @MANAGEDFLU_OPENFOAM_CPPFLAGS@ =="${MANAGEDFLU_OPENFOAM_CPPFLAGS}" )
+
+AC_MSG_NOTICE( @MANAGEDFLU_FINITEVOLUME_CPPFLAGS@ == "${MANAGEDFLU_FINITEVOLUME_CPPFLAGS}" )
+
+AC_MSG_NOTICE( @MANAGEDFLU_INCOMPRESSIBLETRANSPORTMODELS_CPPFLAGS@ == "${MANAGEDFLU_INCOMPRESSIBLETRANSPORTMODELS_CPPFLAGS}" )
+
+AC_MSG_NOTICE( @MANAGEDFLU_BASICTHERMOPHYSICALMODELS_CPPFLAGS@ == "${MANAGEDFLU_BASICTHERMOPHYSICALMODELS_CPPFLAGS}" )
+
+AC_MSG_NOTICE( @MANAGEDFLU_RADIATIONMODELS_CPPFLAGS@ == "${MANAGEDFLU_RADIATIONMODELS_CPPFLAGS}" )
+
+AC_MSG_NOTICE( @MANAGEDFLU_COMPRESSIBLETURBULENSEMODELS_CPPFLAGS@ == "${MANAGEDFLU_COMPRESSIBLETURBULENSEMODELS_CPPFLAGS}" )
+
+AC_MSG_NOTICE( @MANAGEDFLU_INCOMPRESSIBLETURBULENSEMODELS_CPPFLAGS@ == "${MANAGEDFLU_INCOMPRESSIBLETURBULENSEMODELS_CPPFLAGS}" )
 
 AC_MSG_NOTICE( @MANAGEDFLU_LDFLAGS@ == "${MANAGEDFLU_LDFLAGS}" )
 
-AC_MSG_NOTICE( @MANAGEDFLU_LIBS@ == "${MANAGEDFLU_LIBS}" )
+AC_MSG_NOTICE( @MANAGEDFLU_LIB@ == "${MANAGEDFLU_LIB}" )
+
+AC_MSG_NOTICE( @MANAGEDFLU_OPENFOAM_LIB@ =="${MANAGEDFLU_OPENFOAM_LIB}" )
+
+AC_MSG_NOTICE( @MANAGEDFLU_FINITEVOLUME_LIB@ == "${MANAGEDFLU_FINITEVOLUME_LIB}" )
+
+AC_MSG_NOTICE( @MANAGEDFLU_INCOMPRESSIBLETRANSPORTMODELS_LIB@ == "${MANAGEDFLU_INCOMPRESSIBLETRANSPORTMODELS_LIB}" )
+
+AC_MSG_NOTICE( @MANAGEDFLU_BASICTHERMOPHYSICALMODELS_LIB@ == "${MANAGEDFLU_BASICTHERMOPHYSICALMODELS_LIB}" )
+
+AC_MSG_NOTICE( @MANAGEDFLU_RADIATIONMODELS_LIB@ == "${MANAGEDFLU_RADIATIONMODELS_LIB}" )
+
+AC_MSG_NOTICE( @MANAGEDFLU_COMPRESSIBLETURBULENSEMODELS_LIBS@ == "${MANAGEDFLU_COMPRESSIBLETURBULENSEMODELS_LIBS}" )
+
+AC_MSG_NOTICE( @MANAGEDFLU_INCOMPRESSIBLETURBULENSEMODELS_LIBS@ == "${MANAGEDFLU_INCOMPRESSIBLETURBULENSEMODELS_LIBS}" )
+
 
 ])
 
