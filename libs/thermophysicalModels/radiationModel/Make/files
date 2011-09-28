@@ -1,0 +1,3 @@
+radiationModelHolder.cpp
+
+LIB = $(FOAM_USER_LIBBIN)/libManagedFlu-radiationModels
