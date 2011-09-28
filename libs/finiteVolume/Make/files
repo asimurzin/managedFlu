@@ -1,0 +1,8 @@
+simpleControlHolder.cpp
+
+fvMeshHolder.cpp
+volFields.cpp
+surfaceFields.cpp
+fvMatrices.cpp
+
+LIB = $(FOAM_USER_LIBBIN)/libManagedFlu-finiteVolume

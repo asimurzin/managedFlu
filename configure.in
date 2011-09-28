@@ -65,6 +65,7 @@ AC_OUTPUT( [ bashrc \
 	     libs/Make/options \
 	     libs/managedFlu/Make/options \
 	     libs/OpenFOAM/Make/options \
+	     libs/finiteVolume/Make/options \
 	     libs/common.hpp \
 	     libs/turbulenceModels/compressible/Make/options \
 	     libs/turbulenceModels/incompressible/Make/options \
