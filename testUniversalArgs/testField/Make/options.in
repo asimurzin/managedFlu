@@ -4,11 +4,14 @@ EXE_INC = \
     @OPENFOAM_TURBULENCEMODELS_CPPFLAGS@ \
     @OPENFOAM_COMPRESSIBLETURBULENCEMODELS_CPPFLAGS@ \
     @OPENFOAM_FINITEVOLUME_CPPFLAGS@ \
-    -I$(LIB_SRC)/finiteVolume/lnInclude \
-    -I$(TEST_MM_ROOT_DIR)/libs \
-    -I$(TEST_MM_ROOT_DIR)/libs/lnInclude \
-    -I$(TEST_MM_ROOT_DIR)/libs/thermophysicalModels/basic \
-    -I$(TEST_MM_ROOT_DIR)/libs/thermophysicalModels/radiationModel \
+    -I/$@abs_top_builddir@/libs \
+    -I/$@abs_top_builddir@/libs/managedFlu/lnInclude \
+    -I/$@abs_top_builddir@/libs/OpenFOAM/lnInclude \
+    -I/$@abs_top_builddir@/libs/finiteVolume/lnInclude \
+    -I/$@abs_top_builddir@/libs/thermophysicalModels/basic/lnInclude \
+    -I/$@abs_top_builddir@/libs/thermophysicalModels/radiationModel/lnInclude \
+    -I/$@abs_top_builddir@/libs/turbulenceModels/compressible/turbulenceModel/lnInclude \
+    -I/$@abs_top_builddir@/libs/turbulenceModels/compressible/RAS/lnInclude \
     @DEFINE_FOAM_VERSION@ @DEFINE_FOAM_BRANCH@ \
 
 
@@ -19,5 +22,5 @@ EXE_LIBS = \
     @OPENFOAM_COMPRESSIBLETURBULENCEMODELS_LIBS@ \
     @OPENFOAM_FINITEVOLUME_LIBS@ \
     @OPENFOAM_MESHTOOLS_LIBS@ \
-    -L$(FOAM_USER_LIBBIN) -ltestFixingBug \
-    -L$(FOAM_USER_LIBBIN) -lcompressibleTurbulenceHolders
+    -L$(FOAM_USER_LIBBIN) -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume -lmanagedFlu-basicThermophysicalModels \
+    -lmanagedFlu-compressibleTurbulenceModel -lmanagedFlu-compressibleRASModels -lmanagedFlu-radiationModels
