@@ -35,7 +35,7 @@ Description
 #include "finiteVolume/functions.hpp"
 
 #include "singlePhaseTransportModelHolder.hpp"
-#include "turbulenceModels/incompressible/incompressibleRASModelHolder.hpp"
+#include "turbulenceModels/incompressible/RAS/RASModelHolder.hpp"
 #include "simpleControlHolder.hpp"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
