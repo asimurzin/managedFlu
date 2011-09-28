@@ -38,8 +38,8 @@ Description
 #include "simpleControl.H"
 #include "core.hpp"
 //#include "Allfunctions.hpp"
-#include "thermophysicalModels.hpp"
-#include "turbulenceModels/compressible/compressibleRASModelHolder.hpp"
+#include "basicPsiThermoHolder.hpp"
+#include "turbulenceModels/compressible/RAS/RASModelHolder.hpp"
 
 
 
