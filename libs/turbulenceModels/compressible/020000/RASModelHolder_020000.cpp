@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------
-#include "compressibleRASModelHolder.hpp"
+#include "RASModelHolder.hpp"
 
 
 //---------------------------------------------------------------------------
@@ -28,9 +28,10 @@ namespace compressible
     const volScalarFieldHolder& rho,
     const volVectorFieldHolder& U,
     const surfaceScalarFieldHolder& phi,
-    const basicThermoHolder& thermo )
+    const basicThermoHolder& thermo,
+    const word& turbulenceModelName )
   {
-    autoPtr< RASModel > result = RASModel::New( rho(), U(), phi(), *thermo );
+    autoPtr< RASModel > result = RASModel::New( rho(), U(), phi(), *thermo, turbulenceModelName );
     
     return RASModelHolder( boost::shared_ptr< RASModel >( result.ptr() ), rho, U, phi, thermo );
   }

@@ -1,10 +1,10 @@
 //---------------------------------------------------------------------------
-#include "turbulenceModels/compressible/compressibleRASModelHolder.hpp"
+#include "turbulenceModels/compressible/RASModelHolder.hpp"
 
 
 
 //---------------------------------------------------------------------------
-#include FILENAME(compressibleRASModelHolder,cpp)
+#include FILENAME(RASModelHolder,cpp)
 
 
 //---------------------------------------------------------------------------

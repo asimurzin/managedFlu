@@ -1,5 +1,5 @@
-#ifndef compressibleRASModelHolder_hpp
-#define compressibleRASModelHolder_hpp
+#ifndef RASModelHolder_hpp
+#define RASModelHolder_hpp
 
 
 //---------------------------------------------------------------------------
@@ -7,7 +7,7 @@
 
 
 //---------------------------------------------------------------------------
-#include FILENAME(compressibleRASModelHolder,hpp)
+#include FILENAME(RASModelHolder,hpp)
 
 
 //---------------------------------------------------------------------------
