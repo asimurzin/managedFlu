@@ -5,4 +5,4 @@ volFields.cpp
 surfaceFields.cpp
 fvMatrices.cpp
 
-LIB = $(FOAM_USER_LIBBIN)/libManagedFlu-finiteVolume
+LIB = $(FOAM_USER_LIBBIN)/libmanagedFlu-finiteVolume
