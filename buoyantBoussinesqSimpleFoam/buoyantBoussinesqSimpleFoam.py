@@ -25,6 +25,10 @@
 
 
 #---------------------------------------------------------------------------
+from Foam import man
+
+
+#---------------------------------------------------------------------------
 def readGravitationalAcceleration( runTime, mesh ):
     from Foam.OpenFOAM import ext_Info, nl
     ext_Info() << "\nReading g" << nl
@@ -42,8 +46,7 @@ def readGravitationalAcceleration( runTime, mesh ):
 #---------------------------------------------------------------------------
 def readTransportProperties( U, phi ):
   
-  from wrappers.transportModels import singlePhaseTransportModelHolder
-  laminarTransport = singlePhaseTransportModelHolder( U, phi )
+  laminarTransport = man.singlePhaseTransportModel( U, phi )
 
   from Foam.OpenFOAM import word, dimensionedScalar
   # Thermal expansion coefficient [1/K]
@@ -69,79 +72,69 @@ def createFields( runTime, mesh, g ):
   
   ext_Info() << "Reading field T\n" << nl
   from Foam.OpenFOAM import IOobject, word, fileName
-  from wrappers.OpenFOAM import IOobjectHolder
-  from wrappers.finiteVolume import volScalarFieldHolder
-  T = volScalarFieldHolder( IOobjectHolder( word( "T" ),
+  T = man.volScalarField( man.IOobject( word( "T" ),
+                                        fileName( runTime.timeName() ),
+                                        mesh,
+                                        IOobject.MUST_READ,
+                                        IOobject.AUTO_WRITE ), mesh )
+
+  ext_Info() << "Reading field p_rgh\n" << nl
+  p_rgh = man.volScalarField( man.IOobject( word( "p_rgh" ),
                                             fileName( runTime.timeName() ),
                                             mesh,
                                             IOobject.MUST_READ,
                                             IOobject.AUTO_WRITE ),
-                            mesh )
-
-  ext_Info() << "Reading field p_rgh\n" << nl
-  p_rgh = volScalarFieldHolder( IOobjectHolder( word( "p_rgh" ),
-                                                fileName( runTime.timeName() ),
-                                                mesh,
-                                                IOobject.MUST_READ,
-                                                IOobject.AUTO_WRITE ),
                                 mesh )
   
   ext_Info() << "Reading field U\n" << nl
-  from wrappers.finiteVolume import volVectorFieldHolder
-  U = volVectorFieldHolder( IOobjectHolder( word( "U" ),
-                                            fileName( runTime.timeName() ),
-                                            mesh,
-                                            IOobject.MUST_READ,
-                                            IOobject.AUTO_WRITE ),
-                            mesh )
-  from wrappers.finiteVolume import createPhi
-  phi = createPhi( runTime, mesh, U )
+  U = man.volVectorField( man.IOobject( word( "U" ),
+                                        fileName( runTime.timeName() ),
+                                        mesh,
+                                        IOobject.MUST_READ,
+                                        IOobject.AUTO_WRITE ), mesh )
+  phi = man.createPhi( runTime, mesh, U )
     
   laminarTransport, beta, TRef, Pr, Prt = readTransportProperties( U, phi )
   
   ext_Info()<< "Creating turbulence model\n" << nl
-  from wrappers import incompressible
-  turbulence = incompressible.RASModelHolder.New(U, phi, laminarTransport)
+  turbulence = man.incompressible.RASModel.New(U, phi, laminarTransport)
 
   # Kinematic density for buoyancy force
-  rhok = volScalarFieldHolder( IOobjectHolder( word( "rhok" ),
-                                               fileName( runTime.timeName() ),
-                                               mesh ),
-                               volScalarFieldHolder( 1.0 - beta * ( T() - TRef ), T ) )
+  field = 1.0 - beta * ( T() - TRef )
+  rhok = man.volScalarField( man.IOobject( word( "rhok" ),
+                                           fileName( runTime.timeName() ),
+                                           mesh ), man.volScalarField( field, T ) )
   
   # kinematic turbulent thermal thermal conductivity m2/s
   ext_Info() << "Reading field kappat\n" << nl
-  kappat = volScalarFieldHolder( IOobjectHolder( word( "kappat" ),
-                                                 fileName( runTime.timeName() ),
-                                                 mesh,
-                                                 IOobject.MUST_READ,
-                                                 IOobject.AUTO_WRITE ),
-                                 mesh )
+  kappat = man.volScalarField( man.IOobject( word( "kappat" ),
+                                             fileName( runTime.timeName() ),
+                                             mesh,
+                                             IOobject.MUST_READ,
+                                             IOobject.AUTO_WRITE ), mesh )
 
   ext_Info() << "Calculating field g.h\n" << nl
   field = g & mesh.C()
-  gh = volScalarFieldHolder( word( "gh" ), volScalarFieldHolder( field, mesh ) )
-  from wrappers.finiteVolume import surfaceScalarFieldHolder
+  gh = man.volScalarField( word( "gh" ), man.volScalarField( field, mesh ) )
   field = g & mesh.Cf()
-  ghf = surfaceScalarFieldHolder( word( "ghf" ), surfaceScalarFieldHolder( field, mesh ) )
+  ghf = man.surfaceScalarField( word( "ghf" ), man.surfaceScalarField( field, mesh ) )
 
-  p = volScalarFieldHolder( IOobjectHolder( word( "p" ),
-                                            fileName( runTime.timeName() ),
-                                            mesh,
-                                            IOobject.NO_READ,
-                                            IOobject.AUTO_WRITE ),
-                            p_rgh + rhok * gh )
+  p = man.volScalarField( man.IOobject( word( "p" ),
+                                        fileName( runTime.timeName() ),
+                                        mesh,
+                                        IOobject.NO_READ,
+                                        IOobject.AUTO_WRITE ), p_rgh + rhok * gh )
 
   pRefCell = 0
   pRefValue = 0.0
 
-  from wrappers.finiteVolume import setRefCell
+  from Foam.finiteVolume import setRefCell
   pRefCell, pRefValue = setRefCell( p, p_rgh, mesh.solutionDict().subDict( word( "SIMPLE" ) ), pRefCell, pRefValue )
 
   from Foam.finiteVolume import getRefCellValue
   from Foam.OpenFOAM import dimensionedScalar
   if p_rgh.needReference():
-    p().ext_assign( p() + dimensionedScalar( word( "p" ),p.dimensions(), pRefValue - getRefCellValue( p(), pRefCell ) ) )
+    p().ext_assign( p() + dimensionedScalar( word( "p" ),p.dimensions(), pRefValue - getRefCellValue( p, pRefCell ) ) )
     pass
   
   return T, p_rgh, U, phi, laminarTransport, turbulence, rhok, kappat, gh, ghf, p, pRefCell, pRefValue, beta, TRef, Pr, Prt
@@ -150,17 +143,15 @@ def createFields( runTime, mesh, g ):
 #---------------------------------------------------------------------------
 def fun_UEqn( mesh, simple, U, phi, turbulence, p, rhok, p_rgh, ghf ):
 
-  from wrappers import fvm, Deps, fvc
-  from wrappers.finiteVolume import fvVectorMatrixHolder
-  UEqn = fvm.div(phi, U) + fvVectorMatrixHolder( turbulence.divDevReff( U() ), Deps( turbulence, U ) ) 
+  UEqn = man.fvm.div(phi, U) + man.fvVectorMatrix( turbulence.divDevReff( U() ), man.Deps( turbulence, U ) ) 
 
   UEqn().relax();
 
   if  simple.momentumPredictor():
-    from wrappers.finiteVolume import solve, surfaceScalarFieldHolder
-    solve( UEqn == fvc.reconstruct( ( - ghf * fvc.snGrad( rhok ) - fvc.snGrad( p_rgh ) ) * surfaceScalarFieldHolder( mesh.magSf(), mesh ) ) )
+    from Foam.finiteVolume import solve
+    solve( UEqn == man.fvc.reconstruct( ( - ghf * man.fvc.snGrad( rhok ) - man.fvc.snGrad( p_rgh ) ) * man.surfaceScalarField( mesh.magSf(), mesh ) ) )
     pass
-  return UEqn;
+  return UEqn
 
 
 #---------------------------------------------------------------------------
@@ -174,7 +165,7 @@ def fun_TEqn( phi, turbulence, kappat, T, rhok, beta, TRef, Prt, Pr ):
   from Foam.OpenFOAM import word
   kappaEff = volScalarField ( word( "kappaEff" ) , turbulence.ext_nu() / Pr  + kappat() )
   from Foam import fvm, fvc
-  TEqn = fvm.div( phi(), T() ) - fvm.Sp(fvc.div( phi() ), T() ) - fvm.laplacian( kappaEff, T() ) 
+  TEqn = fvm.div( phi, T ) - fvm.Sp(fvc.div( phi ), T ) - fvm.laplacian( kappaEff, T ) 
 
   TEqn.relax()
   TEqn.solve()
@@ -196,18 +187,18 @@ def fun_pEqn( mesh, runTime, simple, p, rhok, U, phi, turbulence, gh, ghf, p_rgh
 
   U().ext_assign( rAU * UEqn.H() )
 
-  phi().ext_assign( fvc.interpolate( U() ) & mesh.Sf() )
-  from wrappers.finiteVolume import adjustPhi
+  phi().ext_assign( fvc.interpolate( U ) & mesh.Sf() )
+  from Foam.finiteVolume import adjustPhi
   adjustPhi( phi, U, p_rgh );
 
-  buoyancyPhi = rAUf * ghf() * fvc.snGrad( rhok() ) * mesh.magSf()
+  buoyancyPhi = rAUf * ghf() * fvc.snGrad( rhok ) * mesh.magSf()
   phi().ext_assign( phi() - buoyancyPhi )
 
   from Foam import fvm
   for nonOrth in range( simple.nNonOrthCorr() + 1 ):
-    p_rghEqn = fvm.laplacian( rAUf, p_rgh() ) == fvc.div( phi() )
+    p_rghEqn = fvm.laplacian( rAUf, p_rgh ) == fvc.div( phi )
     from Foam.finiteVolume import getRefCellValue
-    p_rghEqn.setReference( pRefCell, getRefCellValue( p_rgh(), pRefCell ) )
+    p_rghEqn.setReference( pRefCell, getRefCellValue( p_rgh, pRefCell ) )
     
     p_rghEqn.solve()
 
@@ -226,13 +217,13 @@ def fun_pEqn( mesh, runTime, simple, p, rhok, U, phi, turbulence, gh, ghf, p_rgh
     pass
 
   from Foam.finiteVolume.cfdTools.general.include import ContinuityErrs
-  cumulativeContErr = ContinuityErrs( phi(), runTime(), mesh(), cumulativeContErr )
+  cumulativeContErr = ContinuityErrs( phi, runTime, mesh, cumulativeContErr )
 
   p.ext_assign( p_rgh + rhok * gh )
 
   if p_rgh.needReference():
     from Foam.OpenFOAM import dimensionedScalar, word
-    p().ext_assign( p() + dimensionedScalar( word( "p" ), p.dimensions(), pRefValue - getRefCellValue( p(), pRefCell ) ) )
+    p().ext_assign( p() + dimensionedScalar( word( "p" ), p.dimensions(), pRefValue - getRefCellValue( p, pRefCell ) ) )
     p_rgh.ext_assign( p - rhok * gh )
     pass
   
@@ -246,22 +237,19 @@ def main_standalone( argc, argv ):
   from Foam.OpenFOAM.include import setRootCase
   args = setRootCase( argc, argv )
   
-  from wrappers.OpenFOAM import createTime  
-  runTime=createTime( args )
+  runTime=man.createTime( args )
     
-  from wrappers.OpenFOAM import createMesh
-  mesh = createMesh( runTime )
+  mesh = man.createMesh( runTime )
     
-  g = readGravitationalAcceleration( runTime(), mesh() );
+  g = readGravitationalAcceleration( runTime, mesh );
 
   T, p_rgh, U, phi, laminarTransport, turbulence, rhok, \
      kappat, gh, ghf, p, pRefCell, pRefValue, beta, TRef, Pr, Prt  = createFields( runTime, mesh, g )
                                                         
   from Foam.finiteVolume.cfdTools.general.include import initContinuityErrs
-  cumulativeContErr = initContinuityErrs();
+  cumulativeContErr = initContinuityErrs()
 
-  from wrappers.finiteVolume import simpleControlHolder
-  simple = simpleControlHolder (mesh)
+  simple = man.simpleControl( mesh )
 
 
   # * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * #
