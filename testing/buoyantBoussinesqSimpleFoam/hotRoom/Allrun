@@ -13,15 +13,15 @@ runApplication blockMesh ""
 cp 0/T.org 0/T
 runApplication setFields ""
 runSolver $application "C"
-#./Allclean > /dev/null 2>&1
+./Allclean > /dev/null 2>&1
 
 echo 
 echo "   Python                   " 
 echo
 application="${TEST_MM_ROOT_DIR}/buoyantBoussinesqSimpleFoam/buoyantBoussinesqSimpleFoam.py"
-#runApplication blockMesh ""
-#cp 0/T.org 0/T
-#runApplication setFields ""
-#runSolver ${application} "Python"
+runApplication blockMesh ""
+cp 0/T.org 0/T
+runApplication setFields ""
+runSolver ${application} "Python"
 
 # ----------------------------------------------------------------- end-of-file
