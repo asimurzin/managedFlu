@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 namespace Foam
 {
-  template<class Type>
+/*  template<class Type>
   fvMatrixHolder< Type >::fvMatrixHolder( const fvMatrix< Type >& mt, 
 					  const Deps& args ) 
     : DependentHolder( args )
@@ -22,7 +22,7 @@ namespace Foam
     cout << "flufvMatrix = " << this << nl;
 #endif
   }
-  
+*/
   template<class Type>
   fvMatrixHolder< Type >::fvMatrixHolder( const smart_tmp< fvMatrix< Type > >& mt, 
 					  const Deps& args ) 
