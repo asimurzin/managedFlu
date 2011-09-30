@@ -80,7 +80,6 @@ AC_OUTPUT( [ bashrc \
 	     testUniversalArgs/testField/Make/options \
 	     testUniversalArgs/testMatrix/Make/options \
      	     testUniversalArgs/testMeshDictField/Make/options \
-	     wrappers/Makefile \
 	     Makefile ] )
 
 
