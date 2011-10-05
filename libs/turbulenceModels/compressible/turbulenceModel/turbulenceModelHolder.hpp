@@ -25,7 +25,20 @@ namespace compressible
   {
   public:
     turbulenceModelHolder();
+    
+    turbulenceModelHolder( const boost::shared_ptr< turbulenceModel >& tm, 
+                           const volScalarFieldHolder& rho,
+                           const volVectorFieldHolder& U,
+                           const surfaceScalarFieldHolder& phi, 
+                           const basicThermoHolder& thermoPhysicalModel );
+                           
     ~turbulenceModelHolder();
+    
+    static turbulenceModelHolder New( const volScalarFieldHolder& rho,
+                                      const volVectorFieldHolder& U,
+                                      const surfaceScalarFieldHolder& phi,
+                                      const basicThermoHolder& thermoPhysicalModel,
+                                      const word& turbulenceModelName = turbulenceModel::typeName );
     
     virtual SimpleHolder* clone() const;
     
