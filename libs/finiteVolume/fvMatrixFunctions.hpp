@@ -49,6 +49,12 @@ namespace Foam
   {
     return fvScalarMatrixHolder( mt1() + mt2(),  Deps( mt1.deps(), mt2.deps() ) );
   }
+
+  inline fvScalarMatrixHolder operator + ( const fvScalarMatrixHolder& mt1, 
+					    const volScalarFieldHolder& field )
+  {
+    return fvScalarMatrixHolder( mt1() + field() , Deps( mt1.deps(), &field ) );
+  }
   
   inline fvScalarMatrixHolder operator == ( const fvScalarMatrixHolder& mt1, 
 					    const volScalarFieldHolder& field )
