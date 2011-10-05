@@ -32,10 +32,15 @@ Description
 
 #include "fvCFD.H"
 #include "core.hpp"
-#include "OpenFOAM/functions.hpp"
-#include "finiteVolume/functions.hpp"
 #include "basicPsiThermoHolder.hpp"
 #include "turbulenceModels/compressible/turbulenceModel/turbulenceModelHolder.hpp"
+
+#include "OpenFOAM/functions.hpp"
+#include "finiteVolume/functions.hpp"
+#include "compressibleContinuityErrors.hpp"
+#include "compressibleCourantNo.hpp"
+#include "compressibleCreatePhi.hpp"
+#include "rhoEqn.hpp"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

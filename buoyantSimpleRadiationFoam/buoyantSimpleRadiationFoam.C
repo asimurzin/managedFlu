@@ -43,6 +43,7 @@ Description
 
 #include "OpenFOAM/functions.hpp"
 #include "finiteVolume/functions.hpp"
+#include "compressibleCreatePhi.hpp"
 #include "thermophysicalModels/radiationModel/functions.hpp"
 
 
