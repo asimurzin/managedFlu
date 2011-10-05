@@ -5,6 +5,7 @@ cd ${0%/*} || exit 1    # run from this directory
 ( cd buyantSimpleRadiationFoam/hotRadiationRoom && ./Allclean )
 ( cd icoFoam && ./Allclean )
 ( cd simpleFoam/pitzDaily && ./Allclean )
+( cd compressible/sonicFoam/laminar/forwardStep && ./Allclean)
 
 
 # ----------------------------------------------------------------- end-of-file

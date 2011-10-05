@@ -7,6 +7,7 @@ cd ${0%/*} || exit 1    # run from this directory
 ( cd buoyantBoussinesqSimpleFoam && wclean )
 ( cd simpleFoam && wclean )
 ( cd icoFoam && wclean )
+( cd solvers/compressible/sonicFoam && wclean )
 
 
 # ----------------------------------------------------------------- end-of-file
