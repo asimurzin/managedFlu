@@ -5,7 +5,7 @@
 
 
 //---------------------------------------------------------------------------
-void compressibleContinuityErrors( const basicPsiThermoHolder& thermo, const volScalarFieldHolder& rho, scalar& cumulativeContErr )
+void compressibleContinuityErrs( const basicPsiThermoHolder& thermo, const volScalarFieldHolder& rho, scalar& cumulativeContErr )
 {  
   dimensionedScalar totalMass = fvc::domainIntegrate( rho() );
 

@@ -37,7 +37,7 @@ Description
 
 #include "OpenFOAM/functions.hpp"
 #include "finiteVolume/functions.hpp"
-#include "compressibleContinuityErrors.hpp"
+#include "compressibleContinuityErrs.hpp"
 #include "compressibleCourantNo.hpp"
 #include "compressibleCreatePhi.hpp"
 #include "rhoEqn.hpp"
@@ -151,7 +151,7 @@ void fun_pEqn( const fvMeshHolder& mesh,
 
   rhoEqn( rho, phi );
   
-  compressibleContinuityErrors( thermo, rho, cumulativeContErr );
+  compressibleContinuityErrs( thermo, rho, cumulativeContErr );
 
   U() -= rAU * fvc::grad( p() );
   U->correctBoundaryConditions();
@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
   
   createFields( runTime, mesh, pThermo, p, e, psi, rho, U, phi, turbulence );
   
-  #include "initContinuityErrs.H"
+  scalar cumulativeContErr = initContinuityErrs();
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -193,13 +193,11 @@ int main(int argc, char *argv[])
         fvVectorMatrixHolder UEqn = fun_Ueqn( rho, U, phi, turbulence, p );
 
         fun_eEqn( rho, e, phi, turbulence, p, pThermo );
-
-
         // --- PISO loop
 
         for (int corr=0; corr<nCorr; corr++)
         {
-            fun_pEqn( mesh, runTime, pThermo, rho, p, psi, U, phi, turbulence, UEqn, cumulativeContErr, nNonOrthCorr );
+          fun_pEqn( mesh, runTime, pThermo, rho, p, psi, U, phi, turbulence, UEqn, cumulativeContErr, nNonOrthCorr );
         }
 
         turbulence->correct();
