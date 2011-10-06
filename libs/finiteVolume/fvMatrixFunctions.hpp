@@ -29,6 +29,12 @@ namespace Foam
     return fvVectorMatrixHolder( mt1() - mt2(), Deps( mt1.deps(), mt2.deps() ) );
   }
 
+  inline fvVectorMatrixHolder operator + ( const fvVectorMatrixHolder& mt1, 
+					    const volVectorFieldHolder& field )
+  {
+    return fvVectorMatrixHolder( mt1() + field() , Deps( mt1.deps(), &field ) );
+  }
+
   inline fvVectorMatrixHolder operator == ( const fvVectorMatrixHolder& mt1, 
 					    const fvVectorMatrixHolder& mt2 )
   {
