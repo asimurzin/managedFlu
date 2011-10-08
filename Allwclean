@@ -2,12 +2,7 @@
 cd ${0%/*} || exit 1    # run from this directory
 
 ( cd libs && ./Allwclean )
-( cd icoFoam && wclean )
-( cd buoyantSimpleRadiationFoam && wclean )
-( cd buoyantBoussinesqSimpleFoam && wclean )
-( cd simpleFoam && wclean )
-( cd icoFoam && wclean )
-( cd solvers/compressible/sonicFoam && wclean )
+( cd solvers && ./Allwclean )
 
 
 # ----------------------------------------------------------------- end-of-file
