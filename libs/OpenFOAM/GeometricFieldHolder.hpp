@@ -30,8 +30,6 @@ namespace Foam
     GeometricFieldHolder( const word&, const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
     
     // constructors with deps
-//    GeometricFieldHolder( const GeometricField< Type, PatchField, GeoMesh >& , const Deps& );
-//    GeometricFieldHolder( const tmp< GeometricField< Type, PatchField, GeoMesh > >& , const Deps& );
     GeometricFieldHolder( const smart_tmp< GeometricField< Type, PatchField, GeoMesh > >& , const Deps& );
 
     GeometricFieldHolder();
@@ -41,16 +39,28 @@ namespace Foam
     virtual SimpleHolder* clone() const;
     
     GeometricField< Type, PatchField, GeoMesh >& ref();
-    
-    void operator = ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
-    
-    void operator -= ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
-    
-    void operator += ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
 
-    //void operator()( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
+    void operator = ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
+    void operator = ( const dimensioned< Type >& );
     
+    void operator = ( const smart_tmp< GeometricField< Type, PatchField, GeoMesh > >& );
+    void operator -= ( const smart_tmp< GeometricField< Type, PatchField, GeoMesh > >& );
+    void operator += ( const smart_tmp< GeometricField< Type, PatchField, GeoMesh > >& );
+
+    void operator *= ( const smart_tmp< GeometricField< scalar, PatchField, GeoMesh > >& );
+    void operator /= ( const smart_tmp< GeometricField< scalar, PatchField, GeoMesh > >& );
+
+    void operator += ( const dimensioned< Type >& );
+    void operator -= ( const dimensioned< Type >& );
+    void operator *= ( const dimensioned< scalar >& );
+    void operator /= ( const dimensioned< scalar >& );
+
+    void operator()( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
+#ifndef SWIG
+    using Foam::smart_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator();
+#endif
     //using Foam::smart_tmp< GeometricField< Type, PatchField, GeoMesh > >::operator*;
+
   };
 
 } // Foam
