@@ -50,22 +50,22 @@ void createFields( const TimeHolder& runTime,
                    scalar& pRefValue )
 {
   Info<< "Reading field p\n" << endl;
-  p = volScalarFieldHolder( IOobjectHolder( "p",
+  p( volScalarFieldHolder( IOobjectHolder( "p",
                                             runTime->timeName(),
                                             mesh,
                                             IOobject::MUST_READ,
                                             IOobject::AUTO_WRITE ),
-                            mesh );
+                            mesh ) );
 
   Info<< "Reading field U\n" << endl;
-  U = volVectorFieldHolder( IOobjectHolder( "U",
+  U( volVectorFieldHolder( IOobjectHolder( "U",
                                             runTime->timeName(),
                                             mesh,
                                             IOobject::MUST_READ,
                                             IOobject::AUTO_WRITE ),
-                            mesh );
+                            mesh ) );
   
-  phi = createPhi( runTime, mesh, U );
+  phi( createPhi( runTime, mesh, U ) );
   
   setRefCell( p, mesh->solutionDict().subDict("SIMPLE"), pRefCell, pRefValue );
 
@@ -110,9 +110,9 @@ void fun_pEqn( const fvMeshHolder& mesh,
   p->boundaryField().updateCoeffs();
 
   volScalarField rAU(1.0/UEqn().A());
-  U() = rAU*UEqn().H();
+  U = rAU*UEqn().H();
 
-  phi() = fvc::interpolate( U(), "interpolate(HbyA)") & mesh->Sf();
+  phi = fvc::interpolate( U(), "interpolate(HbyA)") & mesh->Sf();
   adjustPhi(phi, U, p);
 
     // Non-orthogonal pressure corrector loop
@@ -126,7 +126,7 @@ void fun_pEqn( const fvMeshHolder& mesh,
 
     if (nonOrth == simple->nNonOrthCorr())
     {
-      phi() -= pEqn.flux();
+      phi -= pEqn.flux();
     }
   }
 
@@ -136,8 +136,8 @@ void fun_pEqn( const fvMeshHolder& mesh,
   p->relax();
 
   // Momentum corrector
-  U() -= rAU * fvc::grad( p() );
-  U().correctBoundaryConditions();
+  U -= rAU * fvc::grad( p() );
+  U->correctBoundaryConditions();
 }
 
 

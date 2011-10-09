@@ -79,28 +79,28 @@ result_createFields createFields( const TimeHolder& runTime, const fvMeshHolder&
 
   pThermo = basicPsiThermoHolder::New( mesh );
 
-  rho = volScalarFieldHolder( IOobjectHolder( "rho", 
+  rho( volScalarFieldHolder( IOobjectHolder( "rho", 
                                             runTime->timeName(),
                                             mesh, 
                                             IOobject::NO_READ, 
                                             IOobject::NO_WRITE ),
-                            volScalarFieldHolder( pThermo->rho(), Deps( &pThermo ) ) );
+                              volScalarFieldHolder( pThermo->rho(), Deps( &pThermo ) ) ) );
 
-  p = volScalarFieldHolder( pThermo->p(), Deps( &pThermo ) );
-  h = volScalarFieldHolder( pThermo->h(), Deps( &pThermo ) );
-  psi = volScalarFieldHolder( pThermo->psi(), Deps( &pThermo ) );
+  p( volScalarFieldHolder( pThermo->p(), Deps( &pThermo ) ) );
+  h( volScalarFieldHolder( pThermo->h(), Deps( &pThermo ) ) );
+  psi( volScalarFieldHolder( pThermo->psi(), Deps( &pThermo ) ) );
   
 
   Info<< "Reading field U\n" << endl;
-  U = volVectorFieldHolder( IOobjectHolder( "U",
+  U( volVectorFieldHolder( IOobjectHolder( "U",
                                           runTime->timeName(),
                                           mesh,
                                           IOobject::MUST_READ,
                                           IOobject::AUTO_WRITE ),
-                          mesh );
+                          mesh ) );
 
 
-  phi = compressibleCreatePhi( runTime, mesh, U, rho );
+  phi( compressibleCreatePhi( runTime, mesh, U, rho ) );
 
 
   Info<< "Creating turbulence model\n" << endl;
@@ -113,16 +113,16 @@ result_createFields createFields( const TimeHolder& runTime, const fvMeshHolder&
   Info<< "Calculating field g.h\n" << endl;
     
 
-  gh = volScalarFieldHolder("gh", g & volVectorFieldHolder( mesh->C(), Deps( &mesh ) ) );
-  ghf = surfaceScalarFieldHolder("ghf", g & surfaceVectorFieldHolder( mesh->Cf(), Deps( &mesh ) ) );
+  gh( volScalarFieldHolder("gh", g & volVectorFieldHolder( mesh->C(), Deps( &mesh ) ) ) );
+  ghf( surfaceScalarFieldHolder("ghf", g & surfaceVectorFieldHolder( mesh->Cf(), Deps( &mesh ) ) ) );
 
   Info<< "Reading field p_rgh\n" << endl;
-  p_rgh = volScalarFieldHolder( IOobjectHolder( "p_rgh",
+  p_rgh( volScalarFieldHolder( IOobjectHolder( "p_rgh",
                                                 runTime->timeName(),
                                                 mesh,
                                                 IOobject::MUST_READ,
                                                 IOobject::AUTO_WRITE ),
-                                mesh );
+                                mesh ) );
 
   // Force p_rgh to be consistent with p
   p_rgh = p - rho*gh;
@@ -210,62 +210,62 @@ void fun_pEqn( const fvMeshHolder& mesh,
                scalar& cumulativeContErr, 
                dimensionedScalar& initialMass)
 {
-  rho() = thermo->rho();
+  rho = thermo->rho();
   rho->relax();
 
   volScalarField rAU(1.0/UEqn->A());
   
   surfaceScalarField rhorAUf( "(rho*(1|A(U)))", fvc::interpolate( rho()*rAU ) );
 
-  U() = rAU * UEqn->H();
+  U = rAU * UEqn->H();
   //UEqn.clear();
 
-  phi() = fvc::interpolate( rho() ) * ( fvc::interpolate( U() ) & mesh->Sf());
+  phi = fvc::interpolate( rho() ) * ( fvc::interpolate( U() ) & mesh->Sf());
   bool closedVolume = adjustPhi(phi, U, p_rgh);
   surfaceScalarField buoyancyPhi( rhorAUf * ghf() * fvc::snGrad( rho() ) * mesh->magSf() );
-  phi() -= buoyancyPhi;
+  phi -= buoyancyPhi;
 
   for (int nonOrth=0; nonOrth<= simple->nNonOrthCorr(); nonOrth++)
   {
     fvScalarMatrix p_rghEqn
-        (
-            fvm::laplacian( rhorAUf, p_rgh() ) == fvc::div( phi() )
-        );
+     (
+       fvm::laplacian( rhorAUf, p_rgh() ) == fvc::div( phi() )
+     );
 
-        p_rghEqn.setReference( pRefCell, getRefCellValue( p_rgh(), pRefCell ) );
-        p_rghEqn.solve();
+     p_rghEqn.setReference( pRefCell, getRefCellValue( p_rgh(), pRefCell ) );
+     p_rghEqn.solve();
 
-        if (nonOrth == simple->nNonOrthCorr())
-        {
-            // Calculate the conservative fluxes
-            phi() -= p_rghEqn.flux();
+     if (nonOrth == simple->nNonOrthCorr())
+     {
+       // Calculate the conservative fluxes
+       phi -= p_rghEqn.flux();
 
-            // Explicitly relax pressure for momentum corrector
-            p_rgh->relax();
+       // Explicitly relax pressure for momentum corrector
+       p_rgh->relax();
 
-            // Correct the momentum source with the pressure gradient flux
-            // calculated from the relaxed pressure
-            U() -= rAU * fvc::reconstruct( ( buoyancyPhi + p_rghEqn.flux() ) / rhorAUf );
-            U->correctBoundaryConditions();
-        }
-    }
+       // Correct the momentum source with the pressure gradient flux
+       // calculated from the relaxed pressure
+       U -= rAU * fvc::reconstruct( ( buoyancyPhi + p_rghEqn.flux() ) / rhorAUf );
+       U->correctBoundaryConditions();
+     }
+   }
 
-    continuityErrors( runTime, mesh, phi, cumulativeContErr );
+   continuityErrors( runTime, mesh, phi, cumulativeContErr );
 
-    p = p_rgh + rho * gh;
+   p = p_rgh + rho * gh;
 
-    // For closed-volume cases adjust the pressure level
-    // to obey overall mass continuity
-    if (closedVolume)
-    {
-        p() += ( initialMass - fvc::domainIntegrate( psi() * p() ) ) / fvc::domainIntegrate( psi() );
-        p_rgh = p - rho * gh;
-    }
+   // For closed-volume cases adjust the pressure level
+   // to obey overall mass continuity
+   if (closedVolume)
+   {
+     p += ( initialMass - fvc::domainIntegrate( psi() * p() ) ) / fvc::domainIntegrate( psi() );
+     p_rgh = p - rho * gh;
+   }
 
-    rho() = thermo->rho();
-    rho->relax();
-    Info<< "rho max/min : " << max( rho() ).value() << " " << min( rho() ).value()
-        << endl;
+   rho = thermo->rho();
+   rho->relax();
+   Info<< "rho max/min : " << max( rho() ).value() << " " << min( rho() ).value()
+       << endl;
 }
 
 

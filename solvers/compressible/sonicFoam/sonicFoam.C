@@ -59,24 +59,26 @@ void createFields( const TimeHolder& runTime,
   Info<< "Reading thermophysical properties\n" << endl;
   
   pThermo = basicPsiThermoHolder::New( mesh );
-  
-  p = volScalarFieldHolder( pThermo->p(), Deps( &pThermo ) );
-  e = volScalarFieldHolder( pThermo->e(), Deps( &pThermo ) );
-  psi = volScalarFieldHolder( pThermo->psi(), Deps( &pThermo ) );
 
-  rho = volScalarFieldHolder( IOobjectHolder( "rho",
+  p( volScalarFieldHolder( pThermo->p(), Deps( &pThermo ) ) );
+  e( volScalarFieldHolder( pThermo->e(), Deps( &pThermo ) ) );
+  psi( volScalarFieldHolder( pThermo->psi(), Deps( &pThermo ) ) );
+
+  
+  
+  rho( volScalarFieldHolder( IOobjectHolder( "rho",
                                               runTime->timeName(),
                                               mesh ),
-                              volScalarFieldHolder( pThermo->rho(), Deps( &pThermo ) ) );
+                              volScalarFieldHolder( pThermo->rho(), Deps( &pThermo ) ) ) );
 
   Info<< "Reading field U\n" << endl;
-  U = volVectorFieldHolder( IOobjectHolder( "U",
+  U( volVectorFieldHolder( IOobjectHolder( "U",
                                             runTime->timeName(),
                                             mesh,
                                             IOobject::MUST_READ,
-                                            IOobject::AUTO_WRITE ), mesh );
+                                            IOobject::AUTO_WRITE ), mesh ) );
 
-  phi = compressibleCreatePhi( runTime, mesh, U, rho );
+  phi( compressibleCreatePhi( runTime, mesh, U, rho ) );
 
   Info<< "Creating turbulence model\n" << endl;
   turbulence = compressible::turbulenceModelHolder::New( rho, U, phi, pThermo );
@@ -128,11 +130,11 @@ void fun_pEqn( const fvMeshHolder& mesh,
                int& nNonOrthCorr )
                
 {
-  rho() = thermo->rho();
+  rho = thermo->rho();
   
   volScalarField rAU( 1.0 / UEqn->A() );
   
-  U() = rAU * UEqn->H();
+  U = rAU * UEqn->H();
   
   surfaceScalarField phid( "phid",
                            fvc::interpolate( psi() ) * ( ( fvc::interpolate( U() ) & mesh->Sf() ) + fvc::ddtPhiCorr( rAU, rho(), U(), phi() ) ) );
@@ -145,7 +147,7 @@ void fun_pEqn( const fvMeshHolder& mesh,
 
     if ( nonOrth == nNonOrthCorr )
     {
-      phi() = pEqn.flux();
+      phi = pEqn.flux();
     }
   }
 
@@ -153,7 +155,7 @@ void fun_pEqn( const fvMeshHolder& mesh,
   
   compressibleContinuityErrs( thermo, rho, cumulativeContErr );
 
-  U() -= rAU * fvc::grad( p() );
+  U -= rAU * fvc::grad( p() );
   U->correctBoundaryConditions();
 }
 
@@ -202,7 +204,7 @@ int main(int argc, char *argv[])
 
         turbulence->correct();
 
-        rho() = pThermo->rho();
+        rho = pThermo->rho();
 
         runTime->write();
 

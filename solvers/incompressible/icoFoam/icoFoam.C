@@ -58,21 +58,21 @@ dimensionedScalar createFields( const TimeHolder& runTime,
 
   Info << "Reading field p\n" << endl;
   
-  p = volScalarFieldHolder( IOobjectHolder( "p",
+  p( volScalarFieldHolder( IOobjectHolder( "p",
                                             runTime->timeName(),
                                             mesh,
                                             IOobject::MUST_READ,
-                                            IOobject::AUTO_WRITE ), mesh );
+                                            IOobject::AUTO_WRITE ), mesh ) );
 
   Info<< "Reading field U\n" << endl;
-  U = volVectorFieldHolder( IOobjectHolder( "U",
+  U( volVectorFieldHolder( IOobjectHolder( "U",
                                             runTime->timeName(),
                                             mesh,
                                             IOobject::MUST_READ,
-                                            IOobject::AUTO_WRITE ), mesh );
+                                            IOobject::AUTO_WRITE ), mesh ) );
 
     
-  phi = createPhi( runTime, mesh, U );
+  phi( createPhi( runTime, mesh, U ) );
   
   setRefCell( p, mesh->solutionDict().subDict("PISO"), pRefCell, pRefValue);
 
@@ -132,9 +132,9 @@ int main(int argc, char *argv[])
             
             volScalarField rAU(1.0/UEqn->A());
             
-            U() = rAU * UEqn->H();
+            U = rAU * UEqn->H();
 
-            phi() = ( fvc::interpolate(U)() & mesh->Sf() ) + fvc::ddtPhiCorr(rAU, U(), phi());
+            phi = ( fvc::interpolate(U)() & mesh->Sf() ) + fvc::ddtPhiCorr(rAU, U(), phi());
             
             adjustPhi(phi, U, p);
 
@@ -150,13 +150,13 @@ int main(int argc, char *argv[])
 
                 if (nonOrth == nNonOrthCorr)
                 {
-                    phi() -= pEqn.flux();
+                    phi -= pEqn.flux();
                 }
             }
             
             continuityErrors( runTime, mesh, phi, cumulativeContErr );
             
-            U() -= rAU * ( fvc::grad(p) )();
+            U -= rAU * ( fvc::grad(p) )();
             U->correctBoundaryConditions();
         }
 

@@ -116,30 +116,30 @@ result_readTransportProperties createFields( const TimeHolder& runTime,
   Info<< "Reading thermophysical properties\n" << endl;
   
   Info<< "Reading field T\n" << endl;
-  T = volScalarFieldHolder( IOobjectHolder( "T",
+  T( volScalarFieldHolder( IOobjectHolder( "T",
                                             runTime->timeName(),
                                             mesh,
                                             IOobject::MUST_READ,
                                             IOobject::AUTO_WRITE ),
-                            mesh );
+                            mesh ) );
 
   Info<< "Reading field p_rgh\n" << endl;
-  p_rgh = volScalarFieldHolder( IOobjectHolder( "p_rgh",
+  p_rgh( volScalarFieldHolder( IOobjectHolder( "p_rgh",
                                                 runTime->timeName(),
                                                 mesh,
                                                 IOobject::MUST_READ,
                                                 IOobject::AUTO_WRITE ),
-                                mesh );
+                                mesh ) );
   
   Info<< "Reading field U\n" << endl;
-  U = volVectorFieldHolder( IOobjectHolder( "U",
+  U( volVectorFieldHolder( IOobjectHolder( "U",
                                             runTime->timeName(),
                                             mesh,
                                             IOobject::MUST_READ,
                                             IOobject::AUTO_WRITE ),
-                            mesh );
+                            mesh ) );
 
-  phi = createPhi( runTime, mesh, U );
+  phi( createPhi( runTime, mesh, U ) );
     
   result_readTransportProperties result_readTransProp( readTransportProperties( U, phi, laminarTransport ) );
   
@@ -150,36 +150,36 @@ result_readTransportProperties createFields( const TimeHolder& runTime,
   turbulence = incompressible::RASModelHolder::New(U, phi, laminarTransport); 
 
   // Kinematic density for buoyancy force
-  rhok = volScalarFieldHolder( IOobjectHolder( "rhok",
+  rhok( volScalarFieldHolder( IOobjectHolder( "rhok",
                                                runTime->timeName(),
                                                mesh ),
-                               volScalarFieldHolder( 1.0 - beta * ( T() - TRef ), &T ) );
+                               volScalarFieldHolder( 1.0 - beta * ( T() - TRef ), &T ) ) );
   
   // kinematic turbulent thermal thermal conductivity m2/s
   Info<< "Reading field kappat\n" << endl;
-  kappat = volScalarFieldHolder( IOobjectHolder( "kappat",
-                                                   runTime->timeName(),
-                                                   mesh,
-                                                   IOobject::MUST_READ,
-                                                   IOobject::AUTO_WRITE ),
-                                   mesh );
+  kappat( volScalarFieldHolder( IOobjectHolder( "kappat",
+                                                 runTime->timeName(),
+                                                 mesh,
+                                                 IOobject::MUST_READ,
+                                                 IOobject::AUTO_WRITE ),
+                                   mesh ) );
 
   Info<< "Calculating field g.h\n" << endl;
-  gh = volScalarFieldHolder("gh", volScalarFieldHolder( g & mesh->C(), &mesh ) );
-  ghf = surfaceScalarFieldHolder("ghf", surfaceScalarFieldHolder( g & mesh->Cf(), &mesh ) );
+  gh( volScalarFieldHolder("gh", volScalarFieldHolder( g & mesh->C(), &mesh ) ) );
+  ghf(  surfaceScalarFieldHolder("ghf", surfaceScalarFieldHolder( g & mesh->Cf(), &mesh ) ) );
 
-  p = volScalarFieldHolder( IOobjectHolder( "p",
+  p( volScalarFieldHolder( IOobjectHolder( "p",
                                             runTime->timeName(),
                                             mesh,
                                             IOobject::NO_READ,
                                             IOobject::AUTO_WRITE ),
-                            p_rgh + rhok*gh );
+                            p_rgh + rhok*gh ) );
 
   setRefCell( p, p_rgh, mesh->solutionDict().subDict("SIMPLE"), pRefCell, pRefValue );
 
   if ( p_rgh->needReference() )
   {
-    p() += dimensionedScalar( "p",
+    p += dimensionedScalar( "p",
                             p->dimensions(),
                             pRefValue - getRefCellValue( p, pRefCell ) );
   }
@@ -222,7 +222,7 @@ void fun_TEqn( const surfaceScalarFieldHolder& phi,
                const dimensionedScalar& Prt,
                const dimensionedScalar Pr )
 {
-  kappat() = turbulence->nut() / Prt;
+  kappat = turbulence->nut() / Prt;
   
   kappat->correctBoundaryConditions();
   
@@ -233,7 +233,7 @@ void fun_TEqn( const surfaceScalarFieldHolder& phi,
   TEqn.relax();
   TEqn.solve();
 
-  rhok() = 1.0 - beta * ( T() - TRef );
+  rhok = 1.0 - beta * ( T() - TRef );
 }
 
 
@@ -258,13 +258,13 @@ void fun_pEqn( const fvMeshHolder& mesh,
   
   surfaceScalarField rAUf("(1|A(U))", fvc::interpolate( rAU ) );
 
-  U() = rAU * UEqn->H();
+  U = rAU * UEqn->H();
 
-  phi() = fvc::interpolate( U() ) & mesh->Sf();
+  phi = fvc::interpolate( U() ) & mesh->Sf();
   adjustPhi(phi, U, p_rgh);
 
   surfaceScalarField buoyancyPhi( rAUf * ghf() * fvc::snGrad( rhok() ) * mesh->magSf() );
-  phi() -= buoyancyPhi;
+  phi -= buoyancyPhi;
 
   for (int nonOrth=0; nonOrth<=simple->nNonOrthCorr(); nonOrth++)
   {
@@ -277,14 +277,14 @@ void fun_pEqn( const fvMeshHolder& mesh,
     if ( nonOrth == simple->nNonOrthCorr() )
     {
       // Calculate the conservative fluxes
-      phi() -= p_rghEqn.flux();
+      phi -= p_rghEqn.flux();
 
       // Explicitly relax pressure for momentum corrector
       p_rgh->relax();
 
       // Correct the momentum source with the pressure gradient flux
       // calculated from the relaxed pressure
-      U() -= rAU * fvc::reconstruct( ( buoyancyPhi + p_rghEqn.flux() ) / rAUf );
+      U -= rAU * fvc::reconstruct( ( buoyancyPhi + p_rghEqn.flux() ) / rAUf );
       U->correctBoundaryConditions();
     }
   }
@@ -295,7 +295,7 @@ void fun_pEqn( const fvMeshHolder& mesh,
 
   if ( p_rgh->needReference() )
   {
-    p() += dimensionedScalar( "p", p->dimensions(), pRefValue - getRefCellValue( p(), pRefCell ) );
+    p += dimensionedScalar( "p", p->dimensions(), pRefValue - getRefCellValue( p(), pRefCell ) );
 
     p_rgh = p - rhok * gh;
   }
