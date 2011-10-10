@@ -1,0 +1,12 @@
+EXE_INC = \
+    @OPENFOAM_FINITEVOLUME_CPPFLAGS@ \
+    -I/$@abs_top_builddir@/libs \
+    -I/$@abs_top_builddir@/libs/managedFlu/lnInclude \
+    -I/$@abs_top_builddir@/libs/OpenFOAM/lnInclude \
+    -I/$@abs_top_builddir@/libs/finiteVolume/lnInclude \
+    @DEFINE_FOAM_VERSION@ @DEFINE_FOAM_BRANCH@ \
+
+
+EXE_LIBS = \
+    @OPENFOAM_FINITEVOLUME_LIBS@ \
+    -L$(FOAM_USER_LIBBIN) -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume
