@@ -118,6 +118,20 @@ namespace Foam
     return volScalarFieldHolder( field1() * field2(), Deps( &field1, &field2 ) );
   }
 
+ template<class Type, template<class> class PatchField, class GeoMesh>
+  inline GeometricFieldHolder< Type, PatchField, GeoMesh > operator * ( const dimensionedScalar& dmS, 
+                                                                        const GeometricFieldHolder< Type, PatchField, GeoMesh >& field2 )
+  {
+    return GeometricFieldHolder< Type, PatchField, GeoMesh >( dmS * field2(), Deps( &field2 ) );
+  }
+
+  template<class Type, template<class> class PatchField, class GeoMesh >
+  inline GeometricFieldHolder< Type, PatchField, GeoMesh > operator + ( const dimensionedScalar& dmS, 
+                                                                        const GeometricFieldHolder< Type, PatchField, GeoMesh >& field2 )
+  {
+    return GeometricFieldHolder< Type, PatchField, GeoMesh >( dmS + field2(), Deps( &field2 ) );
+  }
+
   inline volScalarFieldHolder operator - ( const volScalarFieldHolder& field1, 
 					   const volScalarFieldHolder& field2 )
   {
