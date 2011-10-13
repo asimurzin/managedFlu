@@ -79,9 +79,9 @@ AC_OUTPUT( [ bashrc \
 	     solvers/incompressible/simpleFoam/Make/options \
 	     solvers/compressible/sonicFoam/Make/options \
 	     solvers/compressible/sonicLiquidFoam/Make/options \
-	     testUniversalArgs/testField/Make/options \
-	     testUniversalArgs/testMatrix/Make/options \
-     	     testUniversalArgs/testMeshDictField/Make/options \
+	     unitaryTests/testField/Make/options \
+	     unitaryTests/testMatrix/Make/options \
+     	     unitaryTests/testMeshDictField/Make/options \
 	     Makefile ] )
 
 
