@@ -1,9 +1,0 @@
-EXE_INC = \
-    -I/home/andrey/OpenFOAM/OpenFOAM-2.0.0/src/finiteVolume/lnInclude \
-    -I$(TEST_MM_ROOT_DIR)/libs \
-    -I$(TEST_MM_ROOT_DIR)/libs/lnInclude \
-    -D__FOAM_VERSION__=020000  \
-
-EXE_LIBS = \
-    -lfiniteVolume \
-    -L$(FOAM_USER_LIBBIN) -ltestFixingBug
