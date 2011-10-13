@@ -143,13 +143,13 @@ void compressibleContinuityErrs( volScalarFieldHolder& rho, surfaceScalarFieldHo
   
   scalar sumLocalContErr = ( sum( mag( rho() - rho0 - psi * ( p() - p0 ) ) ) / sum( rho() ) ).value();
 
-    scalar globalContErr = (sum( rho() - rho0 - psi * ( p() - p0 ) ) / sum( rho() ) ).value();
+  scalar globalContErr = (sum( rho() - rho0 - psi * ( p() - p0 ) ) / sum( rho() ) ).value();
 
-    cumulativeContErr += globalContErr;
+  cumulativeContErr += globalContErr;
 
-    Info<< "time step continuity errors : sum local = " << sumLocalContErr
-         << ", global = " << globalContErr
-         << ", cumulative = " << cumulativeContErr << endl;
+  Info << "time step continuity errors : sum local = " << sumLocalContErr
+       << ", global = " << globalContErr
+       << ", cumulative = " << cumulativeContErr << endl;
 }
 
 //---------------------------------------------------------------------------
@@ -172,7 +172,6 @@ int main(int argc, char *argv[])
   IOdictionaryHolder transportProperties;
   dimensionedScalar mu = readTransportProperties( runTime, mesh, transportProperties );
 
-
   volScalarFieldHolder rho; volScalarFieldHolder p;
   volVectorFieldHolder U; surfaceScalarFieldHolder phi;
   
@@ -180,61 +179,60 @@ int main(int argc, char *argv[])
   
   scalar cumulativeContErr = initContinuityErrs();
   
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+  // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-    Info<< "\nStarting time loop\n" << endl;
+  Info<< "\nStarting time loop\n" << endl;
 
-    while (runTime->loop())
+  while (runTime->loop())
+  {
+    Info<< "Time = " << runTime->timeName() << nl << endl;
+      
+    dictionary pisoDict; int nOuterCorr; int nCorr; int nNonOrthCorr;
+    bool momentumPredictor; bool transonic;
+    readPISOControls( mesh, pisoDict, nOuterCorr, nCorr, nNonOrthCorr, momentumPredictor, transonic);  
+    
+    compressibleCourantNo( runTime, mesh, phi, rho );
+      
+    rhoEqn( rho, phi );
+
+    fvVectorMatrixHolder UEqn( fvm::ddt( rho, U ) + fvm::div( phi, U ) - fvm::laplacian( mu, U ) );
+
+    solve(UEqn == -fvc::grad(p));
+
+
+    // --- PISO loop
+    for (int corr=0; corr<nCorr; corr++)
     {
-      Info<< "Time = " << runTime->timeName() << nl << endl;
-      
-      dictionary pisoDict; int nOuterCorr; int nCorr; int nNonOrthCorr;
-      bool momentumPredictor; bool transonic;
-      readPISOControls( mesh, pisoDict, nOuterCorr, nCorr, nNonOrthCorr, momentumPredictor, transonic);  
-      
-      compressibleCourantNo( runTime, mesh, phi, rho );
-      
-      rhoEqn( rho, phi );
+      volScalarField rAU( 1.0 / UEqn->A() );
+      U = rAU * UEqn->H();
 
-      fvVectorMatrixHolder UEqn( fvm::ddt( rho, U ) + fvm::div( phi, U ) - fvm::laplacian( mu, U ) );
+      surfaceScalarField phid( "phid", psi * ( ( fvc::interpolate( U() ) & mesh->Sf() ) + fvc::ddtPhiCorr( rAU, rho(), U(), phi() ) ) );
 
-      solve(UEqn == -fvc::grad(p));
+      phi = ( rhoO / psi ) * phid;
 
+      fvScalarMatrix pEqn( fvm::ddt( psi, p() ) + fvc::div( phi() ) + fvm::div( phid, p() ) - fvm::laplacian( rho() * rAU, p() ) );
 
-      // --- PISO loop
-      for (int corr=0; corr<nCorr; corr++)
-      {
-        volScalarField rAU( 1.0 / UEqn->A() );
-        U = rAU * UEqn->H();
+      pEqn.solve();
 
-        surfaceScalarField phid( "phid", psi * ( ( fvc::interpolate( U() ) & mesh->Sf() ) + fvc::ddtPhiCorr( rAU, rho(), U(), phi() ) ) );
-
-        phi = ( rhoO / psi ) * phid;
+      phi += pEqn.flux();
         
-
-        fvScalarMatrix pEqn( fvm::ddt( psi, p() ) + fvc::div( phi() ) + fvm::div( phid, p() ) - fvm::laplacian( rho() * rAU, p() ) );
-
-        pEqn.solve();
-
-        phi += pEqn.flux();
+      compressibleContinuityErrs( rho, phi, p, rho0, p0, psi, cumulativeContErr );
         
-        compressibleContinuityErrs( rho, phi, p, rho0, p0, psi, cumulativeContErr );
-        
-        U -= rAU * fvc::grad( p() );
-        U->correctBoundaryConditions();
-      }
-      rho = rhoO + psi*p;
-
-      runTime->write();
-
-      Info<< "ExecutionTime = " << runTime->elapsedCpuTime() << " s"
-          << "  ClockTime = " << runTime->elapsedClockTime() << " s"
-          << nl << endl;
+      U -= rAU * fvc::grad( p() );
+      U->correctBoundaryConditions();
     }
+    rho = rhoO + psi*p;
 
-    Info<< "End\n" << endl;
+    runTime->write();
 
-    return 0;
+    Info << "ExecutionTime = " << runTime->elapsedCpuTime() << " s"
+         << "  ClockTime = " << runTime->elapsedClockTime() << " s"
+         << nl << endl;
+  }
+
+  Info<< "End\n" << endl;
+
+  return 0;
 }
 
 
