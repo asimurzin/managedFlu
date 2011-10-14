@@ -90,4 +90,27 @@ surfaceScalarFieldHolder createPhi(
 
 
 //---------------------------------------------------------------------------
+void readTimeControls( const TimeHolder& runTime, bool& adjustTimeStep, scalar& maxCo, scalar& maxDeltaT)
+{
+  adjustTimeStep = runTime->controlDict().lookupOrDefault("adjustTimeStep", false);
+ 
+  maxCo = runTime->controlDict().lookupOrDefault<scalar>("maxCo", 1.0);
 
+  maxDeltaT =runTime->controlDict().lookupOrDefault<scalar>("maxDeltaT", GREAT);
+}
+
+
+//---------------------------------------------------------------------------
+void setInitialDeltaT( TimeHolder& runTime, const bool& adjustTimeStep, const scalar& maxCo, const scalar& CoNum )
+{
+  if (adjustTimeStep)
+  {
+    if ((runTime->timeIndex() == 0) && (CoNum > SMALL))
+    {
+      runTime->setDeltaT( min( maxCo * runTime->deltaTValue() / CoNum, runTime->deltaTValue() ) );
+    }
+  }
+}
+
+
+//---------------------------------------------------------------------------
