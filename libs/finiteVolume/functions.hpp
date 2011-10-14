@@ -114,3 +114,18 @@ void setInitialDeltaT( TimeHolder& runTime, const bool& adjustTimeStep, const sc
 
 
 //---------------------------------------------------------------------------
+void setDeltaT( TimeHolder& runTime, const bool& adjustTimeStep, const scalar& maxCo, const scalar& CoNum, const scalar& maxDeltaT )
+{
+  if (adjustTimeStep)
+  {
+    scalar maxDeltaTFact = maxCo / ( CoNum + SMALL );
+    scalar deltaTFact = min( min( maxDeltaTFact, 1.0 + 0.1 * maxDeltaTFact ), 1.2 );
+
+    runTime->setDeltaT( min( deltaTFact * runTime->deltaTValue(), maxDeltaT ) );
+
+    Info<< "deltaT = " <<  runTime->deltaTValue() << endl;
+  }
+}
+
+
+//---------------------------------------------------------------------------
