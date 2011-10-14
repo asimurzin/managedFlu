@@ -4,14 +4,14 @@ EXE_INC = \
     @OPENFOAM_TURBULENCEMODELS_CPPFLAGS@ \
     @OPENFOAM_COMPRESSIBLETURBULENCEMODELS_CPPFLAGS@ \
     @OPENFOAM_FINITEVOLUME_CPPFLAGS@ \
-    -I/$@abs_top_builddir@/libs \
-    -I/$@abs_top_builddir@/libs/managedFlu/lnInclude \
-    -I/$@abs_top_builddir@/libs/OpenFOAM/lnInclude \
-    -I/$@abs_top_builddir@/libs/finiteVolume/lnInclude \
-    -I/$@abs_top_builddir@/libs/thermophysicalModels/basic/lnInclude \
-    -I/$@abs_top_builddir@/libs/thermophysicalModels/radiationModel/lnInclude \
-    -I/$@abs_top_builddir@/libs/turbulenceModels/compressible/turbulenceModel/lnInclude \
-    -I/$@abs_top_builddir@/libs/turbulenceModels/compressible/RAS/lnInclude \
+    -I@abs_top_builddir@/libs \
+    -I@abs_top_builddir@/libs/managedFlu/lnInclude \
+    -I@abs_top_builddir@/libs/OpenFOAM/lnInclude \
+    -I@abs_top_builddir@/libs/finiteVolume/lnInclude \
+    -I@abs_top_builddir@/libs/thermophysicalModels/basic/lnInclude \
+    -I@abs_top_builddir@/libs/thermophysicalModels/radiationModel/lnInclude \
+    -I@abs_top_builddir@/libs/turbulenceModels/compressible/turbulenceModel/lnInclude \
+    -I@abs_top_builddir@/libs/turbulenceModels/compressible/RAS/lnInclude \
     @DEFINE_FOAM_VERSION@ @DEFINE_FOAM_BRANCH@ \
 
 
