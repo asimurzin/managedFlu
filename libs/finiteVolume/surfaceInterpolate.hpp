@@ -14,9 +14,10 @@ namespace Foam
 {
   namespace fvc
   {
-    inline surfaceVectorFieldHolder interpolate( const volVectorFieldHolder& field )
+    template<class Type>
+    inline GeometricFieldHolder< Type, fvsPatchField, surfaceMesh > interpolate( const GeometricFieldHolder<Type, fvPatchField, volMesh>& field )
     {
-      return surfaceVectorFieldHolder( interpolate( field() ), &field );
+      return GeometricFieldHolder< Type, fvsPatchField, surfaceMesh >( interpolate( field() ), &field );
     }
   }
 } // Foam
