@@ -130,33 +130,33 @@ int main(int argc, char *argv[])
         for (int corr=0; corr<nCorr; corr++)
         {
             
-            volScalarField rAU(1.0/UEqn->A());
+            smart_tmp< volScalarField > rAU(1.0/UEqn->A());
             
-            U = rAU * UEqn->H();
+            U = rAU() * UEqn->H();
 
-            phi = ( fvc::interpolate(U)() & mesh->Sf() ) + fvc::ddtPhiCorr(rAU, U(), phi());
+            phi = ( fvc::interpolate(U)() & mesh->Sf() ) + fvc::ddtPhiCorr(rAU(), U(), phi());
             
             adjustPhi(phi, U, p);
 
             for (int nonOrth=0; nonOrth<=nNonOrthCorr; nonOrth++)
             {
-                fvScalarMatrix pEqn
+                smart_tmp< fvScalarMatrix > pEqn
                 (
-                    fvm::laplacian(rAU, p() ) == ( fvc::div(phi) )()
+                    fvm::laplacian(rAU(), p() ) == ( fvc::div(phi) )()
                 );
                 
-                pEqn.setReference(pRefCell, pRefValue);
-                pEqn.solve();
+                pEqn->setReference(pRefCell, pRefValue);
+                pEqn->solve();
 
                 if (nonOrth == nNonOrthCorr)
                 {
-                    phi -= pEqn.flux();
+                    phi -= pEqn->flux();
                 }
             }
             
             continuityErrors( runTime, mesh, phi, cumulativeContErr );
             
-            U -= rAU * ( fvc::grad(p) )();
+            U -= rAU() * ( fvc::grad(p) )();
             U->correctBoundaryConditions();
         }
 

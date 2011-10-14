@@ -228,10 +228,10 @@ void fun_TEqn( const surfaceScalarFieldHolder& phi,
   
   volScalarField kappaEff("kappaEff", turbulence->nu()/Pr  + kappat() );
 
-  fvScalarMatrix TEqn( fvm::div( phi(), T() ) - fvm::Sp(fvc::div( phi() ), T() ) - fvm::laplacian( kappaEff, T() ) );
+  smart_tmp< fvScalarMatrix > TEqn( fvm::div( phi(), T() ) - fvm::Sp(fvc::div( phi() ), T() ) - fvm::laplacian( kappaEff, T() ) );
 
-  TEqn.relax();
-  TEqn.solve();
+  TEqn->relax();
+  TEqn->solve();
 
   rhok = 1.0 - beta * ( T() - TRef );
 }
@@ -263,28 +263,28 @@ void fun_pEqn( const fvMeshHolder& mesh,
   phi = fvc::interpolate( U() ) & mesh->Sf();
   adjustPhi(phi, U, p_rgh);
 
-  surfaceScalarField buoyancyPhi( rAUf * ghf() * fvc::snGrad( rhok() ) * mesh->magSf() );
-  phi -= buoyancyPhi;
+  smart_tmp< surfaceScalarField > buoyancyPhi( rAUf * ghf() * fvc::snGrad( rhok() ) * mesh->magSf() );
+  phi -= buoyancyPhi();
 
   for (int nonOrth=0; nonOrth<=simple->nNonOrthCorr(); nonOrth++)
   {
-    fvScalarMatrix p_rghEqn = fvm::laplacian( rAUf, p_rgh() ) == fvc::div( phi() );
+    smart_tmp< fvScalarMatrix > p_rghEqn = fvm::laplacian( rAUf, p_rgh() ) == fvc::div( phi() );
 
-    p_rghEqn.setReference( pRefCell, getRefCellValue( p_rgh, pRefCell ) );
+    p_rghEqn->setReference( pRefCell, getRefCellValue( p_rgh, pRefCell ) );
     
-    p_rghEqn.solve();
+    p_rghEqn->solve();
 
     if ( nonOrth == simple->nNonOrthCorr() )
     {
       // Calculate the conservative fluxes
-      phi -= p_rghEqn.flux();
+      phi -= p_rghEqn->flux();
 
       // Explicitly relax pressure for momentum corrector
       p_rgh->relax();
 
       // Correct the momentum source with the pressure gradient flux
       // calculated from the relaxed pressure
-      U -= rAU * fvc::reconstruct( ( buoyancyPhi + p_rghEqn.flux() ) / rAUf );
+      U -= rAU * fvc::reconstruct( ( buoyancyPhi() + p_rghEqn->flux() ) / rAUf );
       U->correctBoundaryConditions();
     }
   }

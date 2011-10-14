@@ -109,8 +109,8 @@ void fun_pEqn( const fvMeshHolder& mesh,
 {
   p->boundaryField().updateCoeffs();
 
-  volScalarField rAU(1.0/UEqn().A());
-  U = rAU*UEqn().H();
+  smart_tmp< volScalarField > rAU(1.0/UEqn->A());
+  U = rAU() * UEqn->H();
 
   phi = fvc::interpolate( U(), "interpolate(HbyA)") & mesh->Sf();
   adjustPhi(phi, U, p);
@@ -118,15 +118,15 @@ void fun_pEqn( const fvMeshHolder& mesh,
     // Non-orthogonal pressure corrector loop
   for (int nonOrth=0; nonOrth<=simple->nNonOrthCorr(); nonOrth++)
   {
-    fvScalarMatrix pEqn( fvm::laplacian( rAU, p() ) == fvc::div( phi() ) );
+    smart_tmp< fvScalarMatrix > pEqn( fvm::laplacian( rAU(), p() ) == fvc::div( phi() ) );
 
-    pEqn.setReference(pRefCell, pRefValue);
+    pEqn->setReference(pRefCell, pRefValue);
 
-    pEqn.solve();
+    pEqn->solve();
 
     if (nonOrth == simple->nNonOrthCorr())
     {
-      phi -= pEqn.flux();
+      phi -= pEqn->flux();
     }
   }
 
@@ -136,7 +136,7 @@ void fun_pEqn( const fvMeshHolder& mesh,
   p->relax();
 
   // Momentum corrector
-  U -= rAU * fvc::grad( p() );
+  U -= rAU() * fvc::grad( p() );
   U->correctBoundaryConditions();
 }
 

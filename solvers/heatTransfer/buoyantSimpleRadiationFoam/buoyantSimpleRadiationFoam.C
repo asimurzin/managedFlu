@@ -168,7 +168,7 @@ void fun_hEqn( const basicPsiThermoHolder& thermo,
                const radiation::radiationModelHolder& radiation, 
                const compressible::RASModelHolder& turbulence )
 {
-  fvScalarMatrix hEqn
+  smart_tmp< fvScalarMatrix > hEqn
     (
         fvm::div( phi(), h() )
       - fvm::Sp(fvc::div( phi() ), h() )
@@ -179,9 +179,9 @@ void fun_hEqn( const basicPsiThermoHolder& thermo,
       + radiation->Sh( *thermo )
     );
 
-    hEqn.relax();
+    hEqn->relax();
 
-    hEqn.solve();
+    hEqn->solve();
 
     thermo->correct();
 
@@ -213,39 +213,39 @@ void fun_pEqn( const fvMeshHolder& mesh,
   rho = thermo->rho();
   rho->relax();
 
-  volScalarField rAU(1.0/UEqn->A());
+  smart_tmp< volScalarField > rAU(1.0/UEqn->A());
   
-  surfaceScalarField rhorAUf( "(rho*(1|A(U)))", fvc::interpolate( rho()*rAU ) );
+  surfaceScalarField rhorAUf( "(rho*(1|A(U)))", fvc::interpolate( rho()*rAU() ) );
 
-  U = rAU * UEqn->H();
+  U = rAU() * UEqn->H();
   //UEqn.clear();
 
   phi = fvc::interpolate( rho() ) * ( fvc::interpolate( U() ) & mesh->Sf());
   bool closedVolume = adjustPhi(phi, U, p_rgh);
-  surfaceScalarField buoyancyPhi( rhorAUf * ghf() * fvc::snGrad( rho() ) * mesh->magSf() );
+  smart_tmp< surfaceScalarField > buoyancyPhi( rhorAUf * ghf() * fvc::snGrad( rho() ) * mesh->magSf() );
   phi -= buoyancyPhi;
 
   for (int nonOrth=0; nonOrth<= simple->nNonOrthCorr(); nonOrth++)
   {
-    fvScalarMatrix p_rghEqn
+    smart_tmp< fvScalarMatrix > p_rghEqn
      (
        fvm::laplacian( rhorAUf, p_rgh() ) == fvc::div( phi() )
      );
 
-     p_rghEqn.setReference( pRefCell, getRefCellValue( p_rgh(), pRefCell ) );
-     p_rghEqn.solve();
+     p_rghEqn->setReference( pRefCell, getRefCellValue( p_rgh(), pRefCell ) );
+     p_rghEqn->solve();
 
      if (nonOrth == simple->nNonOrthCorr())
      {
        // Calculate the conservative fluxes
-       phi -= p_rghEqn.flux();
+       phi -= p_rghEqn->flux();
 
        // Explicitly relax pressure for momentum corrector
        p_rgh->relax();
 
        // Correct the momentum source with the pressure gradient flux
        // calculated from the relaxed pressure
-       U -= rAU * fvc::reconstruct( ( buoyancyPhi + p_rghEqn.flux() ) / rhorAUf );
+       U -= rAU() * fvc::reconstruct( ( buoyancyPhi() + p_rghEqn->flux() ) / rhorAUf );
        U->correctBoundaryConditions();
      }
    }

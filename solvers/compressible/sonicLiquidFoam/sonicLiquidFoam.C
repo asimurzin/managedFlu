@@ -204,22 +204,22 @@ int main(int argc, char *argv[])
     // --- PISO loop
     for (int corr=0; corr<nCorr; corr++)
     {
-      volScalarField rAU( 1.0 / UEqn->A() );
-      U = rAU * UEqn->H();
+      smart_tmp< volScalarField > rAU( 1.0 / UEqn->A() );
+      U = rAU() * UEqn->H();
 
-      surfaceScalarField phid( "phid", psi * ( ( fvc::interpolate( U() ) & mesh->Sf() ) + fvc::ddtPhiCorr( rAU, rho(), U(), phi() ) ) );
+      surfaceScalarField phid( "phid", psi * ( ( fvc::interpolate( U() ) & mesh->Sf() ) + fvc::ddtPhiCorr( rAU(), rho(), U(), phi() ) ) );
 
       phi = ( rhoO / psi ) * phid;
 
-      fvScalarMatrix pEqn( fvm::ddt( psi, p() ) + fvc::div( phi() ) + fvm::div( phid, p() ) - fvm::laplacian( rho() * rAU, p() ) );
+      smart_tmp< fvScalarMatrix > pEqn( fvm::ddt( psi, p() ) + fvc::div( phi() ) + fvm::div( phid, p() ) - fvm::laplacian( rho() * rAU(), p() ) );
 
-      pEqn.solve();
+      pEqn->solve();
 
-      phi += pEqn.flux();
+      phi += pEqn->flux();
         
       compressibleContinuityErrs( rho, phi, p, rho0, p0, psi, cumulativeContErr );
         
-      U -= rAU * fvc::grad( p() );
+      U -= rAU() * fvc::grad( p() );
       U->correctBoundaryConditions();
     }
     rho = rhoO + psi*p;

@@ -146,11 +146,11 @@ void fun_hEqn( const basicRhoThermoHolder& thermo,
                const compressible::turbulenceModelHolder& turbulence,
                const volScalarFieldHolder& DpDt )
 {
-  fvScalarMatrix hEqn( fvm::ddt( rho(), h() ) + fvm::div( phi(), h () )- fvm::laplacian( turbulence->alphaEff(), h() )
-                       == DpDt() );
+  smart_tmp< fvScalarMatrix > hEqn( fvm::ddt( rho(), h() ) + fvm::div( phi(), h () )- fvm::laplacian( turbulence->alphaEff(), h() )
+                                    == DpDt() );
 
-  hEqn.relax();
-  hEqn.solve();
+  hEqn->relax();
+  hEqn->solve();
 
   thermo->correct();
 
@@ -183,37 +183,37 @@ void fun_pEqn( const fvMeshHolder& mesh,
   // pressure solution - done in 2 parts. Part 1:
   thermo->rho() -= psi() * p_rgh();
   
-  volScalarField rAU( 1.0 / UEqn->A() );
-  surfaceScalarField rhorAUf("(rho*(1|A(U)))", fvc::interpolate( rho() * rAU ) );
+  smart_tmp< volScalarField > rAU( 1.0 / UEqn->A() );
+  surfaceScalarField rhorAUf("(rho*(1|A(U)))", fvc::interpolate( rho() * rAU() ) );
   
 
-  U = rAU * UEqn->H();
+  U = rAU() * UEqn->H();
 
-  phi = fvc::interpolate( rho() ) * ( ( fvc::interpolate( U() ) & mesh->Sf() ) + fvc::ddtPhiCorr( rAU, rho(), U(), phi() ) );
+  phi = fvc::interpolate( rho() ) * ( ( fvc::interpolate( U() ) & mesh->Sf() ) + fvc::ddtPhiCorr( rAU(), rho(), U(), phi() ) );
 
-  surfaceScalarField buoyancyPhi( -rhorAUf * ghf() * fvc::snGrad( rho() ) * mesh->magSf() );
+  smart_tmp< surfaceScalarField > buoyancyPhi( -rhorAUf * ghf() * fvc::snGrad( rho() ) * mesh->magSf() );
   
   phi += buoyancyPhi;
 
-  fvScalarMatrix p_rghDDtEqn( fvc::ddt( rho() ) + psi() * correction( fvm::ddt( p_rgh() ) ) + fvc::div( phi() ) );
+  smart_tmp< fvScalarMatrix > p_rghDDtEqn( fvc::ddt( rho() ) + psi() * correction( fvm::ddt( p_rgh() ) ) + fvc::div( phi() ) );
 
   for (int nonOrth=0; nonOrth <= pimple->nNonOrthCorr(); nonOrth++)
   {
-    fvScalarMatrix p_rghEqn( p_rghDDtEqn - fvm::laplacian( rhorAUf, p_rgh() ) );
+    smart_tmp< fvScalarMatrix > p_rghEqn( p_rghDDtEqn() - fvm::laplacian( rhorAUf, p_rgh() ) );
 
-    p_rghEqn.solve( mesh->solver( p_rgh->select( pimple->finalInnerIter( corr, nonOrth ) ) ) );
+    p_rghEqn->solve( mesh->solver( p_rgh->select( pimple->finalInnerIter( corr, nonOrth ) ) ) );
     
     if ( nonOrth == pimple->nNonOrthCorr() )
     {
       // Calculate the conservative fluxes
-      phi += p_rghEqn.flux();
+      phi += p_rghEqn->flux();
  
       // Explicitly relax pressure for momentum corrector
       p_rgh->relax();
  
       // Correct the momentum source with the pressure gradient flux
       // calculated from the relaxed pressure
-      U += rAU * fvc::reconstruct( ( buoyancyPhi + p_rghEqn.flux() ) / rhorAUf );
+      U += rAU() * fvc::reconstruct( ( buoyancyPhi() + p_rghEqn->flux() ) / rhorAUf );
       U->correctBoundaryConditions();
     }
   }
