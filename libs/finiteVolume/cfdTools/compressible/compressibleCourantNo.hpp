@@ -7,10 +7,12 @@ void compressibleCourantNo(
   const TimeHolder& runTime, 
   const fvMeshHolder& mesh, 
   const surfaceScalarFieldHolder& phi,
-  const volScalarFieldHolder& rho )
+  const volScalarFieldHolder& rho,
+  scalar& CoNum,
+  scalar& meanCoNum )
 {
-  scalar CoNum = 0.0;
-  scalar meanCoNum = 0.0;
+  CoNum = 0.0;
+  meanCoNum = 0.0;
 
   if ( mesh->nInternalFaces() )
   {

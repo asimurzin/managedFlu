@@ -191,7 +191,8 @@ int main(int argc, char *argv[])
     bool momentumPredictor; bool transonic;
     readPISOControls( mesh, pisoDict, nOuterCorr, nCorr, nNonOrthCorr, momentumPredictor, transonic);  
     
-    compressibleCourantNo( runTime, mesh, phi, rho );
+    scalar coNum, meanCoNum;
+    compressibleCourantNo( runTime, mesh, phi, rho, coNum, meanCoNum );
       
     rhoEqn( rho, phi );
 
