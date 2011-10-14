@@ -8,6 +8,8 @@
 #include "volFields.hpp"
 #include "GeometricFieldFunctions.hpp"
 
+#include "fvcDDt.hpp"
+
 
 //---------------------------------------------------------------------------
 namespace Foam
@@ -62,11 +64,12 @@ namespace Foam
 
    //---------------------------------------------------------------------------
    inline volVectorFieldHolder reconstruct( const surfaceScalarFieldHolder& field )
-    {
-      return volVectorFieldHolder( reconstruct( field() ), &field );
-    }
-
-                   
+   {
+     return volVectorFieldHolder( reconstruct( field() ), &field );
+   }
+   
+   
+   //---------------------------------------------------------------------------
   } // fvc
 } //Foam
 
