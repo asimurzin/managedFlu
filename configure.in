@@ -75,6 +75,7 @@ AC_OUTPUT( [ bashrc \
 	     libs/turbulenceModels/incompressible/RAS/Make/options \
      	     solvers/heatTransfer/buoyantBoussinesqSimpleFoam/Make/options \
 	     solvers/heatTransfer/buoyantSimpleRadiationFoam/Make/options \
+	     solvers/heatTransfer/buoyantSimpleFoam/Make/options \
 	     solvers/heatTransfer/buoyantPimpleFoam/Make/options \
 	     solvers/incompressible/icoFoam/Make/options \
 	     solvers/incompressible/simpleFoam/Make/options \
