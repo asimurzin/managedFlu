@@ -77,6 +77,7 @@ AC_OUTPUT( [ bashrc \
 	     solvers/heatTransfer/buoyantSimpleRadiationFoam/Make/options \
 	     solvers/heatTransfer/buoyantSimpleFoam/Make/options \
 	     solvers/heatTransfer/buoyantPimpleFoam/Make/options \
+	     solvers/heatTransfer/chtMultiRegionFoam/Make/options \
 	     solvers/incompressible/icoFoam/Make/options \
 	     solvers/incompressible/simpleFoam/Make/options \
 	     solvers/compressible/sonicFoam/Make/options \
