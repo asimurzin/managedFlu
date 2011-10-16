@@ -97,8 +97,8 @@ AC_ARG_WITH( [managedflu-includes],
 managedflu_header_dir=${with_managedflu_includes}
 
 if test "x${with_managedflu_includes}" = "x" ; then
-   if test ! "x${TEST_MM_ROOT_DIR}" = "x" && test -d ${TEST_MM_ROOT_DIR} ; then
-      managedflu_header_dir=${TEST_MM_ROOT_DIR}/libs
+   if test ! "x${MANAGEDFLU_ROOT_DIR}" = "x" && test -d ${MANAGEDFLU_ROOT_DIR} ; then
+      managedflu_header_dir=${MANAGEDFLU_ROOT_DIR}/libs
    fi
 fi
 
@@ -136,8 +136,8 @@ AC_ARG_WITH( [managedflu-libraries],
 managedflu_libraries_dir=${with_managedflu_libraries}
 
 if test "x${with_managedflu_libraries}" = "x" ; then
-   if test ! "x${TEST_MM_ROOT_DIR}" = "x" && test -d ${TEST_MM_ROOT_DIR} ; then
-      managedflu_libraries_dir="${TEST_MM_ROOT_DIR}/libs"
+   if test ! "x${MANAGEDFLU_ROOT_DIR}" = "x" && test -d ${MANAGEDFLU_ROOT_DIR} ; then
+      managedflu_libraries_dir="${MANAGEDFLU_ROOT_DIR}/libs"
    fi
 fi
 

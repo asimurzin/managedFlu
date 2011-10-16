@@ -21,15 +21,15 @@
 
 
 #--------------------------------------------------------------------------------------
-if test "${TEST_MM_ROOT_DIR}x" = "x" ; then
-   export TEST_MM_ROOT_DIR="@abs_top_builddir@"
-   echo TEST_MM_ROOT_DIR=\"${TEST_MM_ROOT_DIR}\"
+if test "${MANAGEDFLU_ROOT_DIR}x" = "x" ; then
+   export MANAGEDFLU_ROOT_DIR="@abs_top_builddir@"
+   echo MANAGEDFLU_ROOT_DIR=\"${MANAGEDFLU_ROOT_DIR}\"
 
-   source ${TEST_MM_ROOT_DIR}/env.sh
+   source ${MANAGEDFLU_ROOT_DIR}/env.sh
 
-   export PATH=${TEST_MM_ROOT_DIR}:${PATH}
-   export PYTHONPATH=${TEST_MM_ROOT_DIR}:${TEST_MM_ROOT_DIR}:${PYTHONPATH}
-   export LD_LIBRARY_PATH=${TEST_MM_ROOT_DIR}:${LD_LIBRARY_PATH}
+   export PATH=${MANAGEDFLU_ROOT_DIR}:${PATH}
+   export PYTHONPATH=${MANAGEDFLU_ROOT_DIR}:${MANAGEDFLU_ROOT_DIR}:${PYTHONPATH}
+   export LD_LIBRARY_PATH=${MANAGEDFLU_ROOT_DIR}:${LD_LIBRARY_PATH}
 fi
 
 
