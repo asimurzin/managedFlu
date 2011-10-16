@@ -132,6 +132,13 @@ namespace Foam
     return GeometricFieldHolder< Type, PatchField, GeoMesh >( dmS + field2(), Deps( &field2 ) );
   }
 
+  template<class Type, template<class> class PatchField, class GeoMesh >
+  inline GeometricFieldHolder< Type, PatchField, GeoMesh > operator / ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field2,
+                                                                        const dimensionedScalar& dmS )
+  {
+    return GeometricFieldHolder< Type, PatchField, GeoMesh >( field2() / dmS, Deps( &field2 ) );
+  }
+
   template< class Type1, class Type2, template<class> class PatchField, class GeoMesh >
   inline GeometricFieldHolder< Type1, PatchField, GeoMesh > operator / ( const GeometricFieldHolder< Type1, PatchField, GeoMesh >& field1, 
                                                                          const GeometricFieldHolder< Type2, PatchField, GeoMesh >& field2 )
