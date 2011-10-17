@@ -66,6 +66,7 @@ AC_OUTPUT( [ bashrc \
 	     libs/OpenFOAM/Make/options \
 	     libs/finiteVolume/Make/options \
 	     libs/thermophysicalModels/basic/Make/options \
+	     libs/thermophysicalModels/basicSolidThermo/Make/options \
 	     libs/thermophysicalModels/radiationModel/Make/options \
 	     libs/transportModels/incompressible/Make/options \
 	     libs/common.hpp \

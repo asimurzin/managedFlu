@@ -1,0 +1,3 @@
+basicSolidThermoHolder.cpp
+
+LIB = $(FOAM_USER_LIBBIN)/libmanagedFlu-basicSolidThermo
