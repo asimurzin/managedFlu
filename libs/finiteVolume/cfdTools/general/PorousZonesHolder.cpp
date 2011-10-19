@@ -1,0 +1,65 @@
+//  managedFlu - OpenFOAM C++ interactive functionality API
+//  Copyright (C) 2010- Alexey Petrov
+//  Copyright (C) 2009-2010 Pebble Bed Modular Reactor (Pty) Limited (PBMR)
+//  
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//  
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//  
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+//  See http://sourceforge.net/projects/pythonflu
+//
+//  Author : Alexey PETROV, Andrey Simurzin
+
+
+//---------------------------------------------------------------------------
+#include "PorousZonesHolder.hpp"
+
+//---------------------------------------------------------------------------
+namespace Foam
+{
+  template< class ZoneType >
+  PorousZonesHolder< ZoneType >::PorousZonesHolder( fvMeshHolder& mesh ) 
+    : DependentHolder( &mesh )
+    , boost::shared_ptr< PorousZones< ZoneType > >( new PorousZones< ZoneType >( *mesh ) )
+  {
+#ifdef OUR_DEBUG
+    cout << "PorousZonesHolder = " << this << nl;
+#endif
+  }
+
+  template< class ZoneType >
+  PorousZonesHolder< ZoneType >::PorousZonesHolder() 
+    : DependentHolder()
+    , boost::shared_ptr< PorousZones< ZoneType > >()
+  {
+#ifdef OUR_DEBUG
+    cout << "PorousZonesHolder = " << this << nl;
+#endif
+  }
+  
+  template< class ZoneType >
+  SimpleHolder* PorousZonesHolder< ZoneType >::clone() const 
+  {
+    return new PorousZonesHolder< ZoneType >( *this );
+  }
+  
+  template<class ZoneType>
+  PorousZonesHolder< ZoneType >::~PorousZonesHolder()
+  {
+#ifdef OUR_DEBUG
+    cout << "~PorousZonesHolder = " << this << nl;
+#endif
+  }
+}
+
+
+//---------------------------------------------------------------------------
