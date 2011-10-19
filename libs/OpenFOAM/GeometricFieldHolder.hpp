@@ -54,6 +54,8 @@ namespace Foam
     void operator -= ( const dimensioned< Type >& );
     void operator *= ( const dimensioned< scalar >& );
     void operator /= ( const dimensioned< scalar >& );
+    
+    void operator == ( const smart_tmp< GeometricField< Type, PatchField, GeoMesh > >& );
 
     void operator()( const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
 #ifndef SWIG

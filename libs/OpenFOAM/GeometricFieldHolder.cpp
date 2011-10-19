@@ -74,7 +74,7 @@ namespace Foam
   GeometricFieldHolder< Type, PatchField, GeoMesh >::~GeometricFieldHolder()
   {
 #ifdef OUR_DEBUG
-    cout << "GeometricFieldHolder=" << this << nl;
+    cout << "~GeometricFieldHolder=" << this << nl;
 #endif
   }
   
@@ -222,6 +222,21 @@ namespace Foam
     }
       this->ref() /= dmT;
   }
+  
+  template<class Type, template<class> class PatchField, class GeoMesh>
+  void GeometricFieldHolder< Type, PatchField, GeoMesh >::operator == ( const smart_tmp< GeometricField< Type, PatchField, GeoMesh > >& field )
+  {
+    if ( this->empty() )
+    {
+      FatalErrorIn("GeometricFieldHolder< Type, PatchField, GeoMesh >::operator == ( const smart_tmp< GeometricField< Type, PatchField, GeoMesh > >& )")
+                << "attempt run operator== on uninitialized holder"
+                << abort(FatalError);      
+    }
+
+    this->ref() == field();
+
+  }
+
 
   template<class Type, template<class> class PatchField, class GeoMesh>
   void GeometricFieldHolder< Type, PatchField, GeoMesh >::operator () ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
