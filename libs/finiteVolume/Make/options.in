@@ -3,6 +3,7 @@ EXE_INC = \
     -I/$@abs_top_builddir@/libs/managedFlu \
     -I/$@abs_top_builddir@/libs/OpenFOAM \
     @OPENFOAM_FINITEVOLUME_CPPFLAGS@ \
+    @OPENFOAM_MESHTOOLS_CPPFLAGS@ \
     @DEFINE_FOAM_VERSION@ @DEFINE_FOAM_BRANCH@ \
 #    -DOUR_DEBUG
 

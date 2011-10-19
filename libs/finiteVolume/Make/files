@@ -1,6 +1,9 @@
 simpleControlHolder.cpp
 pimpleControlHolder.cpp
 
+cfdTools/general/MRFZonesHolder.cpp
+cfdTools/general/porousZonesHolder.cpp
+
 fvMeshHolder.cpp
 volFields.cpp
 surfaceFields.cpp
