@@ -82,6 +82,7 @@ AC_OUTPUT( [ bashrc \
 	     solvers/incompressible/icoFoam/Make/options \
 	     solvers/incompressible/simpleFoam/Make/options \
 	     solvers/compressible/sonicFoam/Make/options \
+	     solvers/compressible/rhoPimpleFoam/Make/options \
 	     solvers/compressible/sonicLiquidFoam/Make/options \
 	     unitaryTests/testField/Make/options \
 	     unitaryTests/testMatrix/Make/options \
