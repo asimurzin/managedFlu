@@ -2,6 +2,7 @@
 ( cd OpenFOAM && wmake libso )
 ( cd finiteVolume && wmake libso )
 ( cd thermophysicalModels/basic && wmake libso )
+( cd thermophysicalModels/basicSolidThermo && wmake libso )
 ( cd thermophysicalModels/radiationModel && wmake libso )
 ( cd transportModels/incompressible && wmake libso )
 ( cd turbulenceModels/compressible/turbulenceModel && wmake libso )

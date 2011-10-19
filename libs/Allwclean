@@ -2,6 +2,7 @@
 ( cd OpenFOAM && wclean )
 ( cd finiteVolume && wclean )
 ( cd thermophysicalModels/basic && wclean )
+( cd thermophysicalModels/basicSolidThermo && wclean )
 ( cd thermophysicalModels/radiationModel && wclean )
 ( cd transportModels/incompressible && wclean )
 ( cd turbulenceModels/compressible/turbulenceModel && wclean )
