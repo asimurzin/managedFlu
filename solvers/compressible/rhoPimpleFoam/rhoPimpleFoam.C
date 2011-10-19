@@ -278,7 +278,7 @@ int main(int argc, char *argv[])
     scalar coNum, meanCoNum;
     compressibleCourantNo( runTime, mesh, phi, rho, coNum, meanCoNum );
 
-    setInitialDeltaT( runTime, adjustTimeStep, maxCo, coNum );
+    setDeltaT( runTime, adjustTimeStep, maxCo, coNum, maxDeltaT );
     (*runTime)++;
 
     Info<< "Time = " << runTime->timeName() << nl << endl;
