@@ -3,6 +3,7 @@ cd ${0%/*} || exit 1    # run from this directory
 
 ( cd sonicFoam && wmake )
 ( cd sonicLiquidFoam && wmake )
+( cd rhoPimpleFoam && wmake )
 
 
 
