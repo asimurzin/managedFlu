@@ -45,7 +45,7 @@ Description
 #include "pimpleControlHolder.hpp"
 #include "MRFZonesHolder.hpp"
 #include "porousZonesHolder.hpp"
-#include "basicRhoThermoHolder.hpp"
+#include "basicPsiThermoHolder.hpp"
 #include "turbulenceModels/compressible/turbulenceModel/turbulenceModelHolder.hpp"
 
 #include "OpenFOAM/functions.hpp"
