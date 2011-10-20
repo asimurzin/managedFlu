@@ -43,6 +43,32 @@ namespace Foam
   }
 
   template<class Type, template<class> class PatchField, class GeoMesh>
+  GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const IOobjectHolder& io, 
+									   const GeometricFieldHolder< Type, PatchField, GeoMesh >& field,
+									   const wordList& patchFieldTypes, 
+									   const wordList& actualPatchTypes )
+    : DependentHolder( &field )
+    , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( *io, field(), patchFieldTypes, actualPatchTypes ) )
+  {
+#ifdef OUR_DEBUG
+    cout << "GeometricFieldHolder=" << this << nl;
+#endif
+  }
+
+  template<class Type, template<class> class PatchField, class GeoMesh>
+  GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const IOobjectHolder& io, 
+									   const fvMeshHolder& mesh,
+									   const dimensioned<Type>& dm, 
+									   const word& patchFieldType ) 
+    : DependentHolder( &mesh )
+    , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( *io, *mesh, dm, patchFieldType ) )
+  {
+#ifdef OUR_DEBUG
+    cout << "GeometricFieldHolder=" << this << nl;
+#endif
+  }
+
+  template<class Type, template<class> class PatchField, class GeoMesh>
   GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const word& wd, 
 									   const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
     : DependentHolder( &field )

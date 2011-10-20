@@ -27,6 +27,10 @@ namespace Foam
     //reference constructor
     GeometricFieldHolder( const IOobjectHolder&, const fvMeshHolder& );
     GeometricFieldHolder( const IOobjectHolder&, const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
+    GeometricFieldHolder( const IOobjectHolder&, const GeometricFieldHolder< Type, PatchField, GeoMesh >&, 
+                          const wordList&, const wordList& actualPatchTypes = wordList() );
+    GeometricFieldHolder( const IOobjectHolder&, const fvMeshHolder&, 
+                          const dimensioned<Type>&, const word& patchFieldType=PatchField<Type>::calculatedType() );
     GeometricFieldHolder( const word&, const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
     
     // constructors with deps
