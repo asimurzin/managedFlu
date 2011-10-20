@@ -81,6 +81,8 @@ AC_OUTPUT( [ bashrc \
 	     solvers/heatTransfer/chtMultiRegionFoam/Make/options \
 	     solvers/incompressible/icoFoam/Make/options \
 	     solvers/incompressible/simpleFoam/Make/options \
+	     solvers/compressible/rhoCentralFoam/Make/options \
+	     solvers/compressible/rhoCentralFoam/BCs/Make/options \
 	     solvers/compressible/sonicFoam/Make/options \
 	     solvers/compressible/rhoPimpleFoam/Make/options \
 	     solvers/compressible/rhoPorousMRFPimpleFoam/Make/options \

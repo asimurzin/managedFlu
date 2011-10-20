@@ -5,7 +5,7 @@ cd ${0%/*} || exit 1    # run from this directory
 ( cd sonicLiquidFoam && wmake )
 ( cd rhoPimpleFoam && wmake )
 ( cd rhoPorousMRFPimpleFoam && wmake )
-
+( cd rhoCentralFoam && Allwmake )
 
 
 # ----------------------------------------------------------------- end-of-file
