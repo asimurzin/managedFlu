@@ -41,7 +41,7 @@ Description
 
 #include "core.hpp"
 #include "pimpleControlHolder.hpp"
-#include "basicRhoThermoHolder.hpp"
+#include "basicPsiThermoHolder.hpp"
 #include "turbulenceModels/compressible/turbulenceModel/turbulenceModelHolder.hpp"
 
 #include "OpenFOAM/functions.hpp"
