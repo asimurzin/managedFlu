@@ -3,6 +3,8 @@ cd ${0%/*} || exit 1    # run from this directory
 
 ( cd buoyantSimpleRadiationFoam && wclean )
 ( cd buoyantBoussinesqSimpleFoam && wclean )
+( cd buoyantPimpleFoam && wclean )
+( cd buoyantSimpleFoam && wclean )
 
 
 # ----------------------------------------------------------------- end-of-file

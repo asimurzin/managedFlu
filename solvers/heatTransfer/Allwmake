@@ -4,6 +4,7 @@ cd ${0%/*} || exit 1    # run from this directory
 ( cd buoyantSimpleRadiationFoam && wmake )
 ( cd buoyantBoussinesqSimpleFoam && wmake )
 ( cd buoyantPimpleFoam && wmake )
+( cd buoyantSimpleFoam && wmake )
 
 
 # ----------------------------------------------------------------- end-of-file
