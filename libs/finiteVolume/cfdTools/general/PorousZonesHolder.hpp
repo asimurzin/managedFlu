@@ -49,10 +49,10 @@ namespace Foam
     ~PorousZonesHolder();
     
     virtual SimpleHolder* clone() const;
-    
+#ifndef SWIG
     using  boost::shared_ptr< PorousZones< ZoneType > >::operator*;
     using  boost::shared_ptr< PorousZones< ZoneType > >::operator->;
-
+#endif
   };
 } // Foam
 
