@@ -1,10 +1,8 @@
 #!/bin/sh
 cd ${0%/*} || exit 1    # run from this directory
 
-( cd basic && ./Allwmake )
-( cd compressible && ./Allwmake )
-( cd heatTransfer && ./Allwmake )
-( cd incompressible && ./Allwmake )
-
+( cd laplacianFoam && wclean )
+( cd potentialFoam && wclean )
+( cd scalarTransportFoam && wclean )
 
 # ----------------------------------------------------------------- end-of-file
