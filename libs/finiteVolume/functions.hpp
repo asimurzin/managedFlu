@@ -29,10 +29,14 @@ void readPISOControls( const fvMeshHolder& mesh, dictionary& pisoDict,
 
 
 //---------------------------------------------------------------------------
-void CourantNo( const TimeHolder& runTime, const fvMeshHolder& mesh, const surfaceScalarFieldHolder& phi )
+void CourantNo( const TimeHolder& runTime, 
+                const fvMeshHolder& mesh, 
+                const surfaceScalarFieldHolder& phi,
+                scalar& CoNum,
+                scalar& meanCoNum )
 {
-  scalar CoNum = 0.0;
-  scalar meanCoNum = 0.0;
+  CoNum = 0.0;
+  meanCoNum = 0.0;
         
   if ( mesh->nInternalFaces() )
   { 
