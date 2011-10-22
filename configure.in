@@ -62,25 +62,27 @@ CONFFLU_CHECK_MANDATORY( "openfoam_ok boost_shared_ptr_ok" )
 
 #--------------------------------------------------------------------------------------
 AC_OUTPUT( [ bashrc \
-	     libs/managedFlu/Make/options \
-	     libs/OpenFOAM/Make/options \
-	     libs/finiteVolume/Make/options \
-	     libs/thermophysicalModels/basic/Make/options \
-	     libs/thermophysicalModels/basicSolidThermo/Make/options \
-	     libs/thermophysicalModels/radiationModel/Make/options \
-	     libs/transportModels/incompressible/Make/options \
-	     libs/common.hpp \
-	     libs/turbulenceModels/compressible/turbulenceModel/Make/options \
-	     libs/turbulenceModels/compressible/RAS/Make/options \
-	     libs/turbulenceModels/incompressible/turbulenceModel/Make/options \
-	     libs/turbulenceModels/incompressible/RAS/Make/options \
-     	     solvers/heatTransfer/buoyantBoussinesqSimpleFoam/Make/options \
-	     solvers/heatTransfer/buoyantSimpleRadiationFoam/Make/options \
-	     solvers/heatTransfer/buoyantSimpleFoam/Make/options \
-	     solvers/heatTransfer/buoyantPimpleFoam/Make/options \
-	     solvers/heatTransfer/chtMultiRegionFoam/Make/options \
-	     solvers/incompressible/icoFoam/Make/options \
-	     solvers/incompressible/simpleFoam/Make/options \
+             libs/managedFlu/Make/options \
+             libs/OpenFOAM/Make/options \
+             libs/finiteVolume/Make/options \
+             libs/thermophysicalModels/basic/Make/options \
+             libs/thermophysicalModels/basicSolidThermo/Make/options \
+             libs/thermophysicalModels/radiationModel/Make/options \
+             libs/transportModels/incompressible/Make/options \
+             libs/common.hpp \
+             libs/turbulenceModels/compressible/turbulenceModel/Make/options \
+             libs/turbulenceModels/compressible/RAS/Make/options \
+             libs/turbulenceModels/incompressible/turbulenceModel/Make/options \
+             libs/turbulenceModels/incompressible/RAS/Make/options \
+             solvers/basic/laplacianFoam/Make/options \
+             solvers/basic/potentialFoam/Make/options \
+             solvers/heatTransfer/buoyantBoussinesqSimpleFoam/Make/options \
+             solvers/heatTransfer/buoyantSimpleRadiationFoam/Make/options \
+             solvers/heatTransfer/buoyantSimpleFoam/Make/options \
+             solvers/heatTransfer/buoyantPimpleFoam/Make/options \
+             solvers/heatTransfer/chtMultiRegionFoam/Make/options \
+             solvers/incompressible/icoFoam/Make/options \
+             solvers/incompressible/simpleFoam/Make/options \
 	     solvers/compressible/rhoCentralFoam/Make/options \
 	     solvers/compressible/rhoCentralFoam/BCs/Make/options \
 	     solvers/compressible/sonicFoam/Make/options \
