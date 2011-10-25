@@ -44,9 +44,7 @@ namespace incompressible
   
   void LESModelHolder::operator()( const LESModelHolder& model )
   {
-    Args::operator=( model );
-    boost::shared_ptr< LESModel >::operator=( model );
-    turbulenceModelHolder::operator=( boost::shared_ptr< LESModel >( *this ) );
+    this->operator=( model );
   }
   
 }//incompressible
