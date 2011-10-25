@@ -9,3 +9,4 @@
 ( cd turbulenceModels/compressible/RAS && wmake libso )
 ( cd turbulenceModels/incompressible/turbulenceModel && wmake libso )
 ( cd turbulenceModels/incompressible/RAS && wmake libso )
+( cd turbulenceModels/incompressible/LES && wmake libso )

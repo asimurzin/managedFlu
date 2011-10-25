@@ -74,6 +74,7 @@ AC_OUTPUT( [ bashrc \
              libs/turbulenceModels/compressible/RAS/Make/options \
              libs/turbulenceModels/incompressible/turbulenceModel/Make/options \
              libs/turbulenceModels/incompressible/RAS/Make/options \
+             libs/turbulenceModels/incompressible/LES/Make/options \
              solvers/basic/laplacianFoam/Make/options \
              solvers/basic/potentialFoam/Make/options \
              solvers/basic/scalarTransportFoam/Make/options \

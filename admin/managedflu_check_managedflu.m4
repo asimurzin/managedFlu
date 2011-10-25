@@ -118,7 +118,7 @@ if test "x${managedflu_includes}" = "xyes" ; then
    MANAGEDFLU_BASICTHERMOPHYSICALMODELS_CPPFLAGS="-I${managedflu_header_dir}/thermophysicalModels/basic/lnInclude"
    MANAGEDFLU_RADIATIONMODELS_CPPFLAGS="-I${managedflu_header_dir}/thermophysicalModels/radiationModel/lnInclude" 
    MANAGEDFLU_COMPRESSIBLETURBULENSEMODELS_CPPFLAGS="-I${managedflu_header_dir}/turbulenceModels/compressible/turbulenceModel/lnInclude -I${managedflu_header_dir}/turbulenceModels/compressible/RAS/lnInclude"
-   MANAGEDFLU_INCOMPRESSIBLETURBULENSEMODELS_CPPFLAGS="-I${managedflu_header_dir}/turbulenceModels/incompressible/turbulenceModel/lnInclude -I${managedflu_header_dir}/turbulenceModels/incompressible/RAS/lnInclude"
+   MANAGEDFLU_INCOMPRESSIBLETURBULENSEMODELS_CPPFLAGS="-I${managedflu_header_dir}/turbulenceModels/incompressible/turbulenceModel/lnInclude -I${managedflu_header_dir}/turbulenceModels/incompressible/RAS/lnInclude  -I${managedflu_header_dir}/turbulenceModels/incompressible/LES/lnInclude"
 fi
 
 if test "x${managedflu_includes}" = "xno" ; then
@@ -163,7 +163,7 @@ if test "x${managedflu_libraries}" = "xyes" ; then
    MANAGEDFLU_BASICTHERMOPHYSICALMODELS_LIB="-lmanagedFlu-basicThermophysicalModels"
    MANAGEDFLU_RADIATIONMODELS_LIB="-lmanagedFlu-radiationModels"
    MANAGEDFLU_COMPRESSIBLETURBULENSEMODELS_LIBS="-lmanagedFlu-compressibleTurbulenceModel -lmanagedFlu-compressibleRASModels"
-   MANAGEDFLU_INCOMPRESSIBLETURBULENSEMODELS_LIBS="-lmanagedFlu-incompressibleTurbulenceModel -lmanagedFlu-incompressibleRASModels"
+   MANAGEDFLU_INCOMPRESSIBLETURBULENSEMODELS_LIBS="-lmanagedFlu-incompressibleTurbulenceModel -lmanagedFlu-incompressibleRASModels -lmanagedFlu-incompressibleLESModels"
 fi
 
 if test "x${managedflu_libraries}" = "xno" ; then

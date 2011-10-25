@@ -9,3 +9,4 @@
 ( cd turbulenceModels/compressible/RAS && wclean )
 ( cd turbulenceModels/incompressible/turbulenceModel && wclean )
 ( cd turbulenceModels/incompressible/RAS && wclean )
+( cd turbulenceModels/incompressible/LES && wclean )
