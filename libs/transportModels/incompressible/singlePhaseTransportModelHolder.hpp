@@ -27,6 +27,8 @@ namespace Foam
     
     virtual SimpleHolder* clone() const;
     
+    void operator()( const singlePhaseTransportModelHolder& );
+    
     using  boost::shared_ptr< singlePhaseTransportModel >::operator*;
     using  boost::shared_ptr< singlePhaseTransportModel >::operator->;
   protected:

@@ -29,6 +29,13 @@ namespace Foam
     return new singlePhaseTransportModelHolder( *this );
   }
   
+  void singlePhaseTransportModelHolder::operator()( const singlePhaseTransportModelHolder& model )
+  {
+    Args::operator=( model );
+    boost::shared_ptr< singlePhaseTransportModel >::operator=( model );
+    transportModelHolder::operator=( boost::shared_ptr< singlePhaseTransportModel >( *this ) );
+  }
+  
   singlePhaseTransportModelHolder::~singlePhaseTransportModelHolder()
   {}
 }
