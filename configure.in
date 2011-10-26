@@ -65,6 +65,7 @@ AC_OUTPUT( [ bashrc \
              libs/managedFlu/Make/options \
              libs/OpenFOAM/Make/options \
              libs/finiteVolume/Make/options \
+             libs/dynamicFvMesh/Make/options \
              libs/thermophysicalModels/basic/Make/options \
              libs/thermophysicalModels/basicSolidThermo/Make/options \
              libs/thermophysicalModels/radiationModel/Make/options \
@@ -87,6 +88,7 @@ AC_OUTPUT( [ bashrc \
              solvers/incompressible/channelFoam/Make/options \
              solvers/incompressible/icoFoam/Make/options \
              solvers/incompressible/nonNewtonianIcoFoam/Make/options \
+             solvers/incompressible/pimpleDyMFoam/Make/options \
              solvers/incompressible/simpleFoam/Make/options \
 	     solvers/compressible/rhoCentralFoam/Make/options \
 	     solvers/compressible/rhoCentralFoam/BCs/Make/options \

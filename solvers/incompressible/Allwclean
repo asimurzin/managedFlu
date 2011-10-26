@@ -5,6 +5,7 @@ cd ${0%/*} || exit 1    # run from this directory
 ( cd channelFoam && wclean )
 ( cd icoFoam && wclean )
 ( cd nonNewtonianIcoFoam && wclean )
+( cd pimpleDyMFoam && wclean )
 ( cd simpleFoam && wclean )
 
 
