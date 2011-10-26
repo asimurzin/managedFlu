@@ -86,6 +86,7 @@ AC_OUTPUT( [ bashrc \
              solvers/incompressible/boundaryFoam/Make/options \
              solvers/incompressible/channelFoam/Make/options \
              solvers/incompressible/icoFoam/Make/options \
+             solvers/incompressible/nonNewtonianIcoFoam/Make/options \
              solvers/incompressible/simpleFoam/Make/options \
 	     solvers/compressible/rhoCentralFoam/Make/options \
 	     solvers/compressible/rhoCentralFoam/BCs/Make/options \
