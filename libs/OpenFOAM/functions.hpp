@@ -35,3 +35,14 @@ fvMeshHolder createMesh( const TimeHolder& runTime )
 
 
 //---------------------------------------------------------------------------
+fvMeshHolder createMeshNoClear( const TimeHolder& runTime )
+{
+  Info << "Create mesh, no clear-out for time = "  << runTime->timeName() << nl << endl;
+  return fvMeshHolder( IOobjectHolder( fvMesh::defaultRegion,
+                                             runTime->timeName(),
+                                             runTime,
+                                             IOobject::MUST_READ ) );
+} 
+
+
+//---------------------------------------------------------------------------
