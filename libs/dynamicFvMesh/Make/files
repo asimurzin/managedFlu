@@ -1,0 +1,6 @@
+dynamicFvMeshHolder.cpp
+
+
+LIB = $(FOAM_USER_LIBBIN)/libmanagedFlu-dynamicFvMesh
+
+
