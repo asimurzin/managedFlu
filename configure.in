@@ -90,6 +90,7 @@ AC_OUTPUT( [ bashrc \
              solvers/incompressible/nonNewtonianIcoFoam/Make/options \
              solvers/incompressible/pimpleFoam/Make/options \
              solvers/incompressible/pimpleDyMFoam/Make/options \
+             solvers/incompressible/pisoFoam/Make/options \
              solvers/incompressible/simpleFoam/Make/options \
 	     solvers/compressible/rhoCentralFoam/Make/options \
 	     solvers/compressible/rhoCentralFoam/BCs/Make/options \
