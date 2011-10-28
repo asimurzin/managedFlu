@@ -15,7 +15,7 @@ namespace Foam
     objectRegistryHolder::operator=( boost::shared_ptr< Time >( *this ) );
   }
 
-  TimeHolder::TimeHolder( Time* the_time, const Deps& the_deps)
+  TimeHolder::TimeHolder( const boost::shared_ptr< Time >& the_time, const Deps& the_deps)
     : DependentHolder( the_deps )
     , boost::shared_ptr< Time >( the_time )
   {

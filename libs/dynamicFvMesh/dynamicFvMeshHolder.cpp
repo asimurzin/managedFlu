@@ -34,7 +34,7 @@ namespace Foam
     fvMeshHolder::operator=( boost::shared_ptr< dynamicFvMesh >( *this ) );
   }
 
-  dynamicFvMeshHolder::dynamicFvMeshHolder( dynamicFvMesh* mesh, const Deps& the_deps ) 
+  dynamicFvMeshHolder::dynamicFvMeshHolder( const boost::shared_ptr< dynamicFvMesh >& mesh, const Deps& the_deps ) 
     : DependentHolder( the_deps )
     , boost::shared_ptr< dynamicFvMesh >( mesh )
   {

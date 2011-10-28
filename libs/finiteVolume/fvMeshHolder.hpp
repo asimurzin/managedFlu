@@ -48,19 +48,19 @@ namespace Foam
   public:
     fvMeshHolder( const IOobjectHolder& io );
     
-    fvMeshHolder( fvMesh*, const Deps& );
-    //fvMeshHolder( const fvMesh*, const Deps& );
+    fvMeshHolder( const boost::shared_ptr< fvMesh >&, const Deps& );
     
     virtual SimpleHolder* clone() const;
     
     fvMeshHolder();
     ~fvMeshHolder();
     
-    void operator=( const  boost::shared_ptr< fvMesh >& );
-
     using boost::shared_ptr< fvMesh >::operator*;
     using boost::shared_ptr< fvMesh >::operator->;
     using boost::shared_ptr< fvMesh >::get;
+
+  protected:
+    void operator=( const boost::shared_ptr< fvMesh >& );
 
   };
 } // Foam

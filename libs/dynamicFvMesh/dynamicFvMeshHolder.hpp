@@ -43,9 +43,7 @@ namespace Foam
     , public boost::shared_ptr< dynamicFvMesh >
   {
   public:
-    dynamicFvMeshHolder( const boost::shared_ptr< dynamicFvMesh >&, const IOobjectHolder& );
-    
-    dynamicFvMeshHolder( dynamicFvMesh*, const Deps& );
+    dynamicFvMeshHolder( const boost::shared_ptr< dynamicFvMesh >&, const Deps& );
     
     dynamicFvMeshHolder();
     
@@ -60,6 +58,9 @@ namespace Foam
     using boost::shared_ptr< dynamicFvMesh >::operator*;
     using boost::shared_ptr< dynamicFvMesh >::operator->;
     using boost::shared_ptr< dynamicFvMesh >::get;
+    
+  protected:
+    dynamicFvMeshHolder( const boost::shared_ptr< dynamicFvMesh >&, const IOobjectHolder& ); 
 
   };
 } // Foam
