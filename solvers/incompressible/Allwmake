@@ -5,6 +5,7 @@ cd ${0%/*} || exit 1    # run from this directory
 ( cd channelFoam && wmake )
 ( cd icoFoam && wmake )
 ( cd nonNewtonianIcoFoam && wmake )
+( cd pimpleFoam && wmake )
 ( cd pimpleDyMFoam && wmake )
 ( cd simpleFoam && wmake )
 
