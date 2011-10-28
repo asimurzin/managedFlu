@@ -22,13 +22,6 @@ namespace compressible
     , public boost::shared_ptr< RASModel >
   {
   public:
-    RASModelHolder( 
-      const boost::shared_ptr< RASModel >&, 
-      const volScalarFieldHolder&, 
-      const volVectorFieldHolder&, 
-      const surfaceScalarFieldHolder&, 
-      const basicThermoHolder& );
-
     RASModelHolder();
     
     static RASModelHolder New( 
@@ -44,6 +37,13 @@ namespace compressible
     
     using  boost::shared_ptr< RASModel >::operator*;
     using  boost::shared_ptr< RASModel >::operator->;
+  protected:
+    RASModelHolder( 
+      const boost::shared_ptr< RASModel >&, 
+      const volScalarFieldHolder&, 
+      const volVectorFieldHolder&, 
+      const surfaceScalarFieldHolder&, 
+      const basicThermoHolder& );
 
   };
 

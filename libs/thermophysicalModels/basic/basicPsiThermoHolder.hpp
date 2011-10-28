@@ -21,7 +21,6 @@ namespace Foam
     , public boost::shared_ptr< basicPsiThermo >
   {
   public:
-    basicPsiThermoHolder( const boost::shared_ptr< basicPsiThermo >&, const fvMeshHolder& );
     basicPsiThermoHolder();
     
     ~basicPsiThermoHolder();
@@ -32,6 +31,8 @@ namespace Foam
     
     using  boost::shared_ptr< basicPsiThermo >::operator*;
     using  boost::shared_ptr< basicPsiThermo >::operator->;
+  protected:
+    basicPsiThermoHolder( const boost::shared_ptr< basicPsiThermo >&, const fvMeshHolder& );
   };
 } // Foam
 

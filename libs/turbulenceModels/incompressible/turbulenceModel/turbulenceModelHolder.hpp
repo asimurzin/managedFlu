@@ -49,12 +49,6 @@ namespace incompressible
   public:
     turbulenceModelHolder();
 
-    turbulenceModelHolder( 
-      const boost::shared_ptr< turbulenceModel >&, 
-      const volVectorFieldHolder&,
-      const surfaceScalarFieldHolder&,
-      transportModelHolder& );
-
     static turbulenceModelHolder New( 
       const volVectorFieldHolder& U,
       const surfaceScalarFieldHolder& phi,
@@ -71,6 +65,11 @@ namespace incompressible
     using  boost::shared_ptr< turbulenceModel >::operator->;
 
   protected:
+    turbulenceModelHolder( 
+      const boost::shared_ptr< turbulenceModel >&, 
+      const volVectorFieldHolder&,
+      const surfaceScalarFieldHolder&,
+      transportModelHolder& );
     void operator=( const boost::shared_ptr< turbulenceModel >& );
   };
 

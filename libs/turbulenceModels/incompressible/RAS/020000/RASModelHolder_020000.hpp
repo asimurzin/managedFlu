@@ -26,12 +26,6 @@ namespace incompressible
     , public boost::shared_ptr< RASModel >
   {
   public:
-    RASModelHolder( 
-      const boost::shared_ptr< RASModel >&, 
-      const volVectorFieldHolder&,
-      const surfaceScalarFieldHolder&,
-      transportModelHolder& );
-
     RASModelHolder();
     
     static RASModelHolder New( 
@@ -46,7 +40,12 @@ namespace incompressible
     
     using  boost::shared_ptr< RASModel >::operator*;
     using  boost::shared_ptr< RASModel >::operator->;
-
+  protected:
+    RASModelHolder( 
+      const boost::shared_ptr< RASModel >&, 
+      const volVectorFieldHolder&,
+      const surfaceScalarFieldHolder&,
+      transportModelHolder& );
   };
 
 } //incompressible

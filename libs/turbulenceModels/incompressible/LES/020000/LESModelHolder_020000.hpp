@@ -49,12 +49,6 @@ namespace incompressible
     , public boost::shared_ptr< LESModel >
   {
   public:
-    LESModelHolder( 
-      const boost::shared_ptr< LESModel >&, 
-      const volVectorFieldHolder&,
-      const surfaceScalarFieldHolder&,
-      transportModelHolder& );
-
     LESModelHolder();
     
     static LESModelHolder New( 
@@ -71,7 +65,12 @@ namespace incompressible
     
     using  boost::shared_ptr< LESModel >::operator*;
     using  boost::shared_ptr< LESModel >::operator->;
-
+  protected:
+    LESModelHolder( 
+      const boost::shared_ptr< LESModel >&, 
+      const volVectorFieldHolder&,
+      const surfaceScalarFieldHolder&,
+      transportModelHolder& );
   };
 
 } //incompressible

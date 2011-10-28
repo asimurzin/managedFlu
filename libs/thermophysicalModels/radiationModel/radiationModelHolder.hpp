@@ -22,7 +22,6 @@ namespace Foam
       , public boost::shared_ptr< radiationModel >
     {
     public:
-      radiationModelHolder( const boost::shared_ptr< radiationModel >&, const volScalarFieldHolder& );
       radiationModelHolder();
     
       ~radiationModelHolder();
@@ -33,7 +32,8 @@ namespace Foam
     
       using  boost::shared_ptr< radiationModel >::operator*;
       using  boost::shared_ptr< radiationModel >::operator->;
-
+    protected:
+      radiationModelHolder( const boost::shared_ptr< radiationModel >&, const volScalarFieldHolder& );
     };
   }
 } // Foam

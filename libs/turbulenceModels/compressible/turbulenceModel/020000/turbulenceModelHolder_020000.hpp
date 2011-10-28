@@ -26,12 +26,6 @@ namespace compressible
   public:
     turbulenceModelHolder();
     
-    turbulenceModelHolder( const boost::shared_ptr< turbulenceModel >& tm, 
-                           const volScalarFieldHolder& rho,
-                           const volVectorFieldHolder& U,
-                           const surfaceScalarFieldHolder& phi, 
-                           const basicThermoHolder& thermoPhysicalModel );
-                           
     ~turbulenceModelHolder();
     
     static turbulenceModelHolder New( const volScalarFieldHolder& rho,
@@ -46,6 +40,11 @@ namespace compressible
     using  boost::shared_ptr< turbulenceModel >::operator->;
 
   protected:
+    turbulenceModelHolder( const boost::shared_ptr< turbulenceModel >& tm, 
+                           const volScalarFieldHolder& rho,
+                           const volVectorFieldHolder& U,
+                           const surfaceScalarFieldHolder& phi, 
+                           const basicThermoHolder& thermoPhysicalModel );
     void operator=( const boost::shared_ptr< turbulenceModel >& );
   };
 
