@@ -9,6 +9,7 @@ cd ${0%/*} || exit 1    # run from this directory
 ( cd pimpleDyMFoam && wmake )
 ( cd pisoFoam && wmake )
 ( cd simpleFoam && wmake )
+( cd porousSimpleFoam && wmake )
 ( cd shallowWaterFoam && wmake )
 
 

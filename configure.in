@@ -92,6 +92,7 @@ AC_OUTPUT( [ bashrc \
              solvers/incompressible/pimpleDyMFoam/Make/options \
              solvers/incompressible/pisoFoam/Make/options \
              solvers/incompressible/simpleFoam/Make/options \
+             solvers/incompressible/porousSimpleFoam/Make/options \
              solvers/incompressible/shallowWaterFoam/Make/options \
 	     solvers/compressible/rhoCentralFoam/Make/options \
 	     solvers/compressible/rhoCentralFoam/BCs/Make/options \

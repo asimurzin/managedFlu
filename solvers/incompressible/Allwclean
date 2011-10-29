@@ -9,6 +9,7 @@ cd ${0%/*} || exit 1    # run from this directory
 ( cd pimpleDyMFoam && wclean )
 ( cd pisoFoam && wclean )
 ( cd simpleFoam && wclean )
+( cd porousSimpleFoam && wclean )
 ( cd shallowWaterFoam && wclean )
 
 
