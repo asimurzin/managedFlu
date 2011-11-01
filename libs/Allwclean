@@ -1,6 +1,8 @@
 ( cd managedFlu && wclean )
 ( cd OpenFOAM && wclean )
 ( cd finiteVolume && wclean )
+( cd dynamicFvMesh && wclean )
+( cd randomProcesses && wclean )
 ( cd thermophysicalModels/basic && wclean )
 ( cd thermophysicalModels/basicSolidThermo && wclean )
 ( cd thermophysicalModels/radiationModel && wclean )

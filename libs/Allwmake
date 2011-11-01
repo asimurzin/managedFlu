@@ -2,6 +2,7 @@
 ( cd OpenFOAM && wmake libso )
 ( cd finiteVolume && wmake libso )
 ( cd dynamicFvMesh && wmake libso )
+( cd randomProcesses && wmake libso )
 ( cd thermophysicalModels/basic && wmake libso )
 ( cd thermophysicalModels/basicSolidThermo && wmake libso )
 ( cd thermophysicalModels/radiationModel && wmake libso )
