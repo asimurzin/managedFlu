@@ -58,22 +58,9 @@ namespace Foam
     
     template< class Y >
     smart_tmp( const smart_tmp< Y >& at )
-      : engine( new tmp< T >( const_cast< Y* >( at.ptr() ) ) )
-    {
-      // increase reference count
-      this->operator->()->operator++();
-    }
-/*
-    void operator=( T* tPtr )
-    {
-      this->engine.reset( new tmp< T >( tPtr ) );
-    }
-    
-    void operator=( const T& tRef )
-    {
-      this->engine.reset( new tmp< T >( tRef ) );
-    }
-*/    
+      : engine( new tmp< T >( at() ) )
+    {}
+ 
     void operator=( const tmp< T >& t )
     {
       this->engine.reset( new tmp< T >( t ) );
@@ -82,6 +69,12 @@ namespace Foam
     void operator=( const smart_tmp< T >& at )
     {
       this->engine.reset( new tmp< T >( at.engine() ) );
+    }
+    
+    template< class Y >
+    void operator=( const smart_tmp< Y >& at )
+    {
+      this->engine.reset( new tmp< T >( at() ) );
     }
     
     T* operator->()
