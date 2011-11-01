@@ -8,4 +8,6 @@ dictionaryHolder.cpp
 
 IOdictionaryHolder.cpp
 
+primitiveFields.cpp
+
 LIB = $(FOAM_USER_LIBBIN)/libmanagedFlu-OpenFOAM
