@@ -48,10 +48,8 @@ namespace Foam
     
 #ifndef SWIG
     using Foam::smart_tmp< Field< Type > >::operator();
+    using Foam::smart_tmp< Field< Type > >::operator=;
 #endif
-  
-  protected:
-    void operator=( const smart_tmp< Field< Type > >& );
   };
 } // Foam
 

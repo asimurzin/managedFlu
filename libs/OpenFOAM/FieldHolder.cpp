@@ -43,11 +43,6 @@ namespace Foam
   FieldHolder< Type >::~FieldHolder()
   {}
   
-  template< class Type >
-  void FieldHolder< Type >::operator=( const smart_tmp< Field< Type > >& the_Arg )
-  {
-    smart_tmp< Field< Type > >::operator=( the_Arg );
-  }
   
 } //Foam
 
