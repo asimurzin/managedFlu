@@ -95,14 +95,15 @@ AC_OUTPUT( [ bashrc \
              solvers/incompressible/simpleFoam/Make/options \
              solvers/incompressible/porousSimpleFoam/Make/options \
              solvers/incompressible/shallowWaterFoam/Make/options \
-	     solvers/compressible/rhoCentralFoam/Make/options \
-	     solvers/compressible/rhoCentralFoam/BCs/Make/options \
-	     solvers/compressible/sonicFoam/Make/options \
-	     solvers/compressible/rhoPimpleFoam/Make/options \
-	     solvers/compressible/rhoPorousMRFPimpleFoam/Make/options \
-	     solvers/compressible/sonicLiquidFoam/Make/options \
-	     unitaryTests/testField/Make/options \
-	     unitaryTests/testMatrix/Make/options \
+             solvers/compressible/rhoCentralFoam/Make/options \
+             solvers/compressible/rhoCentralFoam/BCs/Make/options \
+             solvers/compressible/sonicFoam/Make/options \
+             solvers/compressible/rhoPimpleFoam/Make/options \
+             solvers/compressible/rhoPorousMRFPimpleFoam/Make/options \
+             solvers/compressible/sonicLiquidFoam/Make/options \
+             solvers/DNS/dnsFoam/Make/options \
+             unitaryTests/testField/Make/options \
+             unitaryTests/testMatrix/Make/options \
      	     unitaryTests/testMeshDictField/Make/options \
 	     Makefile ] )
 
