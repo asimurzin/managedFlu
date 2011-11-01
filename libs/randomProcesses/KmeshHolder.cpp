@@ -43,8 +43,7 @@ namespace Foam
   }
   
   KmeshHolder::~KmeshHolder()
-  {
-  }
+  {}
   
   void KmeshHolder::operator()( const KmeshHolder& the_Arg )
   {
