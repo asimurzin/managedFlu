@@ -5,6 +5,7 @@ cd ${0%/*} || exit 1    # run from this directory
 ( cd compressible && ./Allwmake )
 ( cd heatTransfer && ./Allwmake )
 ( cd incompressible && ./Allwmake )
+( cd DNS && ./Allwmake )
 
 
 # ----------------------------------------------------------------- end-of-file

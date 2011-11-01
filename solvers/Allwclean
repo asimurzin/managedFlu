@@ -5,6 +5,6 @@ cd ${0%/*} || exit 1    # run from this directory
 ( cd compressible && ./Allwclean )
 ( cd heatTransfer && ./Allwclean )
 ( cd incompressible && ./Allwclean )
-
+( cd DNS && ./Allwclean )
 
 # ----------------------------------------------------------------- end-of-file
