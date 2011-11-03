@@ -6,5 +6,7 @@ cd ${0%/*} || exit 1    # run from this directory
 ( cd heatTransfer && ./Allwclean )
 ( cd incompressible && ./Allwclean )
 ( cd DNS && ./Allwclean )
+( cd multiphase && ./Allwclean )
+
 
 # ----------------------------------------------------------------- end-of-file

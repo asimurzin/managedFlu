@@ -71,6 +71,7 @@ AC_OUTPUT( [ bashrc \
              libs/thermophysicalModels/basicSolidThermo/Make/options \
              libs/thermophysicalModels/radiationModel/Make/options \
              libs/transportModels/incompressible/Make/options \
+             libs/transportModels/interfaceProperties/Make/options \
              libs/common.hpp \
              libs/turbulenceModels/compressible/turbulenceModel/Make/options \
              libs/turbulenceModels/compressible/RAS/Make/options \
@@ -102,6 +103,7 @@ AC_OUTPUT( [ bashrc \
              solvers/compressible/rhoPorousMRFPimpleFoam/Make/options \
              solvers/compressible/sonicLiquidFoam/Make/options \
              solvers/DNS/dnsFoam/Make/options \
+             solvers/multiphase/interFoam/Make/options \
              unitaryTests/testField/Make/options \
              unitaryTests/testMatrix/Make/options \
      	     unitaryTests/testMeshDictField/Make/options \
