@@ -1,5 +1,5 @@
 transportModelHolder.cpp
 singlePhaseTransportModelHolder.cpp
-
+twoPhaseMixtureHolder.cpp
 
 LIB = $(FOAM_USER_LIBBIN)/libmanagedFlu-incompressibleTransportModels
