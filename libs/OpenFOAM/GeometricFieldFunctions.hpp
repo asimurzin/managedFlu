@@ -37,36 +37,31 @@ namespace Foam
 {
   
   //-------------------------------------------------------------------------
-  inline surfaceScalarFieldHolder operator & ( const surfaceVectorFieldHolder& field1, 
-					       const surfaceVectorFieldHolder& field2 )
+  template <class Type1, class Type2, template<class> class PatchField, class GeoMesh>
+  inline GeometricFieldHolder<typename innerProduct<Type1, Type2>::type, PatchField, GeoMesh>
+    operator & ( const GeometricFieldHolder< Type1, PatchField, GeoMesh >& field1, 
+                 const GeometricFieldHolder< Type2, PatchField, GeoMesh >& field2 )
   {
-    return surfaceScalarFieldHolder( field1() & field2(), Deps( &field1, &field2 ) );
+    return GeometricFieldHolder<typename innerProduct<Type1, Type2>::type, PatchField, GeoMesh>( field1() & field2(), Deps( &field1, &field2 ) );
   }
 
-  inline surfaceScalarFieldHolder operator & ( const uniformDimensionedVectorFieldHolder& field1, 
-					       const surfaceVectorFieldHolder& field2 )
+  
+  template<class Type, template<class> class PatchField, class GeoMesh >
+  inline GeometricFieldHolder< typename innerProduct< vector, Type >::type, PatchField, GeoMesh >
+    operator & ( const uniformDimensionedVectorFieldHolder& field1, 
+                 const GeometricFieldHolder< Type, PatchField, GeoMesh >& field2 )
   {
-    return surfaceScalarFieldHolder( *field1 & field2(), Deps( &field1, &field2 ) );
+    return GeometricFieldHolder< typename innerProduct< vector, Type >::type, PatchField, GeoMesh >( *field1 & field2(), Deps( &field1, &field2 ) );
   }
 
-
-  //-------------------------------------------------------------------------
-  inline volScalarFieldHolder operator & ( const uniformDimensionedVectorFieldHolder& field1, 
-                                           const volVectorFieldHolder& field2 )
+  template< template<class> class PatchField, class GeoMesh >
+  inline GeometricFieldHolder< scalar, PatchField, GeoMesh > 
+    operator / ( const scalar& value, 
+                 const GeometricFieldHolder< scalar, PatchField, GeoMesh >& field )
   {
-    return volScalarFieldHolder( *field1 & field2(), Deps( &field1, &field2 ) );
-  }
-
-
-  //-------------------------------------------------------------------------
-  inline volScalarFieldHolder operator / ( const scalar& value, 
-					   const volScalarFieldHolder& field )
-  {
-    return volScalarFieldHolder( value / field(), Deps( &field ) );
+    return GeometricFieldHolder< scalar, PatchField, GeoMesh >( value / field(), Deps( &field ) );
   }
   
-  
-  //-------------------------------------------------------------------------
   template<class Type, template<class> class PatchField, class GeoMesh >
   inline GeometricFieldHolder< Type, PatchField, GeoMesh > operator * ( const GeometricFieldHolder< scalar, PatchField, GeoMesh >& field1, 
                                                                         const GeometricFieldHolder< Type, PatchField, GeoMesh >& field2 )
