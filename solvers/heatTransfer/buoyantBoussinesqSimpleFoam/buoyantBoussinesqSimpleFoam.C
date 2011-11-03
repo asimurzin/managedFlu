@@ -98,7 +98,7 @@ result_readTransportProperties readTransportProperties( const volVectorFieldHold
 //---------------------------------------------------------------------------
 result_readTransportProperties createFields( const TimeHolder& runTime, 
                                              const fvMeshHolder& mesh,
-                                             const uniformDimensionedVectorField& g,
+                                             const uniformDimensionedVectorFieldHolder& g,
                                              volScalarFieldHolder& T,
                                              volScalarFieldHolder& p_rgh,
                                              volVectorFieldHolder& U,
@@ -165,8 +165,8 @@ result_readTransportProperties createFields( const TimeHolder& runTime,
                                    mesh ) );
 
   Info<< "Calculating field g.h\n" << endl;
-  gh( volScalarFieldHolder("gh", volScalarFieldHolder( g & mesh->C(), &mesh ) ) );
-  ghf(  surfaceScalarFieldHolder("ghf", surfaceScalarFieldHolder( g & mesh->Cf(), &mesh ) ) );
+  gh( volScalarFieldHolder( "gh", g & volVectorFieldHolder( mesh->C(), Deps( &mesh ) ) ) );
+  ghf(  surfaceScalarFieldHolder( "ghf", g & surfaceVectorFieldHolder( mesh->Cf(), Deps( &mesh ) ) ) );
 
   p( volScalarFieldHolder( IOobjectHolder( "p",
                                             runTime->timeName(),
@@ -311,7 +311,7 @@ int main(int argc, char *argv[])
     
   fvMeshHolder mesh = createMesh( runTime );
     
-  uniformDimensionedVectorField g = readGravitationalAcceleration( runTime, mesh );
+  uniformDimensionedVectorFieldHolder g = readGravitationalAcceleration( runTime, mesh );
 
   volScalarFieldHolder T; volScalarFieldHolder p_rgh;
   volVectorFieldHolder U; surfaceScalarFieldHolder phi;

@@ -60,7 +60,7 @@ struct result_createFields
 
 
 //---------------------------------------------------------------------------
-result_createFields createFields( const TimeHolder& runTime, const fvMeshHolder& mesh, const uniformDimensionedVectorField& g,
+result_createFields createFields( const TimeHolder& runTime, const fvMeshHolder& mesh, const uniformDimensionedVectorFieldHolder& g,
                                    basicPsiThermoHolder& pThermo,
                                    volScalarFieldHolder& rho,
                                    volScalarFieldHolder& p,
@@ -278,7 +278,7 @@ int main(int argc, char *argv[])
     
   fvMeshHolder mesh = createMesh( runTime );
     
-  uniformDimensionedVectorField g = readGravitationalAcceleration( runTime, mesh );
+  uniformDimensionedVectorFieldHolder g = readGravitationalAcceleration( runTime, mesh );
   
   basicPsiThermoHolder pThermo; volScalarFieldHolder rho; volScalarFieldHolder p;
   volScalarFieldHolder h; volScalarFieldHolder psi;

@@ -52,7 +52,7 @@ Description
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 //---------------------------------------------------------------------------
-void createFields( const TimeHolder& runTime, const fvMeshHolder& mesh, const uniformDimensionedVectorField& g,
+void createFields( const TimeHolder& runTime, const fvMeshHolder& mesh, const uniformDimensionedVectorFieldHolder& g,
                    basicRhoThermoHolder& pThermo, volScalarFieldHolder& rho,
                    volScalarFieldHolder& p, volScalarFieldHolder& h,
                    volScalarFieldHolder& psi, volVectorFieldHolder& U,
@@ -240,7 +240,7 @@ int main(int argc, char *argv[])
     
   fvMeshHolder mesh = createMesh( runTime );
     
-  uniformDimensionedVectorField g = readGravitationalAcceleration( runTime, mesh );
+  uniformDimensionedVectorFieldHolder g = readGravitationalAcceleration( runTime, mesh );
   
   basicRhoThermoHolder pThermo; volScalarFieldHolder rho; volScalarFieldHolder p;
   volScalarFieldHolder h; volScalarFieldHolder psi;
