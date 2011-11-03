@@ -10,4 +10,6 @@ IOdictionaryHolder.cpp
 
 primitiveFields.cpp
 
+uniformDimensionedFieldHolders.cpp
+
 LIB = $(FOAM_USER_LIBBIN)/libmanagedFlu-OpenFOAM
