@@ -349,7 +349,7 @@ fvVectorMatrixHolder fun_UEqn( const fvMeshHolder& mesh,
                                   fvc::interpolate( rho * volScalarFieldHolder( turbulence->nut(), Deps( &turbulence ) ) ) );
 
   fvVectorMatrixHolder UEqn( fvm::ddt(rho, U) + fvm::div(rhoPhi, U) - 
-                             fvm::laplacian(muEff, U) - volVectorFieldHolder( fvc::grad( U() ) & fvc::grad( muEff() ), Deps( &U, &muEff ) )
+                             fvm::laplacian(muEff, U) - ( fvc::grad( U ) & fvc::grad( muEff ) )
                              //- fvc::div(muEff*(fvc::interpolate(dev(fvc::grad(U))) & mesh.Sf())) 
                              );
 
