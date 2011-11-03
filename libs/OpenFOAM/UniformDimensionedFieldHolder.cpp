@@ -46,7 +46,15 @@ namespace Foam
     IOobjectHolder::operator=( boost::shared_ptr< UniformDimensionedField< Type > >( *this ) );
   }
   
-
+  template<class Type >
+  UniformDimensionedFieldHolder< Type >::UniformDimensionedFieldHolder( const boost::shared_ptr< UniformDimensionedField< Type > >& field, 
+									const Deps& args )
+    : DependentHolder( args )
+    , boost::shared_ptr< UniformDimensionedField< Type > >( field )
+  {
+    IOobjectHolder::operator=( boost::shared_ptr< UniformDimensionedField< Type > >( *this ) );
+  }
+  
   template<class Type >
   UniformDimensionedFieldHolder< Type >::UniformDimensionedFieldHolder()
     : DependentHolder()

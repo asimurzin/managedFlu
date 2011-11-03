@@ -49,6 +49,8 @@ namespace Foam
     UniformDimensionedFieldHolder( const IOobjectHolder& );
     UniformDimensionedFieldHolder( const IOobjectHolder&, const dimensioned< Type >& );
     
+    UniformDimensionedFieldHolder( const boost::shared_ptr< UniformDimensionedField< Type > >&, const Deps& );
+    
     UniformDimensionedFieldHolder();
     
     ~UniformDimensionedFieldHolder();
@@ -56,8 +58,10 @@ namespace Foam
     virtual SimpleHolder* clone() const;
     
     void operator()( const UniformDimensionedFieldHolder& );
-    
+#ifndef SWIG
     using boost::shared_ptr< UniformDimensionedField< Type > >::operator*;
+    using boost::shared_ptr< UniformDimensionedField< Type > >::operator->;
+#endif
   };
 
 } // Foam
