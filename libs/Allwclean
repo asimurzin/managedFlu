@@ -7,6 +7,7 @@
 ( cd thermophysicalModels/basicSolidThermo && wclean )
 ( cd thermophysicalModels/radiationModel && wclean )
 ( cd transportModels/incompressible && wclean )
+( cd transportModels/interfaceProperties && wclean )
 ( cd turbulenceModels/compressible/turbulenceModel && wclean )
 ( cd turbulenceModels/compressible/RAS && wclean )
 ( cd turbulenceModels/incompressible/turbulenceModel && wclean )
