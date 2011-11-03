@@ -135,15 +135,15 @@ namespace Foam
   }
 
   template<class Type, template<class> class PatchField, class GeoMesh >
-  inline GeometricFieldHolder< Type, PatchField, GeoMesh > mag( const GeometricFieldHolder< Type, PatchField, GeoMesh >&  field )
+  inline GeometricFieldHolder< scalar, PatchField, GeoMesh > mag( const GeometricFieldHolder< Type, PatchField, GeoMesh >&  field )
   {
-    return GeometricFieldHolder< Type, PatchField, GeoMesh >( mag( field() ), &field );
+    return GeometricFieldHolder< scalar, PatchField, GeoMesh >( mag( field() ), Deps( &field ) );
   }
   
   template<class Type, template<class> class PatchField, class GeoMesh >
   inline  GeometricFieldHolder< Type, PatchField, GeoMesh > operator - ( const  GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
   {
-    return GeometricFieldHolder< Type, PatchField, GeoMesh >( -field(), &field );
+    return GeometricFieldHolder< Type, PatchField, GeoMesh >( -field(), Deps( &field ) );
   }
 
 } // Foam
