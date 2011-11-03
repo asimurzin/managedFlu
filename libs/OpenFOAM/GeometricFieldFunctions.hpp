@@ -29,7 +29,7 @@
 #include "surfaceFields.hpp"
 #include "volFields.hpp"
 
-#include <uniformDimensionedFields.H>
+#include <uniformDimensionedFieldHolders.hpp>
 
 
 //---------------------------------------------------------------------------
@@ -43,18 +43,18 @@ namespace Foam
     return surfaceScalarFieldHolder( field1() & field2(), Deps( &field1, &field2 ) );
   }
 
-  inline surfaceScalarFieldHolder operator & ( const uniformDimensionedVectorField& field1, 
+  inline surfaceScalarFieldHolder operator & ( const uniformDimensionedVectorFieldHolder& field1, 
 					       const surfaceVectorFieldHolder& field2 )
   {
-    return surfaceScalarFieldHolder( field1 & field2(), Deps( &field2 ) );
+    return surfaceScalarFieldHolder( *field1 & field2(), Deps( &field1, &field2 ) );
   }
 
 
   //-------------------------------------------------------------------------
-  inline volScalarFieldHolder operator & ( const uniformDimensionedVectorField& field1, 
+  inline volScalarFieldHolder operator & ( const uniformDimensionedVectorFieldHolder& field1, 
                                            const volVectorFieldHolder& field2 )
   {
-    return volScalarFieldHolder( field1 & field2(), &field2 );
+    return volScalarFieldHolder( *field1 & field2(), Deps( &field1, &field2 ) );
   }
 
 
@@ -90,11 +90,18 @@ namespace Foam
     return GeometricFieldHolder< Type, PatchField, GeoMesh >( field1() + field2(), Deps( &field1, &field2 ) );
   }
 
- template<class Type, template<class> class PatchField, class GeoMesh>
+  template<class Type, template<class> class PatchField, class GeoMesh>
   inline GeometricFieldHolder< Type, PatchField, GeoMesh > operator * ( const dimensionedScalar& dmS, 
                                                                         const GeometricFieldHolder< Type, PatchField, GeoMesh >& field2 )
   {
     return GeometricFieldHolder< Type, PatchField, GeoMesh >( dmS * field2(), Deps( &field2 ) );
+  }
+
+  template<class Type, template<class> class PatchField, class GeoMesh>
+  inline GeometricFieldHolder< Type, PatchField, GeoMesh > operator * ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field2, 
+                                                                        const dimensionedScalar& dmS )
+  {
+    return GeometricFieldHolder< Type, PatchField, GeoMesh >( field2() * dmS, Deps( &field2 ) );
   }
 
   template<class Type, template<class> class PatchField, class GeoMesh >
@@ -123,6 +130,13 @@ namespace Foam
 					                                const GeometricFieldHolder< Type, PatchField, GeoMesh >& field2 )
   {
     return GeometricFieldHolder< Type, PatchField, GeoMesh >( field1() - field2(), Deps( &field1, &field2 ) );
+  }
+
+  template<class Type, template<class> class PatchField, class GeoMesh >
+  inline GeometricFieldHolder< Type, PatchField, GeoMesh > operator - ( const scalar& theValue, 
+					                                const GeometricFieldHolder< Type, PatchField, GeoMesh >& field2 )
+  {
+    return GeometricFieldHolder< Type, PatchField, GeoMesh >( theValue - field2(), Deps( &field2 ) );
   }
 
   template<class Type, template<class> class PatchField, class GeoMesh >

@@ -65,14 +65,14 @@ void continuityErrors( const TimeHolder& runTime, const fvMeshHolder& mesh,
 
 
 //---------------------------------------------------------------------------
-uniformDimensionedVectorField readGravitationalAcceleration( const TimeHolder& runTime, const fvMeshHolder& mesh )
+uniformDimensionedVectorFieldHolder readGravitationalAcceleration( const TimeHolder& runTime, const fvMeshHolder& mesh )
 {
   Info<< "\nReading g" << endl;
-  return uniformDimensionedVectorField( IOobject( "g",
-           runTime->constant(),
-           *mesh,
-           IOobject::MUST_READ,
-           IOobject::NO_WRITE ) );
+  return uniformDimensionedVectorFieldHolder( IOobjectHolder( "g",
+                                                              runTime->constant(),
+                                                              mesh,
+                                                              IOobject::MUST_READ,
+                                                              IOobject::NO_WRITE ) );
 }
 
 

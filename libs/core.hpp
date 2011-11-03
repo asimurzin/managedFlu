@@ -4,6 +4,8 @@
 #include "simpleControlHolder.hpp"
 #include "IOdictionaryHolder.hpp"
 
+#include "uniformDimensionedFieldHolders.hpp"
+
 #include "fvMeshHolder.hpp"
 #include "volFields.hpp"
 #include "surfaceFields.hpp"
