@@ -46,7 +46,7 @@ namespace Foam
   inline fvMatrixHolder< Type > operator == ( const fvMatrixHolder< Type >& mt1, 
                                               const fvMatrixHolder< Type >& mt2 )
   {
-    return fvVectorMatrixHolder( mt1() == mt2(), Deps( mt1.deps(), mt2.deps() ) );
+    return fvMatrixHolder< Type >( mt1() == mt2(), Deps( mt1.deps(), mt2.deps() ) );
   }
 
   template< class Type >
