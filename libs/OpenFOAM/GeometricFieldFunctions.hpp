@@ -54,6 +54,14 @@ namespace Foam
     return GeometricFieldHolder< typename innerProduct< vector, Type >::type, PatchField, GeoMesh >( *field1 & field2(), Deps( &field1, &field2 ) );
   }
 
+  template<class Type, template<class> class PatchField, class GeoMesh >
+  inline GeometricFieldHolder< typename innerProduct< vector, Type >::type, PatchField, GeoMesh >
+    operator & ( const vector& theVector, 
+                 const GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
+  {
+    return GeometricFieldHolder< typename innerProduct< vector, Type >::type, PatchField, GeoMesh >( theVector & field(), Deps( &field ) );
+  }
+
   template< template<class> class PatchField, class GeoMesh >
   inline GeometricFieldHolder< scalar, PatchField, GeoMesh > 
     operator / ( const scalar& value, 
@@ -100,10 +108,10 @@ namespace Foam
   }
 
   template<class Type, template<class> class PatchField, class GeoMesh >
-  inline GeometricFieldHolder< Type, PatchField, GeoMesh > operator + ( const dimensionedScalar& dmS, 
+  inline GeometricFieldHolder< Type, PatchField, GeoMesh > operator + ( const dimensioned< Type >& dmT, 
                                                                         const GeometricFieldHolder< Type, PatchField, GeoMesh >& field2 )
   {
-    return GeometricFieldHolder< Type, PatchField, GeoMesh >( dmS + field2(), Deps( &field2 ) );
+    return GeometricFieldHolder< Type, PatchField, GeoMesh >( dmT + field2(), Deps( &field2 ) );
   }
 
   template<class Type, template<class> class PatchField, class GeoMesh >
@@ -132,6 +140,13 @@ namespace Foam
 					                                const GeometricFieldHolder< Type, PatchField, GeoMesh >& field2 )
   {
     return GeometricFieldHolder< Type, PatchField, GeoMesh >( theValue - field2(), Deps( &field2 ) );
+  }
+
+  template<class Type, template<class> class PatchField, class GeoMesh >
+  inline GeometricFieldHolder< Type, PatchField, GeoMesh > operator - ( const GeometricFieldHolder< Type, PatchField, GeoMesh >& field2,
+                                                                        const scalar& theValue )
+  {
+    return GeometricFieldHolder< Type, PatchField, GeoMesh >( field2() - theValue, Deps( &field2 ) );
   }
 
   template<class Type, template<class> class PatchField, class GeoMesh >
