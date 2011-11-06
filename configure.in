@@ -104,6 +104,7 @@ AC_OUTPUT( [ bashrc \
              solvers/compressible/sonicLiquidFoam/Make/options \
              solvers/DNS/dnsFoam/Make/options \
              solvers/multiphase/interFoam/Make/options \
+             solvers/multiphase/interDyMFoam/Make/options \
              unitaryTests/testField/Make/options \
              unitaryTests/testMatrix/Make/options \
      	     unitaryTests/testMeshDictField/Make/options \

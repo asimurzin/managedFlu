@@ -2,5 +2,6 @@
 cd ${0%/*} || exit 1    # run from this directory
 
 ( cd interFoam && wclean )
+( cd interDyMFoam && wclean )
 
 # ----------------------------------------------------------------- end-of-file
