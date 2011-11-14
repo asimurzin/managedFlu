@@ -70,6 +70,13 @@ namespace Foam
     return GeometricFieldHolder< scalar, PatchField, GeoMesh >( value / field(), Deps( &field ) );
   }
   
+  template< template<class> class PatchField, class GeoMesh >
+  inline GeometricFieldHolder< scalar, PatchField, GeoMesh > 
+    operator / ( const dimensionedScalar& dmS, 
+                 const GeometricFieldHolder< scalar, PatchField, GeoMesh >& field )
+  {
+    return GeometricFieldHolder< scalar, PatchField, GeoMesh >( dmS / field(), Deps( &field ) );
+  }
   template<class Type, template<class> class PatchField, class GeoMesh >
   inline GeometricFieldHolder< Type, PatchField, GeoMesh > operator * ( const GeometricFieldHolder< scalar, PatchField, GeoMesh >& field1, 
                                                                         const GeometricFieldHolder< Type, PatchField, GeoMesh >& field2 )
@@ -159,6 +166,54 @@ namespace Foam
   inline  GeometricFieldHolder< Type, PatchField, GeoMesh > operator - ( const  GeometricFieldHolder< Type, PatchField, GeoMesh >& field )
   {
     return GeometricFieldHolder< Type, PatchField, GeoMesh >( -field(), Deps( &field ) );
+  }
+  
+  template< template<class> class PatchField, class GeoMesh >
+  inline GeometricFieldHolder< scalar, PatchField, GeoMesh > pos( const GeometricFieldHolder< scalar, PatchField, GeoMesh >&  field )
+  {
+    return GeometricFieldHolder< scalar, PatchField, GeoMesh >( pos( field() ), Deps( &field ) );
+  }
+
+  template<class Type, template<class> class PatchField, class GeoMesh >
+  inline GeometricFieldHolder< Type, PatchField, GeoMesh > max( const GeometricFieldHolder< Type, PatchField, GeoMesh >&  field1,
+                                                                const GeometricFieldHolder< Type, PatchField, GeoMesh >&  field2 )
+  {
+    return GeometricFieldHolder< Type, PatchField, GeoMesh >( max( field1(), field2() ), Deps( &field1, &field2 ) );
+  }
+
+  template<class Type, template<class> class PatchField, class GeoMesh >
+  inline GeometricFieldHolder< Type, PatchField, GeoMesh > min( const GeometricFieldHolder< Type, PatchField, GeoMesh >&  field1,
+                                                                const GeometricFieldHolder< Type, PatchField, GeoMesh >&  field2 )
+  {
+    return GeometricFieldHolder< Type, PatchField, GeoMesh >( min( field1(), field2() ), Deps( &field1, &field2 ) );
+  }
+
+  template<class Type, template<class> class PatchField, class GeoMesh >
+  inline GeometricFieldHolder< Type, PatchField, GeoMesh > max( const GeometricFieldHolder< Type, PatchField, GeoMesh >&  field1,
+                                                                const dimensioned< Type >& dmT )
+  {
+    return GeometricFieldHolder< Type, PatchField, GeoMesh >( max( field1(), dmT ), Deps( &field1 ) );
+  }
+
+  template<class Type, template<class> class PatchField, class GeoMesh >
+  inline GeometricFieldHolder< Type, PatchField, GeoMesh > min( const GeometricFieldHolder< Type, PatchField, GeoMesh >&  field1,
+                                                                const dimensioned< Type >& dmT )
+  {
+    return GeometricFieldHolder< Type, PatchField, GeoMesh >( min( field1(), dmT ), Deps( &field1 ) );
+  }
+
+  template<class Type, template<class> class PatchField, class GeoMesh >
+  inline GeometricFieldHolder< Type, PatchField, GeoMesh > max( const GeometricFieldHolder< Type, PatchField, GeoMesh >&  field1,
+                                                                const Type& theValue )
+  {
+    return GeometricFieldHolder< Type, PatchField, GeoMesh >( max( field1(), theValue ), Deps( &field1 ) );
+  }
+
+  template<class Type, template<class> class PatchField, class GeoMesh >
+  inline GeometricFieldHolder< Type, PatchField, GeoMesh > min( const GeometricFieldHolder< Type, PatchField, GeoMesh >&  field1,
+                                                                const Type& theValue )
+  {
+    return GeometricFieldHolder< Type, PatchField, GeoMesh >( min( field1(), theValue ), Deps( &field1 ) );
   }
 
 } // Foam
