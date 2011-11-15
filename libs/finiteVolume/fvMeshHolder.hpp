@@ -55,6 +55,8 @@ namespace Foam
     fvMeshHolder();
     ~fvMeshHolder();
     
+    void operator()( const fvMeshHolder& );
+    
     using boost::shared_ptr< fvMesh >::operator*;
     using boost::shared_ptr< fvMesh >::operator->;
     using boost::shared_ptr< fvMesh >::get;

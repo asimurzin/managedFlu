@@ -29,6 +29,8 @@ namespace Foam
       static radiationModelHolder New( const volScalarFieldHolder& T );
     
       virtual SimpleHolder* clone() const;
+      
+      void operator()( const radiationModelHolder& );
     
       using  boost::shared_ptr< radiationModel >::operator*;
       using  boost::shared_ptr< radiationModel >::operator->;

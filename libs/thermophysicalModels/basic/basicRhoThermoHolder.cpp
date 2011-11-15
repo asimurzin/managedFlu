@@ -32,6 +32,12 @@ namespace Foam
     
     return basicRhoThermoHolder( boost::shared_ptr< basicRhoThermo >( pThermo.ptr() ), mesh );
   }
+  
+  void basicRhoThermoHolder::operator()( const basicRhoThermoHolder& the_Arg )
+  {
+    this->operator=( the_Arg );
+  }
+
 
 }
 //---------------------------------------------------------------------------

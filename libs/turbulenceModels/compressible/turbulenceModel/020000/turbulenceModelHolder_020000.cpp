@@ -44,6 +44,12 @@ namespace compressible
     boost::shared_ptr< turbulenceModel >::operator=( tm );
   }
   
+  void turbulenceModelHolder::operator()( const turbulenceModelHolder& the_Arg )
+  {
+    this->operator=( the_Arg );
+  }
+
+  
 }//compressible
 }//Foam
 

@@ -38,6 +38,12 @@ namespace Foam
   
   basicSolidThermoHolder::~basicSolidThermoHolder()
   {}
+  
+  void basicSolidThermoHolder::operator()( const basicSolidThermoHolder& the_Arg )
+  {
+    this->operator=( the_Arg );
+  }
+
 }
 
 

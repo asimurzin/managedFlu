@@ -29,6 +29,8 @@ namespace Foam
     
     virtual SimpleHolder* clone() const;
     
+    void operator()( const basicSolidThermoHolder& );
+    
     using  boost::shared_ptr< basicSolidThermo >::operator*;
     using  boost::shared_ptr< basicSolidThermo >::operator->;
   protected:

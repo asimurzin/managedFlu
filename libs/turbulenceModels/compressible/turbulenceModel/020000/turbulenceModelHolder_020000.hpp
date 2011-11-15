@@ -36,6 +36,8 @@ namespace compressible
     
     virtual SimpleHolder* clone() const;
     
+    void operator()( const turbulenceModelHolder& );
+    
     using  boost::shared_ptr< turbulenceModel >::operator*;
     using  boost::shared_ptr< turbulenceModel >::operator->;
 

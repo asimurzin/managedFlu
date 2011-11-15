@@ -36,6 +36,12 @@ namespace Foam
       cout << "~radiationModelHolder = " << this << nl;
 #endif
     }
+    
+    void radiationModelHolder::operator()( const radiationModelHolder& the_Arg )
+    {
+      this->operator=( the_Arg );
+    }
+
   }
 }
 
