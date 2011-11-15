@@ -15,6 +15,7 @@ EXE_INC = \
     -I@abs_top_builddir@/libs/OpenFOAM/lnInclude \
     -I@abs_top_builddir@/libs/finiteVolume/lnInclude \
     -I@abs_top_builddir@/libs/thermophysicalModels/basic/lnInclude \
+    -I@abs_top_builddir@/libs/thermophysicalModels/basicSolidThermo/lnInclude \
     -I@abs_top_builddir@/libs/thermophysicalModels/radiationModel/lnInclude \
     -I@abs_top_builddir@/libs/turbulenceModels/compressible/turbulenceModel/lnInclude \
     -I@abs_top_builddir@/libs/turbulenceModels/compressible/RAS/lnInclude \
@@ -30,4 +31,4 @@ EXE_LIBS = \
     @OPENFOAM_MESHTOOLS_LIBS@ \
     -lcoupledDerivedFvPatchFields \
     -L$(FOAM_USER_LIBBIN) -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume -lmanagedFlu-basicThermophysicalModels \
-    -lmanagedFlu-compressibleTurbulenceModel -lmanagedFlu-compressibleRASModels -lmanagedFlu-radiationModels
+    -lmanagedFlu-compressibleTurbulenceModel -lmanagedFlu-compressibleRASModels -lmanagedFlu-radiationModels -lmanagedFlu-basicSolidThermo

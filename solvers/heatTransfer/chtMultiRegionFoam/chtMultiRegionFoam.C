@@ -40,91 +40,239 @@ Description
 #include "basicSolidThermo.H"
 #include "radiationModel.H"
 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-int main(int argc, char *argv[])
+#include "core.hpp"
+#include "basicRhoThermoHolder.hpp"
+#include "basicSolidThermoHolder.hpp"
+#include "turbulenceModels/compressible/turbulenceModel/turbulenceModelHolder.hpp"
+#include "radiationModelHolder.hpp"
+
+#include "OpenFOAM/functions.hpp"
+#include "finiteVolume/functions.hpp"
+#include "thermophysicalModels/radiationModel/functions.hpp"
+#include "rhoEqn.hpp"
+
+//---------------------------------------------------------------------------
+#include <vector>
+template<typename T>
+class TList
 {
-    #include "setRootCase.H"
-    #include "createTime.H"
+public:
+    typedef std::vector< T > list;
+private:
+    TList() {};
+};
 
-    regionProperties rp(runTime);
-
-    #include "createFluidMeshes.H"
-    #include "createSolidMeshes.H"
-
-    #include "createFluidFields.H"
-    #include "createSolidFields.H"
-
-    #include "initContinuityErrs.H"
-
-    #include "readTimeControls.H"
-    #include "readSolidTimeControls.H"
+#undef forAll
+#define forAll(list, i) \
+    for ( size_t i=0; i<list.size(); i++)
 
 
-    #include "compressibleMultiRegionCourantNo.H"
-    #include "solidRegionDiffusionNo.H"
-    #include "setInitialMultiRegionDeltaT.H"
+//---------------------------------------------------------------------------
+#include "fluid.hpp"
+#include "solid.hpp"
 
 
-    while (runTime.run())
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+//---------------------------------------------------------------------------
+void setInitialMultiRegionDeltaT( TimeHolder& runTime,
+                                  scalar& CoNum, scalar& DiNum,
+                                  const bool& adjustTimeStep, const scalar& maxCo,
+                                  const scalar& maxDeltaT, const scalar& maxDi )
+{
+  if (adjustTimeStep)
+  {
+    if ((runTime->timeIndex() == 0) && ((CoNum > SMALL) || (DiNum > SMALL)))
     {
-        #include "readTimeControls.H"
-        #include "readSolidTimeControls.H"
-        #include "readPIMPLEControls.H"
+      if (CoNum < SMALL)
+      {
+        CoNum = SMALL;
+      }
+
+      if (DiNum < SMALL)
+      {
+        DiNum = SMALL;
+      }
+
+      runTime->setDeltaT( min( min( maxCo / CoNum, maxDi / DiNum ) * runTime->deltaT().value(),
+                               maxDeltaT ) );
+        Info<< "deltaT = " <<  runTime->deltaT().value() << endl;
+    }
+  }
+}
 
 
-        #include "compressibleMultiRegionCourantNo.H"
-        #include "solidRegionDiffusionNo.H"
-        #include "setMultiRegionDeltaT.H"
+//---------------------------------------------------------------------------
+void readPIMPLEControls( const TimeHolder& runTime, dictionary& pimple, int& nOuterCorr)
+{
+  // We do not have a top-level mesh. Construct the fvSolution for
+  // the runTime instead.
+  fvSolution solutionDict( *runTime );
 
-        runTime++;
+  pimple = solutionDict.subDict("PIMPLE");
 
-        Info<< "Time = " << runTime.timeName() << nl << endl;
+  nOuterCorr = pimple.lookupOrDefault<int>("nOuterCorrectors", 1);
+}
 
-        if (nOuterCorr != 1)
-        {
-            forAll(fluidRegions, i)
-            {
-                #include "setRegionFluidFields.H"
-                #include "storeOldFluidFields.H"
-            }
-        }
-
-
-        // --- PIMPLE loop
-        for (int oCorr=0; oCorr<nOuterCorr; oCorr++)
-        {
-            bool finalIter = oCorr == nOuterCorr-1;
-
-            forAll(fluidRegions, i)
-            {
-                Info<< "\nSolving for fluid region "
-                    << fluidRegions[i].name() << endl;
-                #include "setRegionFluidFields.H"
-                #include "readFluidMultiRegionPIMPLEControls.H"
-                #include "solveFluid.H"
-            }
-
-            forAll(solidRegions, i)
-            {
-                Info<< "\nSolving for solid region "
-                    << solidRegions[i].name() << endl;
-                #include "setRegionSolidFields.H"
-                #include "readSolidMultiRegionPIMPLEControls.H"
-                #include "solveSolid.H"
-            }
-        }
-
-        runTime.write();
-
-        Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
-            << "  ClockTime = " << runTime.elapsedClockTime() << " s"
-            << nl << endl;
+//---------------------------------------------------------------------------
+void setMultiRegionDeltaT( TimeHolder& runTime,
+                                  scalar& CoNum, scalar& DiNum,
+                                  const bool& adjustTimeStep, const scalar& maxCo,
+                                  const scalar& maxDeltaT, const scalar& maxDi )
+{
+  if (adjustTimeStep)
+  {
+    if (CoNum == -GREAT)
+    {
+      CoNum = SMALL;
     }
 
-    Info<< "End\n" << endl;
+    if (DiNum == -GREAT)
+    {
+      DiNum = SMALL;
+    }
 
-    return 0;
+    scalar maxDeltaTFluid = maxCo / (CoNum + SMALL);
+    scalar maxDeltaTSolid = maxDi / (DiNum + SMALL);
+
+    scalar deltaTFluid =min( min( maxDeltaTFluid, 1.0 + 0.1 * maxDeltaTFluid), 1.2 );
+
+    runTime->setDeltaT( min( min( deltaTFluid, maxDeltaTSolid ) * runTime->deltaT().value(),
+                            maxDeltaT ) );
+
+    Info<< "deltaT = " <<  runTime->deltaT().value() << endl;
+}
+
+}
+//---------------------------------------------------------------------------
+int main(int argc, char *argv[])
+{
+  argList args = setRootCase( argc, argv );
+   
+  TimeHolder runTime=createTime( Time::controlDictName, args );
+
+  regionProperties rp( *runTime );
+  
+  TList<fvMeshHolder>::list fluidRegions;
+  createFluidMeshes( runTime, rp, fluidRegions );
+  
+  TList<fvMeshHolder>::list solidRegions;
+  createSolidMeshes( runTime, rp, solidRegions );
+
+  TList<basicRhoThermoHolder>::list thermoFluid; TList<volScalarFieldHolder>::list rhoFluid;
+  TList<volScalarFieldHolder>::list KFluid; TList<volVectorFieldHolder>::list UFluid;
+  TList<surfaceScalarFieldHolder>::list phiFluid; TList<uniformDimensionedVectorFieldHolder>::list gFluid;
+  TList<compressible::turbulenceModelHolder>::list turbulence; TList<volScalarFieldHolder>::list p_rghFluid;
+  TList<volScalarFieldHolder>::list ghFluid; TList<surfaceScalarFieldHolder>::list ghfFluid;
+  TList<radiation::radiationModelHolder>::list radiation; TList<volScalarFieldHolder>::list DpDtFluid;
+  TList<scalar>::list initialMassFluid;
+  createFluidFields( runTime, fluidRegions, thermoFluid, rhoFluid, KFluid, UFluid, phiFluid, gFluid, turbulence, 
+                     p_rghFluid, ghFluid, ghfFluid, radiation, DpDtFluid, initialMassFluid );
+  
+  TList<basicSolidThermoHolder>::list thermos;
+  createSolidFields( runTime, solidRegions, thermos );
+
+  TList<scalar>::list cumulativeContErr = initContinuityErrs( fluidRegions );
+  
+  bool adjustTimeStep; scalar maxCo; scalar maxDeltaT;
+  readTimeControls( runTime, adjustTimeStep, maxCo, maxDeltaT );
+  
+  scalar maxDi = readSolidTimeControls( runTime );
+  
+  scalar CoNum = compressibleMultiRegionCourantNo( runTime, fluidRegions, rhoFluid, phiFluid );
+  
+  scalar DiNum = solidRegionDiffusionNo(runTime,  solidRegions, thermos );
+  
+  setInitialMultiRegionDeltaT( runTime, CoNum, DiNum, adjustTimeStep, maxCo, maxDeltaT, maxDi );
+  
+  while ( runTime->run() )
+  {
+    readTimeControls( runTime, adjustTimeStep, maxCo, maxDeltaT );
+    maxDi = readSolidTimeControls( runTime );
+    
+    dictionary pimple; int nOuterCorr;
+    readPIMPLEControls( runTime, pimple, nOuterCorr);
+
+    CoNum = compressibleMultiRegionCourantNo( runTime, fluidRegions, rhoFluid, phiFluid );
+  
+    DiNum = solidRegionDiffusionNo(runTime,  solidRegions, thermos );
+    
+    setMultiRegionDeltaT( runTime, CoNum, DiNum, adjustTimeStep, maxCo, maxDeltaT, maxDi );
+ 
+    ( *runTime )++;
+
+    Info<< "Time = " << runTime->timeName() << nl << endl;
+
+    if (nOuterCorr != 1)
+    {
+      forAll(fluidRegions, i)
+      {
+        fvMeshHolder mesh; basicRhoThermoHolder thermo; volScalarFieldHolder rho; volScalarFieldHolder K;
+        volVectorFieldHolder U; surfaceScalarFieldHolder phi; compressible::turbulenceModelHolder turb;
+        volScalarFieldHolder DpDt; volScalarFieldHolder p; volScalarFieldHolder psi;
+        volScalarFieldHolder h; volScalarFieldHolder p_rgh; volScalarFieldHolder gh;
+        surfaceScalarFieldHolder ghf; radiation::radiationModelHolder rad;
+        
+        dimensionedScalar initialMass = setRegionFluidFields( i, fluidRegions, mesh, thermoFluid, thermo, rhoFluid, rho, KFluid, K,
+                                                              UFluid, U, phiFluid, phi, turbulence, turb, p_rghFluid, p_rgh,
+                                                              ghFluid, gh, ghfFluid, ghf, radiation, rad, DpDtFluid, DpDt,
+                                                              initialMassFluid, p, psi, h );
+        
+        storeOldFluidFields( p_rgh, rho );
+      }
+    }
+
+
+    // --- PIMPLE loop
+    for (int oCorr=0; oCorr<nOuterCorr; oCorr++)
+    {
+      bool finalIter = oCorr == nOuterCorr-1;
+      forAll(fluidRegions, i)
+      {
+        Info << "\nSolving for fluid region "
+             << fluidRegions[i]->name() << endl;
+        
+        fvMeshHolder mesh; basicRhoThermoHolder thermo; volScalarFieldHolder rho; volScalarFieldHolder K;
+        volVectorFieldHolder U; surfaceScalarFieldHolder phi; compressible::turbulenceModelHolder turb;
+        volScalarFieldHolder DpDt; volScalarFieldHolder p; volScalarFieldHolder psi;
+        volScalarFieldHolder h; volScalarFieldHolder p_rgh; volScalarFieldHolder gh;
+        surfaceScalarFieldHolder ghf; radiation::radiationModelHolder rad;
+
+        dimensionedScalar initialMass = setRegionFluidFields( i, fluidRegions, mesh, thermoFluid, thermo, rhoFluid, rho, KFluid, K,
+                                                              UFluid, U, phiFluid, phi, turbulence, turb, p_rghFluid, p_rgh,
+                                                              ghFluid, gh, ghfFluid, ghf, radiation, rad, DpDtFluid, DpDt,
+                                                              initialMassFluid, p, psi, h );
+        
+        dictionary pimple; int nCorr; int nNonOrthCorr; bool momentumPredictor;
+        readFluidMultiRegionPIMPLEControls( mesh, pimple, nCorr, nNonOrthCorr, momentumPredictor );
+        
+
+        solveFluid( i, mesh, thermo, thermoFluid, rho, K, U, phi, turb, p_rgh, gh, 
+                    ghf, rad, DpDt, p, psi, h, finalIter, oCorr, nCorr, nNonOrthCorr, nOuterCorr, momentumPredictor, cumulativeContErr, initialMass );
+
+      }
+
+      forAll(solidRegions, i)
+      {
+        Info<< "\nSolving for solid region " << solidRegions[i]->name() << endl;
+        fvMeshHolder mesh; basicSolidThermoHolder thermo;
+        volScalarFieldHolder rho; volScalarFieldHolder cp;
+        volScalarFieldHolder K; volScalarFieldHolder T;
+        setRegionSolidFields( i, solidRegions, mesh, thermos, thermo, rho, cp, K,T );
+        int nNonOrthCorr = readSolidMultiRegionPIMPLEControls( mesh );
+        solveSolid( mesh, thermo, rho, cp, K, T, nNonOrthCorr, finalIter );
+      } 
+    }
+  }
+        
+  runTime->write();
+
+  Info<< "ExecutionTime = " << runTime->elapsedCpuTime() << " s"
+      << "  ClockTime = " << runTime->elapsedClockTime() << " s"
+      << nl << endl;
+  Info<< "End\n" << endl;
+
+  return 0;
 }
 
 
