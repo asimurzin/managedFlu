@@ -3,5 +3,6 @@ cd ${0%/*} || exit 1    # run from this directory
 
 ( cd interFoam && wmake )
 ( cd interDyMFoam && wmake )
+( cd compressibleInterFoam && wmake )
 
 # ----------------------------------------------------------------- end-of-file
