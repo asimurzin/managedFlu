@@ -263,13 +263,14 @@ int main(int argc, char *argv[])
         solveSolid( mesh, thermo, rho, cp, K, T, nNonOrthCorr, finalIter );
       } 
     }
+    runTime->write();
+
+    Info<< "ExecutionTime = " << runTime->elapsedCpuTime() << " s"
+        << "  ClockTime = " << runTime->elapsedClockTime() << " s"
+        << nl << endl;
   }
         
-  runTime->write();
-
-  Info<< "ExecutionTime = " << runTime->elapsedCpuTime() << " s"
-      << "  ClockTime = " << runTime->elapsedClockTime() << " s"
-      << nl << endl;
+  
   Info<< "End\n" << endl;
 
   return 0;
