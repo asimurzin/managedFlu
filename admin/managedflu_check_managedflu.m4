@@ -51,6 +51,9 @@ AC_SUBST(MANAGEDFLU_INTERFACEPROPERTIES_CPPFLAGS)
 MANAGEDFLU_BASICTHERMOPHYSICALMODELS_CPPFLAGS=""
 AC_SUBST(MANAGEDFLU_BASICTHERMOPHYSICALMODELS_CPPFLAGS)
 
+MANAGEDFLU_BASICSOLIDTHERMO_CPPFLAGS=""
+AC_SUBST(MANAGEDFLU_BASICSOLIDTHERMO_CPPFLAGS)
+
 MANAGEDFLU_RADIATIONMODELS_CPPFLAGS=""
 AC_SUBST(MANAGEDFLU_RADIATIONMODELS_CPPFLAGS)
 
@@ -90,6 +93,9 @@ AC_SUBST(MANAGEDFLU_INTERFACEPROPERTIES_LIB)
 
 MANAGEDFLU_BASICTHERMOPHYSICALMODELS_LIB=""
 AC_SUBST(MANAGEDFLU_BASICTHERMOPHYSICALMODELS_LIB)
+
+MANAGEDFLU_BASICSOLIDTHERMO_LIB=""
+AC_SUBST(MANAGEDFLU_BASICSOLIDTHERMO_LIB)
 
 MANAGEDFLU_RADIATIONMODELS_LIB=""
 AC_SUBST(MANAGEDFLU_RADIATIONMODELS_LIB)
@@ -137,6 +143,7 @@ if test "x${managedflu_includes}" = "xyes" ; then
    MANAGEDFLU_INCOMPRESSIBLETRANSPORTMODELS_CPPFLAGS="-I${managedflu_header_dir}/transportModels/incompressible/lnInclude"
    MANAGEDFLU_INTERFACEPROPERTIES_CPPFLAGS="-I${managedflu_header_dir}/transportModels/interfaceProperties/lnInclude"
    MANAGEDFLU_BASICTHERMOPHYSICALMODELS_CPPFLAGS="-I${managedflu_header_dir}/thermophysicalModels/basic/lnInclude"
+   MANAGEDFLU_BASICSOLIDTHERMO_CPPFLAGS="-I${managedflu_header_dir}/thermophysicalModels/basicSolidThermo/lnInclude"
    MANAGEDFLU_RADIATIONMODELS_CPPFLAGS="-I${managedflu_header_dir}/thermophysicalModels/radiationModel/lnInclude" 
    MANAGEDFLU_COMPRESSIBLETURBULENSEMODELS_CPPFLAGS="-I${managedflu_header_dir}/turbulenceModels/compressible/turbulenceModel/lnInclude -I${managedflu_header_dir}/turbulenceModels/compressible/RAS/lnInclude"
    MANAGEDFLU_INCOMPRESSIBLETURBULENSEMODELS_CPPFLAGS="-I${managedflu_header_dir}/turbulenceModels/incompressible/turbulenceModel/lnInclude -I${managedflu_header_dir}/turbulenceModels/incompressible/RAS/lnInclude  -I${managedflu_header_dir}/turbulenceModels/incompressible/LES/lnInclude"
@@ -185,6 +192,7 @@ if test "x${managedflu_libraries}" = "xyes" ; then
    MANAGEDFLU_INCOMPRESSIBLETRANSPORTMODELS_LIB="-lmanagedFlu-incompressibleTransportModels"
    MANAGEDFLU_INTERFACEPROPERTIES_LIB="-lmanagedFlu-interfaceProperties"
    MANAGEDFLU_BASICTHERMOPHYSICALMODELS_LIB="-lmanagedFlu-basicThermophysicalModels"
+   MANAGEDFLU_BASICSOLIDTHERMO_LIB="-lmanagedFlu-basicSolidThermo"
    MANAGEDFLU_RADIATIONMODELS_LIB="-lmanagedFlu-radiationModels"
    MANAGEDFLU_COMPRESSIBLETURBULENSEMODELS_LIBS="-lmanagedFlu-compressibleTurbulenceModel -lmanagedFlu-compressibleRASModels"
    MANAGEDFLU_INCOMPRESSIBLETURBULENSEMODELS_LIBS="-lmanagedFlu-incompressibleTurbulenceModel -lmanagedFlu-incompressibleRASModels -lmanagedFlu-incompressibleLESModels"
