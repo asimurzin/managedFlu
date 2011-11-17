@@ -15,7 +15,7 @@ namespace Foam
     : DependentHolder( &mesh )
     , boost::shared_ptr< basicSolidThermo >( pThermo )
   {
-     boost::shared_ptr< IOdictionary >::operator=( boost::shared_ptr< basicSolidThermo >( *this ) );
+     IOdictionaryHolder::operator=( boost::shared_ptr< basicSolidThermo >( *this ) );
   }
 
   basicSolidThermoHolder basicSolidThermoHolder::New( const fvMeshHolder& mesh )
