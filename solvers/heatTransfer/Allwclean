@@ -5,6 +5,7 @@ cd ${0%/*} || exit 1    # run from this directory
 ( cd buoyantBoussinesqSimpleFoam && wclean )
 ( cd buoyantPimpleFoam && wclean )
 ( cd buoyantSimpleFoam && wclean )
+( cd chtMultiRegionFoam && ./Allwclean )
 
 
 # ----------------------------------------------------------------- end-of-file
