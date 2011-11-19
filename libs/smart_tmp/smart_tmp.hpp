@@ -28,7 +28,7 @@
 //---------------------------------------------------------------------------
 #include <tmp.H>
 
-#include <autoPtr.H>
+#include <boost/shared_ptr.hpp>
 
 
 //---------------------------------------------------------------------------
@@ -38,43 +38,61 @@ namespace Foam
   template< class T >
   struct smart_tmp
   {
-    autoPtr< tmp< T > > engine;
+    boost::shared_ptr< tmp< T > > engine;
     
     explicit smart_tmp( T* tPtr = 0 )
-      : engine( new tmp< T >( tPtr ) )
+      : engine( boost::shared_ptr< tmp< T > >( new tmp< T >( tPtr ) ) )
     {}
     
     smart_tmp( const T& tRef )
-      : engine( new tmp< T >( tRef ) )
+      : engine( boost::shared_ptr< tmp< T > >( new tmp< T >( tRef ) ) )
     {}
     
     smart_tmp( const tmp< T >& t )
-      : engine( new tmp< T >( t ) )
+      : engine( boost::shared_ptr< tmp< T > >( new tmp< T >( t ) ) )
     {}
     
     smart_tmp( const smart_tmp< T >& at )
-      : engine( new tmp< T >( at.engine() ) )
+      : engine( at.engine )
     {}
     
     template< class Y >
     smart_tmp( const smart_tmp< Y >& at )
       : engine( new tmp< T >( at() ) )
-    {}
+    {
+      if ( ( *at.engine ).isTmp() )
+      {
+        this->engine(  boost::shared_ptr< tmp< T > >( new tmp< T >( const_cast<Y*>( at.operator->() ) ) ) );
+        this->operator->()->operator++();
+      }
+      else
+      {
+        this->engine( boost::shared_ptr< tmp< T > >( new tmp< T >( at() ) ) );
+      }
+    }
  
     void operator=( const tmp< T >& t )
     {
-      this->engine.reset( new tmp< T >( t ) );
+      this->engine = boost::shared_ptr< tmp< T > >( new tmp< T >( t ) );
     }
     
     void operator=( const smart_tmp< T >& at )
     {
-      this->engine.reset( new tmp< T >( at.engine() ) );
+      this->engine = at.engine;
     }
     
     template< class Y >
     void operator=( const smart_tmp< Y >& at )
     {
-      this->engine.reset( new tmp< T >( at() ) );
+      if ( ( *at.engine ).isTmp() )
+      {
+        this->engine = boost::shared_ptr< tmp< T > >( new tmp< T >( const_cast<Y*>( at.operator->() ) ) );
+        this->operator->()->operator++();
+      }
+      else
+      {
+        this->engine = boost::shared_ptr< tmp< T > >( new tmp< T >( at() ) );
+      }
     }
     
     T* operator->()
@@ -82,12 +100,14 @@ namespace Foam
       return this->engine->operator -> ();
     }
     
-    const T* operator->() const
+    T* ptr()
     {
-      return this->engine->operator -> ();
+      T* ptr = this->engine->ptr();
+      this->engine.reset();
+      return ptr; 
     }
     
-    const T* ptr() const
+    const T* operator->() const
     {
       return this->engine->operator -> ();
     }
