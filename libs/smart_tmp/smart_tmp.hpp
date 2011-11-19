@@ -58,16 +58,15 @@ namespace Foam
     
     template< class Y >
     smart_tmp( const smart_tmp< Y >& at )
-      : engine( new tmp< T >( at() ) )
     {
       if ( ( *at.engine ).isTmp() )
       {
-        this->engine(  boost::shared_ptr< tmp< T > >( new tmp< T >( const_cast<Y*>( at.operator->() ) ) ) );
+        this->engine = boost::shared_ptr< tmp< T > >( new tmp< T >( const_cast<Y*>( at.operator->() ) ) );
         this->operator->()->operator++();
       }
       else
       {
-        this->engine( boost::shared_ptr< tmp< T > >( new tmp< T >( at() ) ) );
+        this->engine = boost::shared_ptr< tmp< T > >( new tmp< T >( at() ) );
       }
     }
  
