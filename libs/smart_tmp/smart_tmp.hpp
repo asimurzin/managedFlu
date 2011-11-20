@@ -38,94 +38,85 @@ namespace Foam
   template< class T >
   struct smart_tmp
   {
-    boost::shared_ptr< tmp< T > > engine;
+
+    smart_tmp<T>()
+      : px( 0 ), pn()
+    {}
     
-    explicit smart_tmp( T* tPtr = 0 )
-      : engine( boost::shared_ptr< tmp< T > >( new tmp< T >( tPtr ) ) )
+    template< class Y >
+    explicit smart_tmp( Y* p = 0 )
+      : px( p ) 
+      , pn( new tmp< T >( p ) )
     {}
     
     smart_tmp( const T& tRef )
-      : engine( boost::shared_ptr< tmp< T > >( new tmp< T >( tRef ) ) )
+      : px( const_cast< T* >( &tRef ) )
+      , pn( new tmp< T >( tRef ) )
     {}
     
     smart_tmp( const tmp< T >& t )
-      : engine( boost::shared_ptr< tmp< T > >( new tmp< T >( t ) ) )
-    {}
-    
-    smart_tmp( const smart_tmp< T >& at )
-      : engine( at.engine )
+      : px( const_cast< T* >( t.operator->() ) )
+      , pn( new tmp< T >( t ) )
     {}
     
     template< class Y >
     smart_tmp( const smart_tmp< Y >& at )
-    {
-      if ( ( *at.engine ).isTmp() )
-      {
-        this->engine = boost::shared_ptr< tmp< T > >( new tmp< T >( const_cast<Y*>( at.operator->() ) ) );
-        this->operator->()->operator++();
-      }
-      else
-      {
-        this->engine = boost::shared_ptr< tmp< T > >( new tmp< T >( at() ) );
-      }
-    }
- 
-    void operator=( const tmp< T >& t )
-    {
-      this->engine = boost::shared_ptr< tmp< T > >( new tmp< T >( t ) );
-    }
+      : px( at.px )
+      , pn( at.pn )
+    {}
     
-    void operator=( const smart_tmp< T >& at )
+    smart_tmp& operator=( const tmp< T >& t )
     {
-      this->engine = at.engine;
+      smart_tmp< T >( t ).swap(*this);
+      return *this;
     }
     
     template< class Y >
-    void operator=( const smart_tmp< Y >& at )
+    smart_tmp& operator=( const smart_tmp< Y >& at )
     {
-      if ( ( *at.engine ).isTmp() )
-      {
-        this->engine = boost::shared_ptr< tmp< T > >( new tmp< T >( const_cast<Y*>( at.operator->() ) ) );
-        this->operator->()->operator++();
-      }
-      else
-      {
-        this->engine = boost::shared_ptr< tmp< T > >( new tmp< T >( at() ) );
-      }
+      smart_tmp< T >( at ).swap(*this);
+      return *this;
     }
     
     T* operator->()
     {
-      return this->engine->operator -> ();
-    }
-    
-    T* ptr()
-    {
-      T* ptr = this->engine->ptr();
-      this->engine.reset();
-      return ptr; 
+      BOOST_ASSERT(px != 0);
+      return px;
     }
     
     const T* operator->() const
     {
-      return this->engine->operator -> ();
+      BOOST_ASSERT(px != 0);
+      return px;
     }
     
     T& operator()()
     {
-      return this->engine->operator () ();
+      BOOST_ASSERT(px != 0);
+      return *px;
     }
     
     const T& operator()() const
     {
-      return this->engine->operator () ();
+      BOOST_ASSERT(px != 0);
+      return *px;
     }
     
     bool empty() const
     {
-      return this->engine->empty();
+      return px == 0;
     }
-
+    
+    void swap( smart_tmp< T > & other )
+    {
+      std::swap(px, other.px);
+      pn.swap(other.pn);
+    }
+  
+    private:
+      template<class Y> friend class smart_tmp;
+      T * px;                     // contained pointer
+      boost::detail::shared_count pn;    // reference counter
   };
   
   
