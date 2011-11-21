@@ -1,4 +1,4 @@
-//  pythonFlu - Python wrapping for OpenFOAM C++ API
+//  managedFlu - OpenFOAM C++ interactive functionality API
 //  Copyright (C) 2010- Alexey Petrov
 //  Copyright (C) 2009-2010 Pebble Bed Modular Reactor (Pty) Limited (PBMR)
 //  
@@ -17,7 +17,7 @@
 //
 //  See http://sourceforge.net/projects/pythonflu
 //
-//  Author : Alexey PETROV
+//  Author : Alexey PETROV, Andrey Simurzin
 
 
 //---------------------------------------------------------------------------

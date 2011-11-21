@@ -1,3 +1,6 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
 ( cd managedFlu && wmake libso )
 ( cd OpenFOAM && wmake libso )
 ( cd finiteVolume && wmake libso )
