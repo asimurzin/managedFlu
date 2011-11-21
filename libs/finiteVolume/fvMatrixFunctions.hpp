@@ -18,42 +18,42 @@ namespace Foam
   inline fvMatrixHolder< Type > operator + ( const fvMatrixHolder< Type >& mt1, 
                                              const fvMatrixHolder< Type >& mt2 )
   {
-    return fvMatrixHolder< Type >( mt1() + mt2(), Deps( mt1.deps(), mt2.deps() ) );
+    return fvMatrixHolder< Type >( mt1() + mt2(), Deps( mt1.deps() ) );
   }
 
   template< class Type >
   inline fvMatrixHolder< Type > operator - ( const fvMatrixHolder< Type >& mt1, 
                                              const fvMatrixHolder< Type >& mt2 )
   {
-    return fvMatrixHolder< Type >( mt1() - mt2(), Deps( mt1.deps(), mt2.deps() ) );
+    return fvMatrixHolder< Type >( mt1() - mt2(), Deps( mt1.deps() ) );
   }
 
   template< class Type >
   inline fvMatrixHolder< Type > operator + ( const fvMatrixHolder< Type >& mt1, 
                                              const GeometricFieldHolder< Type, fvPatchField, volMesh >& field )
   {
-    return fvMatrixHolder< Type >( mt1() + field() , Deps( mt1.deps(), &field ) );
+    return fvMatrixHolder< Type >( mt1() + field() , Deps( mt1.deps() ) );
   }
   
   template< class Type >
   inline fvMatrixHolder< Type > operator - ( const fvMatrixHolder< Type >& mt1, 
                                              const GeometricFieldHolder< Type, fvPatchField, volMesh >& field )
   {
-    return fvMatrixHolder< Type >( mt1() - field() , Deps( mt1.deps(), &field ) );
+    return fvMatrixHolder< Type >( mt1() - field() , Deps( mt1.deps() ) );
   }
 
   template< class Type >
   inline fvMatrixHolder< Type > operator == ( const fvMatrixHolder< Type >& mt1, 
                                               const fvMatrixHolder< Type >& mt2 )
   {
-    return fvMatrixHolder< Type >( mt1() == mt2(), Deps( mt1.deps(), mt2.deps() ) );
+    return fvMatrixHolder< Type >( mt1() == mt2(), Deps( mt1.deps() ) );
   }
 
   template< class Type >
   inline fvMatrixHolder< Type > operator == ( const fvMatrixHolder< Type >& mt1, 
                                               const GeometricFieldHolder< Type, fvPatchField, volMesh >& field )
   {
-    return fvMatrixHolder< Type >( mt1() == field() , Deps( mt1.deps(), &field ) );
+    return fvMatrixHolder< Type >( mt1() == field() , Deps( mt1.deps() ) );
   }
   
   

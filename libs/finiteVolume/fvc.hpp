@@ -43,7 +43,7 @@ namespace Foam
     //---------------------------------------------------------------------------
     inline volScalarFieldHolder surfaceSum( const surfaceScalarFieldHolder& field )
     {
-      return volScalarFieldHolder( surfaceSum( field() ),  &field );
+      return volScalarFieldHolder( surfaceSum( field() ),  Deps( field.deps() ) );
     }
 
 
@@ -52,32 +52,32 @@ namespace Foam
                                                 const volVectorFieldHolder& U,
                                                 const surfaceScalarFieldHolder& phi )
     {
-      return surfaceScalarFieldHolder( ddtPhiCorr( rA(), U(), phi() ), Deps( &rA, &U, &phi ) );
+      return surfaceScalarFieldHolder( ddtPhiCorr( rA(), U(), phi() ), Deps( rA.deps(), U.deps(), phi.deps() ) );
     }                   
     
 
     //---------------------------------------------------------------------------
     inline volScalarFieldHolder div( const surfaceScalarFieldHolder& phi )
     {
-      return volScalarFieldHolder( div( phi() ), &phi );
+      return volScalarFieldHolder( div( phi() ), phi.deps() );
     }
     
     
     //---------------------------------------------------------------------------
     inline surfaceScalarFieldHolder snGrad( const volScalarFieldHolder& field)
     {
-      return surfaceScalarFieldHolder( snGrad( field() ), &field );
+      return surfaceScalarFieldHolder( snGrad( field() ), field.deps() );
     }
 
     inline surfaceScalarFieldHolder snGrad( const volScalarFieldHolder& field, const word& name)
     {
-      return surfaceScalarFieldHolder( snGrad( field(), name ), &field );
+      return surfaceScalarFieldHolder( snGrad( field(), name ), field.deps() );
     }
 
    //---------------------------------------------------------------------------
    inline volVectorFieldHolder reconstruct( const surfaceScalarFieldHolder& field )
    {
-     return volVectorFieldHolder( reconstruct( field() ), &field );
+     return volVectorFieldHolder( reconstruct( field() ), field.deps() );
    }
    
    

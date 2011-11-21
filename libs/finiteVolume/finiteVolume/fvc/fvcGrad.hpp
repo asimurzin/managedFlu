@@ -40,21 +40,21 @@ namespace Foam
     inline GeometricFieldHolder< typename outerProduct<vector, Type>::type, fvPatchField, volMesh> 
       grad( const GeometricFieldHolder< Type, fvPatchField, volMesh>& field )
     {
-      return GeometricFieldHolder< typename outerProduct<vector, Type>::type, fvPatchField, volMesh>( grad( field() ), &field );
+      return GeometricFieldHolder< typename outerProduct<vector, Type>::type, fvPatchField, volMesh>( grad( field() ), field.deps() );
     }
 
     template<class Type>
     inline GeometricFieldHolder< typename outerProduct<vector, Type>::type, fvPatchField, volMesh> 
       grad( const GeometricFieldHolder< Type, fvPatchField, volMesh>& field, const word& name )
     {
-      return GeometricFieldHolder< typename outerProduct<vector, Type>::type, fvPatchField, volMesh>( grad( field(), name ), &field );
+      return GeometricFieldHolder< typename outerProduct<vector, Type>::type, fvPatchField, volMesh>( grad( field(), name ), field.deps() );
     }
     
     template<class Type>
     inline GeometricFieldHolder< typename outerProduct<vector, Type>::type, fvPatchField, volMesh>
       grad( const GeometricFieldHolder< Type, fvsPatchField, surfaceMesh>& field )
     {
-      return GeometricFieldHolder< typename outerProduct<vector, Type>::type, fvPatchField, volMesh>( grad( field() ), &field );
+      return GeometricFieldHolder< typename outerProduct<vector, Type>::type, fvPatchField, volMesh>( grad( field() ), field.deps() );
     }
 
    

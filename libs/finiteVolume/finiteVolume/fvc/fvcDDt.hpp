@@ -41,7 +41,7 @@ namespace Foam
                                                                   const GeometricFieldHolder< Type, fvPatchField, volMesh >& field2 )
     
    {
-     return GeometricFieldHolder< Type, fvPatchField, volMesh >( DDt( field1(), field2() ), Deps( &field1, &field2 ) );
+     return GeometricFieldHolder< Type, fvPatchField, volMesh >( DDt( field1(), field2() ), Deps( field1.deps(), field2.deps() ) );
    }
    
   } // fvc
