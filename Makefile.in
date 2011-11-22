@@ -57,6 +57,14 @@ install:
 	@ echo "install m4"
 	@ cp -rf @abs_top_builddir@/admin/managedflu_check_managedflu.m4 $(m4dir)/managedFlu/admin/
 	@ cp -rf @abs_top_builddir@/admin/managedflu_check_openfoam.m4 $(m4dir)/managedFlu/admin/
-	
+
+
+#--------------------------------------------------------------------------------------	
+deb:
+	@./make-deb.sh deb
+
+launchpad:
+	@./make-deb.sh launchpad
+
 
 #--------------------------------------------------------------------------------------

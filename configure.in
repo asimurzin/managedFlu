@@ -49,8 +49,15 @@ echo
 
 echo "--------------------------------------------------------------------------------------"
 CONFFLU_CHECK_OS
+echo
+
+echo "--------------------------------------------------------------------------------------"
+CONFFLU_CHECK_PROJECT_VERSION1
 echo 
 
+echo "--------------------------------------------------------------------------------------"
+CONFFLU_CHECK_PGP_KEY_ID
+echo 
 
 echo "---------------------------- mandatory products --------------------------------"
 CONFFLU_PRINT_SUMMURY( "openfoam_ok boost_shared_ptr_ok" )
@@ -108,7 +115,10 @@ AC_OUTPUT( [ bashrc \
              unitaryTests/testField/Make/options \
              unitaryTests/testMatrix/Make/options \
      	     unitaryTests/testMeshDictField/Make/options \
-	     Makefile ] )
+     	     make-deb.sh \
+     	     deb-template/control \
+	     Makefile ],
+	     [ chmod 755 make-deb.sh ] )
 
 
 echo "------------------------------------ OK -----------------------------------------"
