@@ -63,12 +63,63 @@ namespace Foam
     using boost::shared_ptr< UniformDimensionedField< Type > >::operator->;
 #endif
   };
-
 } // Foam
 
 
 //---------------------------------------------------------------------------
-#include "UniformDimensionedFieldHolder.cpp"
+namespace Foam
+{
+
+  template<class Type >
+  UniformDimensionedFieldHolder< Type >::UniformDimensionedFieldHolder( const IOobjectHolder& io ) 
+    : DependentHolder( &io )
+    , boost::shared_ptr< UniformDimensionedField< Type > >( new UniformDimensionedField< Type >( *io ) )
+  {
+    IOobjectHolder::operator=( boost::shared_ptr< UniformDimensionedField< Type > >( *this ) );
+  }
+
+
+  template<class Type >
+  UniformDimensionedFieldHolder< Type >::UniformDimensionedFieldHolder( const IOobjectHolder& io, 
+									const dimensioned< Type >& dim )
+    : DependentHolder( &io )
+    , boost::shared_ptr< UniformDimensionedField< Type > >( new UniformDimensionedField< Type >( *io, dim ) )
+  {
+    IOobjectHolder::operator=( boost::shared_ptr< UniformDimensionedField< Type > >( *this ) );
+  }
+  
+  template<class Type >
+  UniformDimensionedFieldHolder< Type >::UniformDimensionedFieldHolder( const boost::shared_ptr< UniformDimensionedField< Type > >& field, 
+									const Deps& args )
+    : DependentHolder( args )
+    , boost::shared_ptr< UniformDimensionedField< Type > >( field )
+  {
+    IOobjectHolder::operator=( boost::shared_ptr< UniformDimensionedField< Type > >( *this ) );
+  }
+  
+  template<class Type >
+  UniformDimensionedFieldHolder< Type >::UniformDimensionedFieldHolder()
+    : DependentHolder()
+    , boost::shared_ptr< UniformDimensionedField< Type > >()
+  {}
+
+  
+  template<class Type >
+  SimpleHolder* UniformDimensionedFieldHolder< Type >::clone() const
+  {
+    return new UniformDimensionedFieldHolder< Type >( *this );
+  }
+  
+  template<class Type >
+  UniformDimensionedFieldHolder< Type >::~UniformDimensionedFieldHolder()
+  {}
+  
+  template<class Type >
+  void UniformDimensionedFieldHolder< Type >::operator()( const UniformDimensionedFieldHolder< Type >& the_Arg )
+  {
+    this->operator=( the_Arg );
+  }
+} // Foam
 
 
 //---------------------------------------------------------------------------

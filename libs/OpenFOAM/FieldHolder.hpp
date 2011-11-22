@@ -55,7 +55,25 @@ namespace Foam
 
 
 //---------------------------------------------------------------------------
-#include "FieldHolder.cpp"
+namespace Foam
+{
+  template< class Type >
+  FieldHolder< Type >::FieldHolder()
+    : SimpleHolder()
+    , smart_tmp< Field< Type > >()
+  {}
+  
+  template< class Type >
+  SimpleHolder* FieldHolder< Type >::clone() const
+  {
+    return new FieldHolder< Type >( *this );
+  }
+  
+  template< class Type >
+  FieldHolder< Type >::~FieldHolder()
+  {}
+
+} //Foam
 
 
 //---------------------------------------------------------------------------

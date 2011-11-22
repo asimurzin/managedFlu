@@ -58,7 +58,42 @@ namespace Foam
 
 
 //---------------------------------------------------------------------------
-#include "PorousZonesHolder.cpp"
+namespace Foam
+{
+  template< class ZoneType >
+  PorousZonesHolder< ZoneType >::PorousZonesHolder( fvMeshHolder& mesh ) 
+    : DependentHolder( &mesh )
+    , boost::shared_ptr< PorousZones< ZoneType > >( new PorousZones< ZoneType >( *mesh ) )
+  {
+#ifdef OUR_DEBUG
+    cout << "PorousZonesHolder = " << this << nl;
+#endif
+  }
+
+  template< class ZoneType >
+  PorousZonesHolder< ZoneType >::PorousZonesHolder() 
+    : DependentHolder()
+    , boost::shared_ptr< PorousZones< ZoneType > >()
+  {
+#ifdef OUR_DEBUG
+    cout << "PorousZonesHolder = " << this << nl;
+#endif
+  }
+  
+  template< class ZoneType >
+  SimpleHolder* PorousZonesHolder< ZoneType >::clone() const 
+  {
+    return new PorousZonesHolder< ZoneType >( *this );
+  }
+  
+  template<class ZoneType>
+  PorousZonesHolder< ZoneType >::~PorousZonesHolder()
+  {
+#ifdef OUR_DEBUG
+    cout << "~PorousZonesHolder = " << this << nl;
+#endif
+  }
+}
 
 
 //---------------------------------------------------------------------------
