@@ -1,0 +1,13 @@
+#!/bin/sh
+# postrm script for #PACKAGE#
+#
+# see: dh_installdeb(1)
+
+case ${1} in
+  "remove")
+  ;;
+  "upgrade")
+  ;;
+esac
+
+exit 0
