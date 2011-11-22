@@ -1,78 +1,62 @@
-## Copyright (C) 2010- Alexey Petrov
-## Copyright (C) 2009-2010 Pebble Bed Modular Reactor (Pty) Limited (PBMR)
-## 
-## This program is free software: you can redistribute it and/or modify
-## it under the terms of the GNU General Public License as published by
-## the Free Software Foundation, either version 3 of the License, or
-## (at your option) any later version.
-##
-## This program is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## GNU General Public License for more details.
-## 
-## You should have received a copy of the GNU General Public License
-## along with this program.  If not, see <http://www.gnu.org/licenses/>.
-## 
-## See http://sourceforge.net/projects/pythonflu
-##
-## Author : Alexey PETROV
-##
+# managedFlu - OpenFOAM C++ interactive functionality API
+# Copyright (C) 2010- Alexey Petrov
+# Copyright (C) 2009-2010 Pebble Bed Modular Reactor (Pty) Limited (PBMR)
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# See http://sourceforge.net/projects/pythonflu
+#
+# Author : Alexey PETROV, Andrey Simurzin
 
 
-#--------------------------------------------------------------------------------------
+#---------------------------------------------------------------------------
 prefix=@prefix@
 exec_prefix=@exec_prefix@
 bindir=@bindir@
 libdir=@libdir@
 includedir=@includedir@
-
 m4dir=@datarootdir@
 
-pythondir=@PYTHONDIR@
+#--------------------------------------------------------------------------------------
+foam_user_bin=@FOAM_USER_BIN@
+foam_user_lib=@FOAM_USER_LIB@
 
+
+#--------------------------------------------------------------------------------------
 All:
 	@./Allwmake
-	@(cd @abs_top_builddir@/wrappers && make )
 
 clean:
 	@./Allwclean
-	@(cd @abs_top_builddir@/wrappers && make clean)
 
 
 
 #--------------------------------------------------------------------------------------
 install:
-	@ rm -rf $(pythondir)/foam2vtk $(bindir)/foam2vtk $(libdir)/libfoam2vtk.so $(includedir)/foam2vtk $(m4dir)/foam2vtk/admin
-	@ echo "install @abs_top_builddir@/bin/foam2vtk --> $(bindir)/foam2vtk"
-	@ install -d $(bindir) $(libdir) $(pythondir) $(includedir)/foam2vtk $(m4dir)/foam2vtk/admin
-	@ cp -rf @abs_top_builddir@/bin/foam2vtk $(bindir)/
-	@ echo "install @abs_top_builddir@/lib/libfoam2vtk.so --> $(libdir)/"
-	@ cp -rf @abs_top_builddir@/lib/libfoam2vtk.so $(libdir)/
-	@ echo "install @abs_top_builddir@/lib/*.H --> $(includedir)/foam2vtk/"
-	@ cp -rf @abs_top_builddir@/lib/*.H $(includedir)/foam2vtk/
-	@ echo "install @abs_top_builddir@/foam2vtk --> $(pythondir)/"
-	@ cp -rf @abs_top_builddir@/foam2vtk $(pythondir)/
-	@ (cd $(pythondir)/foam2vtk && find \( -name "*.d" -o -name "pyfoam" -o -name "*.exe" -o -name "*.cc" \) -delete)
-	@ (cd $(pythondir)/foam2vtk && find \( -name "*.h" -o -name "*_" -o -name "*.o" -o -name "*.in" -o -name "Makefile" -o -name "*.pyc" \) -delete)
-	@ echo "cp -rf @abs_top_builddir@/admin/foam2vtk_check_foam2vtk.m4 --> $(m4dir)/foam2vtk/admin/"
-	@ cp -rf @abs_top_builddir@/admin/foam2vtk_check_foam2vtk.m4 $(m4dir)/foam2vtk/admin/
-	@ ldconfig
-
-develop:
-	@ rm -rf $(pythondir)/foam2vtk $(bindir)/foam2vtk $(libdir)/libfoam2vtk.so $(includedir)/foam2vtk $(m4dir)/foam2vtk/admin
-	@ install -d $(bindir) $(libdir) $(pythondir) $(includedir) $(m4dir)/foam2vtk/admin
-	@ echo "ln -s @abs_top_builddir@/bin/foam2vtk --> $(bindir)/foam2vtk"
-	@ ln -s @abs_top_builddir@/bin/foam2vtk $(bindir)/foam2vtk
-	@ echo "ln -s @abs_top_builddir@/lib/libfoam2vtk.so --> $(libdir)/libfoam2vtk.so"
-	@ ln -s @abs_top_builddir@/lib/libfoam2vtk.so $(libdir)/libfoam2vtk.so
-	@ echo "ln -s @abs_top_builddir@/lib --> $(includedir)/foam2vtk"
-	@ ln -s @abs_top_builddir@/lib $(includedir)/foam2vtk
-	@ echo "ln -s @abs_top_builddir@/foam2vtk --> $(pythondir)/foam2vtk"
-	@ ln -s @abs_top_builddir@/foam2vtk $(pythondir)/foam2vtk
-	@ echo "ln -s @abs_top_builddir@/admin/foam2vtk_check_foam2vtk.m4 --> $(m4dir)/foam2vtk/admin/"
-	@ ln -s @abs_top_builddir@/admin/foam2vtk_check_foam2vtk.m4 $(m4dir)/foam2vtk/admin/foam2vtk_check_foam2vtk.m4
-	@ ldconfig
-
+	@ rm -rf $(libdir)/managedFlu $(includedir)/managedFlu $(m4dir)/managedFlu $(bindir)/*FoamMF
+	@ install -d $(bindir) $(libdir)/managedFlu $(includedir)/managedFlu $(m4dir)/managedFlu/admin
+	@ echo "install solvers"
+	@ cp -rf $(foam_user_bin)/*FoamMF $(bindir)/
+	@ echo "install libs"
+	@ cp -rf $(foam_user_lib)/libmanagedFlu-* $(libdir)/managedFlu
+	@ echo "install headers"
+	@ cp -rf @abs_top_builddir@/libs $(includedir)/managedFlu
+	@ (cd $(includedir)/managedFlu/libs && find \( -name "*.dep" \) -exec rm -rf {} \; )
+	@ (cd $(includedir)/managedFlu/libs && rm -rf `find \( -type d -name "Make" \) -print` )
+	@ echo "install m4"
+	@ cp -rf @abs_top_builddir@/admin/managedflu_check_managedflu.m4 $(m4dir)/managedFlu/admin/
+	@ cp -rf @abs_top_builddir@/admin/managedflu_check_openfoam.m4 $(m4dir)/managedFlu/admin/
+	
 
 #--------------------------------------------------------------------------------------
