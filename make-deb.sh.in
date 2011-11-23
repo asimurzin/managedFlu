@@ -66,6 +66,8 @@ pgp_key_id=@PGP_KEY_ID@
 foam_user_bin=@FOAM_USER_BIN@
 foam_user_lib=@FOAM_USER_LIB@
 
+build_dir_name=`dirname ${foam_user_bin}`
+build_dir_name=`basename ${build_dir_name}`
 
 #--------------------------------------------------------------------------------------
 # Prepare folder for deb-packaging and copy folder "Foam" to it 
@@ -87,7 +89,8 @@ cp -rf ${foam_user_bin}/*FoamMF ${package_folder}/bin
 # remove all unnecessary from the ${package_folder}
 echo "cleaning h, o, etc..."
 echo "--------------------------------------------------------------------------------"
-(cd ${package_folder}/include && find \( -name "*.dep" -o -name "*.o" \) -delete)
+(cd ${package_folder}/include && find \( -name "*.dep" -o -name "*.cpp" \) -delete)
+(cd ${package_folder}/include && rm -rf `find \( -type d -name ${build_dir_name} \) -print` )
 
 
 #--------------------------------------------------------------------------------------
