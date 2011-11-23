@@ -47,10 +47,6 @@ Description
 #include "turbulenceModels/incompressible/RAS/RASModelHolder.hpp"
 #include "simpleControlHolder.hpp"
 
-#if defined(__GNUC__) && __GNUC__ == 4 && __GNUC_MINOR__ == 4
-#pragma GCC diagnostic ignored "-Wstrict-aliasing"
-#endif
-
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 //---------------------------------------------------------------------------
