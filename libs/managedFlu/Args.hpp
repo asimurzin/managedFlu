@@ -29,6 +29,10 @@
 #include <set>
 #include <boost/shared_ptr.hpp>
 
+#include "common.hpp"
+
+
+//---------------------------------------------------------------------------
 namespace Foam
 {
   class SimpleHolder;

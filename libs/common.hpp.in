@@ -51,4 +51,15 @@
 
 
 //---------------------------------------------------------------------------
+// During the compilation, we have seen the strange warning:  dereferencing pointer <anonymous> does break strict aliasing rules
+// It seems, it is bug in gcc v4.4. We tried compile managedFlu with gcc-4.5 and this warning wasn't appeared
+// We wanted to selectively disable this , but  we couldn't restore warning flags. "Pragma GCC diagnostic pop(push)" doesn't work.
+// We think it is bug, too. We have found patch for this case at http://gcc.gnu.org/ml/gcc-patches/2010-06/msg01255.html
+// In next lines we disable "strict-aliasing" warning for gcc v4.4
+#if defined(__GNUC__) && __GNUC__ == 4 && __GNUC_MINOR__ == 4
+#pragma GCC diagnostic ignored "-Wstrict-aliasing"
+#endif
+
+
+//---------------------------------------------------------------------------
 #endif

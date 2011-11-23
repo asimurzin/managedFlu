@@ -30,6 +30,10 @@
 #include "SimpleHolder.hpp"
 #include "Deps.hpp"
 
+#include "common.hpp"
+
+
+//---------------------------------------------------------------------------
 namespace Foam
 {
   class DependentHolder
