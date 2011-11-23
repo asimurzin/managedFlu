@@ -47,6 +47,10 @@ Description
 #include "turbulenceModels/incompressible/RAS/RASModelHolder.hpp"
 #include "simpleControlHolder.hpp"
 
+#if defined(__GNUC__) && __GNUC__ == 4 && __GNUC_MINOR__ == 4
+#pragma GCC diagnostic ignored "-Wstrict-aliasing"
+#endif
+
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 //---------------------------------------------------------------------------
@@ -88,7 +92,6 @@ result_createFields createFields( const TimeHolder& runTime,
                                                  IOobject::NO_WRITE ),
                                   mesh,
                                   dimensionedScalar( "zero", mesh->Sf().dimensions() * U->dimensions(), 0.0 ) ) );
-
 
   laminarTransport = singlePhaseTransportModelHolder( U, phi );
 
