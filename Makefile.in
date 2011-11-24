@@ -44,7 +44,7 @@ clean:
 
 #--------------------------------------------------------------------------------------
 install:
-	@ rm -rf $(libdir) $(includedir)/managedFlu $(m4dir)/managedFlu $(bindir)/*FoamMF
+	@ rm -rf $(libdir)/libmanagedFlu-* $(includedir)/managedFlu $(m4dir)/managedFlu $(bindir)/*FoamMF
 	@ install -d $(bindir) $(libdir)/managedFlu $(includedir)/managedFlu $(m4dir)/managedFlu/admin
 	@ echo "install solvers"
 	@ cp -rf $(foam_user_bin)/*FoamMF $(bindir)/
