@@ -1,5 +1,5 @@
 Source: #PACKAGE#
-Section: python
+Section: science
 Priority: extra
 Maintainer: #USERNAME# <#EMAIL#>
 Build-Depends: #BUILD_DEPS#
