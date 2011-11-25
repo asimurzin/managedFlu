@@ -1,6 +1,5 @@
 //  managedFlu - OpenFOAM C++ interactive functionality API
 //  Copyright (C) 2010- Alexey Petrov
-//  Copyright (C) 2009-2010 Pebble Bed Modular Reactor (Pty) Limited (PBMR)
 //  
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
