@@ -20,18 +20,30 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef fvc_hpp
-#define fvc_hpp
+#ifndef fvcReconstruct_hpp
+#define fvcReconstruct_hpp
 
 
 //---------------------------------------------------------------------------
-#include <fvc.H>
-#include "fvcDDt.hpp"
-#include "fvcDiv.hpp"
-#include "fvcGrad.hpp"
-#include "fvcSnGrad.hpp"
-#include "fvcSurfaceIntegrate.hpp"
-#include "fvcReconstruct.hpp"
+#include <fvcReconstruct.H>
+#include "surfaceFields.hpp"
+#include "volFields.hpp"
+
+
+//---------------------------------------------------------------------------
+namespace Foam
+{
+  namespace fvc
+  {
+   template<class Type>
+   inline GeometricFieldHolder< typename outerProduct<vector, Type>::type, fvPatchField, volMesh> reconstruct( const GeometricFieldHolder< Type, fvsPatchField, surfaceMesh >& field )
+    
+   {
+     return GeometricFieldHolder< typename outerProduct<vector, Type>::type, fvPatchField, volMesh>( reconstruct( field() ), Deps( field.deps() ) );
+   }
+   
+  } // fvc
+} //Foam
 
 
 //---------------------------------------------------------------------------

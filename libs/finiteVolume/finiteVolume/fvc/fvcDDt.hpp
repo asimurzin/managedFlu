@@ -43,6 +43,15 @@ namespace Foam
      return GeometricFieldHolder< Type, fvPatchField, volMesh >( DDt( field1(), field2() ), Deps( field1.deps(), field2.deps() ) );
    }
    
+   template<class Type>
+   inline GeometricFieldHolder< typename Foam::flux<Type>::type, fvsPatchField, surfaceMesh > ddtPhiCorr( 
+     const volScalarFieldHolder& rA,
+     const GeometricFieldHolder<Type, fvPatchField, volMesh>& U,
+     const GeometricFieldHolder< typename Foam::flux<Type>::type, fvsPatchField, surfaceMesh >& phi )
+    {
+      return GeometricFieldHolder< typename Foam::flux<Type>::type, fvsPatchField, surfaceMesh >( ddtPhiCorr( rA(), U(), phi() ), Deps( rA.deps(), U.deps(), phi.deps() ) );
+    }      
+   
   } // fvc
 } //Foam
 
