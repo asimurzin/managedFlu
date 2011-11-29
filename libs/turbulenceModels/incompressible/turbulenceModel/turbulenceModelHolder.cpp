@@ -24,55 +24,7 @@
 
 
 //---------------------------------------------------------------------------
-namespace Foam
-{
-namespace incompressible
-{
-   turbulenceModelHolder::turbulenceModelHolder( 
-    const boost::shared_ptr< turbulenceModel >& tm, 
-    const volVectorFieldHolder& U,
-    const surfaceScalarFieldHolder& phi,
-    transportModelHolder& transport )
-    : DependentHolder( Deps( &U, &phi, &transport ) )
-    , boost::shared_ptr< turbulenceModel >( tm )
-  {}
+#include FILENAME(turbulenceModelHolder,cpp)
 
-  turbulenceModelHolder::turbulenceModelHolder()
-    : DependentHolder()
-    , boost::shared_ptr< turbulenceModel >()
-  {}
-
-  turbulenceModelHolder turbulenceModelHolder::New( 
-    const volVectorFieldHolder& U,
-    const surfaceScalarFieldHolder& phi,
-    transportModelHolder& transport,
-    const word& turbulenceModelName )
-  {
-    autoPtr< turbulenceModel > result = turbulenceModel::New( U(), phi(), *transport, turbulenceModelName );
-    
-    return turbulenceModelHolder( boost::shared_ptr< turbulenceModel >( result.ptr() ), U, phi, transport );
-  }
-
-  SimpleHolder* turbulenceModelHolder::clone() const
-  {
-    return new turbulenceModelHolder( *this );
-  }
-
-  turbulenceModelHolder::~turbulenceModelHolder()
-  {}
-
-  void turbulenceModelHolder::operator=( const boost::shared_ptr< turbulenceModel >& tm )
-  {
-    boost::shared_ptr< turbulenceModel >::operator=( tm );
-  }
-  
-  void turbulenceModelHolder::operator()( const turbulenceModelHolder& model )
-  {
-    this->operator=( model );
-  }
-
-  
-}//incompressible
-}//Foam
 
 //---------------------------------------------------------------------------

@@ -25,55 +25,11 @@
 
 
 //---------------------------------------------------------------------------
-#include "DependentHolder.hpp"
-#include "Deps.hpp"
-#include "volFields.hpp"
-#include "surfaceFields.hpp"
-#include "transportModelHolder.hpp"
-
-#include <incompressible/turbulenceModel/turbulenceModel.H>
-#include <boost/shared_ptr.hpp>
+#include "common.hpp"
 
 
 //---------------------------------------------------------------------------
-namespace Foam
-{
-
-namespace incompressible
-{
-  class turbulenceModelHolder 
-    : virtual public DependentHolder
-    , public boost::shared_ptr< turbulenceModel >
-  {
-  public:
-    turbulenceModelHolder();
-
-    static turbulenceModelHolder New( 
-      const volVectorFieldHolder& U,
-      const surfaceScalarFieldHolder& phi,
-      transportModelHolder& transport,
-      const word& turbulenceModelName = turbulenceModel::typeName );
-
-    ~turbulenceModelHolder();
-    
-    virtual SimpleHolder* clone() const;
-    
-    void operator()( const turbulenceModelHolder& );
-    
-    using  boost::shared_ptr< turbulenceModel >::operator*;
-    using  boost::shared_ptr< turbulenceModel >::operator->;
-
-  protected:
-    turbulenceModelHolder( 
-      const boost::shared_ptr< turbulenceModel >&, 
-      const volVectorFieldHolder&,
-      const surfaceScalarFieldHolder&,
-      transportModelHolder& );
-    void operator=( const boost::shared_ptr< turbulenceModel >& );
-  };
-
-} //incompressible
-} // Foam
+#include FILENAME(turbulenceModelHolder,hpp)
 
 
 //---------------------------------------------------------------------------
