@@ -25,74 +25,11 @@
 
 
 //---------------------------------------------------------------------------
-#include "DependentHolder.hpp"
-#include "Deps.hpp"
-#include "fvMeshHolder.hpp"
-
-#include <PorousZones.H>
-#include <boost/shared_ptr.hpp>
+#include "common.hpp"
 
 
 //---------------------------------------------------------------------------
-namespace Foam
-{
-  template<class ZoneType>
-  class PorousZonesHolder 
-    : virtual public DependentHolder
-    , public boost::shared_ptr< PorousZones< ZoneType > >
-  {
-  public:
-    PorousZonesHolder( fvMeshHolder& mesh );
-    PorousZonesHolder();
-    
-    ~PorousZonesHolder();
-    
-    virtual SimpleHolder* clone() const;
-#ifndef SWIG
-    using  boost::shared_ptr< PorousZones< ZoneType > >::operator*;
-    using  boost::shared_ptr< PorousZones< ZoneType > >::operator->;
-#endif
-  };
-} // Foam
-
-
-//---------------------------------------------------------------------------
-namespace Foam
-{
-  template< class ZoneType >
-  PorousZonesHolder< ZoneType >::PorousZonesHolder( fvMeshHolder& mesh ) 
-    : DependentHolder( &mesh )
-    , boost::shared_ptr< PorousZones< ZoneType > >( new PorousZones< ZoneType >( *mesh ) )
-  {
-#ifdef OUR_DEBUG
-    cout << "PorousZonesHolder = " << this << nl;
-#endif
-  }
-
-  template< class ZoneType >
-  PorousZonesHolder< ZoneType >::PorousZonesHolder() 
-    : DependentHolder()
-    , boost::shared_ptr< PorousZones< ZoneType > >()
-  {
-#ifdef OUR_DEBUG
-    cout << "PorousZonesHolder = " << this << nl;
-#endif
-  }
-  
-  template< class ZoneType >
-  SimpleHolder* PorousZonesHolder< ZoneType >::clone() const 
-  {
-    return new PorousZonesHolder< ZoneType >( *this );
-  }
-  
-  template<class ZoneType>
-  PorousZonesHolder< ZoneType >::~PorousZonesHolder()
-  {
-#ifdef OUR_DEBUG
-    cout << "~PorousZonesHolder = " << this << nl;
-#endif
-  }
-}
+#include FILENAME(PorousZonesHolder,hpp)
 
 
 //---------------------------------------------------------------------------

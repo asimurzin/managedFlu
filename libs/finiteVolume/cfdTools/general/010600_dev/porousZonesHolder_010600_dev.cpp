@@ -24,9 +24,38 @@
 
 
 //---------------------------------------------------------------------------
-#include FILENAME(porousZonesHolder,cpp)
+namespace Foam
+{
+  porousZonesHolder::porousZonesHolder( fvMeshHolder& mesh ) 
+    : DependentHolder( &mesh )
+    , boost::shared_ptr< porousZones >( new porousZones( *mesh ) )
+  {
+#ifdef OUR_DEBUG
+    cout << "porousZonesHolder = " << this << nl;
+#endif
+  }
 
+  porousZonesHolder::porousZonesHolder() 
+    : DependentHolder()
+    , boost::shared_ptr< porousZones >()
+  {
+#ifdef OUR_DEBUG
+    cout << "porousZonesHolder = " << this << nl;
+#endif
+  }
+  
+  SimpleHolder* porousZonesHolder::clone() const 
+  {
+    return new porousZonesHolder( *this );
+  }
+  
+  porousZonesHolder::~porousZonesHolder()
+  {
+#ifdef OUR_DEBUG
+    cout << "~porousZonesHolder = " << this << nl;
+#endif
+  }
+}
 
 
 //---------------------------------------------------------------------------
-

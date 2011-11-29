@@ -25,13 +25,11 @@
 
 
 //---------------------------------------------------------------------------
-#include "PorousZonesHolder.hpp"
-#include <porousZone.H>
+#include "common.hpp"
 
-namespace Foam
-{
-  typedef PorousZonesHolder<porousZone> porousZonesHolder;  
-} // Foam
+
+//---------------------------------------------------------------------------
+#include FILENAME(porousZonesHolder,hpp)
 
 
 //---------------------------------------------------------------------------

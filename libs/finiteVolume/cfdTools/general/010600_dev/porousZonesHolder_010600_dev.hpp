@@ -20,13 +20,40 @@
 
 
 //---------------------------------------------------------------------------
-#include "porousZonesHolder.hpp"
+#ifndef porousZonesHolder_010600_dev_hpp
+#define porousZonesHolder_010600_dev_hpp
 
 
 //---------------------------------------------------------------------------
-#include FILENAME(porousZonesHolder,cpp)
+#include "DependentHolder.hpp"
+#include "Deps.hpp"
+#include "fvMeshHolder.hpp"
 
+#include <porousZones.H>
+#include <boost/shared_ptr.hpp>
 
 
 //---------------------------------------------------------------------------
+namespace Foam
+{
+  class porousZonesHolder 
+    : virtual public DependentHolder
+    , public boost::shared_ptr< porousZones >
+  {
+  public:
+    porousZonesHolder( fvMeshHolder& mesh );
+    porousZonesHolder();
+    
+    ~porousZonesHolder();
+    
+    virtual SimpleHolder* clone() const;
+#ifndef SWIG
+    using  boost::shared_ptr< porousZones >::operator*;
+    using  boost::shared_ptr< porousZones >::operator->;
+#endif
+  };
+} // Foam
 
+
+//---------------------------------------------------------------------------
+#endif

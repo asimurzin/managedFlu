@@ -20,13 +20,19 @@
 
 
 //---------------------------------------------------------------------------
-#include "porousZonesHolder.hpp"
+#ifndef porousZonesHolder_020000_hpp
+#define porousZonesHolder_020000_hpp
 
 
 //---------------------------------------------------------------------------
-#include FILENAME(porousZonesHolder,cpp)
+#include "PorousZonesHolder.hpp"
+#include <porousZone.H>
 
+namespace Foam
+{
+  typedef PorousZonesHolder<porousZone> porousZonesHolder;  
+} // Foam
 
 
 //---------------------------------------------------------------------------
-
+#endif
