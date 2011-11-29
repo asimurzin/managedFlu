@@ -20,17 +20,7 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef basicSolidThermoHolder_hpp
-#define basicSolidThermoHolder_hpp
+#include "basicSolidThermoHolder.hpp"
 
 
 //---------------------------------------------------------------------------
-#include "common.hpp"
-
-
-//---------------------------------------------------------------------------
-#include FILENAME(basicSolidThermoHolder,hpp)
-
-
-//---------------------------------------------------------------------------
-#endif

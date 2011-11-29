@@ -20,16 +20,13 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef basicSolidThermoHolder_hpp
-#define basicSolidThermoHolder_hpp
+#ifndef basicSolidThermoHolder_010600_dev_hpp
+#define basicSolidThermoHolder_010600_dev_hpp
 
 
 //---------------------------------------------------------------------------
 #include "common.hpp"
-
-
-//---------------------------------------------------------------------------
-#include FILENAME(basicSolidThermoHolder,hpp)
+//There is now such interface in OpenFOAM-1.6-ext
 
 
 //---------------------------------------------------------------------------
