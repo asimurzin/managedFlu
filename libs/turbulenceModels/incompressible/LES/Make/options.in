@@ -1,9 +1,9 @@
 EXE_INC = \
     -I/$@abs_top_builddir@/libs \
-    -I/$@abs_top_builddir@/libs/managedFlu \
-    -I/$@abs_top_builddir@/libs/OpenFOAM \
-    -I/$@abs_top_builddir@/libs/finiteVolume \
-    -I/$@abs_top_builddir@/libs/transportModels/incompressible \
+    -I/$@abs_top_builddir@/libs/managedFlu/lnInclude \
+    -I/$@abs_top_builddir@/libs/OpenFOAM/lnInclude \
+    -I/$@abs_top_builddir@/libs/finiteVolume/lnInclude \
+    -I/$@abs_top_builddir@/libs/transportModels/incompressible/lnInclude \
     -I/$@abs_top_builddir@/libs/turbulenceModels/incompressible/turbulenceModel/lnInclude \
     -I/$@abs_top_builddir@/libs/turbulenceModels/incompressible/LES/lnInclude \
     @OPENFOAM_FINITEVOLUME_CPPFLAGS@ \
