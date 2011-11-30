@@ -20,17 +20,17 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef fvm_hpp
-#define fvm_hpp
+#ifndef fvmDdt_hpp
+#define fvmDdt_hpp
 
 
 //---------------------------------------------------------------------------
 #include "common.hpp"
 
-#include <fvm.H>
-#include "fvmLaplacian.hpp"
-#include "fvmDdt.hpp"
-#include "fvmDiv.hpp"
+
+//---------------------------------------------------------------------------
+#include FILENAME(fvmDdt,hpp)
+
 
 
 //---------------------------------------------------------------------------

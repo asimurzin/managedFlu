@@ -20,18 +20,38 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef fvm_hpp
-#define fvm_hpp
+#ifndef fvmDdt_020000_hpp
+#define fvmDdt_020000_hpp
 
 
 //---------------------------------------------------------------------------
-#include "common.hpp"
+#include <fvmDdt.H>
+#include "volFields.hpp"
+#include "surfaceFields.hpp"
+#include "fvMatrices.hpp"
 
-#include <fvm.H>
-#include "fvmLaplacian.hpp"
-#include "fvmDdt.hpp"
-#include "fvmDiv.hpp"
+//---------------------------------------------------------------------------
+namespace Foam
+{
+  namespace fvm
+  {
+    template< class Type >
+    inline fvMatrixHolder< Type > ddt( const GeometricFieldHolder< Type, fvPatchField, volMesh >& field )
+    {
+      return fvMatrixHolder<Type>( ddt( field() ), &field );
+    }
+    
+    template< class Type >
+    inline fvMatrixHolder< Type > ddt( const volScalarFieldHolder& field1,
+                                       const GeometricFieldHolder< Type, fvPatchField, volMesh >& field2 )
+    {
+      return fvMatrixHolder<Type>( ddt( field1(), field2() ),  Deps( &field1, &field2 ) );
+    }
+   
+  } // fvm
+} //Foam
 
 
 //---------------------------------------------------------------------------
 #endif
+
