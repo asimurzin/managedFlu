@@ -1,0 +1,56 @@
+# managedFlu - OpenFOAM C++ interactive functionality API
+# Copyright (C) 2011- Alexey Petrov
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# See http://sourceforge.net/projects/pythonflu
+#
+# Author : Alexey PETROV, Andrey Simurzin
+
+
+#---------------------------------------------------------------------------
+include @abs_top_builddir@/include.makefile
+
+libdir=$(build_dir)/lib
+
+objs = $(patsubst %.cpp,%.o,$(sources))
+
+include_path=./lnInclude
+
+
+#--------------------------------------------------------------------------------------
+All: $(libdir) $(include_path) $(libdir)/$(libname).so 
+	@
+
+%.o : %.cpp
+	$(CC) $(__CXXFLAGS__) -c $< -o $@
+
+$(include_path):
+	@[ -d $(include_path) ] || mkdir $(include_path)
+	@find -L . -type l -exec rm {} \;
+	@( cd $(include_path) && find ../ -name "*.hpp" -exec ln -s {} \; )
+
+$(libdir)/$(libname).so: $(objs) 
+	@OPENFOAM_LINKLIBSO@ $(objs) $(__LDFLAGS__) -o $@;
+
+$(libdir):
+	@install -d $(libdir)
+
+clean:
+	@rm -f $(objs)
+	@rm -rf $(include_path)
+	@rm -f $(libdir)/$(libname).so
+
+
+#--------------------------------------------------------------------------------------
