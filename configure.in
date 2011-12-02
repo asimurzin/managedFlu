@@ -67,56 +67,59 @@ CONFFLU_CHECK_MANDATORY( "openfoam_ok boost_shared_ptr_ok" )
 
 #--------------------------------------------------------------------------------------
 AC_OUTPUT( [ bashrc \
-             libs/managedFlu/Make/options \
-             libs/OpenFOAM/Make/options \
-             libs/finiteVolume/Make/options \
-             libs/dynamicFvMesh/Make/options \
-             libs/randomProcesses/Make/options \
-             libs/thermophysicalModels/basic/Make/options \
-             libs/thermophysicalModels/basicSolidThermo/Make/options \
-             libs/thermophysicalModels/radiationModel/Make/options \
-             libs/transportModels/incompressible/Make/options \
-             libs/transportModels/interfaceProperties/Make/options \
+             libs/managedFlu/Makefile \
+             libs/OpenFOAM/Makefile \
+             libs/finiteVolume/Makefile \
+             libs/dynamicFvMesh/Makefile \
+             libs/randomProcesses/Makefile \
+             libs/thermophysicalModels/basic/Makefile \
+             libs/thermophysicalModels/basicSolidThermo/Makefile \
+             libs/thermophysicalModels/radiationModel/Makefile \
+             libs/transportModels/incompressible/Makefile \
+             libs/transportModels/interfaceProperties/Makefile \
              libs/common.hpp \
-             libs/turbulenceModels/compressible/turbulenceModel/Make/options \
-             libs/turbulenceModels/compressible/RAS/Make/options \
-             libs/turbulenceModels/incompressible/turbulenceModel/Make/options \
-             libs/turbulenceModels/incompressible/RAS/Make/options \
-             libs/turbulenceModels/incompressible/LES/Make/options \
-             solvers/basic/laplacianFoam/Make/options \
-             solvers/basic/potentialFoam/Make/options \
-             solvers/basic/scalarTransportFoam/Make/options \
-             solvers/heatTransfer/buoyantBoussinesqSimpleFoam/Make/options \
-             solvers/heatTransfer/buoyantSimpleRadiationFoam/Make/options \
-             solvers/heatTransfer/buoyantSimpleFoam/Make/options \
-             solvers/heatTransfer/buoyantPimpleFoam/Make/options \
-             solvers/heatTransfer/chtMultiRegionFoam/Make/options \
-             solvers/incompressible/boundaryFoam/Make/options \
-             solvers/incompressible/channelFoam/Make/options \
-             solvers/incompressible/icoFoam/Make/options \
-             solvers/incompressible/nonNewtonianIcoFoam/Make/options \
-             solvers/incompressible/pimpleFoam/Make/options \
-             solvers/incompressible/pimpleDyMFoam/Make/options \
-             solvers/incompressible/pisoFoam/Make/options \
-             solvers/incompressible/simpleFoam/Make/options \
-             solvers/incompressible/porousSimpleFoam/Make/options \
-             solvers/incompressible/shallowWaterFoam/Make/options \
-             solvers/compressible/rhoCentralFoam/Make/options \
+             libs/turbulenceModels/compressible/turbulenceModel/Makefile \
+             libs/turbulenceModels/compressible/RAS/Makefile \
+             libs/turbulenceModels/incompressible/turbulenceModel/Makefile \
+             libs/turbulenceModels/incompressible/RAS/Makefile \
+             libs/turbulenceModels/incompressible/LES/Makefile \
+             solvers/basic/laplacianFoam/Makefile \
+             solvers/basic/potentialFoam/Makefile \
+             solvers/basic/scalarTransportFoam/Makefile \
+             solvers/heatTransfer/buoyantBoussinesqSimpleFoam/Makefile \
+             solvers/heatTransfer/buoyantSimpleRadiationFoam/Makefile \
+             solvers/heatTransfer/buoyantSimpleFoam/Makefile \
+             solvers/heatTransfer/buoyantPimpleFoam/Makefile \
+             solvers/heatTransfer/chtMultiRegionFoam/Makefile \
+             solvers/incompressible/boundaryFoam/Makefile \
+             solvers/incompressible/channelFoam/Makefile \
+             solvers/incompressible/icoFoam/Makefile \
+             solvers/incompressible/nonNewtonianIcoFoam/Makefile \
+             solvers/incompressible/pimpleFoam/Makefile \
+             solvers/incompressible/pimpleDyMFoam/Makefile \
+             solvers/incompressible/pisoFoam/Makefile \
+             solvers/incompressible/simpleFoam/Makefile \
+             solvers/incompressible/porousSimpleFoam/Makefile \
+             solvers/incompressible/shallowWaterFoam/Makefile \
+             solvers/compressible/rhoCentralFoam/Makefile \
              solvers/compressible/rhoCentralFoam/BCs/Make/options \
-             solvers/compressible/sonicFoam/Make/options \
-             solvers/compressible/rhoPimpleFoam/Make/options \
-             solvers/compressible/rhoPorousMRFPimpleFoam/Make/options \
-             solvers/compressible/sonicLiquidFoam/Make/options \
-             solvers/DNS/dnsFoam/Make/options \
-             solvers/multiphase/interFoam/Make/options \
-             solvers/multiphase/interDyMFoam/Make/options \
-             solvers/multiphase/compressibleInterFoam/Make/options \
+             solvers/compressible/sonicFoam/Makefile \
+             solvers/compressible/rhoPimpleFoam/Makefile \
+             solvers/compressible/rhoPorousMRFPimpleFoam/Makefile \
+             solvers/compressible/sonicLiquidFoam/Makefile \
+             solvers/DNS/dnsFoam/Makefile \
+             solvers/multiphase/interFoam/Makefile \
+             solvers/multiphase/interDyMFoam/Makefile \
+             solvers/multiphase/compressibleInterFoam/Makefile \
              unitaryTests/testField/Make/options \
              unitaryTests/testMatrix/Make/options \
      	     unitaryTests/testMeshDictField/Make/options \
      	     make-deb.sh \
      	     deb-template/control \
-	     Makefile ],
+	     Makefile \
+	     include.exe.makefile \
+	     include.lib.makefile \
+	     include.makefile  ],
 	     [ chmod 755 make-deb.sh ] )
 
 

@@ -24,10 +24,10 @@ cd ${0%/*} || exit 1    # run from this directory
 
 
 #---------------------------------------------------------------------------
-( cd sonicFoam && wclean )
-( cd sonicLiquidFoam && wclean )
-( cd rhoPimpleFoam && wclean )
-( cd rhoPorousMRFPimpleFoam && wclean )
+( cd sonicFoam && make clean )
+( cd sonicLiquidFoam && make clean )
+( cd rhoPimpleFoam && make clean )
+( cd rhoPorousMRFPimpleFoam && make clean )
 ( cd rhoCentralFoam && ./Allwclean )
 
 # ----------------------------------------------------------------- end-of-file

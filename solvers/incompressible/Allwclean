@@ -24,16 +24,16 @@ cd ${0%/*} || exit 1    # run from this directory
 
 
 #---------------------------------------------------------------------------
-( cd boundaryFoam && wclean )
-( cd channelFoam && wclean )
-( cd icoFoam && wclean )
-( cd nonNewtonianIcoFoam && wclean )
-( cd pimpleFoam && wclean )
-( cd pimpleDyMFoam && wclean )
-( cd pisoFoam && wclean )
-( cd simpleFoam && wclean )
-( cd porousSimpleFoam && wclean )
-( cd shallowWaterFoam && wclean )
+( cd boundaryFoam && make clean )
+( cd channelFoam && make clean )
+( cd icoFoam && make clean )
+( cd nonNewtonianIcoFoam && make clean )
+( cd pimpleFoam && make clean )
+( cd pimpleDyMFoam && make clean )
+( cd pisoFoam && make clean )
+( cd simpleFoam && make clean )
+( cd porousSimpleFoam && make clean )
+( cd shallowWaterFoam && make clean )
 
 
 # ----------------------------------------------------------------- end-of-file

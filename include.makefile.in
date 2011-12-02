@@ -24,7 +24,7 @@ build_dir=@abs_top_builddir@/BUILD
 
 
 #--------------------------------------------------------------------------------------
-__CPPFLAGS__:=$(__CPPFLAGS__) @OPENFOAM_CPPFLAGS@ -I@abs_top_builddir@/libs -I/usr/include -I/usr/include/c++ -I./lnInclude
+__CPPFLAGS__:=$(__CPPFLAGS__) @OPENFOAM_CPPFLAGS@ -I@abs_top_builddir@/libs -I/usr/include -I/usr/include/c++ -IlnInclude
 
 __LDFLAGS__:=$(__LDFLAGS__) @OPENFOAM_LDFLAGS@ @OPENFOAM_LIBS@ -lstdc++ 
 

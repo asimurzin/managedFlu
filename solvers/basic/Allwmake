@@ -24,8 +24,8 @@ cd ${0%/*} || exit 1    # run from this directory
 
 
 #---------------------------------------------------------------------------
-( cd laplacianFoam && wmake )
-( cd potentialFoam && wmake )
-( cd scalarTransportFoam && wmake )
+( cd laplacianFoam && make )
+( cd potentialFoam && make )
+( cd scalarTransportFoam && make )
 
 # ----------------------------------------------------------------- end-of-file

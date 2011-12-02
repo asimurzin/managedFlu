@@ -24,10 +24,10 @@ cd ${0%/*} || exit 1    # run from this directory
 
 
 #---------------------------------------------------------------------------
-( cd buoyantSimpleRadiationFoam && wmake )
-( cd buoyantBoussinesqSimpleFoam && wmake )
-( cd buoyantPimpleFoam && wmake )
-( cd buoyantSimpleFoam && wmake )
+( cd buoyantSimpleRadiationFoam && make )
+( cd buoyantBoussinesqSimpleFoam && make )
+( cd buoyantPimpleFoam && make )
+( cd buoyantSimpleFoam && make )
 ( cd chtMultiRegionFoam && ./Allwmake  )
 
 # ----------------------------------------------------------------- end-of-file

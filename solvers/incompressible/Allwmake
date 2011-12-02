@@ -24,16 +24,16 @@ cd ${0%/*} || exit 1    # run from this directory
 
 
 #---------------------------------------------------------------------------
-( cd boundaryFoam && wmake )
-( cd channelFoam && wmake )
-( cd icoFoam && wmake )
-( cd nonNewtonianIcoFoam && wmake )
-( cd pimpleFoam && wmake )
-( cd pimpleDyMFoam && wmake )
-( cd pisoFoam && wmake )
-( cd simpleFoam && wmake )
-( cd porousSimpleFoam && wmake )
-( cd shallowWaterFoam && wmake )
+( cd boundaryFoam && make )
+( cd channelFoam && make )
+( cd icoFoam && make )
+( cd nonNewtonianIcoFoam && make )
+( cd pimpleFoam && make )
+( cd pimpleDyMFoam && make )
+( cd pisoFoam && make )
+( cd simpleFoam && make )
+( cd porousSimpleFoam && make )
+( cd shallowWaterFoam && make )
 
 
 # ----------------------------------------------------------------- end-of-file

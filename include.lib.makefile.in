@@ -40,6 +40,7 @@ $(include_path):
 	@[ -d $(include_path) ] || mkdir $(include_path)
 	@find -L . -type l -exec rm {} \;
 	@( cd $(include_path) && find ../ -name "*.hpp" -exec ln -s {} \; )
+	@( cd $(include_path) && find ../ -name "*.cpp" -exec ln -s {} \; )
 
 $(libdir)/$(libname).so: $(objs) 
 	@OPENFOAM_LINKLIBSO@ $(objs) $(__LDFLAGS__) -o $@;

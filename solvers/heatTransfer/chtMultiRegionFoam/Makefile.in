@@ -1,0 +1,70 @@
+## pythonFlu - Python wrapping for OpenFOAM C++ API
+## Copyright (C) 2010- Alexey Petrov
+## Copyright (C) 2009-2010 Pebble Bed Modular Reactor (Pty) Limited (PBMR)
+## 
+## This program is free software: you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation, either version 3 of the License, or
+## (at your option) any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+## 
+## You should have received a copy of the GNU General Public License
+## along with this program.  If not, see <http://www.gnu.org/licenses/>.
+## 
+## See http://sourceforge.net/projects/pythonflu
+##
+## Author : Alexey PETROV, Andrey Simurzin
+##
+
+
+#--------------------------------------------------------------------------------------
+sources=chtMultiRegionFoam.C
+
+app=chtMultiRegionFoamMF
+
+
+#--------------------------------------------------------------------------------------
+__CPPFLAGS__ := $(__CPPFLAGS__) \
+    -Ifluid \
+    -Isolid \
+    -Iinclude \
+    @OPENFOAM_MESHTOOLS_CPPFLAGS@ \
+    @OPENFOAM_BASICTHERMOPHYSICALMODELS_CPPFLAGS@ \
+    @OPENFOAM_RADIATION_CPPFLAGS@ \
+    @OPENFOAM_TURBULENCEMODELS_CPPFLAGS@ \
+    @OPENFOAM_COMPRESSIBLETURBULENCEMODELS_CPPFLAGS@ \
+    @OPENFOAM_FINITEVOLUME_CPPFLAGS@ \
+    @OPENFOAM_BASICSOLIDTHERMO_CPPFLAGS@ \
+    @OPENFOAM_SPECIE_CPPFLAGS@ \
+    -I@abs_top_builddir@/libs \
+    -I@abs_top_builddir@/libs/managedFlu/lnInclude \
+    -I@abs_top_builddir@/libs/OpenFOAM/lnInclude \
+    -I@abs_top_builddir@/libs/finiteVolume/lnInclude \
+    -I@abs_top_builddir@/libs/thermophysicalModels/basic/lnInclude \
+    -I@abs_top_builddir@/libs/thermophysicalModels/basicSolidThermo/lnInclude \
+    -I@abs_top_builddir@/libs/thermophysicalModels/radiationModel/lnInclude \
+    -I@abs_top_builddir@/libs/turbulenceModels/compressible/turbulenceModel/lnInclude \
+    -I@abs_top_builddir@/libs/turbulenceModels/compressible/RAS/lnInclude \
+	
+__LDFLAGS__ := $(__LDFLAGS__) \
+    @OPENFOAM_BASICTHERMOPHYSICALMODELS_LIBS@ \
+    @OPENFOAM_SPECIE_LIBS@ \
+    @OPENFOAM_BASICSOLIDTHERMO_LIBS@ \
+    @OPENFOAM_RADIATION_LIBS@ \
+    @OPENFOAM_COMPRESSIBLETURBULENCEMODELS_LIBS@ \
+    @OPENFOAM_FINITEVOLUME_LIBS@ \
+    @OPENFOAM_MESHTOOLS_LIBS@ \
+    -L$(FOAM_USER_LIBBIN) -lcoupledDerivedFvPatchFields \
+    -L@abs_top_builddir@/BUILD/lib -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume -lmanagedFlu-basicThermophysicalModels \
+    -lmanagedFlu-compressibleTurbulenceModel -lmanagedFlu-compressibleRASModels -lmanagedFlu-radiationModels -lmanagedFlu-basicSolidThermo
+   
+
+#--------------------------------------------------------------------------------------
+include @abs_top_builddir@/include.exe.makefile
+
+
+#--------------------------------------------------------------------------------------

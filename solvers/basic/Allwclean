@@ -24,8 +24,8 @@ cd ${0%/*} || exit 1    # run from this directory
 
 
 #---------------------------------------------------------------------------
-( cd laplacianFoam && wclean )
-( cd potentialFoam && wclean )
-( cd scalarTransportFoam && wclean )
+( cd laplacianFoam && make clean )
+( cd potentialFoam && make clean )
+( cd scalarTransportFoam && make clean )
 
 # ----------------------------------------------------------------- end-of-file
