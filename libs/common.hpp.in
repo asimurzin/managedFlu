@@ -27,7 +27,10 @@
 //---------------------------------------------------------------------------
 #define BRACKETLEFT <
 #define BRACKETRIGHT >
+
+#ifndef SUFFIX
 #define SUFFIX _@MANAGEDFLU_HEADER_SUFFIX@.
+#endif
 
 #define FILENAME(Type,Ext) BRACKETLEFT Type SUFFIX Ext BRACKETRIGHT
 
