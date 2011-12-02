@@ -46,9 +46,9 @@ install:
 	@ rm -rf $(libdir)/libmanagedFlu-* $(includedir)/managedFlu $(m4dir)/managedFlu $(bindir)/*FoamMF
 	@ install -d $(bindir) $(libdir)/managedFlu $(includedir)/managedFlu $(m4dir)/managedFlu/admin
 	@ echo "install solvers"
-	@ cp -rf $(foam_user_bin)/*FoamMF $(bindir)/
+	@ cp -rf @abs_top_builddir@/BUILD/bin/*FoamMF $(bindir)/
 	@ echo "install libs"
-	@ cp -rf $(foam_user_lib)/libmanagedFlu-* $(libdir)
+	@ cp -rf @abs_top_builddir@/BUILD/lib/libmanagedFlu-* $(libdir)
 	@ echo "install headers"
 	@ cp -rf @abs_top_builddir@/libs $(includedir)/managedFlu
 	@ (cd $(includedir)/managedFlu/libs && find \( -name "*.dep" -o -name "*.cpp" \) -exec rm -rf {} \; )

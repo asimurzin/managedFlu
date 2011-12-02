@@ -80,8 +80,8 @@ echo "Copying files to ${package_folder}"
 echo "--------------------------------------------------------------------------------"
 cp -rf libs ${package_folder}/include
 cp -rf admin/managedflu*.m4 ${package_folder}/admin/
-cp -rf ${foam_user_lib}/libmanagedFlu-* ${package_folder}/lib/
-cp -rf ${foam_user_bin}/*FoamMF ${package_folder}/bin
+cp -rf @abs_top_builddir@/BUILD/lib/libmanagedFlu-* ${package_folder}/lib/
+cp -rf @abs_top_builddir@/BUILD/bin/*FoamMF ${package_folder}/bin
 
 
 #--------------------------------------------------------------------------------------
