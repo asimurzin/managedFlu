@@ -26,13 +26,15 @@ bindir=$(build_dir)/bin
 
 objs=$(patsubst %.C,%.o,$(sources))
 
+app_target=$(join($(bindir),$(app)))
+
 
 #--------------------------------------------------------------------------------------
-All: $(bindir)/$(app)
+All: $(app_target)
 	@
 
-$(bindir)/$(app): $(bindir) $(objs)
-	@OPENFOAM_LINKEXE@ $(objs) $(__LDFLAGS__) -o $@;
+$(app_target): $(bindir) $(objs)
+	@OPENFOAM_LINKEXE@ $(objs) $(__LDFLAGS__) -o $@
 
 %.o : %.C
 	$(CC) $(__CXXFLAGS__) -c $< -o $@
