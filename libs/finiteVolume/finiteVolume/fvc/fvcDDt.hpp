@@ -25,7 +25,12 @@
 
 
 //---------------------------------------------------------------------------
+#if FOAM_NOT_BRANCH( __FREEFOAM__ )
 #include <fvcDDt.H>
+#else
+#include <fvcDDt_subst.H>
+#endif
+
 #include "surfaceFields.hpp"
 #include "volFields.hpp"
 
