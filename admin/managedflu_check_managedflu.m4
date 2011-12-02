@@ -165,7 +165,7 @@ managedflu_libraries_dir=${with_managedflu_libraries}
 
 if test "x${with_managedflu_libraries}" = "x" ; then
    if test ! "x${MANAGEDFLU_ROOT_DIR}" = "x" && test -d ${MANAGEDFLU_ROOT_DIR} ; then
-      managedflu_libraries_dir="${MANAGEDFLU_ROOT_DIR}/libs"
+      managedflu_libraries_dir="${MANAGEDFLU_ROOT_DIR}/BUILD/lib"
    fi
 fi
 
