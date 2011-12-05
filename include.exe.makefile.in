@@ -26,7 +26,7 @@ bindir=$(build_dir)/bin
 
 objs=$(patsubst %.C,%.o,$(sources))
 
-app_target=$(join($(bindir),$(app)))
+app_target=$(bindir)/$(app)
 
 
 #--------------------------------------------------------------------------------------
@@ -43,7 +43,7 @@ $(bindir):
 	@install -d $(bindir)
 
 clean:
-	@rm -f $(objs)
+	@rm -f $(objs) $(app_target)
 
 
 #--------------------------------------------------------------------------------------
