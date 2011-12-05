@@ -1,8 +1,0 @@
-KmeshHolder.cpp
-
-UOprocessHolder.cpp
-
-
-LIB = $(FOAM_USER_LIBBIN)/libmanagedFlu-randomProcesses
-
-

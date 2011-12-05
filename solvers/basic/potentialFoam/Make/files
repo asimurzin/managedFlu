@@ -1,3 +1,0 @@
-potentialFoam.C
-
-EXE = $(FOAM_USER_APPBIN)/potentialFoamMF

@@ -1,3 +1,0 @@
-LESModelHolder.cpp
-
-LIB = $(FOAM_USER_LIBBIN)/libmanagedFlu-incompressibleLESModels

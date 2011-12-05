@@ -1,3 +1,0 @@
-interfacePropertiesHolder.cpp
-
-LIB = $(FOAM_USER_LIBBIN)/libmanagedFlu-interfaceProperties
