@@ -109,7 +109,7 @@ fvVectorMatrixHolder createMatrix(int argc, char *argv[])
     bool momentumPredictor; bool transonic;
     readPISOControls( mesh, pisoDict, nOuterCorr, nCorr, nNonOrthCorr, momentumPredictor, transonic);
       
-    CourantNo( runTime, mesh, phi );
+    //CourantNo( runTime, mesh, phi );
 
     fvVectorMatrixHolder UEqn = fvm::ddt( U ) + fvm::div( phi, U ) - fvm::laplacian( nu, U );
     

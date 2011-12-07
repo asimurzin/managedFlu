@@ -2,9 +2,9 @@
 cd ${0%/*} || exit 1    # run from this directory
 
 
-( cd testMeshDictField && wmake )
-( cd testField && wmake )
-( cd testMatrix && wmake )
+( cd testMeshDictField && make )
+( cd testField && make )
+( cd testMatrix && make )
 
 echo "==============================================="
 echo " RUN testMeshDictField/testMF.C in \"testField\"" 
