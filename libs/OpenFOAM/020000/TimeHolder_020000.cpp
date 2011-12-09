@@ -48,6 +48,18 @@ namespace Foam
     objectRegistryHolder::operator=( boost::shared_ptr< Time >( *this ) );
   }
 
+  TimeHolder::TimeHolder(  const word& dict,
+                           const fileName& rootPath,
+                           const fileName& caseName,
+                           const word& systemName,
+                           const word& constantName,
+                           const bool enableFunctionObjects ) 
+    : DependentHolder()
+    , boost::shared_ptr< Time >( new Time( dict, rootPath, caseName, systemName, constantName, enableFunctionObjects  ) )
+  {
+    objectRegistryHolder::operator=( boost::shared_ptr< Time >( *this ) );
+  }
+
   TimeHolder::TimeHolder( const boost::shared_ptr< Time >& the_time, const Deps& the_deps)
     : DependentHolder( the_deps )
     , boost::shared_ptr< Time >( the_time )
