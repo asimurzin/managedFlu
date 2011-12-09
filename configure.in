@@ -111,9 +111,9 @@ AC_OUTPUT( [ bashrc \
              solvers/multiphase/interFoam/Makefile \
              solvers/multiphase/interDyMFoam/Makefile \
              solvers/multiphase/compressibleInterFoam/Makefile \
-             unitaryTests/testField/Make/options \
-             unitaryTests/testMatrix/Make/options \
-     	     unitaryTests/testMeshDictField/Make/options \
+             unitaryTests/testField/Makefile \
+             unitaryTests/testMatrix/Makefile \
+     	     unitaryTests/testMeshDictField/Makefile \
      	     make-deb.sh \
      	     deb-template/control \
 	     Makefile \
