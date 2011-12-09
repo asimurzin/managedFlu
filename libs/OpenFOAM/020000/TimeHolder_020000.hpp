@@ -28,6 +28,7 @@
 #include "objectRegistryHolder.hpp"
 
 #include <Time.H>
+#include <dictionary.H>
 #include <boost/shared_ptr.hpp>
 
 
@@ -43,6 +44,14 @@ namespace Foam
                 const argList &args, 
                 const word &systemName="system", 
                 const word &constantName="constant" );
+                
+    TimeHolder( const dictionary& dict,
+                const fileName& rootPath,
+                const fileName& caseName,
+                const word& systemName = "system",
+                const word& constantName = "constant",
+                const bool enableFunctionObjects = true );
+
     
     TimeHolder( const boost::shared_ptr< Time >&, const Deps& );
     //TimeHolder( const Time*, const Deps& ); will be implemented after change shared_ptr with smart_ptr

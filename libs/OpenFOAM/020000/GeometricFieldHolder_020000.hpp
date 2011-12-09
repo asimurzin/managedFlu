@@ -53,7 +53,12 @@ namespace Foam
                           const wordList&, const wordList& actualPatchTypes = wordList() );
     GeometricFieldHolder( const IOobjectHolder&, const fvMeshHolder&, 
                           const dimensioned<Type>&, const word& patchFieldType=PatchField<Type>::calculatedType() );
+    GeometricFieldHolder( const IOobjectHolder&, const fvMeshHolder&, 
+                          const dimensioned<Type>&, const wordList& wantedPatchTypes,
+                          const wordList& actualPatchTypes = wordList() );
+
     GeometricFieldHolder( const word&, const GeometricFieldHolder< Type, PatchField, GeoMesh >& );
+    
     
     // constructors with deps
     GeometricFieldHolder( const smart_tmp< GeometricField< Type, PatchField, GeoMesh > >& , const Deps& );
@@ -156,6 +161,21 @@ namespace Foam
 									   const word& patchFieldType ) 
     : DependentHolder( &mesh )
     , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( *io, *mesh, dm, patchFieldType ) )
+  {
+#ifdef OUR_DEBUG
+    cout << "GeometricFieldHolder=" << this << nl;
+#endif
+  }
+
+  template<class Type, template<class> class PatchField, class GeoMesh>
+  GeometricFieldHolder< Type, PatchField, GeoMesh >::GeometricFieldHolder( const IOobjectHolder& io, 
+									   const fvMeshHolder& mesh,
+									   const dimensioned<Type>& dm, 
+									   const wordList& wantedPatchTypes,
+									   const wordList& actualPatchTypes ) 
+    : DependentHolder( &mesh )
+    , smart_tmp< GeometricField< Type, PatchField, GeoMesh > >( new GeometricField< Type, PatchField, GeoMesh >( *io, *mesh, dm, 
+                                                                                                                 wantedPatchTypes, actualPatchTypes ) )
   {
 #ifdef OUR_DEBUG
     cout << "GeometricFieldHolder=" << this << nl;

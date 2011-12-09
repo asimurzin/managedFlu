@@ -46,6 +46,11 @@ namespace Foam
   {
   public:
     fvMeshHolder( const IOobjectHolder& io );
+    fvMeshHolder( const IOobjectHolder& io,
+                  const Xfer<pointField>& points,
+                  const Xfer<faceList>& faces,
+                  const Xfer<cellList>& cells,
+                  const bool syncPar = true );
     
     fvMeshHolder( const boost::shared_ptr< fvMesh >&, const Deps& );
     
