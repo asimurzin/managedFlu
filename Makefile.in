@@ -48,7 +48,7 @@ install:
 	@ echo "install solvers"
 	@ cp -rf @abs_top_builddir@/BUILD/bin/*FoamMF $(bindir)/
 	@ echo "install libs"
-	@ cp -rf @abs_top_builddir@/BUILD/lib/libmanagedFlu-* $(libdir)
+	@ cp -rf @abs_top_builddir@/lib/libmanagedFlu-* $(libdir)
 	@ echo "install headers"
 	@ cp -rf @abs_top_builddir@/libs $(includedir)/managedFlu
 	@ (cd $(includedir)/managedFlu/libs && find \( -name "*.dep" -o -name "*.cpp" \) -exec rm -rf {} \; )

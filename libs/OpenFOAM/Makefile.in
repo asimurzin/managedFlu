@@ -41,7 +41,7 @@ __CPPFLAGS__ := $(__CPPFLAGS__) \
 
 	
 __LDFLAGS__ := $(__LDFLAGS__) \
-	-L@abs_top_builddir@/BUILD/lib -lmanagedFlu \
+	-L@abs_top_builddir@/lib -lmanagedFlu \
 
 
 include @abs_top_builddir@/include.lib.makefile

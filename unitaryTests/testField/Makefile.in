@@ -49,7 +49,7 @@ __LDFLAGS__ := $(__LDFLAGS__) \
     @OPENFOAM_COMPRESSIBLETURBULENCEMODELS_LIBS@ \
     @OPENFOAM_FINITEVOLUME_LIBS@ \
     @OPENFOAM_MESHTOOLS_LIBS@ \
-    -L@abs_top_builddir@/BUILD/lib -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume -lmanagedFlu-basicThermophysicalModels \
+    -L@abs_top_builddir@/lib -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume -lmanagedFlu-basicThermophysicalModels \
     -lmanagedFlu-compressibleTurbulenceModel -lmanagedFlu-compressibleRASModels -lmanagedFlu-radiationModels
     
 

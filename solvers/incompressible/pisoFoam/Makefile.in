@@ -46,7 +46,7 @@ __LDFLAGS__ := $(__LDFLAGS__) \
     @OPENFOAM_INCOMPRESSIBLETURBULENCEMODELS_LIBS@ \
     @OPENFOAM_FINITEVOLUME_LIBS@ \
     @OPENFOAM_INCOMPRESSIBLETRANSPORTMODELS_LIBS@ \
-    -L@abs_top_builddir@/BUILD/lib -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume  \
+    -L@abs_top_builddir@/lib -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume  \
     -lmanagedFlu-incompressibleTransportModels -lmanagedFlu-incompressibleTurbulenceModel -lmanagedFlu-incompressibleRASModels \
     -lmanagedFlu-incompressibleLESModels
     

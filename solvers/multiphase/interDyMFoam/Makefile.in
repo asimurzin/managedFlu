@@ -51,7 +51,7 @@ __LDFLAGS__ := $(__LDFLAGS__) \
     @OPENFOAM_INCOMPRESSIBLETRANSPORTMODELS_LIBS@ \
     @OPENFOAM_INTERFACEPROPERTIES_LIBS@ \
     @OPENFOAM_DYNAMICFVMESH_LIBS@ \
-    -L@abs_top_builddir@/BUILD/lib -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume  -lmanagedFlu-dynamicFvMesh \
+    -L@abs_top_builddir@/lib -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume  -lmanagedFlu-dynamicFvMesh \
     -lmanagedFlu-incompressibleTransportModels -lmanagedFlu-incompressibleTurbulenceModel -lmanagedFlu-incompressibleRASModels \
     -lmanagedFlu-incompressibleLESModels -lmanagedFlu-interfaceProperties    
 

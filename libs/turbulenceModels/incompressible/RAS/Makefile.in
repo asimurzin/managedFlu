@@ -46,7 +46,7 @@ __CPPFLAGS__ := $(__CPPFLAGS__) \
 __LDFLAGS__ := $(__LDFLAGS__) \
     @OPENFOAM_INCOMPRESSIBLETURBULENCEMODELS_LIBS@ \
     @OPENFOAM_FINITEVOLUME_LIBS@ \
-    -L@abs_top_builddir@/BUILD/lib -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume -lmanagedFlu-incompressibleTransportModels
+    -L@abs_top_builddir@/lib -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume -lmanagedFlu-incompressibleTransportModels
 
 include @abs_top_builddir@/include.lib.makefile
 

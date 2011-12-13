@@ -59,7 +59,7 @@ __LDFLAGS__ := $(__LDFLAGS__) \
     @OPENFOAM_FINITEVOLUME_LIBS@ \
     @OPENFOAM_MESHTOOLS_LIBS@ \
     -L$(FOAM_USER_LIBBIN) -lcoupledDerivedFvPatchFields \
-    -L@abs_top_builddir@/BUILD/lib -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume -lmanagedFlu-basicThermophysicalModels \
+    -L@abs_top_builddir@/lib -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume -lmanagedFlu-basicThermophysicalModels \
     -lmanagedFlu-compressibleTurbulenceModel -lmanagedFlu-compressibleRASModels -lmanagedFlu-radiationModels -lmanagedFlu-basicSolidThermo
    
 

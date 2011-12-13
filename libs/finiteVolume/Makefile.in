@@ -49,7 +49,7 @@ __CPPFLAGS__ := $(__CPPFLAGS__) \
 __LDFLAGS__ := $(__LDFLAGS__) \
     @OPENFOAM_FINITEVOLUME_LIBS@ \
     @OPENFOAM_MESHTOOLS_LIBS@ \
-    -L@abs_top_builddir@/BUILD/lib -lmanagedFlu -lmanagedFlu-OpenFOAM
+    -L@abs_top_builddir@/lib -lmanagedFlu -lmanagedFlu-OpenFOAM
 
 
 include @abs_top_builddir@/include.lib.makefile

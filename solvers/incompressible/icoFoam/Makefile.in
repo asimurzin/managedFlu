@@ -37,7 +37,7 @@ __CPPFLAGS__ := $(__CPPFLAGS__) \
     	
 __LDFLAGS__ := $(__LDFLAGS__) \
     @OPENFOAM_FINITEVOLUME_LIBS@ \
-    -L@abs_top_builddir@/BUILD/lib -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume
+    -L@abs_top_builddir@/lib -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume
    
 
 #--------------------------------------------------------------------------------------
