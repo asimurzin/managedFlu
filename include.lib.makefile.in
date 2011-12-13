@@ -22,7 +22,7 @@
 #---------------------------------------------------------------------------
 include @abs_top_builddir@/include.makefile
 
-libdir=$(build_dir)/lib
+libdir=@abs_top_builddir@/lib
 
 objs = $(patsubst %.cpp,%.o,$(sources))
 
