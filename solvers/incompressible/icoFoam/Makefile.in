@@ -30,10 +30,10 @@ app=icoFoamMF
 #--------------------------------------------------------------------------------------
 __CPPFLAGS__ := $(__CPPFLAGS__) \
     @OPENFOAM_FINITEVOLUME_CPPFLAGS@ \
-    -I@abs_top_builddir@/libs \
-    -I@abs_top_builddir@/libs/managedFlu/lnInclude \
-    -I@abs_top_builddir@/libs/OpenFOAM/lnInclude \
-    -I@abs_top_builddir@/libs/finiteVolume/lnInclude
+    -I@abs_top_builddir@/src \
+    -I@abs_top_builddir@/src/managedFlu/lnInclude \
+    -I@abs_top_builddir@/src/OpenFOAM/lnInclude \
+    -I@abs_top_builddir@/src/finiteVolume/lnInclude
     	
 __LDFLAGS__ := $(__LDFLAGS__) \
     @OPENFOAM_FINITEVOLUME_LIBS@ \

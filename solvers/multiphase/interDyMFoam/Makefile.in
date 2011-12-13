@@ -36,14 +36,14 @@ __CPPFLAGS__ := $(__CPPFLAGS__) \
     @OPENFOAM_INTERFACEPROPERTIES_CPPFLAGS@ \
     @OPENFOAM_SAMPLING_CPPFLAGS@ \
     @OPENFOAM_DYNAMICFVMESH_CPPFLAGS@ \
-    -I@abs_top_builddir@/libs \
-    -I@abs_top_builddir@/libs/managedFlu/lnInclude \
-    -I@abs_top_builddir@/libs/OpenFOAM/lnInclude \
-    -I@abs_top_builddir@/libs/finiteVolume/lnInclude \
-    -I@abs_top_builddir@/libs/transportModels/incompressible/lnInclude \
-    -I@abs_top_builddir@/libs/transportModels/interfaceProperties/lnInclude \
-    -I@abs_top_builddir@/libs/turbulenceModels/incompressible/turbulenceModel/lnInclude \
-    -I@abs_top_builddir@/libs/dynamicFvMesh/lnInclude \
+    -I@abs_top_builddir@/src \
+    -I@abs_top_builddir@/src/managedFlu/lnInclude \
+    -I@abs_top_builddir@/src/OpenFOAM/lnInclude \
+    -I@abs_top_builddir@/src/finiteVolume/lnInclude \
+    -I@abs_top_builddir@/src/transportModels/incompressible/lnInclude \
+    -I@abs_top_builddir@/src/transportModels/interfaceProperties/lnInclude \
+    -I@abs_top_builddir@/src/turbulenceModels/incompressible/turbulenceModel/lnInclude \
+    -I@abs_top_builddir@/src/dynamicFvMesh/lnInclude \
 	
 __LDFLAGS__ := $(__LDFLAGS__) \
  @OPENFOAM_INCOMPRESSIBLETURBULENCEMODELS_LIBS@ \

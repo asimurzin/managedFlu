@@ -29,10 +29,10 @@ app=laplacianFoamMF
 #--------------------------------------------------------------------------------------
 __CPPFLAGS__ := $(__CPPFLAGS__) \
 	@OPENFOAM_FINITEVOLUME_CPPFLAGS@ \
-	-I@abs_top_builddir@/libs \
-	-I@abs_top_builddir@/libs/managedFlu/lnInclude \
-	-I@abs_top_builddir@/libs/OpenFOAM/lnInclude \
-	-I@abs_top_builddir@/libs/finiteVolume/lnInclude \
+	-I@abs_top_builddir@/src \
+	-I@abs_top_builddir@/src/managedFlu/lnInclude \
+	-I@abs_top_builddir@/src/OpenFOAM/lnInclude \
+	-I@abs_top_builddir@/src/finiteVolume/lnInclude \
 	@DEFINE_FOAM_VERSION@ @DEFINE_FOAM_BRANCH@ \
 	
 __LDFLAGS__ := $(__LDFLAGS__) \

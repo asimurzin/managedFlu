@@ -67,22 +67,22 @@ CONFFLU_CHECK_MANDATORY( "openfoam_ok boost_shared_ptr_ok" )
 
 #--------------------------------------------------------------------------------------
 AC_OUTPUT( [ bashrc \
-             libs/managedFlu/Makefile \
-             libs/OpenFOAM/Makefile \
-             libs/finiteVolume/Makefile \
-             libs/dynamicFvMesh/Makefile \
-             libs/randomProcesses/Makefile \
-             libs/thermophysicalModels/basic/Makefile \
-             libs/thermophysicalModels/basicSolidThermo/Makefile \
-             libs/thermophysicalModels/radiationModel/Makefile \
-             libs/transportModels/incompressible/Makefile \
-             libs/transportModels/interfaceProperties/Makefile \
-             libs/common.hpp \
-             libs/turbulenceModels/compressible/turbulenceModel/Makefile \
-             libs/turbulenceModels/compressible/RAS/Makefile \
-             libs/turbulenceModels/incompressible/turbulenceModel/Makefile \
-             libs/turbulenceModels/incompressible/RAS/Makefile \
-             libs/turbulenceModels/incompressible/LES/Makefile \
+             src/managedFlu/Makefile \
+             src/OpenFOAM/Makefile \
+             src/finiteVolume/Makefile \
+             src/dynamicFvMesh/Makefile \
+             src/randomProcesses/Makefile \
+             src/thermophysicalModels/basic/Makefile \
+             src/thermophysicalModels/basicSolidThermo/Makefile \
+             src/thermophysicalModels/radiationModel/Makefile \
+             src/transportModels/incompressible/Makefile \
+             src/transportModels/interfaceProperties/Makefile \
+             src/common.hpp \
+             src/turbulenceModels/compressible/turbulenceModel/Makefile \
+             src/turbulenceModels/compressible/RAS/Makefile \
+             src/turbulenceModels/incompressible/turbulenceModel/Makefile \
+             src/turbulenceModels/incompressible/RAS/Makefile \
+             src/turbulenceModels/incompressible/LES/Makefile \
              solvers/basic/laplacianFoam/Makefile \
              solvers/basic/potentialFoam/Makefile \
              solvers/basic/scalarTransportFoam/Makefile \

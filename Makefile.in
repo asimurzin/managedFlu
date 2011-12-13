@@ -50,9 +50,9 @@ install:
 	@ echo "install libs"
 	@ cp -rf @abs_top_builddir@/lib/libmanagedFlu-* $(libdir)
 	@ echo "install headers"
-	@ cp -rf @abs_top_builddir@/libs $(includedir)/managedFlu
-	@ (cd $(includedir)/managedFlu/libs && find \( -name "*.dep" -o -name "*.cpp" \) -exec rm -rf {} \; )
-	@ (cd $(includedir)/managedFlu/libs && rm -rf `find \( -type d -name "Make" \) -print` )
+	@ cp -rf @abs_top_builddir@/src $(includedir)/managedFlu
+	@ (cd $(includedir)/managedFlu/src && find \( -name "*.dep" -o -name "*.cpp" \) -exec rm -rf {} \; )
+	@ (cd $(includedir)/managedFlu/src && rm -rf `find \( -type d -name "Make" \) -print` )
 	@ echo "install m4"
 	@ cp -rf @abs_top_builddir@/admin/managedflu_check_managedflu.m4 $(m4dir)/managedFlu/admin/
 	@ cp -rf @abs_top_builddir@/admin/managedflu_check_openfoam.m4 $(m4dir)/managedFlu/admin/

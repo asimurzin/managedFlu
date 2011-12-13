@@ -24,7 +24,7 @@ cd ${0%/*} || exit 1    # run from this directory
 
 
 #---------------------------------------------------------------------------
-( cd libs && ./Allwclean )
+( cd src && ./Allwclean )
 ( cd solvers && ./Allwclean )
 
 

@@ -24,7 +24,7 @@ cd ${0%/*} || exit 1    # run from this directory
 
 
 #---------------------------------------------------------------------------
-( cd libs && ./Allwmake )
+( cd src && ./Allwmake )
 if [ "x$WM_PROJECT_VERSION" = "x2.0.0" ];then
   ( cd solvers && ./Allwmake )
 fi
