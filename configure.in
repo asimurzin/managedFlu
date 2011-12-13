@@ -116,6 +116,9 @@ AC_OUTPUT( [ bashrc \
      	     unitaryTests/testMeshDictField/Makefile \
      	     make-deb.sh \
      	     deb-template/control \
+     	     deb-template/Makefile \
+     	     deb-template/postinst \
+     	     deb-template/postrm \
 	     Makefile \
 	     include.exe.makefile \
 	     include.lib.makefile \
