@@ -1,0 +1,63 @@
+# managedFlu - OpenFOAM C++ interactive functionality API
+# Copyright (C) 2011- Alexey Petrov
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# See http://sourceforge.net/projects/pythonflu
+#
+# Author : Alexey PETROV, Andrey Simurzin
+
+
+#--------------------------------------------------------------------------------------
+DESTDIR=
+
+install_dir=opt/managedFlu@FOAM_PACKAGE_SUFFIX@
+MANAGEDFLU_DIR=$(DESTDIR)/$(install_dir)
+
+MANAGEDFLU_LIB=$(MANAGEDFLU_DIR)/lib
+MANAGEDFLU_BIN=$(MANAGEDFLU_DIR)/bin
+MANAGEDFLU_INCLUDE=$(MANAGEDFLU_DIR)/src
+MANAGEDFLU_M4=$(MANAGEDFLU_DIR)/admin
+
+install: $(MANAGEDFLU_LIB) $(MANAGEDFLU_BIN)/laplacianFoamMF $(MANAGEDFLU_INCLUDE) $(MANAGEDFLU_M4) $(MANAGEDFLU_DIR)/bashrc
+	@ echo "That's all"
+
+$(MANAGEDFLU_LIB): 
+	@ install -d $(MANAGEDFLU_LIB)
+	@ cp -rf lib/* $(MANAGEDFLU_LIB)
+
+$(MANAGEDFLU_BIN)/laplacianFoamMF:
+	@ install -d $(MANAGEDFLU_BIN)
+	@ cp -rf bin/* $(MANAGEDFLU_BIN)
+
+$(MANAGEDFLU_INCLUDE): 
+	@ install -d $(MANAGEDFLU_INCLUDE)
+	@ cp -rf src $(MANAGEDFLU_DIR)
+
+$(MANAGEDFLU_M4): 
+	@ install -d $(MANAGEDFLU_M4)
+	@ cp -rf admin $(MANAGEDFLU_M4)
+	
+	
+$(MANAGEDFLU_DIR)/bashrc:
+	@ touch $(MANAGEDFLU_DIR)/bashrc
+	@ echo "export MANAGEDFLU_ROOT_DIR=/$(install_dir)" >> $(MANAGEDFLU_DIR)/bashrc
+	@ echo 'echo MANAGEDFLU_ROOT_DIR=\"$${MANAGEDFLU_ROOT_DIR}\"' >> $(MANAGEDFLU_DIR)/bashrc
+	@ echo 'export PATH=$${MANAGEDFLU_ROOT_DIR}/BUILD/bin:$${PATH\}' >> $(MANAGEDFLU_DIR)/bashrc
+	@ echo 'export LD_LIBRARY_PATH=$${MANAGEDFLU_ROOT_DIR}/lib:$${LD_LIBRARY_PATH}' >> $(MANAGEDFLU_DIR)/bashrc
+
+
+
+
+#--------------------------------------------------------------------------------------     	 

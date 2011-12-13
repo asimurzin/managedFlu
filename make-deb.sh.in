@@ -50,7 +50,7 @@ build_option=$1
 
 managedflu_version=@PACKAGE_VERSION@
 
-package_name="managedflu"
+package_name="managedflu@FOAM_PACKAGE_SUFFIX@"
 
 build_version=@BUILD_VERSION@
 
@@ -74,22 +74,22 @@ build_dir_name=`basename ${build_dir_name}`
 rm -rf ${package_name}-${package_version}*
 rm -rf ${package_name}_${package_version}*
 
-install -d ${package_folder}/include ${package_folder}/admin ${package_folder}/bin ${package_folder}/lib
+install -d ${package_folder} ${package_folder}/admin ${package_folder}/bin ${package_folder}/lib
 echo "--------------------------------------------------------------------------------"
 echo "Copying files to ${package_folder}"
 echo "--------------------------------------------------------------------------------"
-cp -rf libs ${package_folder}/include
+cp -rf src ${package_folder}
 cp -rf admin/managedflu*.m4 ${package_folder}/admin/
-cp -rf @abs_top_builddir@/BUILD/lib/libmanagedFlu-* ${package_folder}/lib/
-cp -rf @abs_top_builddir@/BUILD/bin/*FoamMF ${package_folder}/bin
+cp -rf @abs_top_builddir@/lib/* ${package_folder}/lib/
+cp -rf @abs_top_builddir@/bin/* ${package_folder}/bin
 
 
 #--------------------------------------------------------------------------------------
 # remove all unnecessary from the ${package_folder}
 echo "cleaning h, o, etc..."
 echo "--------------------------------------------------------------------------------"
-(cd ${package_folder}/include && find \( -name "*.dep" -o -name "*.cpp" \) -delete)
-(cd ${package_folder}/include && rm -rf `find \( -type d -name ${build_dir_name} \) -print` )
+(cd ${package_folder}/src && find \( -name "*.dep" -o -name "*.cpp" -o -name "*.o" -o -name "Makefile.in" -o -name "Makefile" \) -delete)
+(cd ${package_folder}/src && rm -rf `find \( -type d -name ${build_dir_name} \) -print` )
 
 
 #--------------------------------------------------------------------------------------
