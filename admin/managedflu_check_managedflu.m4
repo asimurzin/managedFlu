@@ -122,16 +122,11 @@ managedflu_header_dir=${with_managedflu_includes}
 
 if test "x${with_managedflu_includes}" = "x" ; then
    if test ! "x${MANAGEDFLU_ROOT_DIR}" = "x" && test -d ${MANAGEDFLU_ROOT_DIR} ; then
-      managedflu_header_dir=${MANAGEDFLU_ROOT_DIR}/libs
+      managedflu_header_dir=${MANAGEDFLU_ROOT_DIR}/src
    fi
 fi
 
 AC_CHECK_FILE( [${managedflu_header_dir}/managedFlu/DependentHolder.hpp], [ managedflu_includes=yes ], [ managedflu_includes=no ] )
-
-dnl if test "x${managedflu_includes}" = "xno" ; then
-dnl    managedflu_header_dir=/usr/local/include/managedflu/libs
-dnl   AC_CHECK_FILE( [${managedflu_header_dir}/DependentHolder.hpp], [ managedflu_includes=yes ], [ managedflu_includes=no ] )
-dnl fi
 
 if test "x${managedflu_includes}" = "xyes" ; then
    MANAGEDFLU_CPPFLAGS="-I${managedflu_header_dir} -I${managedflu_header_dir}/managedFlu/lnInclude"
@@ -165,21 +160,12 @@ managedflu_libraries_dir=${with_managedflu_libraries}
 
 if test "x${with_managedflu_libraries}" = "x" ; then
    if test ! "x${MANAGEDFLU_ROOT_DIR}" = "x" && test -d ${MANAGEDFLU_ROOT_DIR} ; then
-      managedflu_libraries_dir="${MANAGEDFLU_ROOT_DIR}/BUILD/lib"
+      managedflu_libraries_dir="${MANAGEDFLU_ROOT_DIR}/lib"
    fi
 fi
 
 AC_CHECK_FILE( [${managedflu_libraries_dir}/libmanagedFlu.so], [ managedflu_libraries=yes ], [ managedflu_libraries=no ] )
 
-dnl if test "x${managedflu_libraries}" = "xno" ; then
-dnl   managedflu_libraries_dir=/usr/local/lib
-dnl   AC_CHECK_FILE( [${managedflu_libraries_dir}/libmanagedFlu.so], [ managedflu_libraries=yes ], [ managedflu_libraries=no ] )
-dnl fi
-
-if test "x${managedflu_libraries}" = "xno" ; then
-  managedflu_libraries_dir=${FOAM_USER_LIBBIN}
-  AC_CHECK_FILE( [${managedflu_libraries_dir}/libmanagedFlu.so], [ managedflu_libraries=yes ], [ managedflu_libraries=no ] )
-fi
 
 if test "x${managedflu_libraries}" = "xyes" ; then
    MANAGEDFLU_LDFLAGS="-L${managedflu_libraries_dir}"
