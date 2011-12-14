@@ -55,7 +55,7 @@ install:
 	@ echo "install m4"
 	@ cp -rf @abs_top_builddir@/admin/managedflu_check_managedflu.m4 $(m4dir)
 	@ cp -rf @abs_top_builddir@/admin/managedflu_check_openfoam.m4 $(m4dir)
-	@ touch $(MANAGEDFLU_DIR)/bashrc
+	@ touch $(managedFlu_dir)/bashrc
 	@ echo "export MANAGEDFLU_ROOT_DIR=$(managedFlu_dir)" >> $(managedFlu_dir)/bashrc
 	@ echo 'echo MANAGEDFLU_ROOT_DIR="$${MANAGEDFLU_ROOT_DIR}"' >> $(managedFlu_dir)/bashrc
 	@ echo 'export PATH=$${MANAGEDFLU_ROOT_DIR}/bin:$${PATH}' >> $(managedFlu_dir)/bashrc
