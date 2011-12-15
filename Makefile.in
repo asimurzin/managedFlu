@@ -56,8 +56,8 @@ ifneq "@FOAM_BRANCH@" "free"
 	@ echo 'echo MANAGEDFLU_ROOT_DIR="$${MANAGEDFLU_ROOT_DIR}"' >> $(managedFlu_dir)/bashrc
 	@ echo 'export PATH=$${MANAGEDFLU_ROOT_DIR}/bin:$${PATH}' >> $(managedFlu_dir)/bashrc
 	@ echo 'export LD_LIBRARY_PATH=$${MANAGEDFLU_ROOT_DIR}/lib:$${LD_LIBRARY_PATH}' >> $(managedFlu_dir)/bashrc
-	@ if [ `grep -c "source @PACKAGE_INSTALL_DIR@/etc/bashrc" @FOAM_PACKAGE_DIR@/etc/bashrc` -eq 0 ]; then \
-	    echo "source $(managedFlu_dir)/etc/bashrc" >> @FOAM_PACKAGE_DIR@/etc/bashrc; \
+	@ if [ `grep -c "source @PACKAGE_INSTALL_DIR@/bashrc" @FOAM_PACKAGE_DIR@/etc/bashrc` -eq 0 ]; then \
+	    echo "source $(managedFlu_dir)/bashrc" >> @FOAM_PACKAGE_DIR@/etc/bashrc; \
 	  fi
 endif
 
@@ -71,7 +71,7 @@ uninstall:
 	@ echo "uninstall m4"
 	@ rm -rf  $(m4dir)
 ifneq "@FOAM_BRANCH@" "free"
-	@ sed -i "s%source $(managedFlu_dir)/etc/bashrc%%" "@FOAM_PACKAGE_DIR@/etc/bashrc"
+	@ sed -i "s%source $(managedFlu_dir)/bashrc%%" "@FOAM_PACKAGE_DIR@/etc/bashrc"
 	@ rm -rf $(managedFlu_dir)
 endif
 
