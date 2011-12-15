@@ -128,6 +128,11 @@ fi
 
 AC_CHECK_FILE( [${managedflu_header_dir}/managedFlu/DependentHolder.hpp], [ managedflu_includes=yes ], [ managedflu_includes=no ] )
 
+if test "x${managedflu_includes}" = "xno" ; then
+    managedflu_header_dir=/usr/local/include/managedFlu
+    AC_CHECK_FILE( [${managedflu_header_dir}/managedFlu/DependentHolder.hpp], [ managedflu_includes=yes ], [ managedflu_includes=no ] )
+fi
+
 if test "x${managedflu_includes}" = "xyes" ; then
    MANAGEDFLU_CPPFLAGS="-I${managedflu_header_dir} -I${managedflu_header_dir}/managedFlu/lnInclude"
    
@@ -166,6 +171,10 @@ fi
 
 AC_CHECK_FILE( [${managedflu_libraries_dir}/libmanagedFlu.so], [ managedflu_libraries=yes ], [ managedflu_libraries=no ] )
 
+if test "x${managedflu_libraries}" = "xno" ; then
+  managedflu_libraries_dir=/usr/local/lib
+  AC_CHECK_FILE( [${managedflu_libraries_dir}/libmanagedFlu.so], [ managedflu_libraries=yes ], [ managedflu_libraries=no ] )
+fi
 
 if test "x${managedflu_libraries}" = "xyes" ; then
    MANAGEDFLU_LDFLAGS="-L${managedflu_libraries_dir}"
