@@ -58,6 +58,10 @@ echo "--------------------------------------------------------------------------
 CONFFLU_CHECK_PGP_KEY_ID
 echo 
 
+echo "--------------------------------------------------------------------------------------"
+CONFFLU_CHECK_INSTALL
+echo 
+
 echo "---------------------------- mandatory products --------------------------------"
 CONFFLU_PRINT_SUMMURY( "openfoam_ok boost_shared_ptr_ok" )
 echo

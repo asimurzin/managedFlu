@@ -20,16 +20,12 @@
 
 
 #---------------------------------------------------------------------------
-prefix=@prefix@
-ifeq "@prefix@" "/usr/local"
-prefix=
-endif
+managedFlu_dir=@PACKAGE_INSTALL_DIR@
+bindir=@PACKAGE_INSTALL_BIN_DIR@
+libdir=@PACKAGE_INSTALL_LIB_DIR@
+includedir=@PACKAGE_INSTALL_INCLUDE_DIR@
+m4dir=@PACKAGE_INSTALL_M4_DIR@
 
-managedFlu_dir=$(prefix)/opt/managedFlu@FOAM_PACKAGE_SUFFIX@
-bindir=$(managedFlu_dir)/bin
-libdir=$(managedFlu_dir)/lib
-includedir=$(managedFlu_dir)/src
-m4dir=$(managedFlu_dir)/admin
 
 #--------------------------------------------------------------------------------------
 All:
@@ -42,8 +38,7 @@ clean:
 
 #--------------------------------------------------------------------------------------
 install:
-	@ rm -rf $(managedFlu_dir)
-	@ install -d $(bindir) $(libdir) $(includedir) $(m4dir)
+	@ install -d $(bindir) $(libdir) $(includedir) $(m4dir)/admin
 	@ echo "install solvers"
 	@ cp -rf @abs_top_builddir@/bin/* $(bindir)
 	@ echo "install libs"
@@ -53,13 +48,32 @@ install:
 	@ (cd $(includedir) && find \( -name "*.dep" -o -name "*.cpp" -o -name "*.o" -o -name "Makefile*" \) -exec rm -rf {} \; )
 	@ (cd $(includedir) && rm -rf `find \( -type d -name "Make" \) -print` )
 	@ echo "install m4"
-	@ cp -rf @abs_top_builddir@/admin/managedflu_check_managedflu.m4 $(m4dir)
-	@ cp -rf @abs_top_builddir@/admin/managedflu_check_openfoam.m4 $(m4dir)
+	@ cp -rf @abs_top_builddir@/admin/managedflu_check_managedflu.m4 $(m4dir)/admin
+	@ cp -rf @abs_top_builddir@/admin/managedflu_check_openfoam.m4 $(m4dir)/admin
+ifneq "@FOAM_BRANCH@" "free"
 	@ touch $(managedFlu_dir)/bashrc
 	@ echo "export MANAGEDFLU_ROOT_DIR=$(managedFlu_dir)" >> $(managedFlu_dir)/bashrc
 	@ echo 'echo MANAGEDFLU_ROOT_DIR="$${MANAGEDFLU_ROOT_DIR}"' >> $(managedFlu_dir)/bashrc
 	@ echo 'export PATH=$${MANAGEDFLU_ROOT_DIR}/bin:$${PATH}' >> $(managedFlu_dir)/bashrc
 	@ echo 'export LD_LIBRARY_PATH=$${MANAGEDFLU_ROOT_DIR}/lib:$${LD_LIBRARY_PATH}' >> $(managedFlu_dir)/bashrc
+	@ if [ `grep -c "source @PACKAGE_INSTALL_DIR@/etc/bashrc" @FOAM_PACKAGE_DIR@/etc/bashrc` -eq 0 ]; then \
+	    echo "source $(managedFlu_dir)/etc/bashrc" >> @FOAM_PACKAGE_DIR@/etc/bashrc; \
+	  fi
+endif
+
+uninstall:
+	@ echo "uninstall solvers"
+	@ ( cd $(bindir) && rm -rf *FoamMF)
+	@ echo "uninstall libs"
+	@ ( cd $(libdir) && rm -rf libmanagedFlu*.so )
+	@ echo "uninstall headers"
+	@ rm -rf $(includedir)
+	@ echo "uninstall m4"
+	@ rm -rf  $(m4dir)
+ifneq "@FOAM_BRANCH@" "free"
+	@ sed -i "s%source $(managedFlu_dir)/etc/bashrc%%" "@FOAM_PACKAGE_DIR@/etc/bashrc"
+	@ rm -rf $(managedFlu_dir)
+endif
 
 
 
