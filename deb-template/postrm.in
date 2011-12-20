@@ -18,10 +18,13 @@
 
 
 case "$1" in
-    purge|remove )
+    purge|remove|upgrade )
         sed -i "s%source @PACKAGE_INSTALL_DIR@/bashrc%%" "@FOAM_PACKAGE_DIR@/etc/bashrc"
     ;;
-    upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+    failed-upgrade|abort-install|abort-upgrade|disappear)
+    echo
+    echo $1
+    echo
     ;;
 
     *)
