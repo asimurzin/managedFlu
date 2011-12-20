@@ -80,9 +80,10 @@ echo "Copying files to ${package_folder}"
 echo "--------------------------------------------------------------------------------"
 cp -rf src ${package_folder}
 cp -rf admin/managedflu*.m4 ${package_folder}/admin/
-cp -rf @abs_top_builddir@/lib/* ${package_folder}/lib/
-cp -rf @abs_top_builddir@/bin/* ${package_folder}/bin
-
+cp -rf @abs_top_builddir@/lib/* ${package_folder}/lib
+if [ "@FOAM_VERSION@" = "020000" ]; then
+    cp -rf @abs_top_builddir@/bin/* ${package_folder}/bin
+fi
 
 #--------------------------------------------------------------------------------------
 # remove all unnecessary from the ${package_folder}

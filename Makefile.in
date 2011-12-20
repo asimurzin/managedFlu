@@ -39,8 +39,10 @@ clean:
 #--------------------------------------------------------------------------------------
 install:
 	@ install -d $(bindir) $(libdir) $(includedir) $(m4dir)/admin
+ifeq "@FOAM_VERSION@" "020000"
 	@ echo "install solvers"
 	@ cp -rf @abs_top_builddir@/bin/* $(bindir)
+endif
 	@ echo "install libs"
 	@ cp -rf @abs_top_builddir@/lib/* $(libdir)
 	@ echo "install headers"
