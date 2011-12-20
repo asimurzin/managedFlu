@@ -19,7 +19,8 @@
 
 case "$1" in
     purge|remove|upgrade )
-        sed -i "s%source @PACKAGE_INSTALL_DIR@/bashrc%%" "@FOAM_PACKAGE_DIR@/etc/bashrc"
+        sed -i "s%source @PACKAGE_INSTALL_DIR@/bashrc%managedFlu@PACKAGE_VERSION@%" "@FOAM_PACKAGE_DIR@/etc/bashrc"
+        sed -i "/managedFlu@PACKAGE_VERSION@/d" "@FOAM_PACKAGE_DIR@/etc/bashrc"
     ;;
     failed-upgrade|abort-install|abort-upgrade|disappear)
     echo

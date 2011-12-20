@@ -73,7 +73,8 @@ uninstall:
 	@ echo "uninstall m4"
 	@ rm -rf  $(m4dir)
 ifneq "@FOAM_BRANCH@" "free"
-	@ sed -i "s%source $(managedFlu_dir)/bashrc%%" "@FOAM_PACKAGE_DIR@/etc/bashrc"
+	@ sed -i "s%source $(managedFlu_dir)/bashrc%managedFlu@PACKAGE_VERSION@%" "@FOAM_PACKAGE_DIR@/etc/bashrc"
+	@ sed -i "/managedFlu@PACKAGE_VERSION@/d" "@FOAM_PACKAGE_DIR@/etc/bashrc"
 	@ rm -rf $(managedFlu_dir)
 endif
 
