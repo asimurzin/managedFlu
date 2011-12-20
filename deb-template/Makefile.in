@@ -22,13 +22,13 @@
 #--------------------------------------------------------------------------------------
 DESTDIR=
 
-install_dir=opt/managedFlu@FOAM_PACKAGE_SUFFIX@
+install_dir=@PACKAGE_INSTALL_DIR@
 MANAGEDFLU_DIR=$(DESTDIR)/$(install_dir)
 
-MANAGEDFLU_LIB=$(MANAGEDFLU_DIR)/lib
-MANAGEDFLU_BIN=$(MANAGEDFLU_DIR)/bin
-MANAGEDFLU_INCLUDE=$(MANAGEDFLU_DIR)/src
-MANAGEDFLU_M4=$(MANAGEDFLU_DIR)/admin
+MANAGEDFLU_LIB=$(DESTDIR)@PACKAGE_INSTALL_LIB_DIR@
+MANAGEDFLU_BIN=$(DESTDIR)@PACKAGE_INSTALL_BIN_DIR@
+MANAGEDFLU_INCLUDE=$(DESTDIR)@PACKAGE_INSTALL_INCLUDE_DIR@
+MANAGEDFLU_M4=$(DESTDIR)@PACKAGE_INSTALL_M4_DIR@
 
 install: $(MANAGEDFLU_LIB) $(MANAGEDFLU_BIN)/laplacianFoamMF $(MANAGEDFLU_INCLUDE) $(MANAGEDFLU_M4) $(MANAGEDFLU_DIR)/bashrc
 	@ echo "That's all"
@@ -38,8 +38,10 @@ $(MANAGEDFLU_LIB):
 	@ cp -rf lib/* $(MANAGEDFLU_LIB)
 
 $(MANAGEDFLU_BIN)/laplacianFoamMF:
+ifeq "@FOAM_VERSION@" "020000"
 	@ install -d $(MANAGEDFLU_BIN)
 	@ cp -rf bin/* $(MANAGEDFLU_BIN)
+endif
 
 $(MANAGEDFLU_INCLUDE): 
 	@ install -d $(MANAGEDFLU_INCLUDE)
@@ -52,9 +54,9 @@ $(MANAGEDFLU_M4):
 	
 $(MANAGEDFLU_DIR)/bashrc:
 	@ touch $(MANAGEDFLU_DIR)/bashrc
-	@ echo "export MANAGEDFLU_ROOT_DIR=/$(install_dir)" >> $(MANAGEDFLU_DIR)/bashrc
+	@ echo "export MANAGEDFLU_ROOT_DIR=$(install_dir)" >> $(MANAGEDFLU_DIR)/bashrc
 	@ echo 'echo MANAGEDFLU_ROOT_DIR=\"$${MANAGEDFLU_ROOT_DIR}\"' >> $(MANAGEDFLU_DIR)/bashrc
-	@ echo 'export PATH=$${MANAGEDFLU_ROOT_DIR}/BUILD/bin:$${PATH\}' >> $(MANAGEDFLU_DIR)/bashrc
+	@ echo 'export PATH=$${MANAGEDFLU_ROOT_DIR}/BUILD/bin:$${PATH}' >> $(MANAGEDFLU_DIR)/bashrc
 	@ echo 'export LD_LIBRARY_PATH=$${MANAGEDFLU_ROOT_DIR}/lib:$${LD_LIBRARY_PATH}' >> $(MANAGEDFLU_DIR)/bashrc
 
 

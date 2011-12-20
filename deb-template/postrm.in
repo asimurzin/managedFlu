@@ -19,9 +19,7 @@
 
 case "$1" in
     purge|remove )
-        deleted_string="source \/opt\/managedFlu@FOAM_PACKAGE_SUFFIX@\/bashrc"
-        openfoam_bashrc=@FOAM_PACKAGE_DIR@/etc/bashrc
-        sed -i "/${deleted_string}/d" "${openfoam_bashrc}"
+        sed -i "s%source @PACKAGE_INSTALL_DIR@/bashrc%%" "@FOAM_PACKAGE_DIR@/etc/bashrc"
     ;;
     upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
     ;;

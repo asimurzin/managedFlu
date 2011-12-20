@@ -20,7 +20,7 @@ set -e
 check_openfoam_bashrc()
 {
  path=$1
- echo `grep -c managedFlu@FOAM_PACKAGE_SUFFIX@ $path`
+ echo `grep -c "source @PACKAGE_INSTALL_DIR@/bashrc" $path`
 }
 
 update_openfoam_bashrc()
@@ -28,7 +28,7 @@ update_openfoam_bashrc()
     path=$1
     existManFlu=`check_openfoam_bashrc $path`
     if [ ${existManFlu} -eq 0 ]; then
-        echo "source /opt/managedFlu@FOAM_PACKAGE_SUFFIX@/bashrc" >> $path
+        echo "source @PACKAGE_INSTALL_DIR@/bashrc" >> $path
     fi
 }
 
