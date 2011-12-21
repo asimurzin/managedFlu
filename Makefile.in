@@ -45,6 +45,7 @@ ifeq "@FOAM_VERSION@" "020000"
 endif
 	@ echo "install libs"
 	@ cp -rf @abs_top_builddir@/lib/* $(libdir)
+	@ ldconfig
 	@ echo "install headers"
 	@ cp -rf @abs_top_builddir@/src/* $(includedir)
 	@ (cd $(includedir) && find \( -name "*.dep" -o -name "*.cpp" -o -name "*.o" -o -name "Makefile*" \) -exec rm -rf {} \; )
