@@ -65,8 +65,10 @@ ifneq "@FOAM_BRANCH@" "free"
 endif
 
 uninstall:
+ifeq "@FOAM_VERSION@" "020000"
 	@ echo "uninstall solvers"
 	@ ( cd $(bindir) && rm -rf *FoamMF)
+endif
 	@ echo "uninstall libs"
 	@ ( cd $(libdir) && rm -rf libmanagedFlu*.so )
 	@ echo "uninstall headers"
