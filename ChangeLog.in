@@ -1,4 +1,4 @@
-#PACKAGE# (#VERSION#) lucid; urgency=high
+#PACKAGE# (#VERSION#) @UBUNTU_CODENAME@; urgency=high
 
   * Initial realese
 
