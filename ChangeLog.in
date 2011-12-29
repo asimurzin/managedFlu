@@ -1,0 +1,8 @@
+#PACKAGE# (#VERSION#~@UBUNTU_CODENAME@) @UBUNTU_CODENAME@; urgency=high
+
+  * Initial realese
+
+ -- #USERNAME# <#EMAIL#>  #DATE#
+
+
+
