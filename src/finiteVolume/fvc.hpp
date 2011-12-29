@@ -27,6 +27,7 @@
 //---------------------------------------------------------------------------
 #include <fvc.H>
 #include "fvcDDt.hpp"
+#include "fvcDdt.hpp"
 #include "fvcDiv.hpp"
 #include "fvcGrad.hpp"
 #include "fvcSnGrad.hpp"
