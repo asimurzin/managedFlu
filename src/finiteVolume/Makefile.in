@@ -28,6 +28,8 @@ pimpleControlHolder.cpp \
 \
 cfdTools/general/MRFZonesHolder.cpp \
 cfdTools/general/porousZonesHolder.cpp \
+cfdTools/general/basicSourceListHolder.cpp \
+cfdTools/general/IObasicSourceListHolder.cpp \
 \
 fvMeshHolder.cpp \
 volFields.cpp \
