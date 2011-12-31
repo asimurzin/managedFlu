@@ -31,8 +31,8 @@ namespace Foam
     : DependentHolder( Deps( &mesh ) )
     , boost::shared_ptr< IObasicSourceList >( new IObasicSourceList( *mesh ) )
   {
-    boost::shared_ptr< basicSourceList >::operator=( boost::shared_ptr< IObasicSourceList >( *this ) );
-    boost::shared_ptr< IOdictionary >::operator=( boost::shared_ptr< IObasicSourceList >( *this ) );
+    basicSourceListHolder::operator=( boost::shared_ptr< IObasicSourceList >( *this ) );
+    IOdictionaryHolder::operator=( boost::shared_ptr< IObasicSourceList >( *this ) );
   }
 
   IObasicSourceListHolder::IObasicSourceListHolder() 
