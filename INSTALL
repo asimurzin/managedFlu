@@ -1,0 +1,96 @@
+#--------------------------------------------------------------------------------------
+Installation Instructions
+#--------------------------------------------------------------------------------------
+# managedFlu - OpenFOAM C++ interactive functionality API
+# Copyright (C) 2011- Alexey Petrov
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# See http://sourceforge.net/projects/pythonflu
+#
+# Author : Alexey PETROV, Andrey Simurzin
+
+
+#---------------------------------------------------------------------------
+Pre-requisites
+#--------------------------------------------------------------------------------------
+
+"managedFlu" requires the following mandatory and optional pre-requisites.
+
+* Make sure that confFlu (common configuration package) is installed (tested with release 1.2-hybrid)
+  Can be found at  http://sourceforge.net/projects/pythonflu/files.
+  Please follow instructions from corresponding INSTALL file to setup confFlu
+  in your environment.
+
+* Make sure that OpenFOAM is installed (tested with 1.6-ext, 2.0.0, 2.0.1 and 2.1.0  versions). 
+  Please follow instructions from corresponding INSTALL file to setup OpenFOAM in your environment.
+
+Then follow the instructions below in order to build and install the "managedFlu".
+
+
+#--------------------------------------------------------------------------------------
+Basic Installation
+#--------------------------------------------------------------------------------------
+
+The build procedure of the "managedFlu" package is based on GNU autoconf and make utilities. 
+In order to build the module you have to perform the following actions:
+
+1. Start a new shell session (to ensure a clear environment).
+
+2. Go to the source directory:
+
+   cd <path to the sources>
+
+3. Copy the provided "env.sh.example" file to "env.sh" and adjust to your local environment.
+   
+   <your favorite editor> ./env.sh
+
+4. Source this "env.sh" file to define the corresponding build environment.
+
+   source ./env.sh
+
+5. Configuring the build system:
+
+   ./build_configure
+   ./configure
+
+   Make sure that after each configuration step the "--- OK ---" message is
+   printed in your console.
+
+   To see all applicable configuration options run "./configure --help"
+
+6. Build and install "managedFlu":
+
+   make
+   sudo bash -c "source ./bashrc  && make install"
+
+  (use "make clean" command to cleanup the build folder)
+
+7. Uninstall "managedFlu":
+   sudo bash -c "source ./bashrc  && make uninstall"
+
+
+#--------------------------------------------------------------------------------------
+Environment
+#--------------------------------------------------------------------------------------
+For using managedFlu source OpenFOAM enviroment itself
+
+   # For OpenCFD's OpenFOAM-2.1.0
+   source /opt/openfoam210/etc/bashrc 
+
+   # For Extended's OpenFOAM-1.6
+   source /usr/lib/OpenFOAM-1.6-ext/etc/bashrc
+
+
+#--------------------------------------------------------------------------------------

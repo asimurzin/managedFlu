@@ -1,1 +1,64 @@
-123
+#--------------------------------------------------------------------------------------
+README
+#--------------------------------------------------------------------------------------
+# managedFlu - OpenFOAM C++ interactive functionality API
+# Copyright (C) 2011- Alexey Petrov
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public Licens e
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# See http://sourceforge.net/projects/pythonflu
+#
+# Author : Alexey PETROV, Andrey Simurzin
+
+
+#---------------------------------------------------------------------------
+Introduction
+#--------------------------------------------------------------------------------------
+
+managedFlu is an intermediate layer between OpenFOAM ( Open Source CFD Toolbox, 
+see http://openfoam.com ) and pythonFlu ( see http://sourceforge.net/projects/pythonflu ) 
+library.
+The main reason of its development is, some OpenFOAM interfaces( let's call
+it holder ) store objects as const reference( dependencies ) and when holder
+are being used( destroyed ), we should be sure that all dependencies are valid
+( was not destroyed ). We create interfaces which can store own dependencies and 
+provide the "correct" order of destroying object( dependencies after the holder ).
+
+For example, GeometricField( through DimensionedField ) stores fvMesh as a const reference.
+Lets see the function createField.
+GeometricField createField(...)
+{
+ fvMesh mesh( IOobject(...) );
+ return GeometricField( IOobject(...), mesh );
+}
+The field which returns from this function is not valid because the "mesh" object will 
+be destroyed after exit from this function.
+managedFlu provides new interface GeometricFieldHolder which store "mesh" object inside
+and supply the "correct" order of destroing objects, fvMesh object after GeometricField.
+
+ 
+#--------------------------------------------------------------------------------------
+Installation
+#--------------------------------------------------------------------------------------
+
+See the INSTALL file for more information about installing of managedFlu
+library.
+
+#--------------------------------------------------------------------------------------
+Usage
+#--------------------------------------------------------------------------------------
+
+(see corresponding C++ API)
+
+#--------------------------------------------------------------------------------------
