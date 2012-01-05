@@ -22,31 +22,22 @@ README
 # Author : Alexey PETROV, Andrey Simurzin
 
 
-#---------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------
 Introduction
 #--------------------------------------------------------------------------------------
 
-managedFlu is an intermediate layer between OpenFOAM ( Open Source CFD Toolbox, 
-see http://openfoam.com ) and pythonFlu ( see http://sourceforge.net/projects/pythonflu ) 
-library.
-The main reason of its development is, some OpenFOAM interfaces( let's call
-it holder ) store objects as const reference( dependencies ) and when holder
-are being used( destroyed ), we should be sure that all dependencies are valid
-( was not destroyed ). We create interfaces which can store own dependencies and 
-provide the "correct" order of destroying object( dependencies after the holder ).
-
-For example, GeometricField( through DimensionedField ) stores fvMesh as a const reference.
-Lets see the function createField.
-GeometricField createField(...)
-{
- fvMesh mesh( IOobject(...) );
- return GeometricField( IOobject(...), mesh );
-}
-The field which returns from this function is not valid because the "mesh" object will 
-be destroyed after exit from this function.
-managedFlu provides new interface GeometricFieldHolder which store "mesh" object inside
-and supply the "correct" order of destroing objects, fvMesh object after GeometricField.
-
+"managedFlu" is a C++ library that allows to write interactive functionality on top of 
+referenced OpenFOAM API. As it has appeared, OpenFOAM imposes limitations on writing 
+corresponding solver code, namely - most OpenFOAM objects should live in the same "scope"
+and exactly within the same time (that is why solver expands its functionality by usage 
+of "#include" tricks). If one of the objects die unexpectedly, all others can not be used
+anymore. Such specific assumptions made by OpenFOAM make it impossible to write a 
+functionality which can be used many times in during the same session (something the other
+"pythonFlu" package are going to provide to). managedFlu provides a general solution for this
+case by introducing an additional "managed" level for the referenced OpenFOAM C++ API. 
+All the developers need to do, to be able to write interactive applications, it is to create 
+and use corresponding "managed" OpenFOAM objects instead of the referenced ones. For more details 
+developers can check corresponding solver examples that comes with managedFlu as a its demonstration.
  
 #--------------------------------------------------------------------------------------
 Installation
