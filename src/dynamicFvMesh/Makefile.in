@@ -42,7 +42,7 @@ __LDFLAGS__ := $(__LDFLAGS__) \
     @OPENFOAM_FINITEVOLUME_LIBS@ \
     @OPENFOAM_MESHTOOLS_LIBS@ \
     @OPENFOAM_DYNAMICFVMESH_LIBS@ \
-    -L@abs_top_builddir@/lib -lmanagedFlu -lmanagedFlu-OpenFOAM --lmanagedFlu-finiteVolume
+    -L@abs_top_builddir@/lib -lmanagedFlu -lmanagedFlu-OpenFOAM -lmanagedFlu-finiteVolume
 
 
 include @abs_top_builddir@/include.lib.makefile
