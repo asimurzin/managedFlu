@@ -20,11 +20,11 @@
 
 
 #---------------------------------------------------------------------------
-__CPPFLAGS__:=$(__CPPFLAGS__) @OPENFOAM_CPPFLAGS@ -I@abs_top_builddir@/src -I/usr/include -I/usr/include/c++ -IlnInclude
+__CPPFLAGS__:=$(__CPPFLAGS__) @OPENFOAM_CPPFLAGS@ @BOOST_CPPFLAGS@ -I@abs_top_builddir@/src -I/usr/include -I/usr/include/c++ -IlnInclude
 
-__LDFLAGS__:=$(__LDFLAGS__) @OPENFOAM_LDFLAGS@ @OPENFOAM_LIBS@ -lstdc++ 
+__LDFLAGS__:=$(__LDFLAGS__) @OPENFOAM_LDFLAGS@ @BOOST_LDFLAGS@ @OPENFOAM_LIBS@ @BOOST_LIBSUFFIX@ -lstdc++ 
 
-__CXXFLAGS__ := @OPENFOAM_CXXFLAGS@ -Wall -Wextra -Wno-old-style-cast $(__CPPFLAGS__)
+__CXXFLAGS__ := @OPENFOAM_CXXFLAGS@ @BOOST_CXXFLAGS@ -Wall -Wextra -Wno-old-style-cast $(__CPPFLAGS__)
 
 
 #--------------------------------------------------------------------------------------
