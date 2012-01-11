@@ -34,7 +34,7 @@ All: $(app_target)
 	@
 
 $(app_target): $(bindir) $(objs)
-	@OPENFOAM_LINKEXE@ $(objs) $(__LDFLAGS__) -o $@
+	@OPENFOAM_LINKEXE@ $(objs) $(__LDFLAGS__) @OPENFOAM_LINKEXE_LIBS@ -o $@
 
 %.o : %.C
 	$(CC) $(__CXXFLAGS__) -c $< -o $@
