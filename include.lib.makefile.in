@@ -43,7 +43,7 @@ $(include_path):
 	@( cd $(include_path) && find ../ -type f -name "*.cpp" -exec ln -s {} \; )
 
 $(libdir)/$(libname).so: $(objs) 
-	@OPENFOAM_LINKLIBSO@ $(objs) $(__LDFLAGS__) -o $@;
+	@OPENFOAM_LINKLIBSO@ $(objs) $(__LDFLAGS__) @OPENFOAM_LINKLIBSO_LIBS@ -o $@;
 
 $(libdir):
 	@install -d $(libdir)
