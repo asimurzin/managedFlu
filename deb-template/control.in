@@ -8,6 +8,6 @@ Homepage: http://sourceforge.net/projects/pythonflu/
 
 Package: #PACKAGE#
 Architecture: @OS_ARCHITECTURE@
-Depends: ${shlibs:Depends}, ${misc:Depends}, @FOAM_PACKAGE_NAME@, libboost-dev
+Depends: ${shlibs:Depends}, ${misc:Depends}, @FOAM_PACKAGE_NAME@, libboost-dev, confflu
 Description: OpenFOAM C++ interactive functionality API
 
