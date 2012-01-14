@@ -34,7 +34,7 @@ All: $(libdir) $(include_path) $(libdir)/$(libname).so
 	@
 
 %.o : %.cpp
-	$(CC) $(__CXXFLAGS__) -c $< -o $@
+	$(WM_CC) $(__CXXFLAGS__) -c $< -o $@
 
 $(include_path):
 	@[ -d $(include_path) ] || mkdir $(include_path)
