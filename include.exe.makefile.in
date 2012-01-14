@@ -33,14 +33,11 @@ app_target=$(bindir)/$(app)
 All: $(app_target)
 	@
 
-$(app_target): $(bindir) $(objs)
+$(app_target): $(objs)
 	@OPENFOAM_LINKEXE@ $(objs) $(__LDFLAGS__) @OPENFOAM_LINKEXE_LIBS@ -o $@
 
 %.o : %.C
 	$(CC) $(__CXXFLAGS__) -c $< -o $@
-
-$(bindir):
-	@install -d $(bindir)
 
 clean:
 	@rm -f $(objs) $(app_target)
