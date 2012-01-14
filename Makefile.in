@@ -35,14 +35,6 @@ clean:
 	@./Allwclean
 
 
-ifeq ($(WM_ARCH_BASE),darwin)
-LDCONFIG=
-FIND=gfind
-else
-LDCONFIG=ldconfig
-FIND=find
-endif
-
 #--------------------------------------------------------------------------------------
 install:
 	@ install -d $(bindir) $(libdir) $(includedir) $(m4dir)/admin
@@ -53,12 +45,12 @@ endif
 	@ echo "install libs"
 	@ cp -rf @abs_top_builddir@/lib/* $(libdir)
 ifeq "@FOAM_BRANCH@" "free"
-	@ $(LDCONFIG)
+	@ @LDCONFIG@
 endif
 	@ echo "install headers"
 	@ cp -rf @abs_top_builddir@/src/* $(includedir)
-	@ (cd $(includedir) && $(FIND) \( -name "*.dep" -o -name "*.cpp" -o -name "*.o" -o -name "Makefile*" \) -exec rm -rf {} \; )
-	@ (cd $(includedir) && rm -rf `$(FIND) \( -type d -name "Make" \) -print` )
+	@ (cd $(includedir) && @FIND@ \( -name "*.dep" -o -name "*.cpp" -o -name "*.o" -o -name "Makefile*" \) -exec rm -rf {} \; )
+	@ (cd $(includedir) && rm -rf `@FIND@ \( -type d -name "Make" \) -print` )
 	@ echo "install m4"
 	@ cp -rf @abs_top_builddir@/admin/managedflu_check_managedflu.m4 $(m4dir)/admin
 	@ cp -rf @abs_top_builddir@/admin/managedflu_check_openfoam.m4 $(m4dir)/admin
