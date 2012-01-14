@@ -37,7 +37,7 @@ $(app_target): $(bindir) $(objs)
 	@OPENFOAM_LINKEXE@ $(objs) $(__LDFLAGS__) @OPENFOAM_LINKEXE_LIBS@ -o $@
 
 %.o : %.C
-	$(WM_CC) $(__CXXFLAGS__) -c $< -o $@
+	$(CC) $(__CXXFLAGS__) -c $< -o $@
 
 $(bindir):
 	@install -d $(bindir)
