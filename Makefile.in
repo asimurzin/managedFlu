@@ -35,7 +35,6 @@ clean:
 	@./Allwclean
 
 
-
 #--------------------------------------------------------------------------------------
 install:
 	@ install -d $(bindir) $(libdir) $(includedir) $(m4dir)/admin
@@ -45,11 +44,13 @@ ifeq "@FOAM_VERSION@" "020000"
 endif
 	@ echo "install libs"
 	@ cp -rf @abs_top_builddir@/lib/* $(libdir)
-	@ ldconfig
+ifeq "@FOAM_BRANCH@" "free"
+	@ @LDCONFIG@
+endif
 	@ echo "install headers"
 	@ cp -rf @abs_top_builddir@/src/* $(includedir)
-	@ (cd $(includedir) && find \( -name "*.dep" -o -name "*.cpp" -o -name "*.o" -o -name "Makefile*" \) -exec rm -rf {} \; )
-	@ (cd $(includedir) && rm -rf `find \( -type d -name "Make" \) -print` )
+	@ (cd $(includedir) && @FIND@ \( -name "*.dep" -o -name "*.cpp" -o -name "*.o" -o -name "Makefile*" \) -exec rm -rf {} \; )
+	@ (cd $(includedir) && rm -rf `@FIND@ \( -type d -name "Make" \) -print` )
 	@ echo "install m4"
 	@ cp -rf @abs_top_builddir@/admin/managedflu_check_managedflu.m4 $(m4dir)/admin
 	@ cp -rf @abs_top_builddir@/admin/managedflu_check_openfoam.m4 $(m4dir)/admin

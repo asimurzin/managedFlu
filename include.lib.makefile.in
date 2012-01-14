@@ -30,7 +30,7 @@ include_path=./lnInclude
 
 
 #--------------------------------------------------------------------------------------
-All: $(libdir) $(include_path) $(libdir)/$(libname).so 
+All: $(include_path) $(libdir)/$(libname).so 
 	@
 
 %.o : %.cpp
@@ -39,14 +39,11 @@ All: $(libdir) $(include_path) $(libdir)/$(libname).so
 $(include_path):
 	@[ -d $(include_path) ] || mkdir $(include_path)
 	@find -L . -type l -exec rm {} \;
-	@( cd $(include_path) && find ../ -type f -name "*.hpp" -exec ln -s {} \; )
-	@( cd $(include_path) && find ../ -type f -name "*.cpp" -exec ln -s {} \; )
+	@( cd $(include_path) && @FIND@ ../ -type f -name "*.hpp" -exec ln -s {} \; )
+	@( cd $(include_path) && @FIND@ ../ -type f -name "*.cpp" -exec ln -s {} \; )
 
 $(libdir)/$(libname).so: $(objs) 
 	@OPENFOAM_LINKLIBSO@ $(objs) $(__LDFLAGS__) @OPENFOAM_LINKLIBSO_LIBS@ -o $@;
-
-$(libdir):
-	@install -d $(libdir)
 
 clean:
 	@rm -f $(objs)
