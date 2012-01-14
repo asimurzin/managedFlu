@@ -35,6 +35,10 @@ Pre-requisites
 
 * Make sure that OpenFOAM is installed (tested with 1.6-ext, 2.0.0, 2.0.1 and 2.1.0  versions). 
   Please follow instructions from corresponding INSTALL file to setup OpenFOAM in your environment.
+  
+* Make sure that Boost C++ libraries is installed (tested with 1.40 - 1.48  versions). 
+  Please follow instructions from corresponding INSTALL file to setup Boost C++ libraries in your environment.
+  
 
 Then follow the instructions below in order to build and install the "managedFlu".
 
