@@ -34,7 +34,9 @@ cfdTools/general/IObasicSourceListHolder.cpp \
 fvMeshHolder.cpp \
 volFields.cpp \
 surfaceFields.cpp \
-fvMatrices.cpp 
+fvMatrices.cpp  \
+\
+cfdTools/general/SRFModelHolder.cpp \
 
 
 libname=libmanagedFlu-finiteVolume
