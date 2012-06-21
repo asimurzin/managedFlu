@@ -52,6 +52,8 @@ namespace Foam
     using  boost::shared_ptr< PorousZones< ZoneType > >::operator*;
     using  boost::shared_ptr< PorousZones< ZoneType > >::operator->;
 #endif
+  protected:
+    void operator=( const boost::shared_ptr< PorousZones< ZoneType > >& );
   };
 } // Foam
 
@@ -91,6 +93,12 @@ namespace Foam
 #ifdef OUR_DEBUG
     cout << "~PorousZonesHolder = " << this << nl;
 #endif
+  }
+  
+  template<class ZoneType>
+  void PorousZonesHolder< ZoneType >::operator=( const boost::shared_ptr< PorousZones< ZoneType > >& the_Arg )
+  {
+    boost::shared_ptr< PorousZones< ZoneType > >::operator=( the_Arg );
   }
 }
 
