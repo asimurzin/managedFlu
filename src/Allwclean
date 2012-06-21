@@ -32,6 +32,7 @@ cd ${0%/*} || exit 1    # run from this directory
 ( cd thermophysicalModels/basic && make clean )
 ( cd thermophysicalModels/basicSolidThermo && make clean )
 ( cd thermophysicalModels/radiationModel && make clean )
+( cd thermophysicalModels/thermalPorousZone && make clean )
 ( cd transportModels/incompressible && make clean )
 ( cd transportModels/interfaceProperties && make clean )
 ( cd turbulenceModels/compressible/turbulenceModel && make clean )

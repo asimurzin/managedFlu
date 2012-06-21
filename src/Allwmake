@@ -32,6 +32,7 @@ cd ${0%/*} || exit 1    # run from this directory
 ( cd thermophysicalModels/basic && make )
 ( cd thermophysicalModels/basicSolidThermo && make )
 ( cd thermophysicalModels/radiationModel && make )
+( cd thermophysicalModels/thermalPorousZone && make )
 ( cd transportModels/incompressible && make )
 ( cd transportModels/interfaceProperties && make )
 ( cd turbulenceModels/compressible/turbulenceModel && make )

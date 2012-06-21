@@ -79,6 +79,7 @@ AC_OUTPUT( [ bashrc \
              src/thermophysicalModels/basic/Makefile \
              src/thermophysicalModels/basicSolidThermo/Makefile \
              src/thermophysicalModels/radiationModel/Makefile \
+             src/thermophysicalModels/thermalPorousZone/Makefile \
              src/transportModels/incompressible/Makefile \
              src/transportModels/interfaceProperties/Makefile \
              src/common.hpp \
