@@ -21,7 +21,7 @@
 #--------------------------------------------------------------------------------------
 # Process this file with autoconf to produce a configure script
 #--------------------------------------------------------------------------------------
-AC_INIT([managedFlu], [1.0], [alexey.petrov.nnov@gmail.com], [managedflu])
+AC_INIT([managedFlu], [1.1], [alexey.petrov.nnov@gmail.com], [managedflu])
 
 # AC_CONFIG_AUX_DIR defines an alternative directory where to find the auxiliary
 # scripts such as config.guess, install-sh, ...

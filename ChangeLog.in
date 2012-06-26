@@ -1,8 +1,13 @@
 #PACKAGE# (#VERSION#~@UBUNTU_CODENAME@) @UBUNTU_CODENAME@; urgency=high
 
-  * Initial realese
+  * Porting on the latest OpenCFD version of OpenFOAM - 2.1.1
 
  -- #USERNAME# <#EMAIL#>  #DATE#
 
+managedflu (1.0) maverick; urgency=high
+
+  * Initial realese
+
+ -- Alexey PETROV <alexey.petrov.nnov@gmail.com> Tue, 05 June 2011 19:45:32 +0300
 
 
